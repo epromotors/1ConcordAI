@@ -2133,6 +2133,12 @@ footer { background: rgba(15, 31, 61, 0.96); border-top: 1px solid var(--border)
   pointer-events: none;
 }
 
+.relative-z {
+  position: relative;
+  z-index: 2;
+}
+
+
 
 .compliance-grid {
   display: grid;
