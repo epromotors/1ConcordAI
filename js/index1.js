@@ -2038,6 +2038,16 @@ document.addEventListener('DOMContentLoaded', function() {
   initGrcCoreSection();
   initComplianceGrid();
 
+  // Re-run compliance grid on resize to keep it aligned with container dimensions
+  window.addEventListener('resize', () => {
+    if (window.complianceResizeTimeout) {
+      clearTimeout(window.complianceResizeTimeout);
+    }
+    window.complianceResizeTimeout = setTimeout(() => {
+      initComplianceGrid();
+    }, 150);
+  });
+
   // 4. Read routing hash or default to home
   var hash = window.location.hash.replace('#','');
   go(hash && document.getElementById('pg-' + hash) ? hash : 'home');
