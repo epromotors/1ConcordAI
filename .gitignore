@@ -1,0 +1,19 @@
+# System / OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDEs / Editors
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+
+# Log files
+*.log
+
+# Large files / archives (optional to ignore, e.g., zip files if you want to keep repo light)
+# solutions.zip
