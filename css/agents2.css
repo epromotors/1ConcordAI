@@ -946,6 +946,8 @@
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 .ag-workflow-card::before {
@@ -995,6 +997,7 @@
   display: flex;
   flex-direction: column;
   gap: 0;
+  flex-grow: 1;
 }
 
 .ag-wf-step {
@@ -1022,10 +1025,10 @@
 }
 
 .ag-wf-step-action {
-  font-size: 12px;
-  color: var(--ag-text3);
+  font-size: 13.5px;
+  color: #cbd5e1; /* Readable warm white */
   padding-top: 3px;
-  line-height: 1.4;
+  line-height: 1.45;
 }
 
 .ag-wf-arrow {
@@ -1037,7 +1040,7 @@
 }
 
 .ag-wf-result {
-  margin-top: 16px;
+  margin-top: auto; /* Push to same bottom level */
   padding: 10px 14px;
   background: rgba(20,184,166,0.06);
   border: 1px solid rgba(20,184,166,0.15);
