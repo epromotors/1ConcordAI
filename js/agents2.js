@@ -615,8 +615,10 @@
             // Radiating floating cards
             featuredAgents.map(function(item, idx) {
               var a = item.agent;
+              var isWide = (a.code === 'cg' || a.code === 'im');
+              var wideClass = isWide ? ' q-wide-card' : '';
               return [
-                '<div class="q-floating-card ' + item.posClass + '" data-idx="' + idx + '">',
+                '<div class="q-floating-card ' + item.posClass + wideClass + '" data-idx="' + idx + '">',
                   '<div class="q-fc-icon-wrap">' + item.icon + '</div>',
                   '<div class="q-fc-content">',
                     '<div class="q-fc-name">' + a.name + '</div>',

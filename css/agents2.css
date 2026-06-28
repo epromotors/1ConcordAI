@@ -1393,6 +1393,10 @@
   width: 180px;
 }
 
+.q-wide-card {
+  width: 240px; /* Expanded for longer names */
+}
+
 .q-floating-card:hover,
 .q-floating-card.active {
   border-color: rgba(6, 182, 212, 0.4);
@@ -1519,6 +1523,10 @@
     width: 140px;
     padding: 8px 12px;
     gap: 8px;
+  }
+
+  .q-wide-card {
+    width: 180px; /* Scaled down for mobile */
   }
 
   .q-fc-name {
