@@ -659,6 +659,7 @@
       // SVG dimensions matching container
       svg.setAttribute('width', containerRect.width);
       svg.setAttribute('height', containerRect.height);
+      svg.setAttribute('viewBox', '0 0 ' + containerRect.width + ' ' + containerRect.height);
 
       // Center coordinates (originating point of lines)
       var cx = (cubeRect.left + cubeRect.width / 2) - containerRect.left;
