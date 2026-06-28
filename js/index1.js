@@ -928,41 +928,88 @@ function buildHome() {
 }
 /* ── BUILD: PLATFORM ──────────────────────────────────── */
 function buildPlatform() {
+  // 1. Core Services Bento Grid
   var servicesEl = document.getElementById('platformServices');
   if (servicesEl) {
     servicesEl.innerHTML = '';
     var services = [
-      ['API Gateway',
-       'Every channel — Teams, web portal, email, REST API — enters here. Authentication, rate limiting, tenant routing, and WebSocket server for real-time streaming.',
-       '<i data-lucide="network" style="width:21px;height:21px;"></i>'],
-      ['Orchestration Service',
-       'Intent extraction, agent routing, multi-agent coordination, and real-time status streaming. The brain that decides who handles what.',
-       '<i data-lucide="git-branch" style="width:21px;height:21px;"></i>'],
-      ['Agent Runtime',
-       'LangGraph reasoning + Temporal durable execution. Each agent runs a 5-step lifecycle (Understand → Reason → Decide → Execute → Learn) with full state management and retries.',
-       '<i data-lucide="play" style="width:21px;height:21px;"></i>'],
-      ['Connector Service',
-       '70+ integrations. Every API call wrapped with authentication, retry logic, circuit breaking, rate limiting, and an immutable audit hook.',
-       '<i data-lucide="link" style="width:21px;height:21px;"></i>'],
-      ['Knowledge & Policy Service',
-       'Neo4j organisational knowledge graph + Weaviate vector store. Policy engine evaluates risk before every action. Nothing executes without a verdict.',
-       '<i data-lucide="shield" style="width:21px;height:21px;"></i>'],
-      ['Audit Service',
-       'Append-only, hash-chained, immutable event log. Every decision, action, and escalation — retained for 1 year (Enterprise) or 90 days (Starter). SOC 2 and NESA compliant.',
-       '<i data-lucide="history" style="width:21px;height:21px;"></i>'],
+      {
+        title: 'API Gateway',
+        desc: 'Every channel — Teams, web portal, email, REST API — enters here. Authentication, rate limiting, tenant routing, and WebSocket server for real-time streaming.',
+        icon: 'network',
+        span: 'b-span-1',
+        visual: ''
+      },
+      {
+        title: 'Orchestration Service',
+        desc: 'Intent extraction, agent routing, multi-agent coordination, and real-time status streaming. The brain that decides who handles what.',
+        icon: 'git-branch',
+        span: 'b-span-2',
+        visual: '<div class="bento-visual" style="height:150px"><div class="bento-dotted-grid"></div><canvas id="vis-orchestration-canvas" style="width:100%;height:100%"></canvas></div>'
+      },
+      {
+        title: 'Agent Runtime',
+        desc: 'LangGraph reasoning + Temporal durable execution. Each agent runs a 5-step lifecycle (Understand → Reason → Decide → Execute → Learn) with full state management and retries.',
+        icon: 'play',
+        span: 'b-span-2',
+        visual: '<div class="bento-visual" style="height:150px"><div class="bento-dotted-grid"></div><div class="vis-stepper" id="vis-stepper-container"></div></div>'
+      },
+      {
+        title: 'Connector Service',
+        desc: '70+ integrations. Every API call wrapped with authentication, retry logic, circuit breaking, rate limiting, and an immutable audit hook.',
+        icon: 'link',
+        span: 'b-span-1',
+        visual: '<div class="bento-visual" style="height:150px"><div class="bento-dotted-grid"></div><div class="vis-connector-grid">' +
+          ['Slack', 'Teams', 'Jira', 'GitHub', 'AWS', 'Azure', 'Okta', 'GCP'].map(function(t) {
+            return '<div class="vis-connector-icon" style="font-family:var(--mono);font-size:9px;font-weight:700">' + t + '</div>';
+          }).join('') + '</div></div>'
+      },
+      {
+        title: 'Knowledge & Policy Service',
+        desc: 'Neo4j organisational knowledge graph + Weaviate vector store. Policy engine evaluates risk before every action. Nothing executes without a verdict.',
+        icon: 'shield',
+        span: 'b-span-1',
+        visual: '<div class="bento-visual" style="height:150px"><div class="bento-dotted-grid"></div><div style="display:flex;align-items:center;justify-content:center;height:100%;flex-direction:column;gap:8px">' +
+          '  <div style="font-size:24px;font-weight:800;color:var(--accent);font-family:var(--mono)" id="vis-policy-score">0.12</div>' +
+          '  <div style="font-size:9px;font-weight:700;color:var(--text-3);letter-spacing:1px;text-transform:uppercase">POLICIES EVALUATING...</div>' +
+          '</div></div>'
+      },
+      {
+        title: 'Audit Service',
+        desc: 'Append-only, hash-chained, immutable event log. Every decision, action, and escalation — retained for 1 year (Enterprise) or 90 days (Starter). SOC 2 and NESA compliant.',
+        icon: 'history',
+        span: 'b-span-2',
+        visual: '<div class="bento-visual" style="height:150px"><div class="bento-dotted-grid"></div><div class="vis-terminal" id="vis-terminal-logs"></div></div>'
+      }
     ];
-    servicesEl.className = 'g3';
+
     services.forEach(function(s) {
       var card = document.createElement('div');
-      card.className = 'card fade-up';
-      card.setAttribute('data-line-card', '');
-      card.innerHTML = '<div class="ficon">' + s[2] + '</div>'
-        + '<h4 class="mb-sm">' + s[0] + '</h4>'
-        + '<p style="font-size:13.5px">' + s[1] + '</p>';
+      card.className = 'bento-card ' + s.span + ' fade-up';
+      card.innerHTML = '<div>'
+        + '  <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px">'
+        + '    <div style="width:36px;height:36px;border-radius:10px;background:rgba(20,184,166,0.1);border:1px solid rgba(20,184,166,0.2);display:flex;align-items:center;justify-content:center;color:var(--accent)">'
+        + '      <i data-lucide="' + s.icon + '" style="width:18px;height:18px"></i>'
+        + '    </div>'
+        + '    <h4 style="font-size:15px;font-weight:700;color:var(--text-1);margin:0">' + s.title + '</h4>'
+        + '  </div>'
+        + '  <p style="font-size:13.5px;color:var(--text-2);line-height:1.55">' + s.desc + '</p>'
+        + '</div>'
+        + s.visual;
       servicesEl.appendChild(card);
     });
+
+    // Start Orchestration canvas simulation
+    initOrchestrationCanvas();
+    // Start Runtime stepper simulation
+    initRuntimeStepper();
+    // Start Policy Score simulation
+    initPolicyScoreTimer();
+    // Start Terminal Log simulation
+    initTerminalLogs();
   }
 
+  // 2. Execution Flow Steps
   var stepsEl = document.getElementById('execFlow');
   if (stepsEl) {
     stepsEl.innerHTML = '';
@@ -978,14 +1025,19 @@ function buildPlatform() {
     ];
     execSteps.forEach(function(s, i) {
       var row = document.createElement('div');
-      row.style.cssText = 'display:flex;gap:12px;align-items:flex-start; margin-bottom:12px;';
-      row.className = 'fade-up';
-      row.innerHTML = '<div class="step-dot">' + (i < 9 ? '0' : '') + (i + 1) + '</div>'
-        + '<div><div style="font-size:13.5px;font-weight:700;color:var(--text-1)">' + s[0] + '</div><div style="font-size:12.5px;color:var(--text-3);margin-top:2px">' + s[1] + '</div></div>';
+      row.style.cssText = 'display:flex;gap:12px;align-items:flex-start;padding:8px 12px;border-radius:8px;transition:all 0.3s ease;';
+      row.className = 'exec-step-row';
+      row.setAttribute('data-step-idx', i);
+      row.innerHTML = '<div class="step-dot" style="font-family:var(--mono);font-size:11px;font-weight:700;width:24px;height:24px;border-radius:50%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;color:var(--text-3)">' + (i < 9 ? '0' : '') + (i + 1) + '</div>'
+        + '<div><div style="font-size:13.5px;font-weight:700;color:var(--text-2);transition:color 0.3s">' + s[0] + '</div><div style="font-size:12.5px;color:var(--text-3);margin-top:2px">' + s[1] + '</div></div>';
       stepsEl.appendChild(row);
     });
+
+    // Start synchronised highlight loop between list and SVG node graph
+    initPipelineHighlightCycle();
   }
 
+  // 3. Policy Engine Risk Factors
   var riskRows = document.getElementById('riskRows');
   if (riskRows) {
     riskRows.innerHTML = '';
@@ -999,62 +1051,327 @@ function buildPlatform() {
     ];
     factors.forEach(function(f) {
       var row = document.createElement('div');
-      row.className = 'fade-up';
-      row.style.cssText = 'display:flex;justify-content:space-between;align-items:center;padding:9px 12px;background:rgba(255,255,255,0.04);border-radius:7px;border:1px solid rgba(255,255,255,.08);margin-bottom:8px;';
-      row.innerHTML = '<span style="font-size:12.5px;color:var(--text-2)">' + f[0] + '</span><span style="font-size:11.5px;color:var(--accent);font-family:var(--mono)">' + f[1] + '</span>';
+      row.className = 'risk-factor-row';
+      row.innerHTML = '<span style="font-size:13px;font-weight:600;color:var(--text-2)">' + f[0] + '</span><span style="font-size:12px;color:var(--accent);font-family:var(--mono)">' + f[1] + '</span>';
       riskRows.appendChild(row);
     });
   }
 
+  // 4. Risk Routing Thresholds
   var riskPills = document.getElementById('riskPills');
   if (riskPills) {
     riskPills.innerHTML = '';
-    var routes = [['< 0.3','AUTO EXECUTE'],['0.3 – 0.6','NOTIFY + EXECUTE'],['0.6 – 0.8','REQUIRE APPROVAL'],['> 0.8','REJECT']];
-    riskPills.style.cssText = 'display:grid;grid-template-columns:1fr 1fr;gap:6px';
+    var routes = [['< 0.3','AUTO EXECUTE', 'Simple tasks (reads, password resets) run in milliseconds with zero friction.'],['0.3 – 0.6','NOTIFY + EXECUTE', 'Agent alerts security channels but executes the task to ensure no work interruption.'],['0.6 – 0.8','REQUIRE APPROVAL', 'High-impact writes or sensitive system edits hold for supervisor authorization.'],['> 0.8','REJECT', 'Dangerous actions or separation-of-duty violations block automatically with alerts.']];
+    riskPills.style.cssText = 'display:grid;grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));gap:16px;width:100%;';
     routes.forEach(function(r) {
-      var pill = document.createElement('div');
-      pill.style.cssText = 'padding:8px 10px;background:rgba(0,0,0,.2);border-radius:7px;font-size:11.5px';
-      pill.className = 'fade-up';
-      pill.innerHTML = '<div style="color:var(--gold);font-family:var(--mono);font-weight:600;margin-bottom:3px">' + r[0] + '</div><div style="color:var(--text-1);font-weight:700;font-size:10px">' + r[1] + '</div>';
-      riskPills.appendChild(pill);
+      var card = document.createElement('div');
+      card.className = 'risk-pill-card';
+      card.innerHTML = '<div style="color:var(--gold);font-family:var(--mono);font-weight:700;font-size:13.5px;letter-spacing:0.5px">' + r[0] + '</div>'
+        + '<div style="color:var(--text-1);font-weight:800;font-size:12px;letter-spacing:0.5px;text-transform:uppercase">' + r[1] + '</div>'
+        + '<div style="color:var(--text-3);font-size:12px;line-height:1.45">' + r[2] + '</div>';
+      riskPills.appendChild(card);
     });
   }
 
+  // 5. Tenant Isolation layers bento
   var isoEl = document.getElementById('isoLayers');
   if (isoEl) {
     isoEl.innerHTML = '';
     var layers = [
-      ['Database',
-       'PostgreSQL Row-Level Security — tenant_id enforced at DB level, not application level. Cross-tenant queries are impossible.',
-       '<i data-lucide="database" style="width:18px;height:18px;"></i>'],
-      ['Knowledge Graph',
-       'Neo4j tenant_id on all nodes. Query interceptor prepends tenant filter to every Cypher statement automatically.',
-       '<i data-lucide="network" style="width:18px;height:18px;"></i>'],
-      ['Message Bus',
-       "Kafka topics prefixed with tenant ID. Consumer groups isolated. One tenant's events cannot reach another's agents.",
-       '<i data-lucide="list" style="width:18px;height:18px;"></i>'],
-      ['File Storage',
-       'Separate S3 prefix namespace per tenant. IAM policies enforce prefix boundaries at the AWS infrastructure level.',
-       '<i data-lucide="folder-open" style="width:18px;height:18px;"></i>'],
-      ['Agent Execution',
-       'Temporal workflow namespace per tenant. Cross-tenant connector access is architecturally impossible.',
-       '<i data-lucide="shield-check" style="width:18px;height:18px;"></i>'],
-      ['Vector Search',
-       'Weaviate separate class per tenant. API key scoped to tenant class. Semantic search cannot return cross-tenant results.',
-       '<i data-lucide="search" style="width:18px;height:18px;"></i>'],
+      { name: 'Database', desc: 'PostgreSQL Row-Level Security — tenant_id enforced at DB level, not application level. Cross-tenant queries are impossible.', icon: 'database', span: 'b-span-2' },
+      { name: 'Knowledge Graph', desc: 'Neo4j tenant_id on all nodes. Query interceptor prepends tenant filter to every Cypher statement automatically.', icon: 'network', span: 'b-span-1' },
+      { name: 'Message Bus', desc: "Kafka topics prefixed with tenant ID. Consumer groups isolated. One tenant's events cannot reach another's agents.", icon: 'list', span: 'b-span-1' },
+      { name: 'File Storage', desc: 'Separate S3 prefix namespace per tenant. IAM policies enforce prefix boundaries at the AWS infrastructure level.', icon: 'folder-open', span: 'b-span-2' },
+      { name: 'Agent Execution', desc: 'Temporal workflow namespace per tenant. Cross-tenant connector access is architecturally impossible.', icon: 'shield-check', span: 'b-span-1' },
+      { name: 'Vector Search', desc: 'Weaviate separate class per tenant. API key scoped to tenant class. Semantic search cannot return cross-tenant results.', icon: 'search', span: 'b-span-2' }
     ];
     layers.forEach(function(l) {
       var card = document.createElement('div');
-      card.className = 'card card-teal fade-up';
-      card.innerHTML = '<div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">'
-        + '<div style="width:34px;height:34px;border-radius:9px;background:rgba(20,184,166,.15);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--accent);flex-shrink:0">' + l[2] + '</div>'
-        + '<h4 style="font-size:13.5px;margin:0">' + l[0] + '</h4>'
-        + '</div>'
-        + '<p style="font-size:13px">' + l[1] + '</p>';
+      card.className = 'bento-card ' + l.span + ' fade-up';
+      card.innerHTML = '<div>'
+        + '  <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">'
+        + '    <div style="width:34px;height:34px;border-radius:9px;background:rgba(20,184,166,.15);border:1px solid rgba(20,184,166,.2);display:flex;align-items:center;justify-content:center;color:var(--accent);flex-shrink:0"><i data-lucide="' + l.icon + '" style="width:18px;height:18px"></i></div>'
+        + '    <h4 style="font-size:14.5px;margin:0;color:var(--text-1)">' + l.name + '</h4>'
+        + '  </div>'
+        + '  <p style="font-size:13.5px;color:var(--text-2);line-height:1.5">' + l.desc + '</p>'
+        + '</div>';
       isoEl.appendChild(card);
     });
   }
+
+  // Re-init lucide icons on dynamically created markup
+  if (typeof lucide !== 'undefined') {
+    lucide.createIcons();
+  }
 }
+
+/* ── BENTO PLATFORM SIMULATIONS & INTERACTIONS ─────────── */
+function initOrchestrationCanvas() {
+  const canvas = document.getElementById('vis-orchestration-canvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  
+  // Set scale factor for HighDPI screens
+  const dpr = window.devicePixelRatio || 1;
+  let width = canvas.width = (canvas.offsetWidth || 300) * dpr;
+  let height = canvas.height = (canvas.offsetHeight || 150) * dpr;
+  ctx.scale(dpr, dpr);
+
+  const cssWidth = canvas.offsetWidth || 300;
+  const cssHeight = canvas.offsetHeight || 150;
+  
+  const points = [];
+  for (let i = 0; i < 16; i++) {
+    points.push({
+      x: Math.random() * cssWidth,
+      y: Math.random() * cssHeight,
+      vx: (Math.random() - 0.5) * 0.45,
+      vy: (Math.random() - 0.5) * 0.45
+    });
+  }
+
+  let active = true;
+  function animate() {
+    if (!active) return;
+    ctx.clearRect(0, 0, cssWidth, cssHeight);
+    
+    // Draw points
+    points.forEach(p => {
+      p.x += p.vx;
+      p.y += p.vy;
+      if (p.x < 0 || p.x > cssWidth) p.vx *= -1;
+      if (p.y < 0 || p.y > cssHeight) p.vy *= -1;
+      
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, 2, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(56, 189, 248, 0.55)';
+      ctx.fill();
+    });
+
+    // Draw lines
+    ctx.strokeStyle = 'rgba(56, 189, 248, 0.09)';
+    ctx.lineWidth = 1;
+    for (let i = 0; i < points.length; i++) {
+      for (let j = i + 1; j < points.length; j++) {
+        const dx = points[i].x - points[j].x;
+        const dy = points[i].y - points[j].y;
+        const dist = Math.sqrt(dx*dx + dy*dy);
+        if (dist < 60) {
+          ctx.beginPath();
+          ctx.moveTo(points[i].x, points[i].y);
+          ctx.lineTo(points[j].x, points[j].y);
+          ctx.stroke();
+        }
+      }
+    }
+    requestAnimationFrame(animate);
+  }
+  animate();
+  
+  const observer = new MutationObserver(() => {
+    if (!document.getElementById('vis-orchestration-canvas')) {
+      active = false;
+      observer.disconnect();
+    }
+  });
+  observer.observe(document.body, { childList: true, subtree: true });
+}
+
+function initRuntimeStepper() {
+  const container = document.getElementById('vis-stepper-container');
+  if (!container) return;
+  
+  const steps = ['UND', 'RSN', 'DEC', 'EXE', 'LRN'];
+  container.innerHTML = '';
+  
+  steps.forEach((s, idx) => {
+    const node = document.createElement('div');
+    node.className = 'vis-step-node' + (idx === 0 ? ' active' : '');
+    node.innerHTML = '<span style="font-family:var(--mono);font-size:9.5px">' + s + '</span>';
+    container.appendChild(node);
+    
+    if (idx < steps.length - 1) {
+      const line = document.createElement('div');
+      line.className = 'vis-step-line';
+      line.innerHTML = '<div class="vis-step-line-fill"></div>';
+      container.appendChild(line);
+    }
+  });
+  
+  let currentStep = 0;
+  const interval = setInterval(() => {
+    if (!document.getElementById('vis-stepper-container')) {
+      clearInterval(interval);
+      return;
+    }
+    const nodes = container.querySelectorAll('.vis-step-node');
+    const lines = container.querySelectorAll('.vis-step-line-fill');
+    
+    nodes.forEach(n => n.classList.remove('active'));
+    lines.forEach(l => l.style.width = '0%');
+    
+    currentStep = (currentStep + 1) % steps.length;
+    nodes[currentStep].classList.add('active');
+    
+    for (let k = 0; k < currentStep; k++) {
+      if (lines[k]) lines[k].style.width = '100%';
+    }
+  }, 2000);
+}
+
+function initPolicyScoreTimer() {
+  const scoreEl = document.getElementById('vis-policy-score');
+  if (!scoreEl) return;
+  const interval = setInterval(() => {
+    if (!scoreEl || !document.getElementById('vis-policy-score')) {
+      clearInterval(interval);
+      return;
+    }
+    const randomScore = (Math.random() * 0.95).toFixed(2);
+    scoreEl.textContent = randomScore;
+    if (parseFloat(randomScore) > 0.8) {
+      scoreEl.style.color = '#ef4444';
+    } else if (parseFloat(randomScore) > 0.6) {
+      scoreEl.style.color = 'var(--gold)';
+    } else {
+      scoreEl.style.color = 'var(--accent)';
+    }
+  }, 2200);
+}
+
+function initTerminalLogs() {
+  const logsEl = document.getElementById('vis-terminal-logs');
+  if (!logsEl) return;
+  
+  const lines = [
+    '[AUDIT] Ingested Slack API event: message.created',
+    '[POLICY] Action "Post Message" evaluated. Risk score: 0.12',
+    '[POLICY] Risk routing: AUTO_EXECUTE',
+    '[RUNTIME] Triggered Slack Agent runtime environment',
+    '[CONNECTOR] Enforcing TLS 1.3 to slack.com/api',
+    '[AUDIT] Event written: Hash chain checksum verified (OK)'
+  ];
+  
+  let lineIdx = 0;
+  logsEl.innerHTML = '';
+  
+  function addLine() {
+    if (!logsEl || !document.getElementById('vis-terminal-logs')) return;
+    if (logsEl.children.length > 5) {
+      logsEl.removeChild(logsEl.firstChild);
+    }
+    const div = document.createElement('div');
+    div.className = 'vis-terminal-line';
+    div.style.animation = 'visTyping 1s steps(40, end) forwards';
+    div.textContent = lines[lineIdx];
+    logsEl.appendChild(div);
+    
+    lineIdx = (lineIdx + 1) % lines.length;
+    setTimeout(addLine, 2500);
+  }
+  addLine();
+}
+
+function initPipelineHighlightCycle() {
+  const rows = document.querySelectorAll('.exec-step-row');
+  const svg = document.getElementById('preview-svg');
+  if (!svg) return;
+  
+  let activeStep = 0;
+  
+  const nodes = {
+    ingest: svg.getElementById('node-ingest'),
+    intel: svg.getElementById('node-intel'),
+    risk: svg.getElementById('node-risk'),
+    exec: svg.getElementById('node-execution'),
+    audit: svg.getElementById('node-audit')
+  };
+  
+  const pulses = {
+    p1: svg.getElementById('pipe-pulse-1'),
+    p2: svg.getElementById('pipe-pulse-2'),
+    p3: svg.getElementById('pipe-pulse-3')
+  };
+
+  function updateCycle() {
+    if (!document.getElementById('execFlow')) return;
+    
+    rows.forEach(r => {
+      r.style.background = 'transparent';
+      r.querySelector('.step-dot').style.background = 'rgba(255,255,255,0.05)';
+      r.querySelector('.step-dot').style.borderColor = 'rgba(255,255,255,0.1)';
+      r.querySelector('.step-dot').style.color = 'var(--text-3)';
+      r.querySelector('div > div').style.color = 'var(--text-2)';
+    });
+    
+    Object.values(nodes).forEach(n => {
+      if (n) n.classList.remove('active-node');
+    });
+    
+    Object.values(pulses).forEach(p => {
+      if (p) {
+        p.style.opacity = '0';
+        p.style.strokeDashoffset = '200';
+      }
+    });
+
+    const activeRow = document.querySelector(`.exec-step-row[data-step-idx="${activeStep}"]`);
+    if (activeRow) {
+      activeRow.style.background = 'rgba(20, 184, 166, 0.04)';
+      const dot = activeRow.querySelector('.step-dot');
+      dot.style.background = 'rgba(20, 184, 166, 0.15)';
+      dot.style.borderColor = 'var(--accent)';
+      dot.style.color = 'var(--accent)';
+      activeRow.querySelector('div > div').style.color = '#fff';
+    }
+
+    if (activeStep === 0 || activeStep === 1) {
+      if (nodes.ingest) nodes.ingest.classList.add('active-node');
+      if (nodes.intel) nodes.intel.classList.add('active-node');
+      if (pulses.p1) {
+        pulses.p1.style.opacity = '1';
+        pulses.p1.style.animation = 'visPulse 1.8s linear infinite';
+      }
+    } else if (activeStep === 2 || activeStep === 3) {
+      if (nodes.intel) nodes.intel.classList.add('active-node');
+      if (nodes.risk) nodes.risk.classList.add('active-node');
+    } else if (activeStep === 4 || activeStep === 5) {
+      if (nodes.risk) nodes.risk.classList.add('active-node');
+      if (nodes.exec) nodes.exec.classList.add('active-node');
+      if (pulses.p2) {
+        pulses.p2.style.opacity = '1';
+        pulses.p2.style.animation = 'visPulse 1.8s linear infinite';
+      }
+    } else if (activeStep === 6) {
+      if (nodes.exec) nodes.exec.classList.add('active-node');
+      if (nodes.audit) nodes.audit.classList.add('active-node');
+      if (pulses.p3) {
+        pulses.p3.style.opacity = '1';
+        pulses.p3.style.animation = 'visPulse 1.8s linear infinite';
+      }
+    } else if (activeStep === 7) {
+      if (nodes.audit) nodes.audit.classList.add('active-node');
+    }
+
+    activeStep = (activeStep + 1) % 8;
+  }
+
+  if (!document.getElementById('vis-pulse-style')) {
+    const style = document.createElement('style');
+    style.id = 'vis-pulse-style';
+    style.innerHTML = `
+      @keyframes visPulse {
+        0% { stroke-dashoffset: 200; }
+        100% { stroke-dashoffset: 0; }
+      }
+    `;
+    document.head.appendChild(style);
+  }
+
+  updateCycle();
+  const interval = setInterval(updateCycle, 2600);
+}
+
 
 /* ── BUILD: AGENTS ────────────────────────────────────── */
 function buildAgentGrid() {

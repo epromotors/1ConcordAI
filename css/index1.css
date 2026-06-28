@@ -2997,3 +2997,241 @@ footer { background: rgba(15, 31, 61, 0.96); border-top: 1px solid var(--border)
   text-transform: uppercase;
 }
 
+
+/* ─── PLATFORM BENTO GRID REDESIGN ─── */
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 30px;
+}
+
+.bento-card {
+  position: relative;
+  background: rgba(15, 31, 61, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  padding: 26px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(8px);
+}
+
+.bento-card:hover {
+  border-color: rgba(56, 189, 248, 0.28);
+  box-shadow: 0 15px 45px rgba(56, 189, 248, 0.15);
+  transform: translateY(-3px);
+}
+
+/* Col spans */
+.b-span-1 { grid-column: span 1; }
+.b-span-2 { grid-column: span 2; }
+.b-span-3 { grid-column: span 3; }
+
+/* Visual containers */
+.bento-visual {
+  position: relative;
+  margin-top: 18px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: rgba(10, 15, 28, 0.65);
+  min-height: 140px;
+  overflow: hidden;
+}
+
+/* Dotted grid */
+.bento-dotted-grid {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 16px 16px;
+}
+
+/* Platform specific visuals styling */
+.vis-stepper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px;
+  height: 100%;
+}
+
+.vis-step-node {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-3);
+  font-size: 10px;
+  font-weight: 700;
+  transition: all 0.4s ease;
+  position: relative;
+  z-index: 2;
+}
+
+.vis-step-node.active {
+  background: rgba(56, 189, 248, 0.15);
+  border-color: var(--accent-cyan);
+  color: var(--accent-cyan);
+  box-shadow: 0 0 15px rgba(56, 189, 248, 0.25);
+}
+
+.vis-step-line {
+  flex: 1;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.05);
+  position: relative;
+  z-index: 1;
+  margin: 0 -4px;
+}
+
+.vis-step-line-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  background: var(--accent-cyan);
+  transition: width 0.4s ease;
+}
+
+/* Connector service icons */
+.vis-connector-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  padding: 16px;
+  height: 100%;
+  align-content: center;
+}
+
+.vis-connector-icon {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-3);
+  transition: all 0.3s ease;
+}
+
+.vis-connector-icon:hover {
+  background: rgba(20, 184, 166, 0.1);
+  border-color: var(--accent);
+  color: var(--accent);
+  box-shadow: 0 0 10px rgba(20, 184, 166, 0.2);
+}
+
+/* Terminal Console logs */
+.vis-terminal {
+  padding: 14px;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: #38bdf8;
+  line-height: 1.5;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.vis-terminal-line {
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 2px solid transparent;
+  width: 0;
+}
+
+/* Audit service printing animation */
+@keyframes visTyping {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+/* Pipeline active state styling */
+.platform-pipeline-svg circle,
+.platform-pipeline-svg rect {
+  transition: stroke 0.3s ease, fill 0.3s ease, box-shadow 0.3s ease;
+}
+
+.platform-pipeline-svg text {
+  transition: fill 0.3s ease;
+}
+
+.platform-pipeline-svg .active-node circle,
+.platform-pipeline-svg .active-node rect {
+  stroke: var(--accent-cyan);
+  fill: rgba(56, 189, 248, 0.15);
+}
+
+.platform-pipeline-svg .active-node text {
+  fill: var(--text-1);
+}
+
+/* Risk factors and pills custom styling */
+.risk-factor-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 14px;
+  background: rgba(255,255,255,0.02);
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,.05);
+  margin-bottom: 8px;
+  transition: all 0.3s ease;
+}
+
+.risk-factor-row:hover {
+  background: rgba(255,255,255,0.04);
+  border-color: rgba(255,255,255,0.1);
+}
+
+.risk-pill-card {
+  padding: 14px 18px;
+  background: rgba(10, 15, 28, 0.5);
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  transition: all 0.3s ease;
+}
+
+.risk-pill-card:hover {
+  border-color: rgba(245, 158, 11, 0.3);
+  background: rgba(10, 15, 28, 0.7);
+  box-shadow: 0 4px 15px rgba(245, 158, 11, 0.05);
+}
+
+/* Responsive grid for bento cards */
+@media (max-width: 992px) {
+  .bento-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .bento-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .bento-card {
+    padding: 20px;
+  }
+}
+
+

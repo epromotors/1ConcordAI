@@ -371,49 +371,118 @@
         <div class="container">
           <span class="section-label" style="justify-content:center;">Core architecture</span>
           <h2 class="align-center mb-lg">Five services. One intelligent loop.</h2>
-          <div id="platformServices"></div>
+          <div id="platformServices" class="bento-grid"></div>
         </div>
       </section>
 
       <div class="divider"></div>
 
-      <!-- EXEC FLOW + RISK -->
+      <!-- EXEC FLOW + RISK (BENTO REDESIGN) -->
       <section class="section">
         <div class="container">
-          <div class="g2" style="gap:52px">
-            <div>
-              <span class="section-label">Execution flow</span>
-              <h2 class="mb">Every request follows the same trusted path.</h2>
-              <p class="mb-lg">One Concord AI doesn't improvise. Every agent execution follows a deterministic path — from channel ingestion through intent classification, risk scoring, connector execution, and audit logging. You always know what happened and why.</p>
-              <div id="execFlow" style="display:flex;flex-direction:column;gap:10px"></div>
-            </div>
-            <div>
-              <div class="card card-mid fade-up">
-                <span class="section-label" style="margin-bottom:0.75rem;">Policy engine</span>
-                <h3 class="mb">Risk-based execution control</h3>
-                <p style="font-size:13.5px;margin-bottom:18px">Every action is scored across 8 factors before the agent can proceed. No autonomous execution without a policy verdict.</p>
-                <div id="riskRows" style="display:flex;flex-direction:column;gap:7px;margin-bottom:16px"></div>
-                <div style="background:rgba(20,184,166,0.1);border:1px solid var(--border);border-radius:8px;padding:14px">
-                  <div style="font-size:11px;font-weight:700;color:var(--accent);letter-spacing:.6px;margin-bottom:10px;text-transform:uppercase">Risk routing</div>
-                  <div id="riskPills"></div>
+          <span class="section-label" style="justify-content:center;">Governance & control</span>
+          <h2 class="align-center mb-lg">Deterministic execution. Strict policy control.</h2>
+          
+          <div class="bento-grid">
+            <!-- Card 1: Execution Flow (Col Span 2) -->
+            <div class="bento-card b-span-2">
+              <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:20px; flex-wrap:wrap; width:100%;">
+                <div style="flex:1.2; min-width:280px;">
+                  <span class="section-label" style="margin-bottom:8px">Execution flow</span>
+                  <h3 class="mb-sm">Every request follows the same trusted path</h3>
+                  <p style="font-size:13.5px; color:var(--text-3); line-height:1.5; margin-bottom:20px">One Concord AI doesn't improvise. Every agent execution follows a deterministic path — from channel ingestion through intent classification, risk scoring, connector execution, and audit logging.</p>
+                  <div id="execFlow" style="display:flex; flex-direction:column; gap:10px"></div>
                 </div>
+                
+                <!-- SVG Pipeline visualizer inside Bento card (inspired by Vengeance UI Card1) -->
+                <div style="flex:1; min-width:250px; height:320px; display:flex; align-items:center; justify-content:center;">
+                  <div class="bento-visual" style="width:100%; height:100%; margin-top:0;">
+                    <div class="bento-dotted-grid"></div>
+                    <svg id="preview-svg" class="platform-pipeline-svg" viewBox="0 0 320 300" style="width:100%; height:100%; position:relative; z-index:2; overflow:visible;">
+                      <!-- Paths -->
+                      <path d="M 50 40 L 50 90" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" />
+                      <path d="M 50 130 L 50 170" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" />
+                      <path d="M 50 210 L 50 250" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" />
+                      <path d="M 90 90 L 230 90" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" />
+                      <path d="M 230 130 L 230 210" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" />
+                      
+                      <!-- Flow pulses -->
+                      <path id="pipe-pulse-1" d="M 50 40 L 50 90" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" style="stroke-dasharray:100; stroke-dashoffset:100; opacity:0;" />
+                      <path id="pipe-pulse-2" d="M 90 90 L 230 90" fill="none" stroke="var(--accent-cyan)" stroke-width="2" stroke-linecap="round" style="stroke-dasharray:200; stroke-dashoffset:200; opacity:0;" />
+                      <path id="pipe-pulse-3" d="M 230 130 L 230 210" fill="none" stroke="var(--accent-violet)" stroke-width="2" stroke-linecap="round" style="stroke-dasharray:100; stroke-dashoffset:100; opacity:0;" />
+                      
+                      <!-- Nodes (Request, Router, Agent, Memory, Tools, Response) -->
+                      <g id="node-ingest" transform="translate(50,40)">
+                        <circle r="12" fill="rgba(15, 31, 61, 0.9)" stroke="rgba(255,255,255,0.15)" stroke-width="1.5" />
+                        <circle r="4" fill="var(--accent)" />
+                      </g>
+                      <g id="node-intel" transform="translate(50,90)">
+                        <rect x="-16" y="-16" width="32" height="32" rx="6" fill="rgba(15, 31, 61, 0.9)" stroke="rgba(255,255,255,0.15)" stroke-width="1.5" />
+                        <circle r="5" fill="var(--accent-cyan)" />
+                      </g>
+                      <g id="node-risk" transform="translate(50,170)">
+                        <rect x="-16" y="-16" width="32" height="32" rx="6" fill="rgba(15, 31, 61, 0.9)" stroke="rgba(255,255,255,0.15)" stroke-width="1.5" />
+                        <circle r="5" fill="var(--gold)" />
+                      </g>
+                      <g id="node-execution" transform="translate(230,90)">
+                        <rect x="-20" y="-20" width="40" height="40" rx="8" fill="rgba(15, 31, 61, 0.9)" stroke="rgba(255,255,255,0.15)" stroke-width="1.5" />
+                        <circle r="6" fill="var(--accent-violet)" />
+                      </g>
+                      <g id="node-audit" transform="translate(230,210)">
+                        <circle r="12" fill="rgba(15, 31, 61, 0.9)" stroke="rgba(255,255,255,0.15)" stroke-width="1.5" />
+                        <circle r="4" fill="#10b981" />
+                      </g>
+                      
+                      <!-- Labels -->
+                      <text x="50" y="20" fill="var(--text-3)" font-size="8" font-family="var(--mono)" font-weight="700" text-anchor="middle">INGEST</text>
+                      <text x="90" y="80" fill="var(--text-3)" font-size="8" font-family="var(--mono)" font-weight="700">ROUTER</text>
+                      <text x="50" y="200" fill="var(--text-3)" font-size="8" font-family="var(--mono)" font-weight="700" text-anchor="middle">RISK CHECK</text>
+                      <text x="230" y="62" fill="var(--text-3)" font-size="8" font-family="var(--mono)" font-weight="700" text-anchor="middle">RUNTIME</text>
+                      <text x="230" y="234" fill="var(--text-3)" font-size="8" font-family="var(--mono)" font-weight="700" text-anchor="middle">AUDIT LOG</text>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 2: Policy Engine (Col Span 1) -->
+            <div class="bento-card b-span-1">
+              <div>
+                <span class="section-label" style="margin-bottom:8px">Policy engine</span>
+                <h3 class="mb-sm">Risk-based execution control</h3>
+                <p style="font-size:13px; color:var(--text-3); line-height:1.45; margin-bottom:14px">Every action is scored across 8 factors before execution. No autonomous execution without a policy verdict.</p>
+                <div id="riskRows" style="display:flex; flex-direction:column; gap:7px;"></div>
+              </div>
+            </div>
+
+            <!-- Card 3: Risk Routing (Col Span 3) -->
+            <div class="bento-card b-span-3">
+              <div style="display:flex; flex-direction:column; gap:12px; width:100%;">
+                <div>
+                  <span class="section-label" style="margin-bottom:6px">Risk routing thresholds</span>
+                  <h3 class="mb-xs" style="font-size:18px;">How policies route executing actions</h3>
+                </div>
+                <div id="riskPills"></div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
+      <div class="divider"></div>
+
       <!-- ISOLATION -->
-      <section class="section-sm" style="background:rgba(26,58,92,0.3);">
+      <section class="section-sm" style="background:rgba(15, 31, 61, 0.2);">
         <div class="container">
           <div class="align-center mb-lg" style="max-width:580px;margin-left:auto;margin-right:auto">
             <span class="section-label">Enterprise architecture</span>
             <h2>Complete tenant isolation.<br/>Zero data bleed.</h2>
             <p class="mt">Multi-tenant isolation enforced at every layer — database, knowledge graph, message bus, storage, and agent execution — independently verified.</p>
           </div>
-          <div id="isoLayers" class="g3"></div>
+          <div id="isoLayers" class="bento-grid"></div>
         </div>
       </section>
+
 
       <section class="section-sm align-center">
         <div class="container">
