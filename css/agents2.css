@@ -5,13 +5,13 @@
 
 /* ─── TOKENS ──────────────────────────────────────────────────────────── */
 #pg-agents {
-  --ag-bg0: #080e1a;
-  --ag-bg1: #0b1425;
-  --ag-bg2: #0f1e3d;
-  --ag-glass: rgba(15, 31, 61, 0.48);
-  --ag-glass2: rgba(255, 255, 255, 0.03);
-  --ag-border: rgba(255, 255, 255, 0.07);
-  --ag-border2: rgba(56, 189, 248, 0.18);
+  --ag-bg0: #0F1F3D;          /* Deep Navy background */
+  --ag-bg1: #172a4e;          /* Slightly lighter/darker navy */
+  --ag-bg2: #1e3663;
+  --ag-glass: rgba(26,58,92,0.45); /* Mid-depth panel */
+  --ag-glass2: rgba(255, 255, 255, 0.02);
+  --ag-border: rgba(20,184,166,0.12); /* Teal Border */
+  --ag-border2: rgba(20,184,166,0.25); /* Glowing teal */
   --ag-accent: #14b8a6;
   --ag-accent2: #38bdf8;
   --ag-lime: #d9ff42;
@@ -1155,7 +1155,7 @@
    ══════════════════════════════════════════════════════════════════════ */
 
 #pg-agents #ag-cube-section {
-  background: linear-gradient(180deg, var(--ag-bg0) 0%, #060c18 100%);
+  background: linear-gradient(180deg, var(--ag-bg0) 0%, #162a4e 100%);
   padding: 120px 0;
   position: relative;
   overflow: hidden;
@@ -1384,7 +1384,7 @@
   gap: 12px;
   padding: 12px 18px;
   border-radius: 12px;
-  background: rgba(10, 17, 32, 0.85);
+  background: rgba(20, 35, 65, 0.855);
   border: 1px solid var(--ag-border);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
   cursor: pointer;
