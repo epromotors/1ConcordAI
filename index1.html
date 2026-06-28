@@ -15,6 +15,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   
   <link rel="stylesheet" href="css/index1.css"/>
+  <link rel="stylesheet" href="css/agents.css"/>
 </head>
 <body>
 
@@ -509,7 +510,13 @@
 
       <section class="section">
         <div class="container">
-          <div id="agentGrid"></div>
+          <div class="agent-tabs-container">
+            <button class="agent-tab active" data-filter="all">All Domains</button>
+            <button class="agent-tab" data-filter="it">IT &amp; Operations</button>
+            <button class="agent-tab" data-filter="sec">Security &amp; Cloud</button>
+            <button class="agent-tab" data-filter="compliance">Reporting &amp; Compliance</button>
+          </div>
+          <div id="agentGrid" class="agents-bento-grid"></div>
         </div>
       </section>
 
@@ -917,5 +924,6 @@
     </div>
   </footer>
   <script src="js/index1.js"></script>
+  <script src="js/agents.js"></script>
 </body>
 </html>
