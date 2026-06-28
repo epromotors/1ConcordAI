@@ -1164,9 +1164,9 @@
 }
 
 .q-hub-wrapper {
-  max-width: 1180px;
+  max-width: 100%;
   margin: 0 auto;
-  padding: 0 32px;
+  padding: 0 clamp(40px, 8vw, 120px);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -1175,8 +1175,8 @@
 
 /* Left Column Styling */
 .q-hub-left {
-  flex: 0 0 42%;
-  max-width: 480px;
+  flex: 0 0 40%;
+  max-width: 500px;
 }
 
 .q-hub-title {
@@ -1259,7 +1259,7 @@
 
 /* Right Column Visual Container */
 .q-hub-right {
-  flex: 0 0 53%;
+  flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1267,8 +1267,8 @@
 
 .q-hub-visual-container {
   position: relative;
-  width: 520px;
-  height: 520px;
+  width: 600px;
+  height: 600px;
   display: flex;
   justify-content: center;
   align-items: center;
