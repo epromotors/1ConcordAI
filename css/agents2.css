@@ -1554,3 +1554,38 @@
   .pos-br { right: 5px; }
 }
 
+
+/* ── AGENTS PAGE MOBILE EXTRAS ── */
+@media (max-width: 768px) {
+  #pg-agents .ag-hero { padding: 5rem 0 3rem; }
+  .ag-hero-title { font-size: clamp(2rem, 8vw, 3rem); }
+  .ag-hero-desc  { font-size: 15px; }
+  .ag-stats-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+  .ag-stat-val   { font-size: clamp(1.5rem, 5vw, 2.2rem); }
+  #ag-sticky-tabs { overflow-x: auto; white-space: nowrap; padding: 0 16px; gap: 6px; }
+  .ag-tab-btn     { padding: 8px 16px; font-size: 12px; }
+  .ag-card-title { font-size: 15px; }
+  .ag-card-desc  { font-size: 12.5px; }
+  .ag-int-grid   { grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .ag-int-item   { padding: 10px 6px; font-size: 11px; }
+  .ag-wf-step-badge { font-size: 9.5px; }
+  .ag-wf-step-action{ font-size: 12px; }
+  #ag-cube-section { padding: 60px 0; }
+  .q-hub-title     { font-size: clamp(22px, 5vw, 32px); text-align: center; }
+  .q-hub-desc      { text-align: center; }
+}
+
+@media (max-width: 480px) {
+  .ag-stats-grid { grid-template-columns: 1fr; }
+  .ag-int-grid   { grid-template-columns: repeat(2, 1fr); }
+  .ag-wf-name    { font-size: 11px; }
+  .q-hub-visual-container { height: 400px; }
+  .q-hub-cube { width: 70px; height: 70px; }
+  .q-cube-face { width: 70px; height: 70px; }
+  .q-face-top  { transform: rotateX(90deg) translateZ(35px); }
+  .q-face-left { transform: rotateY(-90deg) translateZ(35px); }
+  .q-face-right{ transform: translateZ(35px); }
+}
+
+/* Prevent horizontal overflow on agents page */
+#pg-agents { overflow-x: hidden; }
