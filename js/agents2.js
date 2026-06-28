@@ -522,7 +522,6 @@
       var card = document.createElement('div');
       card.className = 'ag-workflow-card';
       card.style.setProperty('--wf-color', wf.color);
-
       var stepsHtml = wf.steps.map(function(s, i) {
         var arrow = i < wf.steps.length - 1 ? '<span class="ag-wf-arrow">↓</span>' : '';
         return '\
@@ -560,324 +559,225 @@
   }
 
   /* ══════════════════════════════════════════════════════════════════════
-     CUBE SECTION — Qount.io inspired 3D agent deep-dive
-     Left: CSS 3D cube cycling through agents
-     Right: Accordion list — click to jump to that agent on cube
+     HUB SECTION — Qount-style hub-and-spoke visualization
      ══════════════════════════════════════════════════════════════════════ */
   function buildCubeSection() {
     var wrap = document.getElementById('ag-cube-section');
     if (!wrap) return;
 
-    var CUBE_FACES = ['front','back','right','left','top','bottom'];
-    /* Each face maps to agentIndex (0..5 on front half, 6..11 on next rotation) */
-    /* We'll show all 12 by cycling 2 full cube rotations */
-
-    var domainColors = {
-      it:   { dot: '#38bdf8', badge_bg: 'rgba(56,189,248,0.08)', badge_color: '#38bdf8' },
-      sec:  { dot: '#a78bfa', badge_bg: 'rgba(167,139,250,0.08)', badge_color: '#a78bfa' },
-      comp: { dot: '#f59e0b', badge_bg: 'rgba(245,158,11,0.08)', badge_color: '#f59e0b' },
-    };
-
-    /* ── Build the cube face HTML ──── */
-    function makeFaceHTML(agent, faceClass) {
-      var dc = domainColors[agent.domain];
-      var dm = DOMAIN_MAP[agent.domain];
-      return '<div class="ag-cube-face ' + faceClass + ' face-' + agent.domain + '">' +
-        '<div class="ag-face-domain-bar">' +
-          '<div class="ag-face-domain-dot"></div>' +
-          '<div class="ag-face-domain-label">' + dm.label + '</div>' +
-        '</div>' +
-        '<div class="ag-face-icon">' + agent.icon + '</div>' +
-        '<div class="ag-face-name">' + agent.name + '</div>' +
-        '<div class="ag-face-stat-row">' +
-          '<span class="ag-face-stat-num">' + agent.stat + '</span>' +
-          '<span class="ag-face-stat-lbl">' + agent.statLbl + '</span>' +
-        '</div>' +
-        '<div class="ag-face-chips">' +
-          (agent.chips || []).slice(0, 3).map(function(c) {
-            return '<span class="ag-face-chip">' + c + '</span>';
-          }).join('') +
-        '</div>' +
-      '</div>';
-    }
-
-    /* ── Build the section ──── */
-    wrap.innerHTML = [
-      /* BG orbs */
-      '<div class="ag-cube-bg-orb orb1"></div>',
-      '<div class="ag-cube-bg-orb orb2"></div>',
-
-      /* Intro */
-      '<div class="ag-cube-intro">',
-        '<div class="ag-section-kicker">Agent intelligence</div>',
-        '<h2>Every agent. <em>Fully explored.</em></h2>',
-        '<p>Click any agent to see its operational role, key metrics, and domain context — visualised in 3D.</p>',
-      '</div>',
-
-      /* Main layout */
-      '<div class="ag-cube-layout">',
-
-        /* LEFT: cube */
-        '<div class="ag-cube-scene-wrap">',
-          '<div class="ag-cube-scene">',
-            '<div class="ag-cube-3d" id="ag-cube-3d">',
-              makeFaceHTML(AGENTS_V2[0], 'face-front'),
-              makeFaceHTML(AGENTS_V2[1], 'face-back'),
-              makeFaceHTML(AGENTS_V2[2], 'face-right'),
-              makeFaceHTML(AGENTS_V2[3], 'face-left'),
-              makeFaceHTML(AGENTS_V2[4], 'face-top'),
-              makeFaceHTML(AGENTS_V2[5], 'face-bottom'),
-            '</div>',
-          '</div>',
-          '<div class="ag-cube-shadow" id="ag-cube-shadow"></div>',
-          '<div class="ag-cube-rotating-label" id="ag-cube-label">SERVICE DESK AGENT</div>',
-          '<nav class="ag-cube-nav" id="ag-cube-nav">',
-            AGENTS_V2.map(function(a, i) {
-              return '<button class="ag-cube-dot' + (i === 0 ? ' active' : '') + '" data-domain="' + a.domain + '" data-idx="' + i + '" title="' + a.name + '"></button>';
-            }).join(''),
-          '</nav>',
-        '</div>',
-
-        /* RIGHT: accordion list */
-        '<div class="ag-cube-list" id="ag-cube-list">',
-          AGENTS_V2.map(function(a, i) {
-            var dc = domainColors[a.domain];
-            var dm = DOMAIN_MAP[a.domain];
-            return '<div class="ag-cube-item' + (i === 0 ? ' active' : '') + '" data-domain="' + a.domain + '" data-idx="' + i + '">' +
-              '<div class="ag-cube-item-head">' +
-                '<div class="ag-item-icon-wrap">' + a.icon + '</div>' +
-                '<div class="ag-item-head-text">' +
-                  '<div class="ag-item-name">' + a.name + '</div>' +
-                  '<span class="ag-item-domain-badge" style="background:' + dc.badge_bg + ';color:' + dc.badge_color + '">' + dm.label + '</span>' +
-                '</div>' +
-                '<span class="ag-item-arrow">›</span>' +
-              '</div>' +
-              '<div class="ag-cube-item-body">' +
-                '<div class="ag-item-desc">' + a.desc + '</div>' +
-                '<div class="ag-item-chips">' +
-                  (a.chips || []).map(function(c) {
-                    return '<span class="ag-face-chip">' + c + '</span>';
-                  }).join('') +
-                '</div>' +
-                '<div class="ag-item-stat-badge">' +
-                  '<strong>' + a.stat + '</strong>' +
-                  '<span>' + a.statLbl + '</span>' +
-                '</div>' +
-                '<div class="ag-item-progress-bar"><div class="ag-item-progress-fill" id="ag-prog-' + i + '"></div></div>' +
-              '</div>' +
-            '</div>';
-          }).join(''),
-        '</div>',
-
-      '</div>',
-    ].join('');
-
-    /* ── CUBE ROTATION LOGIC ────────────────────────────────────────────── */
-    /*
-     * Rotation map: given agentIndex 0-11, map to a cube face + rotation angles.
-     * Faces: front=0°Y, right=90°Y, back=180°Y, left=270°Y, top=90°X, bottom=-90°X
-     * We use 12 positions: front/back/right/left/top/bottom + 6 more with extra Y rotations
-     */
-    var ROTATIONS = [
-      { rx: -12, ry:   18 },   /* 0  front-ish */
-      { rx: -12, ry:  198 },   /* 1  back  */
-      { rx: -12, ry: -72 },    /* 2  right */
-      { rx: -12, ry: 108 },    /* 3  left  */
-      { rx:  78, ry:   18 },   /* 4  top   */
-      { rx: -102, ry: 18 },    /* 5  bottom */
-      { rx: -12, ry:  378 },   /* 6  front (second revolution) */
-      { rx: -12, ry:  558 },   /* 7  back  */
-      { rx: -12, ry:  288 },   /* 8  right */
-      { rx: -12, ry:  468 },   /* 9  left  */
-      { rx:  78, ry:  378 },   /* 10 top   */
-      { rx: -102, ry: 378 },   /* 11 bottom */
+    // Feature 6 primary agents from different domains in a hexagonal hub-and-spoke layout
+    var featuredAgents = [
+      { agent: AGENTS_V2[0], side: 'left',  posClass: 'pos-tl',  icon: '🎯' }, // Service Desk
+      { agent: AGENTS_V2[3], side: 'right', posClass: 'pos-tr',  icon: '🛡' }, // Security Operations
+      { agent: AGENTS_V2[4], side: 'left',  posClass: 'pos-ml',  icon: '🔑' }, // Identity & Access
+      { agent: AGENTS_V2[6], side: 'right', posClass: 'pos-mr',  icon: '📋' }, // Compliance & Governance
+      { agent: AGENTS_V2[2], side: 'left',  posClass: 'pos-bl',  icon: '🚨' }, // Incident Management
+      { agent: AGENTS_V2[7], side: 'right', posClass: 'pos-br',  icon: '⚖️' }  // Policy Engine
     ];
 
-    var cube3d     = document.getElementById('ag-cube-3d');
-    var cubeLabel  = document.getElementById('ag-cube-label');
-    var cubeShadow = document.getElementById('ag-cube-shadow');
-    var cubeNav    = document.getElementById('ag-cube-nav');
-    var cubeList   = document.getElementById('ag-cube-list');
-    if (!cube3d || !cubeNav || !cubeList) return;
+    wrap.innerHTML = [
+      '<div class="q-hub-wrapper">',
+        // Left Column: Text Content & Dynamic Detail Card
+        '<div class="q-hub-left">',
+          '<div class="ag-section-kicker">Unified Orchestration</div>',
+          '<h2 class="q-hub-title">Beyond Traditional Operations & Security</h2>',
+          '<p class="q-hub-desc">Traditional enterprise automation relies on disconnected platforms and manual handoffs. One Concord AI binds IT operations, security, and compliance into a single, unified execution mesh.</p>',
+          
+          // Dynamic details panel (updates on hover/cycle)
+          '<div class="q-hub-details-panel" id="q-hub-details">',
+            '<div class="q-hd-domain-badge" id="q-hd-badge">IT & OPERATIONS</div>',
+            '<h3 class="q-hd-title" id="q-hd-title">Service Desk Agent</h3>',
+            '<p class="q-hd-desc" id="q-hd-desc">Triages, routes, and resolves Tier-1 & Tier-2 incidents autonomously. Escalates with full context when human judgment is needed.</p>',
+            '<div class="q-hd-stats">',
+              '<div class="q-hd-stat-val" id="q-hd-stat-val">4.2min</div>',
+              '<div class="q-hd-stat-lbl" id="q-hd-stat-lbl">Avg. resolution</div>',
+            '</div>',
+          '</div>',
+        '</div>',
 
-    var currentIdx  = 0;
-    var autoTimer   = null;
-    var progTimer   = null;
-    var AUTO_DELAY  = 4000; /* ms per agent */
+        // Right Column: Isometric Hub Visual
+        '<div class="q-hub-right">',
+          '<div class="q-hub-visual-container" id="q-hub-visual">',
+            
+            // Central Isometric Cube
+            '<div class="q-hub-cube-scene" id="q-hub-cube">',
+              '<div class="q-hub-cube">',
+                '<div class="q-cube-face q-face-top"></div>',
+                '<div class="q-cube-face q-face-left"></div>',
+                '<div class="q-cube-face q-face-right"></div>',
+              '</div>',
+              '<div class="q-hub-cube-glow"></div>',
+            '</div>',
 
-    /* Rotate cube to agent[idx] */
-    function rotateTo(idx, user) {
-      if (idx === currentIdx && !user) return;
-      currentIdx = idx;
-      var rot = ROTATIONS[idx];
-      var agent = AGENTS_V2[idx];
-      var dc = domainColors[agent.domain];
+            // SVG lines overlay
+            '<svg class="q-hub-svg-lines" id="q-hub-svg"></svg>',
 
-      /* Update cube 3D transform */
-      cube3d.style.transform = 'rotateX(' + rot.rx + 'deg) rotateY(' + rot.ry + 'deg)';
+            // Radiating floating cards
+            featuredAgents.map(function(item, idx) {
+              var a = item.agent;
+              return [
+                '<div class="q-floating-card ' + item.posClass + '" data-idx="' + idx + '">',
+                  '<div class="q-fc-icon-wrap">' + item.icon + '</div>',
+                  '<div class="q-fc-content">',
+                    '<div class="q-fc-name">' + a.name + '</div>',
+                    '<div class="q-fc-domain">' + DOMAIN_MAP[a.domain].label + '</div>',
+                  '</div>',
+                '</div>'
+              ].join('');
+            }).join(''),
 
-      /* Update cube face content for the visible face
-         (Front face always shows current agent for readability) */
-      var frontFace = cube3d.querySelector('.face-front');
-      if (frontFace) {
-        frontFace.className = 'ag-cube-face face-front face-' + agent.domain;
-        frontFace.innerHTML = makeFaceHTML(agent, '').replace(/^<div[^>]+>/, '').replace(/<\/div>$/, '');
-        /* Rebuild domain-specific inner HTML properly */
-        frontFace.innerHTML =
-          '<div class="ag-face-domain-bar">' +
-            '<div class="ag-face-domain-dot"></div>' +
-            '<div class="ag-face-domain-label">' + DOMAIN_MAP[agent.domain].label + '</div>' +
-          '</div>' +
-          '<div class="ag-face-icon">' + agent.icon + '</div>' +
-          '<div class="ag-face-name">' + agent.name + '</div>' +
-          '<div class="ag-face-stat-row">' +
-            '<span class="ag-face-stat-num">' + agent.stat + '</span>' +
-            '<span class="ag-face-stat-lbl">' + agent.statLbl + '</span>' +
-          '</div>' +
-          '<div class="ag-face-chips">' +
-            (agent.chips || []).slice(0, 3).map(function(c) {
-              return '<span class="ag-face-chip">' + c + '</span>';
-            }).join('') +
-          '</div>';
-      }
+          '</div>',
+        '</div>',
+      '</div>'
+    ].join('');
 
-      /* Glow color */
-      cubeShadow.style.background = 'radial-gradient(ellipse, ' + dc.dot + '33 0%, transparent 70%)';
+    // Elements
+    var visualContainer = document.getElementById('q-hub-visual');
+    var svg = document.getElementById('q-hub-svg');
+    var cubeScene = document.getElementById('q-hub-cube');
+    var detailsPanel = document.getElementById('q-hub-details');
+    var hdBadge = document.getElementById('q-hd-badge');
+    var hdTitle = document.getElementById('q-hd-title');
+    var hdDesc = document.getElementById('q-hd-desc');
+    var hdStatVal = document.getElementById('q-hd-stat-val');
+    var hdStatLbl = document.getElementById('q-hd-stat-lbl');
+    var cards = visualContainer.querySelectorAll('.q-floating-card');
 
-      /* Label */
-      cubeLabel.textContent = agent.name.toUpperCase();
-      cubeLabel.style.color = dc.dot;
+    if (!visualContainer || !svg || !cubeScene || !cards.length) return;
 
-      /* Dots */
-      cubeNav.querySelectorAll('.ag-cube-dot').forEach(function(d) {
-        d.classList.toggle('active', +d.dataset.idx === idx);
-      });
+    // Create SVG paths
+    svg.innerHTML = featuredAgents.map(function(_, idx) {
+      return '<path id="q-hub-path-' + idx + '" class="q-hub-line-path" d="" />';
+    }).join('');
+    var paths = svg.querySelectorAll('.q-hub-line-path');
 
-      /* List items */
-      cubeList.querySelectorAll('.ag-cube-item').forEach(function(item, i) {
-        var wasActive = item.classList.contains('active');
-        item.classList.toggle('active', i === idx);
-        if (i === idx) {
-          startProgress(idx);
+    // Function to calculate coordinates & update SVG lines
+    function syncLines() {
+      var containerRect = visualContainer.getBoundingClientRect();
+      var cubeRect = cubeScene.getBoundingClientRect();
+
+      // SVG dimensions matching container
+      svg.setAttribute('width', containerRect.width);
+      svg.setAttribute('height', containerRect.height);
+
+      // Center coordinates (originating point of lines)
+      var cx = (cubeRect.left + cubeRect.width / 2) - containerRect.left;
+      var cy = (cubeRect.top + cubeRect.height / 2) - containerRect.top;
+
+      cards.forEach(function(card, idx) {
+        var cardRect = card.getBoundingClientRect();
+        var cardX = (cardRect.left + cardRect.width / 2) - containerRect.left;
+        var cardY = (cardRect.top + cardRect.height / 2) - containerRect.top;
+
+        var path = paths[idx];
+        if (path) {
+          path.setAttribute('d', 'M ' + cx + ' ' + cy + ' L ' + cardX + ' ' + cardY);
         }
       });
+    }
 
-      /* Scroll active item into view (mobile) */
-      var activeItem = cubeList.querySelector('.ag-cube-item.active');
-      if (activeItem) {
-        activeItem.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    // Call sync initially and on resize
+    setTimeout(syncLines, 100);
+    window.addEventListener('resize', syncLines);
+
+    // Dynamic update left panel
+    function updateDetails(idx) {
+      var item = featuredAgents[idx];
+      var a = item.agent;
+      var domain = DOMAIN_MAP[a.domain];
+
+      // Update badge
+      hdBadge.textContent = domain.label.toUpperCase();
+      hdBadge.style.color = domain.color;
+      hdBadge.style.borderColor = domain.color + '33';
+      hdBadge.style.background = domain.color + '0a';
+
+      // Update titles/stats
+      hdTitle.textContent = a.name;
+      hdDesc.textContent = a.desc;
+      hdStatVal.textContent = a.stat;
+      hdStatVal.style.color = domain.color;
+      hdStatLbl.textContent = a.statLbl;
+
+      // Update details panel transition
+      detailsPanel.style.transform = 'translateY(0)';
+      detailsPanel.style.opacity = '1';
+    }
+
+    var activeIndex = 0;
+    var autoTimer = null;
+    var isHovered = false;
+
+    function activateIndex(idx) {
+      activeIndex = idx;
+
+      // Update classes on cards
+      cards.forEach(function(c, i) {
+        c.classList.toggle('active', i === idx);
+      });
+
+      // Update classes on SVG paths
+      paths.forEach(function(p, i) {
+        p.classList.toggle('active', i === idx);
+      });
+
+      // Subtle cube rotation towards the active side
+      var rotationX = -30;
+      var rotationY = 45;
+      
+      var offsets = [
+        { x: -5, y: -15 }, // top left
+        { x: -5, y: 15 },  // top right
+        { x: 0,  y: -20 }, // mid left
+        { x: 0,  y: 20 },  // mid right
+        { x: 5,  y: -15 }, // bottom left
+        { x: 5,  y: 15 }   // bottom right
+      ];
+      var offset = offsets[idx] || { x: 0, y: 0 };
+      var cube = cubeScene.querySelector('.q-hub-cube');
+      if (cube) {
+        cube.style.transform = 'rotateX(' + (rotationX + offset.x) + 'deg) rotateY(' + (rotationY + offset.y) + 'deg)';
+      }
+
+      // Update dynamic details
+      updateDetails(idx);
+    }
+
+    // Auto cycle
+    function startAutoCycle() {
+      stopAutoCycle();
+      autoTimer = setInterval(function() {
+        if (!isHovered) {
+          var next = (activeIndex + 1) % featuredAgents.length;
+          activateIndex(next);
+        }
+      }, 3500);
+    }
+
+    function stopAutoCycle() {
+      if (autoTimer) {
+        clearInterval(autoTimer);
+        autoTimer = null;
       }
     }
 
-    /* Animated progress bar */
-    function startProgress(idx) {
-      clearTimeout(progTimer);
-      /* Reset all fills */
-      document.querySelectorAll('.ag-item-progress-fill').forEach(function(f) {
-        f.style.transition = 'width 0s';
-        f.style.width = '0%';
+    // Hover listeners
+    cards.forEach(function(card, idx) {
+      card.addEventListener('mouseenter', function() {
+        isHovered = true;
+        stopAutoCycle();
+        activateIndex(idx);
       });
-      var fill = document.getElementById('ag-prog-' + idx);
-      if (!fill) return;
-      requestAnimationFrame(function() {
-        requestAnimationFrame(function() {
-          fill.style.transition = 'width ' + (AUTO_DELAY / 1000) + 's linear';
-          fill.style.width = '100%';
-        });
+
+      card.addEventListener('mouseleave', function() {
+        isHovered = false;
+        startAutoCycle();
       });
-    }
-
-    /* Auto-cycle */
-    function startAuto() {
-      clearTimeout(autoTimer);
-      autoTimer = setTimeout(function() {
-        var next = (currentIdx + 1) % AGENTS_V2.length;
-        rotateTo(next, false);
-        startAuto();
-      }, AUTO_DELAY);
-    }
-
-    /* Nav dots click */
-    cubeNav.addEventListener('click', function(e) {
-      var dot = e.target.closest('.ag-cube-dot');
-      if (!dot) return;
-      clearTimeout(autoTimer);
-      rotateTo(+dot.dataset.idx, true);
-      startAuto();
     });
 
-    /* List item click */
-    cubeList.addEventListener('click', function(e) {
-      var item = e.target.closest('.ag-cube-item');
-      if (!item) return;
-      clearTimeout(autoTimer);
-      rotateTo(+item.dataset.idx, true);
-      startAuto();
-    });
-
-    /* Mouse drag-to-rotate */
-    var isDragging = false;
-    var startX = 0, startY = 0;
-    var baseRot = ROTATIONS[0];
-    cube3d.parentElement.addEventListener('mousedown', function(e) {
-      isDragging = true;
-      startX = e.clientX;
-      startY = e.clientY;
-      clearTimeout(autoTimer);
-    });
-    document.addEventListener('mousemove', function(e) {
-      if (!isDragging) return;
-      var dx = e.clientX - startX;
-      var dy = e.clientY - startY;
-      var rot = ROTATIONS[currentIdx];
-      cube3d.style.transform = 'rotateX(' + (rot.rx - dy * 0.3) + 'deg) rotateY(' + (rot.ry + dx * 0.5) + 'deg)';
-    });
-    document.addEventListener('mouseup', function() {
-      if (isDragging) {
-        isDragging = false;
-        /* Snap back */
-        var rot = ROTATIONS[currentIdx];
-        cube3d.style.transform = 'rotateX(' + rot.rx + 'deg) rotateY(' + rot.ry + 'deg)';
-        startAuto();
-      }
-    });
-
-    /* Touch rotate */
-    cube3d.parentElement.addEventListener('touchstart', function(e) {
-      startX = e.touches[0].clientX;
-      startY = e.touches[0].clientY;
-    }, { passive: true });
-    cube3d.parentElement.addEventListener('touchend', function(e) {
-      var dx = e.changedTouches[0].clientX - startX;
-      if (Math.abs(dx) > 40) {
-        clearTimeout(autoTimer);
-        var next = dx < 0
-          ? (currentIdx + 1) % AGENTS_V2.length
-          : (currentIdx - 1 + AGENTS_V2.length) % AGENTS_V2.length;
-        rotateTo(next, true);
-        startAuto();
-      }
-    }, { passive: true });
-
-    /* GSAP entrance animation */
-    if (typeof gsap !== 'undefined') {
-      gsap.from('#ag-cube-section .ag-cube-intro', {
-        scrollTrigger: { trigger: '#ag-cube-section', start: 'top 80%' },
-        y: 30, opacity: 0, duration: 0.7, ease: 'power2.out'
-      });
-      gsap.from('#ag-cube-section .ag-cube-scene-wrap', {
-        scrollTrigger: { trigger: '#ag-cube-section', start: 'top 70%' },
-        x: -40, opacity: 0, duration: 0.9, delay: 0.2, ease: 'power2.out'
-      });
-      gsap.from('#ag-cube-section .ag-cube-list .ag-cube-item', {
-        scrollTrigger: { trigger: '#ag-cube-section', start: 'top 70%' },
-        x: 30, opacity: 0, duration: 0.55, stagger: 0.06, delay: 0.25, ease: 'power2.out'
-      });
-    }
-
-    /* Init */
-    rotateTo(0, false);
-    startAuto();
+    // Initialize
+    activateIndex(0);
+    startAutoCycle();
   }
 
   /* ── MAIN ENTRY: override window.buildAgentGrid ─────────────────────── */
