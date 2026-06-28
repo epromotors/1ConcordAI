@@ -16,6 +16,7 @@
   
   <link rel="stylesheet" href="css/index1.css"/>
   <link rel="stylesheet" href="css/agents.css"/>
+  <link rel="stylesheet" href="css/agents2.css"/>
 </head>
 <body>
 
@@ -485,134 +486,80 @@
       </section>
 
 
-      <section class="section-sm align-center">
-        <div class="container">
-          <h3 class="mb">Ready to go deeper?</h3>
-          <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
-            <button class="btn btn-primary" onclick="go('contact')">Request architecture brief</button>
-            <button class="btn btn-ghost" onclick="go('agents')">Explore the agent roster →</button>
-          </div>
-        </div>
-      </section>
     </div><!-- /platform -->
 
     <!-- ════════════════════════════════════════ PAGE: AGENTS -->
     <div id="pg-agents" class="page">
-      <div class="page-hero">
-        <div class="container">
-          <div class="breadcrumb">oneconcord.ai / <em>Agents</em></div>
-          <span class="section-label">Digital workers</span>
-          <h1>Autonomous agents.<br/>Every domain.</h1>
-          <p class="lead mt">Twelve agents across three domains — IT Operations, Security &amp; Cloud, and Reporting &amp; Compliance — each owning a specific operational area, operating within your policies, and coordinating with peer agents when outcomes span multiple teams.</p>
+
+
+      <!-- ── HERO ─────────────────────────────────────────────────── -->
+      <div id="ag-hero"></div>
+
+      <!-- ── STICKY NAVIGATION TABS ────────────────────────────────── -->
+      <div id="ag-sticky-tabs"></div>
+
+      <!-- ── AGENT BENTO GRID ───────────────────────────────────────── -->
+      <div id="ag-grid-section">
+        <div class="ag-section-header">
+          <div>
+            <div class="ag-section-kicker">Agent Roster</div>
+            <h2 class="ag-section-title">12 agents. Every domain covered.</h2>
+          </div>
+          <div class="ag-agent-count">Showing all 12 agents across 3 domains</div>
+        </div>
+        <div id="ag-bento-grid" class="ag-bento-grid"></div>
+      </div>
+
+      <!-- ── IMPACT STATS BAND ──────────────────────────────────────── -->
+      <div id="ag-stats-band">
+        <div class="ag-stats-inner">
+          <div class="ag-stats-header">
+            <div class="ag-section-kicker" style="justify-content:center;display:flex">Combined agent impact</div>
+            <h2 class="ag-section-title" style="text-align:center;margin-top:8px">Numbers that move the enterprise.</h2>
+          </div>
+          <div id="ag-stats-grid" class="ag-stats-grid"></div>
         </div>
       </div>
-      <div class="glow-line"></div>
 
-      <section class="section">
-        <div class="container">
-          <div class="agent-tabs-container">
-            <button class="agent-tab active" data-filter="all">All Domains</button>
-            <button class="agent-tab" data-filter="it">IT &amp; Operations</button>
-            <button class="agent-tab" data-filter="sec">Security &amp; Cloud</button>
-            <button class="agent-tab" data-filter="compliance">Reporting &amp; Compliance</button>
-          </div>
-          <div id="agentGrid" class="agents-bento-grid"></div>
-        </div>
-      </section>
-
-      <!-- AGENT IMPACT STATS -->
-      <section class="section-sm" style="background:rgba(26,58,92,0.3);">
-        <div class="container">
-          <span class="section-label align-center" style="justify-content:center;margin-bottom:2rem;">Combined agent impact</span>
-          <div class="g4" id="agentImpactGrid" style="gap:18px;text-align:center"></div>
-        </div>
-      </section>
-
-      <!-- INTEGRATION LOGOS BAND -->
-      <section class="section-sm">
-        <div class="container">
-          <div class="align-center mb-lg" style="max-width:560px;margin:0 auto">
-            <span class="section-label">Integrations</span>
-            <h3>70+ connectors. Zero custom dev.</h3>
-            <p class="mt" style="font-size:14px">Every agent connects to the tools your team already uses — out of the box, authenticated, and audited from day one.</p>
-          </div>
-          <div id="integrationBand" style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center"></div>
-          <div class="mt-lg align-center">
-            <button class="btn btn-outline" onclick="go('contact')">See full integration list →</button>
+      <!-- ── INTEGRATIONS ───────────────────────────────────────────── -->
+      <div id="ag-integrations-section">
+        <div id="ag-integrations" style="padding:80px 32px;max-width:1180px;margin:0 auto">
+          <div id="ag-integrations-header" class="ag-integrations-header"></div>
+          <div class="ag-marquee-wrap" id="ag-marquee-wrap"></div>
+          <div style="text-align:center;margin-top:28px">
+            <button class="ag-btn-ghost" onclick="go('contact')">Request a custom connector →</button>
           </div>
         </div>
-      </section>
+      </div>
 
-      <!-- MULTI-AGENT COLLAB -->
-      <section class="section-sm" style="background:rgba(26,58,92,0.3);">
-        <div class="container" style="max-width:800px">
-          <span class="section-label">Multi-agent coordination</span>
-          <h2 class="mb">Agents that work together.</h2>
-          <p class="mb-lg">When a complex outcome requires multiple domains, agents coordinate automatically. An access request routes through Service Desk → Identity & Access → Policy Engine → Manager Approval → provisioning — all without a human touching a ticket.</p>
-          <div style="background:rgba(20,184,166,0.1);border:1px solid var(--border);border-radius:12px;padding:24px" class="fade-up">
-            <div style="font-size:11px;font-weight:700;color:var(--text-3);text-transform:uppercase;letter-spacing:1px;margin-bottom:16px">Example: New access request workflow</div>
-            <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
-              <span class="dpill d-it">Service Desk</span>
-              <span style="color:var(--accent)">→</span>
-              <span class="dpill d-sec">Identity &amp; Access</span>
-              <span style="color:var(--accent)">→</span>
-              <span class="dpill d-compliance">Policy Engine</span>
-              <span style="color:var(--accent)">→</span>
-              <span class="dpill d-leadership">Manager Approval</span>
-              <span style="color:var(--accent)">→</span>
-              <span class="dpill d-sec">Identity &amp; Access</span>
-              <span style="color:var(--accent)">→</span>
-              <span class="dpill d-compliance">Audit Logger</span>
-            </div>
-            <div class="mt-sm" style="font-size:12.5px;color:var(--text-3)">
-              Average end-to-end: <strong style="color:var(--accent)">6 minutes</strong> when auto-approved
-              · <strong style="color:var(--gold)">38 minutes</strong> when manager approval is required
-            </div>
+      <!-- ── MULTI-AGENT WORKFLOW ───────────────────────────────────── -->
+      <div id="ag-workflow">
+        <div class="ag-workflow-inner">
+          <div class="ag-workflow-header">
+            <div class="ag-section-kicker" style="display:flex;justify-content:center">Multi-agent coordination</div>
+            <h2>Agents that work together.</h2>
+            <p>When a complex outcome spans multiple domains, agents coordinate automatically — no tickets, no wait, no human handoffs.</p>
           </div>
-          <div class="mt-lg" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px">
-            <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:20px" class="fade-up">
-              <div style="font-size:11px;font-weight:700;color:var(--text-3);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px">Example: Security incident response</div>
-              <div style="display:flex;flex-direction:column;gap:6px">
-                <div style="display:flex;align-items:center;gap:8px"><span class="dpill d-sec">Security Ops</span><span style="color:var(--text-3);font-size:12px">detects threat</span></div>
-                <div style="display:flex;align-items:center;gap:8px"><span style="color:var(--accent);margin-left:4px">↓</span></div>
-                <div style="display:flex;align-items:center;gap:8px"><span class="dpill d-sec">Identity Agent</span><span style="color:var(--text-3);font-size:12px">suspends account</span></div>
-                <div style="display:flex;align-items:center;gap:8px"><span style="color:var(--accent);margin-left:4px">↓</span></div>
-                <div style="display:flex;align-items:center;gap:8px"><span class="dpill d-it">Incident Mgmt</span><span style="color:var(--text-3);font-size:12px">war room opened</span></div>
-                <div style="display:flex;align-items:center;gap:8px"><span style="color:var(--accent);margin-left:4px">↓</span></div>
-                <div style="display:flex;align-items:center;gap:8px"><span class="dpill d-compliance">Compliance &amp; Governance</span><span style="color:var(--text-3);font-size:12px">breach log filed</span></div>
-                <div style="display:flex;align-items:center;gap:8px"><span style="color:var(--accent);margin-left:4px">↓</span></div>
-                <div style="display:flex;align-items:center;gap:8px"><span class="dpill d-leadership">Exec Intelligence</span><span style="color:var(--text-3);font-size:12px">briefing updated</span></div>
-              </div>
-              <div style="font-size:12px;color:var(--accent);margin-top:12px;font-weight:700">Total: &lt;4 minutes</div>
-            </div>
-            <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:20px" class="fade-up">
-              <div style="font-size:11px;font-weight:700;color:var(--text-3);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px">Example: New employee onboarding</div>
-              <div style="display:flex;flex-direction:column;gap:6px">
-                <div style="display:flex;align-items:center;gap:8px"><span class="dpill d-leadership">HR Lifecycle</span><span style="color:var(--text-3);font-size:12px">hire confirmed</span></div>
-                <div style="display:flex;align-items:center;gap:8px"><span style="color:var(--accent);margin-left:4px">↓</span></div>
-                <div style="display:flex;align-items:center;gap:8px"><span class="dpill d-sec">Identity Agent</span><span style="color:var(--text-3);font-size:12px">accounts created</span></div>
-                <div style="display:flex;align-items:center;gap:8px"><span style="color:var(--accent);margin-left:4px">↓</span></div>
-                <div style="display:flex;align-items:center;gap:8px"><span class="dpill d-it">Service Desk</span><span style="color:var(--text-3);font-size:12px">laptop enrolled</span></div>
-                <div style="display:flex;align-items:center;gap:8px"><span style="color:var(--accent);margin-left:4px">↓</span></div>
-                <div style="display:flex;align-items:center;gap:8px"><span class="dpill d-it">Asset Discovery</span><span style="color:var(--text-3);font-size:12px">CMDB updated</span></div>
-              </div>
-              <div style="font-size:12px;color:var(--accent);margin-top:12px;font-weight:700">Total: 9 minutes</div>
-            </div>
+          <div id="ag-workflow-grid" class="ag-workflow-cards"></div>
+        </div>
+      </div>
+
+      <!-- ── CTA ───────────────────────────────────────────────────── -->
+      <div id="ag-cta">
+        <div class="ag-cta-inner">
+          <span class="ag-cta-kicker">Get started</span>
+          <h2>See the agents working<br>on <span class="ag-grad-text">your</span> workflows.</h2>
+          <p>Schedule a live demo and see all 12 agents in action across your actual operational scenarios — not a canned slideshow.</p>
+          <div class="ag-cta-actions">
+            <button class="ag-btn-primary" onclick="go('contact')">Book a live demo ↗</button>
+            <button class="ag-btn-ghost" onclick="go('pricing')">Explore pricing →</button>
           </div>
         </div>
-      </section>
+      </div>
 
-      <section class="section-sm align-center cta-band">
-        <div class="container">
-          <span class="section-label" style="justify-content:center;">Get started</span>
-          <h3 class="mb">See the platform working on your workflows.</h3>
-          <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
-            <button class="btn btn-primary btn-lg" onclick="go('contact')">Book a demo</button>
-            <button class="btn btn-ghost btn-lg" onclick="go('pricing')">See pricing →</button>
-          </div>
-        </div>
-      </section>
     </div><!-- /agents -->
+
+
 
     <!-- ════════════════════════════════════════ PAGE: SOLUTIONS -->
     <div id="pg-solutions" class="page">
@@ -925,5 +872,6 @@
   </footer>
   <script src="js/index1.js"></script>
   <script src="js/agents.js"></script>
+  <script src="js/agents2.js"></script>
 </body>
 </html>
