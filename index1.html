@@ -573,88 +573,9 @@
             <p class="mt">Multi-tenant isolation enforced at every layer — database, knowledge graph, message bus,
               storage, and agent execution — independently verified.</p>
           </div>
-
           <div id="isoLayers" class="bento-grid"></div>
         </div>
       </section>
-
-
-      <!-- ════════════════════════════════════════ PAGE: AGENTS -->
-        <div id="pg-agents" class="page">
-
-          <!-- ── HERO ─────────────────────────────────────────────────── -->
-          <div id="ag-hero"></div>
-
-          <!-- ── STICKY NAVIGATION TABS ────────────────────────────────── -->
-          <div id="ag-sticky-tabs"></div>
-
-          <!-- ── AGENT BENTO GRID ───────────────────────────────────────── -->
-          <div id="ag-grid-section">
-            <div class="ag-section-header">
-              <div>
-                <div class="ag-section-kicker">Agent Roster</div>
-                <h2 class="ag-section-title">12 agents. Every domain covered.</h2>
-              </div>
-              <div class="ag-agent-count">Showing all 12 agents across 3 domains</div>
-            </div>
-            <div id="ag-bento-grid" class="ag-bento-grid"></div>
-          </div>
-
-          <!-- ── CUBE: AGENT DEEP-DIVE (Qount-style) ──────────────────── -->
-          <div id="ag-cube-section"></div>
-
-          <!-- ── IMPACT STATS BAND ──────────────────────────────────────── -->
-          <div id="ag-stats-band">
-            <div class="ag-stats-inner">
-              <div class="ag-stats-header">
-                <div class="ag-section-kicker" style="justify-content:center;display:flex">Combined agent impact</div>
-                <h2 class="ag-section-title" style="text-align:center;margin-top:8px">Numbers that move the enterprise.
-                </h2>
-              </div>
-              <div id="ag-stats-grid" class="ag-stats-grid"></div>
-            </div>
-          </div>
-
-          <!-- ── INTEGRATIONS ───────────────────────────────────────────── -->
-          <div id="ag-integrations-section">
-            <div id="ag-integrations" style="padding:80px 32px;max-width:1180px;margin:0 auto">
-              <div id="ag-integrations-header" class="ag-integrations-header"></div>
-              <div class="ag-marquee-wrap" id="ag-marquee-wrap"></div>
-              <div style="text-align:center;margin-top:28px">
-                <button class="ag-btn-ghost" onclick="go('contact')">Request a custom connector →</button>
-              </div>
-            </div>
-          </div>
-
-          <!-- ── MULTI-AGENT WORKFLOW ───────────────────────────────────── -->
-          <div id="ag-workflow">
-            <div class="ag-workflow-inner">
-              <div class="ag-workflow-header">
-                <div class="ag-section-kicker" style="display:flex;justify-content:center">Multi-agent coordination
-                </div>
-                <h2>Agents that work together.</h2>
-                <p>When a complex outcome spans multiple domains, agents coordinate automatically — no tickets, no wait,
-                  no human handoffs.</p>
-              </div>
-              <div id="ag-workflow-grid" class="ag-workflow-cards"></div>
-            </div>
-          </div>
-
-          <!-- ── CTA ───────────────────────────────────────────────────── -->
-          <div id="ag-cta">
-            <div class="ag-cta-inner">
-              <span class="ag-cta-kicker">Get started</span>
-              <h2>See the agents working<br>on <span class="ag-grad-text">your</span> workflows.</h2>
-              <p>Schedule a live demo and see all 12 agents in action across your actual operational scenarios — not a
-                canned slideshow.</p>
-              <div class="ag-cta-actions">
-                <button class="ag-btn-primary" onclick="go('contact')">Book a live demo ↗</button>
-                <button class="ag-btn-ghost" onclick="go('pricing')">Explore pricing →</button>
-              </div>
-            </div>
-          </div>
-
-        </div><!-- /agents -->>
 
         <section class="section-sm align-center cta-band">
           <div class="container">
@@ -666,7 +587,80 @@
             </div>
           </div>
         </section>
-    </div><!-- /agents -->
+    </div><!-- /pg-platform -->
+
+    <!-- ════════════════════════════════════════ PAGE: AGENTS -->
+    <div id="pg-agents" class="page">
+
+      <!-- ── HERO ─────────────────────────────────────────────────── -->
+      <div id="ag-hero"></div>
+
+      <!-- ── STICKY NAVIGATION TABS ────────────────────────────────── -->
+      <div id="ag-sticky-tabs"></div>
+
+      <!-- ── AGENT BENTO GRID ───────────────────────────────────────── -->
+      <div id="ag-grid-section">
+        <div class="ag-section-header">
+          <div>
+            <div class="ag-section-kicker">Agent Roster</div>
+            <h2 class="ag-section-title">12 agents. Every domain covered.</h2>
+          </div>
+          <div class="ag-agent-count">Showing all 12 agents across 3 domains</div>
+        </div>
+        <div id="ag-bento-grid" class="ag-bento-grid"></div>
+      </div>
+
+      <!-- ── CUBE: AGENT DEEP-DIVE (Qount-style) ──────────────────── -->
+      <div id="ag-cube-section"></div>
+
+      <!-- ── IMPACT STATS BAND ──────────────────────────────────────── -->
+      <div id="ag-stats-band">
+        <div class="ag-stats-inner">
+          <div class="ag-stats-header">
+            <div class="ag-section-kicker" style="justify-content:center;display:flex">Combined agent impact</div>
+            <h2 class="ag-section-title" style="text-align:center;margin-top:8px">Numbers that move the enterprise.</h2>
+          </div>
+          <div id="ag-stats-grid" class="ag-stats-grid"></div>
+        </div>
+      </div>
+
+      <!-- ── INTEGRATIONS ───────────────────────────────────────────── -->
+      <div id="ag-integrations-section">
+        <div id="ag-integrations" style="padding:80px 32px;max-width:1180px;margin:0 auto">
+          <div id="ag-integrations-header" class="ag-integrations-header"></div>
+          <div class="ag-marquee-wrap" id="ag-marquee-wrap"></div>
+          <div style="text-align:center;margin-top:28px">
+            <button class="ag-btn-ghost" onclick="go('contact')">Request a custom connector →</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── MULTI-AGENT WORKFLOW ───────────────────────────────────── -->
+      <div id="ag-workflow">
+        <div class="ag-workflow-inner">
+          <div class="ag-workflow-header">
+            <div class="ag-section-kicker" style="display:flex;justify-content:center">Multi-agent coordination</div>
+            <h2>Agents that work together.</h2>
+            <p>When a complex outcome spans multiple domains, agents coordinate automatically — no tickets, no wait, no human handoffs.</p>
+          </div>
+          <div id="ag-workflow-grid" class="ag-workflow-cards"></div>
+        </div>
+      </div>
+
+      <!-- ── CTA ───────────────────────────────────────────────────── -->
+      <div id="ag-cta">
+        <div class="ag-cta-inner">
+          <span class="ag-cta-kicker">Get started</span>
+          <h2>See the agents working<br>on <span class="ag-grad-text">your</span> workflows.</h2>
+          <p>Schedule a live demo and see all 12 agents in action across your actual operational scenarios — not a canned slideshow.</p>
+          <div class="ag-cta-actions">
+            <button class="ag-btn-primary" onclick="go('contact')">Book a live demo ↗</button>
+            <button class="ag-btn-ghost" onclick="go('pricing')">Explore pricing →</button>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /pg-agents -->
 
     <!-- ════════════════════════════════════════ PAGE: SOLUTIONS -->
     <div id="pg-solutions" class="page">
