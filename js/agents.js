@@ -1,9 +1,9 @@
-/* ══════════════════════════════════════════════
-   ONE CONCORD AI — AGENTS PAGE CODE ENGINE
+﻿/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   ONE CONCORD AI â€” AGENTS PAGE CODE ENGINE
    Scoped to agents page interactions & overrides
-   ══════════════════════════════════════════════ */
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 
-// Override the global buildAgentGrid function in index1.js
+// Override the global buildAgentGrid function in index.js
 window.buildAgentGrid = function() {
   var container = document.getElementById('agentGrid');
   if (!container || container.dataset.built) return;
@@ -114,7 +114,7 @@ window.buildAgentGrid = function() {
   }
 };
 
-// Override buildAgentExtras in index1.js
+// Override buildAgentExtras in index.js
 window.buildAgentExtras = function() {
   var impactGrid = document.getElementById('agentImpactGrid');
   if (impactGrid && !impactGrid.dataset.built) {
@@ -128,7 +128,7 @@ window.buildAgentExtras = function() {
       {num:'94%',lbl:'Compliance score maintained',sub:'Continuous control monitoring'},
       {num:'94%',lbl:'Security alerts auto-contained',sub:'Without human SOC intervention'},
       {num:'100%',lbl:'Asset visibility target',sub:'No endpoint, server, or workload unmonitored'},
-      {num:'<48h',lbl:'Compliance gap to remediation',sub:'Detect → assign → close'},
+      {num:'<48h',lbl:'Compliance gap to remediation',sub:'Detect â†’ assign â†’ close'},
       {num:'70+',lbl:'Connectors out of the box',sub:'ServiceNow, Jira, Workday, AWS & more'},
       {num:'5 days',lbl:'Contract to first live action',sub:'Fastest enterprise onboarding in the market'},
     ];
@@ -186,7 +186,7 @@ window.buildAgentExtras = function() {
   }
 };
 
-/* ── INTERACTIVE FILTERING ──────────────────────────────── */
+/* â”€â”€ INTERACTIVE FILTERING â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 function initAgentTabs() {
   var tabs = document.querySelectorAll('.agent-tab');
   tabs.forEach(function(tab) {
@@ -226,7 +226,7 @@ function initAgentTabs() {
   });
 }
 
-/* ── LIVE SIMULATORS ────────────────────────────────────── */
+/* â”€â”€ LIVE SIMULATORS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 function startSDTerminal() {
   var term = document.getElementById('agent-sd-terminal');
   if (!term) return;
