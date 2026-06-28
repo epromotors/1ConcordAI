@@ -16,9 +16,9 @@
   --ag-accent2: #38bdf8;
   --ag-lime: #d9ff42;
   --ag-gold: #f59e0b;
-  --ag-text1: #f0f4ff;
-  --ag-text2: #94a3b8;
-  --ag-text3: #475569;
+  --ag-text1: #ffffff;
+  --ag-text2: #cbd5e1;
+  --ag-text3: #94a3b8;
   --ag-mono: 'JetBrains Mono', monospace;
   --ag-font: 'Manrope', sans-serif;
   font-family: var(--ag-font);
@@ -1235,7 +1235,7 @@
 
 .q-hd-desc {
   font-size: 13.5px;
-  color: var(--ag-text3);
+  color: var(--ag-text2);
   line-height: 1.6;
   margin: 0 0 16px;
   flex-grow: 1;
