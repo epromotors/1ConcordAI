@@ -58,7 +58,7 @@ window.buildAgentGrid = function() {
     var bento = bentoConfig[a.code] || { span: 'col-span-1', visual: '' };
 
     var card = document.createElement('div');
-    card.className = 'agent-bento-card ' + bento.span + ' ' + cfg.theme + ' fade-up';
+    card.className = 'agent-bento-card ' + bento.span + ' ' + cfg.theme;
     card.setAttribute('data-dom', cfg.domCode);
     card.setAttribute('data-code', a.code);
 
@@ -86,6 +86,19 @@ window.buildAgentGrid = function() {
   });
 
   container.appendChild(grid);
+
+  // Animate cards in via GSAP stagger (bypasses the old initFades setup)
+  if (typeof gsap !== 'undefined') {
+    var cards = grid.querySelectorAll('.agent-bento-card');
+    gsap.fromTo(cards,
+      { opacity: 0, y: 24 },
+      { opacity: 1, y: 0, duration: 0.55, stagger: 0.06, ease: 'power2.out', delay: 0.05 }
+    );
+  } else {
+    // Fallback: just make them visible
+    var fallbackCards = grid.querySelectorAll('.agent-bento-card');
+    fallbackCards.forEach(function(c) { c.style.opacity = '1'; c.style.transform = 'none'; });
+  }
 
   // Initialize filter tabs logic
   initAgentTabs();
@@ -121,13 +134,22 @@ window.buildAgentExtras = function() {
     ];
     impacts.forEach(function(imp) {
       var card = document.createElement('div');
-      card.className = 'bento-card b-span-1 fade-up';
+      card.className = 'bento-card b-span-1';
       card.style.cssText = 'text-align:center;padding:26px 18px;justify-content:center;';
       card.innerHTML = '<div style="font-family:var(--mono);font-size:28px;font-weight:800;color:var(--accent);line-height:1;margin-bottom:10px">' + imp.num + '</div>'
         + '<div style="font-size:13.5px;font-weight:700;color:var(--text-1);margin-bottom:6px">' + imp.lbl + '</div>'
         + '<div style="font-size:12px;color:var(--text-3);line-height:1.4">' + imp.sub + '</div>';
       impactGrid.appendChild(card);
     });
+    // Animate impact cards
+    if (typeof gsap !== 'undefined') {
+      gsap.fromTo(impactGrid.querySelectorAll('.bento-card'),
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, duration: 0.5, stagger: 0.05, ease: 'power2.out', delay: 0.1 }
+      );
+    } else {
+      impactGrid.querySelectorAll('.bento-card').forEach(function(c) { c.style.opacity = '1'; });
+    }
   }
 
   var band = document.getElementById('integrationBand');
@@ -137,7 +159,7 @@ window.buildAgentExtras = function() {
     var integrations = ['ServiceNow','Jira','Workday','Microsoft Entra ID','Microsoft 365','AWS','Azure','GCP','Slack','Teams','Okta','CrowdStrike','SentinelOne','Splunk','Tenable','Qualys','Datadog','PagerDuty','GitHub','GitLab','SAP','Oracle ERP','NetSuite','Coupa','Ariba','Zoom','DocuSign','Freshservice','Zendesk','Intune'];
     integrations.forEach(function(name) {
       var pill = document.createElement('div');
-      pill.className = 'cbadge fade-up';
+      pill.className = 'cbadge';
       pill.style.cssText = 'font-size:12px;padding:8px 14px;background:rgba(15,31,61,0.4);border:1px solid rgba(255,255,255,0.06);border-radius:20px;cursor:pointer;transition:all 0.3s ease;';
       pill.textContent = name;
       pill.onmouseenter = function() {
@@ -152,6 +174,15 @@ window.buildAgentExtras = function() {
       };
       band.appendChild(pill);
     });
+    // Animate integration pills
+    if (typeof gsap !== 'undefined') {
+      gsap.fromTo(band.querySelectorAll('.cbadge'),
+        { opacity: 0, scale: 0.92 },
+        { opacity: 1, scale: 1, duration: 0.4, stagger: 0.025, ease: 'power2.out', delay: 0.15 }
+      );
+    } else {
+      band.querySelectorAll('.cbadge').forEach(function(p) { p.style.opacity = '1'; });
+    }
   }
 };
 

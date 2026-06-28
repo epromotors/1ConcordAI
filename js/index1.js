@@ -122,8 +122,16 @@ function go(id) {
 
   // Re-render subpage specific assets and refresh ScrollTrigger
   if (id === 'agents') {
-    buildAgentGrid();
-    buildAgentExtras();
+    if (typeof window.buildAgentGrid === 'function') {
+      window.buildAgentGrid();
+    } else {
+      buildAgentGrid();
+    }
+    if (typeof window.buildAgentExtras === 'function') {
+      window.buildAgentExtras();
+    } else {
+      buildAgentExtras();
+    }
   }
   if (id === 'solutions') {
     buildSolutions('it');
