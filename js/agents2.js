@@ -569,8 +569,8 @@
     var featuredAgents = [
       { agent: AGENTS_V2[0], side: 'left',  posClass: 'pos-tl',  icon: '🎯' }, // Service Desk
       { agent: AGENTS_V2[3], side: 'right', posClass: 'pos-tr',  icon: '🛡' }, // Security Operations
-      { agent: AGENTS_V2[4], side: 'left',  posClass: 'pos-ml',  icon: '🔑' }, // Identity & Access
-      { agent: AGENTS_V2[6], side: 'right', posClass: 'pos-mr',  icon: '📋' }, // Compliance & Governance
+      { agent: AGENTS_V2[6], side: 'left',  posClass: 'pos-ml',  icon: '📋' }, // Compliance & Governance (left)
+      { agent: AGENTS_V2[4], side: 'right', posClass: 'pos-mr',  icon: '🔑' }, // Identity & Access (right)
       { agent: AGENTS_V2[2], side: 'left',  posClass: 'pos-bl',  icon: '🚨' }, // Incident Management
       { agent: AGENTS_V2[7], side: 'right', posClass: 'pos-br',  icon: '⚖️' }  // Policy Engine
     ];
@@ -669,8 +669,18 @@
 
       cards.forEach(function(card, idx) {
         var cardRect = card.getBoundingClientRect();
-        var cardX = (cardRect.left + cardRect.width / 2) - containerRect.left;
-        var cardY = (cardRect.top + cardRect.height / 2) - containerRect.top;
+        var item = featuredAgents[idx];
+        
+        var cardX, cardY;
+        cardY = (cardRect.top + cardRect.height / 2) - containerRect.top;
+
+        if (item.side === 'left') {
+          // Left card: connect to right-center edge
+          cardX = cardRect.right - containerRect.left;
+        } else {
+          // Right card: connect to left-center edge
+          cardX = cardRect.left - containerRect.left;
+        }
 
         var path = paths[idx];
         if (path) {
