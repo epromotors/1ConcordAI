@@ -1,4 +1,4 @@
-/* ══════════════════════════════════════════════
+﻿/* ══════════════════════════════════════════════
    ONE CONCORD AI — DESIGN SYSTEM
    Unifying content of OneConcordAI_Website.html
    with layout and animations of index.html
@@ -3687,11 +3687,15 @@ html, body {
    Same technique used by uideck.com AI Tool template.
    ════════════════════════════════════════════════════════════════════ */
 
-/* ── Wrapper: contains particles + globe + title ── */
+/* ── Wrapper: blends from slightly deeper navy into site bg ── */
 .pricing-stars-wrap {
   position: relative;
   overflow: hidden;
-  background: linear-gradient(180deg, #050d1a 0%, #0a1628 60%, var(--bg-0) 100%);
+  background: linear-gradient(180deg,
+    #0a172e 0%,          /* slightly deeper than --bg-0 for depth */
+    var(--bg-0) 55%,
+    var(--bg-0) 100%
+  );
   padding: 120px 20px 60px;
   display: flex;
   flex-direction: column;
@@ -3710,75 +3714,60 @@ html, body {
   pointer-events: none;
 }
 
-/* Small, fast particles (1px) */
+/* Small fast particles — white stars (1px) */
 .price-stars-sm {
   width: 1px;
   height: 1px;
   background: transparent;
   animation: priceStar 60s linear infinite;
   box-shadow:
-    124px 180px rgba(255,255,255,0.9), 384px 92px rgba(255,255,255,0.8), 612px 340px rgba(255,255,255,0.9),
-    820px 156px rgba(255,255,255,0.7), 1040px 280px rgba(255,255,255,0.8), 268px 420px rgba(255,255,255,0.6),
-    756px 68px rgba(255,255,255,0.9), 992px 512px rgba(255,255,255,0.7), 148px 624px rgba(255,255,255,0.8),
-    532px 196px rgba(255,255,255,0.9), 1180px 348px rgba(255,255,255,0.6), 440px 560px rgba(255,255,255,0.8),
-    876px 724px rgba(255,255,255,0.7), 320px 84px rgba(255,255,255,0.9), 688px 436px rgba(255,255,255,0.8),
-    1320px 220px rgba(255,255,255,0.6), 56px 780px rgba(255,255,255,0.9), 1060px 644px rgba(255,255,255,0.7),
-    200px 296px rgba(255,255,255,0.8), 904px 132px rgba(255,255,255,0.9), 1400px 480px rgba(255,255,255,0.7),
-    480px 748px rgba(255,255,255,0.6), 1140px 112px rgba(255,255,255,0.8), 740px 820px rgba(255,255,255,0.9),
-    1560px 300px rgba(255,255,255,0.7), 360px 668px rgba(255,255,255,0.8), 1240px 580px rgba(255,255,255,0.6),
-    64px 460px rgba(255,255,255,0.9), 580px 904px rgba(255,255,255,0.7), 1480px 140px rgba(255,255,255,0.8),
-    96px 56px rgba(255,255,255,0.9), 816px 248px rgba(255,255,255,0.6), 1660px 660px rgba(255,255,255,0.8),
-    420px 124px rgba(255,255,255,0.9), 1284px 724px rgba(255,255,255,0.7), 960px 392px rgba(255,255,255,0.8),
-    1720px 80px rgba(255,255,255,0.6), 500px 316px rgba(255,255,255,0.9), 1780px 440px rgba(255,255,255,0.7),
-    236px 532px rgba(255,255,255,0.8), 660px 184px rgba(255,255,255,0.9), 1100px 792px rgba(255,255,255,0.6),
-    340px 856px rgba(255,255,255,0.8), 1840px 208px rgba(255,255,255,0.7), 780px 484px rgba(255,255,255,0.9),
-    1520px 608px rgba(255,255,255,0.6), 172px 712px rgba(255,255,255,0.8), 1200px 44px rgba(255,255,255,0.9),
-    640px 952px rgba(255,255,255,0.7), 1900px 364px rgba(255,255,255,0.8), 28px 888px rgba(255,255,255,0.6),
-    1360px 928px rgba(255,255,255,0.9), 720px 604px rgba(255,255,255,0.7), 1640px 172px rgba(255,255,255,0.8),
-    452px 1000px rgba(255,255,255,0.6), 1084px 856px rgba(255,255,255,0.9), 296px 36px rgba(255,255,255,0.8),
-    852px 1024px rgba(255,255,255,0.7), 1760px 528px rgba(255,255,255,0.6), 568px 764px rgba(255,255,255,0.9),
-    1448px 396px rgba(255,255,255,0.8), 116px 948px rgba(255,255,255,0.7), 1920px 692px rgba(255,255,255,0.6),
-    700px 268px rgba(255,255,255,0.9), 1560px 840px rgba(255,255,255,0.8), 388px 480px rgba(255,255,255,0.7),
-    1020px 1060px rgba(255,255,255,0.6), 808px 356px rgba(255,255,255,0.9), 1880px 100px rgba(255,255,255,0.7),
-    252px 1100px rgba(255,255,255,0.8), 1680px 784px rgba(255,255,255,0.6), 544px 28px rgba(255,255,255,0.9),
-    1140px 1120px rgba(255,255,255,0.7), 932px 900px rgba(255,255,255,0.8), 1960px 556px rgba(255,255,255,0.6),
-    412px 1140px rgba(255,255,255,0.9), 1300px 256px rgba(255,255,255,0.7), 668px 1080px rgba(255,255,255,0.8),
-    1800px 948px rgba(255,255,255,0.6), 188px 1040px rgba(255,255,255,0.9), 1064px 20px rgba(255,255,255,0.7),
-    860px 1160px rgba(255,255,255,0.8), 1440px 816px rgba(255,255,255,0.6), 324px 1200px rgba(255,255,255,0.9),
-    1728px 636px rgba(255,255,255,0.7), 732px 1220px rgba(255,255,255,0.8), 1168px 908px rgba(255,255,255,0.6),
-    76px 1280px rgba(255,255,255,0.9), 1600px 1000px rgba(255,255,255,0.7), 492px 1300px rgba(255,255,255,0.8),
-    1380px 60px rgba(255,255,255,0.6), 916px 1340px rgba(255,255,255,0.9), 1980px 836px rgba(255,255,255,0.7),
-    560px 1360px rgba(255,255,255,0.8), 1240px 1080px rgba(255,255,255,0.6), 784px 1400px rgba(255,255,255,0.9),
-    1820px 344px rgba(255,255,255,0.7), 208px 1420px rgba(255,255,255,0.8), 1500px 1120px rgba(255,255,255,0.6),
-    652px 1460px rgba(255,255,255,0.9), 1124px 1200px rgba(255,255,255,0.7), 36px 1500px rgba(255,255,255,0.8),
-    1700px 1240px rgba(255,255,255,0.6), 884px 1520px rgba(255,255,255,0.9), 1340px 1160px rgba(255,255,255,0.7),
-    476px 1560px rgba(255,255,255,0.8), 1900px 1080px rgba(255,255,255,0.6), 740px 1600px rgba(255,255,255,0.9),
-    1060px 1440px rgba(255,255,255,0.7), 300px 1640px rgba(255,255,255,0.8), 1620px 1320px rgba(255,255,255,0.6),
-    820px 1680px rgba(255,255,255,0.9), 1180px 1480px rgba(255,255,255,0.7), 148px 1720px rgba(255,255,255,0.8),
-    1760px 1400px rgba(255,255,255,0.6), 584px 1760px rgba(255,255,255,0.9), 1420px 1560px rgba(255,255,255,0.7),
-    964px 1800px rgba(255,255,255,0.8), 1940px 1640px rgba(255,255,255,0.6), 440px 1840px rgba(255,255,255,0.9);
+    124px 180px rgba(255,255,255,0.55), 384px 92px rgba(255,255,255,0.45), 612px 340px rgba(255,255,255,0.50),
+    820px 156px rgba(255,255,255,0.40), 1040px 280px rgba(255,255,255,0.50), 268px 420px rgba(255,255,255,0.35),
+    756px 68px rgba(255,255,255,0.55), 992px 512px rgba(255,255,255,0.40), 148px 624px rgba(255,255,255,0.45),
+    532px 196px rgba(255,255,255,0.55), 1180px 348px rgba(255,255,255,0.35), 440px 560px rgba(255,255,255,0.45),
+    876px 724px rgba(255,255,255,0.40), 320px 84px rgba(255,255,255,0.55), 688px 436px rgba(255,255,255,0.45),
+    1320px 220px rgba(255,255,255,0.35), 56px 780px rgba(255,255,255,0.55), 1060px 644px rgba(255,255,255,0.40),
+    200px 296px rgba(255,255,255,0.45), 904px 132px rgba(255,255,255,0.55), 1400px 480px rgba(255,255,255,0.40),
+    480px 748px rgba(255,255,255,0.35), 1140px 112px rgba(255,255,255,0.45), 740px 820px rgba(255,255,255,0.55),
+    1560px 300px rgba(255,255,255,0.40), 360px 668px rgba(255,255,255,0.45), 1240px 580px rgba(255,255,255,0.35),
+    64px 460px rgba(255,255,255,0.55), 580px 904px rgba(255,255,255,0.40), 1480px 140px rgba(255,255,255,0.45),
+    96px 56px rgba(255,255,255,0.55), 816px 248px rgba(255,255,255,0.35), 1660px 660px rgba(255,255,255,0.45),
+    420px 124px rgba(255,255,255,0.55), 1284px 724px rgba(255,255,255,0.40), 960px 392px rgba(255,255,255,0.45),
+    1720px 80px rgba(255,255,255,0.35), 500px 316px rgba(255,255,255,0.55), 1780px 440px rgba(255,255,255,0.40),
+    236px 532px rgba(255,255,255,0.45), 660px 184px rgba(255,255,255,0.55), 1100px 792px rgba(255,255,255,0.35),
+    340px 856px rgba(255,255,255,0.45), 1840px 208px rgba(255,255,255,0.40), 780px 484px rgba(255,255,255,0.55),
+    1520px 608px rgba(255,255,255,0.35), 172px 712px rgba(255,255,255,0.45), 1200px 44px rgba(255,255,255,0.55),
+    640px 952px rgba(255,255,255,0.40), 1900px 364px rgba(255,255,255,0.45), 28px 888px rgba(255,255,255,0.35),
+    1360px 928px rgba(255,255,255,0.55), 720px 604px rgba(255,255,255,0.40), 1640px 172px rgba(255,255,255,0.45),
+    452px 1000px rgba(255,255,255,0.35), 1084px 856px rgba(255,255,255,0.55), 296px 36px rgba(255,255,255,0.45),
+    852px 1024px rgba(255,255,255,0.40), 1760px 528px rgba(255,255,255,0.35), 568px 764px rgba(255,255,255,0.55),
+    1448px 396px rgba(255,255,255,0.45), 116px 948px rgba(255,255,255,0.40), 1920px 692px rgba(255,255,255,0.35),
+    700px 268px rgba(255,255,255,0.55), 1560px 840px rgba(255,255,255,0.45), 388px 480px rgba(255,255,255,0.40),
+    1020px 1060px rgba(255,255,255,0.35), 808px 356px rgba(255,255,255,0.55), 1880px 100px rgba(255,255,255,0.40),
+    252px 1100px rgba(255,255,255,0.45), 1680px 784px rgba(255,255,255,0.35), 544px 28px rgba(255,255,255,0.55),
+    1140px 1120px rgba(255,255,255,0.40), 932px 900px rgba(255,255,255,0.45), 1960px 556px rgba(255,255,255,0.35);
 }
 
-/* Medium particles (1.5px) — slower */
+/* Medium teal/cyan accent particles — site palette only */
 .price-stars-md {
   width: 1px;
   height: 1px;
   background: transparent;
   animation: priceStar 100s linear infinite;
   box-shadow:
-    200px 600px rgba(14,184,166,0.6), 800px 200px rgba(56,189,248,0.5), 1400px 800px rgba(139,92,246,0.5),
-    400px 1200px rgba(14,184,166,0.4), 1000px 400px rgba(56,189,248,0.6), 600px 1000px rgba(139,92,246,0.4),
-    1600px 600px rgba(14,184,166,0.5), 300px 1600px rgba(56,189,248,0.4), 1100px 1400px rgba(139,92,246,0.6),
-    700px 300px rgba(14,184,166,0.6), 1800px 1000px rgba(56,189,248,0.5), 500px 1800px rgba(139,92,246,0.4),
-    1300px 200px rgba(14,184,166,0.5), 900px 1600px rgba(56,189,248,0.6), 1700px 400px rgba(139,92,246,0.5),
-    100px 900px rgba(14,184,166,0.4), 1500px 1200px rgba(56,189,248,0.6), 250px 1400px rgba(139,92,246,0.5),
-    1950px 700px rgba(14,184,166,0.4), 650px 1900px rgba(56,189,248,0.5), 1050px 100px rgba(139,92,246,0.6),
-    350px 500px rgba(14,184,166,0.5), 1750px 1600px rgba(56,189,248,0.4), 750px 700px rgba(139,92,246,0.6),
-    1200px 1800px rgba(14,184,166,0.5), 450px 300px rgba(56,189,248,0.6), 1850px 1300px rgba(139,92,246,0.4),
-    850px 1100px rgba(14,184,166,0.6), 1650px 500px rgba(56,189,248,0.5), 50px 1700px rgba(139,92,246,0.4);
+    200px 600px rgba(20,184,166,0.45),  800px 200px rgba(94,234,212,0.35),  1400px 800px rgba(56,189,248,0.30),
+    400px 1200px rgba(20,184,166,0.35), 1000px 400px rgba(94,234,212,0.40),  600px 1000px rgba(56,189,248,0.25),
+    1600px 600px rgba(20,184,166,0.40),  300px 1600px rgba(94,234,212,0.30),  1100px 1400px rgba(56,189,248,0.35),
+    700px 300px rgba(20,184,166,0.45),  1800px 1000px rgba(94,234,212,0.35), 500px 1800px rgba(56,189,248,0.25),
+    1300px 200px rgba(20,184,166,0.40),  900px 1600px rgba(94,234,212,0.40), 1700px 400px rgba(56,189,248,0.30),
+    100px 900px rgba(20,184,166,0.30),  1500px 1200px rgba(94,234,212,0.40), 250px 1400px rgba(56,189,248,0.35),
+    1950px 700px rgba(20,184,166,0.30),  650px 1900px rgba(94,234,212,0.35), 1050px 100px rgba(56,189,248,0.40),
+    350px 500px rgba(20,184,166,0.40),  1750px 1600px rgba(94,234,212,0.25), 750px 700px rgba(56,189,248,0.35),
+    1200px 1800px rgba(20,184,166,0.40), 450px 300px rgba(94,234,212,0.40),  1850px 1300px rgba(56,189,248,0.25),
+    850px 1100px rgba(20,184,166,0.45), 1650px 500px rgba(94,234,212,0.35),   50px 1700px rgba(56,189,248,0.25);
 }
 
-/* Large glowing particles (2px) — slowest */
+/* Large slow glow particles — teal + cyan only */
 .price-stars-lg {
   width: 2px;
   height: 2px;
@@ -3786,21 +3775,21 @@ html, body {
   animation: priceStar 150s linear infinite;
   border-radius: 50%;
   box-shadow:
-    500px 400px rgba(255,255,255,0.8), 1200px 800px rgba(14,184,166,0.9), 300px 1200px rgba(56,189,248,0.7),
-    1600px 300px rgba(139,92,246,0.8), 800px 1600px rgba(255,255,255,0.6), 1900px 1000px rgba(14,184,166,0.7),
-    400px 700px rgba(56,189,248,0.8), 1100px 1500px rgba(139,92,246,0.9), 700px 200px rgba(255,255,255,0.7),
-    1700px 1700px rgba(14,184,166,0.6), 200px 1800px rgba(56,189,248,0.8), 1400px 100px rgba(139,92,246,0.7),
-    900px 900px rgba(255,255,255,0.9), 1800px 600px rgba(14,184,166,0.8), 600px 1400px rgba(56,189,248,0.6),
-    1300px 1900px rgba(139,92,246,0.7), 100px 500px rgba(255,255,255,0.8), 1950px 1400px rgba(14,184,166,0.5);
+    500px 400px rgba(255,255,255,0.55),  1200px 800px rgba(20,184,166,0.70),  300px 1200px rgba(56,189,248,0.50),
+    1600px 300px rgba(94,234,212,0.55),   800px 1600px rgba(255,255,255,0.40), 1900px 1000px rgba(20,184,166,0.50),
+    400px 700px rgba(56,189,248,0.55),   1100px 1500px rgba(94,234,212,0.65),   700px 200px rgba(255,255,255,0.50),
+    1700px 1700px rgba(20,184,166,0.45),  200px 1800px rgba(56,189,248,0.55),  1400px 100px rgba(94,234,212,0.50),
+    900px 900px rgba(255,255,255,0.65),  1800px 600px rgba(20,184,166,0.60),   600px 1400px rgba(56,189,248,0.40),
+    1300px 1900px rgba(94,234,212,0.50),  100px 500px rgba(255,255,255,0.55),  1950px 1400px rgba(20,184,166,0.35);
 }
 
-/* ── The keyframe: particles float upward then reset ── */
+/* ── The keyframe: particles float upward then loop ── */
 @keyframes priceStar {
   from { transform: translateY(0); }
   to   { transform: translateY(-2000px); }
 }
 
-/* ── Globe / dark semicircle behind the title ── */
+/* ── Globe / radial glow behind the title — uses site navy ── */
 .pricing-globe-wrap {
   position: absolute;
   bottom: -10px;
@@ -3821,12 +3810,12 @@ html, body {
   height: 360px;
   border-radius: 50% 50% 0 0;
   background: radial-gradient(ellipse at center bottom,
-    #0f1f3d 0%,
-    #0a1428 40%,
-    #060e1f 70%,
+    var(--bg-0) 0%,
+    rgba(15,31,61,0.95) 40%,
+    rgba(15,31,61,0.6) 70%,
     transparent 100%
   );
-  filter: blur(2px);
+  filter: blur(3px);
 }
 
 .pricing-globe-glow {
@@ -3838,9 +3827,8 @@ html, body {
   height: 300px;
   border-radius: 50% 50% 0 0;
   background: radial-gradient(ellipse at center,
-    rgba(14,184,166,0.08) 0%,
-    rgba(56,189,248,0.05) 40%,
-    rgba(139,92,246,0.03) 70%,
+    rgba(20,184,166,0.10) 0%,
+    rgba(56,189,248,0.06) 50%,
     transparent 100%
   );
   animation: globePulse 4s ease-in-out infinite;
@@ -3869,4 +3857,16 @@ html, body {
   .pricing-globe-wrap { width: 100%; }
   .pricing-globe      { width: 100%; }
   .pricing-globe-glow { width: 90%; }
+}
+
+
+/* ── Particle dots via box-shadow ── */
+.price-stars {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 50%;
+  pointer-events: none;
 }
