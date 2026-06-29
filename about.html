@@ -297,11 +297,33 @@ footer { background:rgba(5,8,22,.96); border-top:1px solid var(--border); paddin
   .svg-container { display: none; }
 }
 @media(max-width:768px) {
-  nav { display:none; }
-  .nav-mobile-btn { display:block; }
+  nav { display:none !important; }
+  .header-ctas { display:none !important; }
+  .nav-mobile-btn {
+    display:flex !important;
+    align-items:center;
+    justify-content:center;
+    width:40px; height:40px;
+  }
   .footer-grid { grid-template-columns:1fr; }
   .footer-bottom { flex-direction:column; gap:1rem; text-align:center; }
 }
+/* Mobile menu overlay */
+.mob-menu {
+  position:fixed; inset:0; background:var(--bg-0); z-index:200;
+  display:none; flex-direction:column; padding:24px 28px;
+}
+.mob-menu.open { display:flex; }
+.mob-menu-head { display:flex; justify-content:space-between; align-items:center; margin-bottom:40px; }
+.mob-close { background:none; border:none; color:#f1f5f9; font-size:26px; cursor:pointer; line-height:1; }
+.mob-nav { display:flex; flex-direction:column; gap:4px; }
+.mob-a {
+  font-size:22px; font-weight:700; color:#CBD5E1; padding:14px 0;
+  border-bottom:1px solid rgba(255,255,255,.06);
+  background:none; border-right:none; border-left:none; border-top:none;
+  text-align:left; cursor:pointer; text-decoration:none; display:block;
+}
+.mob-a:hover { color:#f5a623; }
 </style>
 </head>
 <body>
@@ -329,13 +351,34 @@ footer { background:rgba(5,8,22,.96); border-top:1px solid var(--border); paddin
       <a href="contact.html" class="btn btn-outline btn-sm">Book Demo</a>
       <a href="index.html#metrics" class="btn btn-primary btn-sm">Start Assessment</a>
     </div>
-    <button class="nav-mobile-btn" aria-label="Open menu">
+    <button class="nav-mobile-btn" onclick="toggleMob()" aria-label="Open menu">
       <i data-lucide="menu" style="width:22px;height:22px;"></i>
     </button>
   </div>
 </header>
 
-<!-- ════════════════════════════════════════ PAGE CONTENT WRAPPER -->
+<!-- ════ MOBILE MENU ════ -->
+<div class="mob-menu" id="mobMenu">
+  <div class="mob-menu-head">
+    <div class="logo" style="display:flex;align-items:center;gap:0.6rem;font-weight:800;font-size:1.1rem;color:#f1f5f9;">
+      <div class="logo-mark" style="width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,#f5a623,#e67e22);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:12px;color:#0a0a0a;">1C</div>
+      <span><span style="color:#f5a623;">One</span> Concord AI</span>
+    </div>
+    <button class="mob-close" onclick="toggleMob()">✕</button>
+  </div>
+  <nav class="mob-nav">
+    <a href="index.html" class="mob-a">Home</a>
+    <a href="index.html" class="mob-a">Platform</a>
+    <a href="index.html" class="mob-a">Agents</a>
+    <a href="index.html" class="mob-a">Solutions</a>
+    <a href="index.html" class="mob-a">Pricing</a>
+    <a href="about.html" class="mob-a">About</a>
+    <a href="contact.html" class="mob-a">Contact</a>
+  </nav>
+</div>
+<script>function toggleMob(){document.getElementById('mobMenu').classList.toggle('open');}</script>
+
+<!-- ════════════════════════════ PAGE CONTENT WRAPPER -->
 <div id="page-content">
 
   <!-- ════════════════════════════ AUTO-STRETCHED BACKGROUND CURVE LAYER -->
