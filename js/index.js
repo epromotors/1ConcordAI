@@ -2028,16 +2028,11 @@ function updatePathDimensions() {
   dynamicSvg.setAttribute('height', totalHeight);
   dynamicSvg.setAttribute('viewBox', '0 0 ' + totalWidth + ' ' + totalHeight);
 
-  // Generate main hand-drawn path
+  // Generate one shared hand-drawn path for both layers
   var mainPath = buildHandPath(totalWidth, totalHeight, _jitterSeed);
-  // Sketch underlay uses a slightly different seed for ghosting effect
-  var sketchPath = buildHandPath(totalWidth, totalHeight, _jitterSeed + 137);
 
   bgPath.setAttribute('d', mainPath);
   activePath.setAttribute('d', mainPath);
-
-  var sketchEl = document.getElementById('sketch-path');
-  if (sketchEl) sketchEl.setAttribute('d', sketchPath);
 
   var pathLength = activePath.getTotalLength();
   gsap.set(activePath, {
