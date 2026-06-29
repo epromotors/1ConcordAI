@@ -1700,47 +1700,117 @@ function buildPricing() {
     grid.appendChild(card);
   });
 
-  // comparison table
+  // ── COMPARISON TABLE (Premium Redesign) ──
   var tableWrap = document.getElementById('compareTable');
   if (!tableWrap) return;
-  var rows = [
-    ['Users','Up to 100','Up to 500','Up to 2,000','2,000+'],
-    ['Active agents','3','6','9','12'],
-    ['Connectors','10','20','30','70+'],
-    ['Portal screens','Self-service','Admin + portal','All screens','All + custom'],
-    ['Audit trail retention','7 days','30 days','90 days','1 year'],
-    ['GCC Cloud compliant','—','✓','✓','✓'],
-    ['SOC 2 Type II evidence','—','—','✓','✓'],
-    ['SSO (SAML / OIDC)','—','✓','✓','✓'],
-    ['MFA','Admins only','Admins only','All users','All users'],
-    ['Data residency','Shared cloud','Shared cloud','AWS region choice','BYOVPC / On-prem'],
-    ['Support SLA','Next business day','4h P1','4h P1 / 8h P2','Custom'],
-    ['Customer success manager','—','—','Dedicated','Dedicated + SA'],
-    ['Custom LLM','—','—','—','✓'],
-    ['Private / sovereign cloud','—','—','—','✓'],
+
+  // Helper render functions
+  function check(gold) {
+    return '<span class="cmp-check' + (gold ? ' cmp-check-gold' : '') + '">✓</span>';
+  }
+  function dash() { return '<span class="cmp-dash"></span>'; }
+
+  // rows: [featureName, essential, professional, enterprise, entPlus]
+  // Use check()/dash() or plain text
+  var groups = [
+    {
+      label: '👥  Capacity',
+      rows: [
+        ['Users', 'Up to 100', 'Up to 500', 'Up to 2,000', '2,000+ / Unlimited'],
+        ['Active Agents', '3', '6', '9', '12 + all'],
+        ['Connectors', '10', '20', '30', '70+'],
+      ]
+    },
+    {
+      label: '🖥️  Platform',
+      rows: [
+        ['Portal screens', 'Self-service', 'Admin + portal', 'All screens', 'All + custom'],
+        ['Audit trail retention', '7 days', '30 days', '90 days', '1 year'],
+        ['Admin Console', dash(), check(), check(), check()],
+        ['Custom LLM config', dash(), dash(), dash(), check(true)],
+      ]
+    },
+    {
+      label: '🔐  Identity & Access',
+      rows: [
+        ['SSO (SAML / OIDC)', dash(), check(), check(), check()],
+        ['MFA enforcement', 'Admins only', 'Admins only', 'All users', 'All users'],
+        ['BYOVPC / On-prem', dash(), dash(), dash(), check(true)],
+        ['Data residency', 'Shared cloud', 'Shared cloud', 'AWS region choice', 'BYOVPC / On-prem'],
+      ]
+    },
+    {
+      label: '🛡️  Compliance',
+      rows: [
+        ['GCC Cloud', dash(), check(), check(), check()],
+        ['ISO 27001 / SOC 2 aligned', check(), check(), check(), check()],
+        ['SOC 2 Type II evidence', dash(), dash(), check(), check()],
+        ['NESA / PDPL / PCI DSS', dash(), 'NESA, ISO 27001', 'All standards', 'Government-ready'],
+        ['Private / sovereign cloud', dash(), dash(), dash(), check(true)],
+      ]
+    },
+    {
+      label: '🤝  Support',
+      rows: [
+        ['Support SLA', 'Next business day', '4h P1', '4h P1 / 8h P2', 'Custom SLAs'],
+        ['Customer success manager', dash(), dash(), 'Dedicated', 'Dedicated + SA'],
+        ['Security architecture review', dash(), dash(), dash(), check(true)],
+      ]
+    }
   ];
+
+  // Build outer wrapper
+  var wrap = document.createElement('div');
+  wrap.className = 'cmp-wrap fade-up';
+
+  var scroll = document.createElement('div');
+  scroll.className = 'cmp-scroll';
+
   var table = document.createElement('table');
-  table.className = 'cmp-table fade-up';
-  table.innerHTML = '<thead><tr>'
-    + '<th>Feature</th>'
-    + '<th>Essential</th>'
-    + '<th>Professional</th>'
-    + '<th class="th-ent">Enterprise</th>'
-    + '<th class="th-sov">Enterprise Plus</th>'
-    + '</tr></thead>';
+  table.className = 'cmp-table';
+
+  // ── THEAD ──
+  var thead = document.createElement('thead');
+  thead.innerHTML = '<tr>'
+    + '<th style="text-align:left;vertical-align:middle;"><span style="font-size:12px;font-weight:700;color:var(--text-2);">Feature</span></th>'
+    + '<th><div class="cmp-th-plan"><span class="cmp-th-name">Essential</span><span class="cmp-th-price">$999</span><span class="cmp-th-tier">/ mo · up to 100 users</span></div></th>'
+    + '<th><div class="cmp-th-plan"><span class="cmp-th-name">Professional</span><span class="cmp-th-price">$1,999</span><span class="cmp-th-tier">/ mo · up to 500 users</span></div></th>'
+    + '<th class="th-ent"><div class="cmp-popular-badge">★ Most popular</div><div class="cmp-th-plan"><span class="cmp-th-name">Enterprise</span><span class="cmp-th-price">$3,999</span><span class="cmp-th-tier">/ mo · up to 2,000 users</span></div></th>'
+    + '<th class="th-sov"><div class="cmp-th-plan"><span class="cmp-th-name">Enterprise Plus</span><span class="cmp-th-price">Custom</span><span class="cmp-th-tier">2,000+ · tailored</span></div></th>'
+    + '</tr>';
+  table.appendChild(thead);
+
+  // ── TBODY ──
   var tbody = document.createElement('tbody');
-  rows.forEach(function(r) {
-    var tr = document.createElement('tr');
-    tr.innerHTML = '<td>' + r[0] + '</td>'
-      + '<td style="text-align:center;color:var(--text-3)">' + r[1] + '</td>'
-      + '<td style="text-align:center;color:var(--text-2)">' + r[2] + '</td>'
-      + '<td style="text-align:center" class="td-ent">' + r[3] + '</td>'
-      + '<td style="text-align:center" class="td-sov">' + r[4] + '</td>';
-    tbody.appendChild(tr);
+
+  groups.forEach(function(g) {
+    // Group label row
+    var gtr = document.createElement('tr');
+    gtr.className = 'cmp-group-row';
+    gtr.innerHTML = '<td colspan="5">' + g.label + '</td>';
+    tbody.appendChild(gtr);
+
+    // Feature rows
+    g.rows.forEach(function(r) {
+      var tr = document.createElement('tr');
+      var ess = r[1] === dash() || r[1] === check() || r[1] === check(true) ? r[1] : r[1];
+      var pro = r[2];
+      var ent = r[3];
+      var plus = r[4];
+      tr.innerHTML = '<td>' + r[0] + '</td>'
+        + '<td style="color:var(--text-3)">' + ess + '</td>'
+        + '<td style="color:var(--text-2)">' + pro + '</td>'
+        + '<td class="td-ent">' + ent + '</td>'
+        + '<td class="td-sov">' + plus + '</td>';
+      tbody.appendChild(tr);
+    });
   });
+
   table.appendChild(tbody);
-  tableWrap.appendChild(table);
-  tableWrap.style.overflowX = 'auto';
+  scroll.appendChild(table);
+  wrap.appendChild(scroll);
+  tableWrap.appendChild(wrap);
+  tableWrap.style.overflowX = 'visible';
 }
 
 /* ── BUILD: CONTACT ───────────────────────────────────── */

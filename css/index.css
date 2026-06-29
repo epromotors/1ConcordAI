@@ -1120,17 +1120,203 @@ nav { display: flex; align-items: center; gap: 1.8rem; }
   background: url("data:image/svg+xml,%3Csvg viewBox='0 0 16 16' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M3 8l3 3 7-6' stroke='%2314B8A6' stroke-width='1.8' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/10px no-repeat;
 }
 
-/* TABLE */
-.cmp-table { width: 100%; border-collapse: collapse; font-size: 14px; }
-.cmp-table th { text-align: left; padding: 12px 16px; color: var(--text-3); font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; border-bottom: 1px solid rgba(255,255,255,.08); }
-.cmp-table th:not(:first-child) { text-align: center; }
-.cmp-table td { padding: 11px 16px; border-bottom: 1px solid rgba(226,232,240,.08); color: var(--text-2); }
-.cmp-table td:not(:first-child) { text-align: center; }
-.cmp-table tr:nth-child(even) td { background: rgba(248,250,252,.03); }
-.th-ent { color: var(--accent) !important; font-weight: 800 !important; }
-.th-sov { color: var(--gold) !important; }
-.td-ent { color: var(--text-1); font-weight: 600; }
-.td-sov { color: var(--gold); }
+/* ══════════════════════════════════════════════
+   COMPARE TABLE — PREMIUM REDESIGN
+   ══════════════════════════════════════════════ */
+
+/* Outer wrapper */
+.cmp-wrap {
+  position: relative;
+  margin-top: 20px;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.07);
+  background: rgba(10,20,40,0.6);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 0 60px rgba(14,184,166,0.05), 0 20px 60px rgba(0,0,0,0.4);
+}
+
+/* Scroll container */
+.cmp-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.cmp-scroll::-webkit-scrollbar { height: 4px; }
+.cmp-scroll::-webkit-scrollbar-track { background: rgba(255,255,255,0.03); }
+.cmp-scroll::-webkit-scrollbar-thumb { background: rgba(14,184,166,0.3); border-radius: 2px; }
+
+/* Table base */
+.cmp-table {
+  width: 100%;
+  min-width: 680px;
+  border-collapse: collapse;
+  font-size: 14px;
+  table-layout: fixed;
+}
+
+/* ── HEADER ROW ── */
+.cmp-table thead tr {
+  background: rgba(5,15,35,0.8);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.cmp-table th {
+  padding: 22px 20px 20px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--text-3);
+  text-align: center;
+  vertical-align: bottom;
+  position: relative;
+}
+.cmp-table th:first-child {
+  text-align: left;
+  width: 30%;
+  color: var(--text-2);
+  font-size: 12px;
+}
+
+/* Plan name in header */
+.cmp-th-plan {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+.cmp-th-name {
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--text-1);
+  letter-spacing: -0.2px;
+  text-transform: none;
+}
+.cmp-th-price {
+  font-family: var(--mono);
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  text-transform: none;
+}
+.cmp-th-tier {
+  font-size: 10px;
+  color: var(--text-3);
+  font-weight: 500;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+/* ── FEATURED (Enterprise) column header ── */
+.th-ent {
+  background: linear-gradient(180deg, rgba(14,184,166,0.12) 0%, rgba(14,184,166,0.04) 100%);
+  border-left: 1px solid rgba(14,184,166,0.2);
+  border-right: 1px solid rgba(14,184,166,0.2);
+  border-top: 2px solid var(--accent);
+  position: relative;
+}
+.th-ent .cmp-th-name { color: var(--accent); }
+.th-ent .cmp-th-price { color: var(--accent); }
+
+/* Most Popular badge */
+.cmp-popular-badge {
+  position: absolute;
+  top: -1px;
+  left: 50%;
+  transform: translateX(-50%) translateY(-100%);
+  background: var(--accent);
+  color: var(--bg-0);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: 6px 6px 0 0;
+  white-space: nowrap;
+}
+
+/* Enterprise Plus column */
+.th-sov .cmp-th-name { color: var(--gold); }
+.th-sov .cmp-th-price { color: var(--gold); }
+
+/* ── CATEGORY GROUP ROWS ── */
+.cmp-group-row td {
+  background: rgba(255,255,255,0.02);
+  padding: 10px 20px;
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  color: var(--accent);
+  border-bottom: none;
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+/* ── DATA ROWS ── */
+.cmp-table tbody tr:not(.cmp-group-row) {
+  transition: background 0.15s ease;
+}
+.cmp-table tbody tr:not(.cmp-group-row):hover {
+  background: rgba(255,255,255,0.025);
+}
+
+.cmp-table td {
+  padding: 13px 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  color: var(--text-2);
+  text-align: center;
+  vertical-align: middle;
+}
+.cmp-table td:first-child {
+  text-align: left;
+  color: var(--text-2);
+  font-size: 13.5px;
+  font-weight: 500;
+}
+
+/* Featured (Enterprise) column cells */
+.td-ent {
+  background: linear-gradient(90deg, rgba(14,184,166,0.04) 0%, rgba(14,184,166,0.06) 100%);
+  border-left: 1px solid rgba(14,184,166,0.12);
+  border-right: 1px solid rgba(14,184,166,0.12);
+  color: var(--text-1) !important;
+  font-weight: 600;
+}
+
+/* Enterprise Plus column cells */
+.td-sov {
+  color: var(--gold) !important;
+  font-weight: 600;
+}
+
+/* ── CHECK / DASH ICONS ── */
+.cmp-check {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: rgba(14,184,166,0.12);
+  border: 1.5px solid rgba(14,184,166,0.3);
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 800;
+}
+.cmp-check-gold {
+  background: rgba(245,166,35,0.12);
+  border-color: rgba(245,166,35,0.3);
+  color: var(--gold);
+}
+.cmp-dash {
+  display: inline-block;
+  width: 18px;
+  height: 2px;
+  background: rgba(255,255,255,0.12);
+  border-radius: 1px;
+  vertical-align: middle;
+}
+
 
 /* ─── SOLUTIONS REDESIGN ─── */
 .sol-tabs { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 36px; }
