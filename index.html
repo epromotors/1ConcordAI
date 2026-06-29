@@ -691,18 +691,31 @@
 
     <!-- ════════════════════════════════════════ PAGE: PRICING -->
     <div id="pg-pricing" class="page">
-      <div class="page-hero">
-        <div class="container">
-          <div class="breadcrumb">oneconcord.ai / <em>Pricing</em></div>
-          <span class="section-label">Pricing</span>
-          <h1>Simple, predictable pricing.<br>Scale as you grow.</h1>
-          <p class="lead mt">Choose the plan that fits your enterprise requirements. All plans include core connectors
-            and standard security governance.</p>
+
+      <!-- ══ PRICING STARS PARTICLE SECTION ══ -->
+      <div class="pricing-stars-wrap">
+        <!-- Floating star particles (CSS box-shadow technique) -->
+        <div class="price-stars price-stars-sm"></div>
+        <div class="price-stars price-stars-md"></div>
+        <div class="price-stars price-stars-lg"></div>
+
+        <!-- Dark globe / radial glow behind title -->
+        <div class="pricing-globe-wrap">
+          <div class="pricing-globe"></div>
+          <div class="pricing-globe-glow"></div>
+        </div>
+
+        <!-- Section header -->
+        <div class="pricing-hero-title">
+          <div class="breadcrumb" style="justify-content:center;margin-bottom:12px;">oneconcord.ai / <em>Pricing</em></div>
+          <span class="section-label" style="justify-content:center;margin-bottom:16px;">Pricing plans</span>
+          <h1 style="text-align:center;max-width:680px;margin:0 auto 16px;">Simple, predictable pricing.<br>Scale as you grow.</h1>
+          <p class="lead" style="text-align:center;margin:0 auto;max-width:560px;">Choose the plan that fits your enterprise requirements. All plans include core connectors and standard security governance.</p>
         </div>
       </div>
-      <div class="glow-line"></div>
+      <!-- ══ END PARTICLE SECTION ══ -->
 
-      <section class="section">
+      <section class="section" style="padding-top:0;">
         <div class="container">
           <div id="pricingGrid">
             <!-- Populated dynamically via index.js -->
