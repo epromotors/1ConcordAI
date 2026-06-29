@@ -2083,8 +2083,18 @@ footer { background: rgba(15, 31, 61, 0.96); border-top: 1px solid var(--border)
 }
 
 @media(max-width:860px) {
-  nav { display: none; }
-  .nav-mobile-btn { display: block; }
+  /* Hide desktop nav & CTAs, show hamburger */
+  nav { display: none !important; }
+  .header-ctas { display: none !important; }
+  .nav-mobile-btn {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    z-index: 100;
+    color: var(--text-1);
+  }
   .hiw-steps { flex-direction: column; }
   .hiw-steps::before { display: none; }
   .hiw-diagram { grid-template-columns: 1fr; }
@@ -3227,6 +3237,8 @@ footer { background: rgba(15, 31, 61, 0.96); border-top: 1px solid var(--border)
   .bento-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+  /* Collapse span-3 to full width, keep span-2 */
+  .b-span-3 { grid-column: 1 / -1; }
 }
 
 @media (max-width: 768px) {
@@ -3234,8 +3246,22 @@ footer { background: rgba(15, 31, 61, 0.96); border-top: 1px solid var(--border)
     grid-template-columns: 1fr;
     gap: 16px;
   }
+  /* All spans become single column on mobile */
+  .b-span-1, .b-span-2, .b-span-3 {
+    grid-column: span 1;
+  }
   .bento-card {
     padding: 20px;
+    /* Prevent inner flex from overflowing */
+    overflow: hidden;
+  }
+  /* Platform card inner layout: stack on mobile */
+  .bento-card > div[style*="flex"] {
+    flex-direction: column !important;
+  }
+  /* Hide large SVG pipeline visualizer on mobile */
+  .platform-pipeline-svg {
+    display: none;
   }
 }
 
