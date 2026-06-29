@@ -182,7 +182,7 @@ nav a:hover { color:var(--text-1); }
 }
 .hero-inner {
   position:relative; z-index:2;
-  display:grid; grid-template-columns:1fr; gap:4rem; align-items:center;
+  display:grid; grid-template-columns: 1.1fr 0.9fr; gap: 3.5rem; align-items:center;
 }
 .hero-sub { font-size:1.02rem; margin-bottom:2rem; max-width:680px; line-height:1.7; }
 .hero-ctas { display:flex; gap:1rem; flex-wrap:wrap; margin-bottom:2rem; }
@@ -306,6 +306,8 @@ footer { background:rgba(5,8,22,.96); border-top:1px solid var(--border); paddin
   }
   .footer-grid { grid-template-columns:1fr; }
   .footer-bottom { flex-direction:column; gap:1rem; text-align:center; }
+  .cap-grid { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)) !important; }
+  .dashboard-content { padding: 1.2rem !important; }
 }
 /* Mobile menu overlay */
 .mob-menu {
@@ -393,7 +395,7 @@ footer { background:rgba(5,8,22,.96); border-top:1px solid var(--border); paddin
     <div class="hero-bg"></div>
     <div class="hero-grid"></div>
     <div class="container">
-      <div class="hero-inner" style="grid-template-columns: 1.1fr 0.9fr; gap: 3.5rem; width: 100%;">
+      <div class="hero-inner">
         <div class="hero-left" style="text-align: left; max-width: 100%; margin: 0;">
           <div style="margin-bottom:1.5rem;">
             <span class="badge"><span class="badge-dot"></span>Our Mission</span>
