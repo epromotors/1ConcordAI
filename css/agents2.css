@@ -1562,24 +1562,59 @@
   .ag-hero-desc  { font-size: 15px; }
   .ag-stats-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
   .ag-stat-val   { font-size: clamp(1.5rem, 5vw, 2.2rem); }
-  #ag-sticky-tabs { overflow-x: auto; white-space: nowrap; padding: 0 16px; gap: 6px; }
-  .ag-tab-btn     { padding: 8px 16px; font-size: 12px; }
-  .ag-card-title { font-size: 15px; }
-  .ag-card-desc  { font-size: 12.5px; }
-  .ag-int-grid   { grid-template-columns: repeat(3, 1fr); gap: 10px; }
-  .ag-int-item   { padding: 10px 6px; font-size: 11px; }
-  .ag-wf-step-badge { font-size: 9.5px; }
-  .ag-wf-step-action{ font-size: 12px; }
-  #ag-cube-section { padding: 60px 0; }
-  .q-hub-title     { font-size: clamp(22px, 5vw, 32px); text-align: center; }
-  .q-hub-desc      { text-align: center; }
+  #ag-sticky-tabs { padding: 0; }
+  .ag-tabs-inner { padding: 14px 16px; }
+  
+  /* Qount-style interactive hub section mobile grid */
+  .q-hub-visual-container {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px !important;
+    height: auto !important;
+    width: 100% !important;
+    padding: 20px 0 !important;
+  }
+  .q-hub-cube-scene {
+    grid-column: span 2 !important;
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    transform: none !important;
+    margin: 0 auto 20px !important;
+  }
+  .q-hub-svg-lines {
+    display: none !important;
+  }
+  .q-floating-card {
+    position: relative !important;
+    top: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+    right: auto !important;
+    transform: none !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
+  }
+  .q-floating-card:hover,
+  .q-floating-card.active {
+    transform: scale(1.02) !important;
+  }
 }
 
 @media (max-width: 480px) {
   .ag-stats-grid { grid-template-columns: 1fr; }
   .ag-int-grid   { grid-template-columns: repeat(2, 1fr); }
   .ag-wf-name    { font-size: 11px; }
-  .q-hub-visual-container { height: 400px; }
+  
+  .q-hub-visual-container {
+    grid-template-columns: 1fr !important;
+  }
+  .q-hub-cube-scene {
+    grid-column: span 1 !important;
+  }
+  
   .q-hub-cube { width: 70px; height: 70px; }
   .q-cube-face { width: 70px; height: 70px; }
   .q-face-top  { transform: rotateX(90deg) translateZ(35px); }

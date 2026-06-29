@@ -2244,6 +2244,29 @@ footer { background: rgba(15, 31, 61, 0.96); border-top: 1px solid var(--border)
   .q-left-col, .q-dashboard {
     grid-column: span 1;
   }
+  .q-agents-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    grid-template-rows: auto !important;
+    gap: 10px !important;
+  }
+  .q-agent-widget {
+    min-height: 110px !important;
+    padding: 10px 12px !important;
+  }
+  .q-agent-widget-desc {
+    display: none !important;
+  }
+  .q-agent-widget-name {
+    font-size: 13px !important;
+    margin-top: 6px !important;
+  }
+  .q-agent-widget-meta {
+    padding: 2px 6px !important;
+    margin-bottom: 4px !important;
+  }
+  .q-agent-widget-meta-lbl {
+    font-size: 9.5px !important;
+  }
   .q-metric-grid {
     grid-template-columns: 1fr;
   }
