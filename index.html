@@ -732,74 +732,85 @@
         <div class="pricing-globe-wrap">
           <div class="pricing-globe"></div>
           <div class="pricing-globe-glow"></div>
-        </div>
-
-        <!-- Section header -->
-        <div class="pricing-hero-title">
-          <div class="breadcrumb" style="justify-content:center;margin-bottom:12px;">oneconcord.ai / <em>Pricing</em></div>
-          <span class="section-label" style="justify-content:center;margin-bottom:16px;">Pricing plans</span>
-          <h1 style="text-align:center;max-width:680px;margin:0 auto 16px;">Simple, predictable pricing.<br>Scale as you grow.</h1>
-          <p class="lead" style="text-align:center;margin:0 auto;max-width:560px;">Choose the plan that fits your enterprise requirements. All plans include core connectors and standard security governance.</p>
-        </div>
-      </div>
-      <!-- ══ END PARTICLE SECTION ══ -->
-
-      <section class="section" style="padding-top:0;">
-        <div class="container">
-          <div id="pricingGrid">
-            <!-- Populated dynamically via index.js -->
-          </div>
-
-          <div style="margin-top:80px;text-align:center;" class="fade-up">
-            <span class="section-label" style="justify-content:center;">Compare plans</span>
-            <h2 class="mb-lg">Detailed feature comparison</h2>
-            <div id="compareTable">
-              <!-- Populated dynamically via index.js -->
-            </div>
-          </div>
-        </div>
-      </section>
-    </div><!-- /pricing -->
-
-    <!-- ════════════════════════════════════════ PAGE: ABOUT -->
-    <div id="pg-about" class="page">
+      <div id="pg-about" class="page">
       <div class="page-hero">
         <div class="container">
-          <div class="breadcrumb">oneconcord.ai / <em>About Us</em></div>
-          <span class="section-label">About OneConcord AI</span>
-          <h1 style="max-width:720px">Building Trusted AI for the Modern Enterprise</h1>
-          <p class="lead mt">OneConcord AI is an enterprise AI company unifying intelligence, automating execution, and
-            enabling organizations to securely deploy AI across every business function.</p>
+          <div class="about-hero-grid">
+            <div class="about-hero-left">
+              <div class="breadcrumb">oneconcord.ai / <em>About Us</em></div>
+              <span class="section-label">About OneConcord AI</span>
+              <h1 style="line-height: 1.15;">Building Trusted AI for the Modern Enterprise</h1>
+              <p class="lead mt">OneConcord AI is an enterprise AI company unifying intelligence, automating execution, and enabling organizations to securely deploy AI across every business function.</p>
+            </div>
+            <div class="about-hero-visual fade-up">
+              <div class="about-console-mock">
+                <div class="about-console-bar">
+                  <div class="about-console-dot" style="background:#f43f5e"></div>
+                  <div class="about-console-dot" style="background:#fbbf24"></div>
+                  <div class="about-console-dot" style="background:#22c55e"></div>
+                  <span class="about-console-title">OneConcord Core Operations Console</span>
+                </div>
+                <div class="about-console-content">
+                  <div class="about-telemetry-row">
+                    <div class="about-telemetry-item">
+                      <span class="about-telemetry-label">Telemetry Status</span>
+                      <span class="about-telemetry-status">
+                        <span class="badge-dot" style="background:#22c55e;width:6px;height:6px;display:inline-block;border-radius:50%"></span> Active
+                      </span>
+                    </div>
+                    <div class="about-telemetry-item">
+                      <span class="about-telemetry-label">Throughput</span>
+                      <span class="about-telemetry-value">148,420 actions/hr</span>
+                    </div>
+                    <div class="about-telemetry-item">
+                      <span class="about-telemetry-label">Autonomy Score</span>
+                      <span class="about-telemetry-value" style="color:var(--accent-teal)">94.2%</span>
+                    </div>
+                    <div class="about-telemetry-item">
+                      <span class="about-telemetry-label">MTTR (Resolution)</span>
+                      <span class="about-telemetry-value" style="color:var(--orchid-neon)">&lt; 38 seconds</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <div class="glow-line"></div>
 
-      <!-- MISSION + VISION -->
+      <!-- VALUES GRID -->
       <section class="section">
         <div class="container">
-          <div class="g2" style="gap:40px">
+          <div class="values-grid">
             <!-- MISSION -->
-            <div class="card card-teal fade-up" style="padding:40px">
-              <div
-                style="width:48px;height:48px;border-radius:14px;background:rgba(20,184,166,0.15);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;margin-bottom:22px;color:var(--accent)">
-                <i data-lucide="target" style="width:24px;height:24px;"></i>
+            <div class="value-card fade-up">
+              <div class="value-card-icon">
+                <i data-lucide="target" style="width:22px;height:22px;"></i>
               </div>
               <span class="section-label">Mission</span>
-              <h2 style="font-size:clamp(20px,2.5vw,30px);margin-bottom:16px">Enable. Decide. Achieve.</h2>
-              <p style="font-size:clamp(15px,1.6vw,18px);color:var(--text-2);line-height:1.75">Enable organizations to
-                work faster, make smarter decisions, and achieve more through enterprise AI.</p>
+              <h3 style="font-size:18px;margin-bottom:12px;color:var(--text-1)">Enable. Decide. Achieve.</h3>
+              <p style="font-size:13.5px;color:var(--text-2);line-height:1.65">Enable organizations to work faster, make smarter decisions, and achieve more through enterprise AI.</p>
             </div>
 
             <!-- VISION -->
-            <div class="card fade-up" style="padding:40px;background:rgba(255,255,255,0.04)" data-line-card>
-              <div
-                style="width:48px;height:48px;border-radius:14px;background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.25);display:flex;align-items:center;justify-content:center;margin-bottom:22px;color:var(--gold)">
-                <i data-lucide="eye" style="width:24px;height:24px;"></i>
+            <div class="value-card fade-up">
+              <div class="value-card-icon" style="color:var(--gold);border-color:rgba(245,158,11,.2);background:rgba(245,158,11,.05)">
+                <i data-lucide="eye" style="width:22px;height:22px;"></i>
               </div>
               <span class="section-label" style="color:var(--gold);">Vision</span>
-              <h2 style="font-size:clamp(20px,2.5vw,30px);margin-bottom:16px">The Autonomous Enterprise</h2>
-              <p style="font-size:clamp(15px,1.6vw,18px);color:var(--text-2);line-height:1.75">Powering the Autonomous
-                Enterprise with AI.</p>
+              <h3 style="font-size:18px;margin-bottom:12px;color:var(--text-1)">The Autonomous Enterprise</h3>
+              <p style="font-size:13.5px;color:var(--text-2);line-height:1.65">Powering the Autonomous Enterprise with AI, allowing workflows to adapt, respond, and scale seamlessly.</p>
+            </div>
+
+            <!-- TRUST -->
+            <div class="value-card fade-up">
+              <div class="value-card-icon" style="color:var(--accent-cyan);border-color:rgba(6,182,212,.2);background:rgba(6,182,212,.05)">
+                <i data-lucide="shield-check" style="width:22px;height:22px;"></i>
+              </div>
+              <span class="section-label" style="color:var(--accent-cyan);">Governance</span>
+              <h3 style="font-size:18px;margin-bottom:12px;color:var(--text-1)">Zero-Trust Governance</h3>
+              <p style="font-size:13.5px;color:var(--text-2);line-height:1.65">Every agent action and policy check is fully audited, transparent, tamper-proof, and secure by default.</p>
             </div>
           </div>
         </div>
@@ -807,65 +818,39 @@
 
       <div class="divider"></div>
 
-      <!-- ABOUT US BODY -->
+      <!-- ABOUT US BODY + TIMELINE -->
       <section class="section">
         <div class="container">
           <div class="g2" style="gap:60px;align-items:center">
             <div class="fade-up">
               <span class="section-label">Who we are</span>
               <h2 class="mb">One platform. Every function. Trusted AI.</h2>
-              <p style="font-size:16px;color:var(--text-2);line-height:1.8;margin-bottom:20px">OneConcord AI is an
-                enterprise AI company building trusted AI for the modern enterprise. We unify intelligence, automate
-                execution, and enable organizations to securely deploy AI across every business function.</p>
-              <p style="font-size:16px;color:var(--text-2);line-height:1.8;margin-bottom:32px">By combining enterprise
-                knowledge, governance, and autonomous execution, OneConcord AI helps businesses increase productivity,
-                accelerate innovation, and achieve measurable outcomes at scale.</p>
+              <p style="font-size:15px;color:var(--text-2);line-height:1.8;margin-bottom:20px">OneConcord AI is an enterprise AI company building trusted AI for the modern enterprise. We unify intelligence, automate execution, and enable organizations to securely deploy AI across every business function.</p>
+              <p style="font-size:15px;color:var(--text-2);line-height:1.8;margin-bottom:32px">By combining enterprise knowledge, governance, and autonomous execution, OneConcord AI helps businesses increase productivity, accelerate innovation, and achieve measurable outcomes at scale.</p>
               <div style="display:flex;gap:12px;flex-wrap:wrap">
                 <button class="btn btn-primary btn-lg" onclick="go('contact')">Get in touch</button>
                 <button class="btn btn-ghost btn-lg" onclick="go('platform')">See the platform →</button>
               </div>
             </div>
-            <div style="display:flex;flex-direction:column;gap:18px">
-              <div class="card fade-up" style="padding:28px 32px">
-                <div style="display:flex;align-items:center;gap:16px">
-                  <div
-                    style="width:42px;height:42px;border-radius:12px;background:rgba(20,184,166,0.15);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--accent)">
-                    <i data-lucide="layers" style="width:20px;height:20px;"></i>
-                  </div>
-                  <div>
-                    <div style="font-size:14px;font-weight:700;color:var(--text-1);margin-bottom:4px">Enterprise
-                      Knowledge</div>
-                    <p style="font-size:13px;margin:0">Deeply understands your organization's data, processes, and
-                      policies.</p>
-                  </div>
+            <div class="fade-up">
+              <div class="about-timeline">
+                <div class="about-timeline-item">
+                  <div class="about-timeline-dot"></div>
+                  <div class="about-timeline-year">2024</div>
+                  <div class="about-timeline-title">Founding &amp; Vision</div>
+                  <div class="about-timeline-desc">Established to eliminate organizational siloes. Built the unified enterprise correlation canvas.</div>
                 </div>
-              </div>
-              <div class="card fade-up" style="padding:28px 32px">
-                <div style="display:flex;align-items:center;gap:16px">
-                  <div
-                    style="width:42px;height:42px;border-radius:12px;background:rgba(20,184,166,0.15);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--accent)">
-                    <i data-lucide="shield-check" style="width:20px;height:20px;"></i>
-                  </div>
-                  <div>
-                    <div style="font-size:14px;font-weight:700;color:var(--text-1);margin-bottom:4px">Governance First
-                    </div>
-                    <p style="font-size:13px;margin:0">Every agent decision is policy-governed, audited, and compliant.
-                    </p>
-                  </div>
+                <div class="about-timeline-item">
+                  <div class="about-timeline-dot"></div>
+                  <div class="about-timeline-year">2025</div>
+                  <div class="about-timeline-title">Enterprise Scale</div>
+                  <div class="about-timeline-desc">Expanded architecture to protect 2.1M+ identities. Secured SOC 2 Type II compliance.</div>
                 </div>
-              </div>
-              <div class="card fade-up" style="padding:28px 32px">
-                <div style="display:flex;align-items:center;gap:16px">
-                  <div
-                    style="width:42px;height:42px;border-radius:12px;background:rgba(20,184,166,0.15);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--accent)">
-                    <i data-lucide="zap" style="width:20px;height:20px;"></i>
-                  </div>
-                  <div>
-                    <div style="font-size:14px;font-weight:700;color:var(--text-1);margin-bottom:4px">Autonomous
-                      Execution</div>
-                    <p style="font-size:13px;margin:0">AI workers that act independently and deliver measurable outcomes
-                      at scale.</p>
-                  </div>
+                <div class="about-timeline-item">
+                  <div class="about-timeline-dot"></div>
+                  <div class="about-timeline-year">2026</div>
+                  <div class="about-timeline-title">First-Contact Autonomy</div>
+                  <div class="about-timeline-desc">Launched the first cohort of autonomous workers, dropping resolution MTTR below 38 seconds.</div>
                 </div>
               </div>
             </div>
@@ -878,8 +863,7 @@
         <div class="container align-center">
           <span class="section-label" style="justify-content:center;">Join the future of enterprise AI</span>
           <h2 class="mb-sm">See OneConcord AI in action.</h2>
-          <p class="mb-lg" style="max-width:420px;margin-left:auto;margin-right:auto">Book a demo and discover how
-            autonomous AI workers can transform your enterprise operations in days, not months.</p>
+          <p class="mb-lg" style="max-width:420px;margin-left:auto;margin-right:auto">Book a demo and discover how autonomous AI workers can transform your enterprise operations in days, not months.</p>
           <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
             <button class="btn btn-primary btn-lg" onclick="go('contact')">Book a demo</button>
             <a href="#pricing" class="btn btn-ghost btn-lg" onclick="go('pricing'); return false;">See pricing →</a>

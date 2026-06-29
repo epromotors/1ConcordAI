@@ -2488,6 +2488,23 @@ document.addEventListener('DOMContentLoaded', function() {
     b.addEventListener('click', function() { buildSolutions(this.dataset.sol, this); });
   });
 
+  function initAboutTelemetry() {
+    var values = document.querySelectorAll('.about-telemetry-value');
+    if (!values || values.length < 2) return;
+    setInterval(function() {
+      // 1. Throughput: ~148,420 +/- 50 actions/hr
+      var throughputVal = 148420 + Math.floor(Math.random() * 100 - 50);
+      if (values[0]) {
+        values[0].textContent = throughputVal.toLocaleString() + ' actions/hr';
+      }
+      // 2. Autonomy Score: ~94.2% +/- 0.15%
+      var autonomyVal = (94.2 + (Math.random() * 0.3 - 0.15)).toFixed(1);
+      if (values[1]) {
+        values[1].textContent = autonomyVal + '%';
+      }
+    }, 3000);
+  }
+
   // 3. Initialize visual enhancements and triggers
   lucide.createIcons();
   initFades();
@@ -2502,6 +2519,7 @@ document.addEventListener('DOMContentLoaded', function() {
   initTimelineAnimation();
   initGrcCoreSection();
   initComplianceGrid();
+  initAboutTelemetry();
 
   // Re-run compliance grid on resize to keep it aligned with container dimensions
   window.addEventListener('resize', () => {
