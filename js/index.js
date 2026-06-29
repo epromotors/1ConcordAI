@@ -1956,37 +1956,112 @@ function initHeroTitleSlider() {
   });
 }
 
+// Organic hand-drawn path — each call regenerates with slight variation
+var _jitterRaf = null;
+var _jitterSeed = Math.random() * 1000;
+
+function buildHandPath(W, H, seed) {
+  var cx = W / 2;
+  // Each segment has its own irregular swing + control point offsets
+  // Nothing is symmetric — like a real hand drawing
+  var s = seed;
+  function rng(min, max) {
+    s = (s * 9301 + 49297) % 233280;
+    return min + (s / 233280) * (max - min);
+  }
+
+  // Vertical stops — unevenly spaced (not every 10%)
+  var stops = [
+    0.00,                           // Start top
+    rng(0.08, 0.13),               // Segment 1 end
+    rng(0.17, 0.24),               // Segment 2 end
+    rng(0.28, 0.35),               // Segment 3 end
+    rng(0.38, 0.46),               // Segment 4 end
+    rng(0.50, 0.57),               // Segment 5 end
+    rng(0.61, 0.68),               // Segment 6 end
+    rng(0.72, 0.79),               // Segment 7 end
+    rng(0.84, 0.90),               // Segment 8 end
+    1.00                           // End bottom
+  ].map(function(v){ return v * H; });
+
+  // X pivot for each stop — irregular, not symmetric
+  var pivots = stops.map(function(_, i) {
+    if (i === 0 || i === stops.length - 1) return cx; // Start/end at center
+    var side = i % 2 === 0 ? 1 : -1;
+    var amp = rng(W * 0.10, W * 0.24); // Asymmetric amplitude
+    var drift = rng(-W * 0.04, W * 0.04); // Random extra drift
+    return cx + side * amp + drift;
+  });
+
+  // Build path using cubic beziers between each stop
+  var d = 'M ' + cx.toFixed(1) + ',0 ';
+
+  for (var i = 0; i < stops.length - 1; i++) {
+    var x0 = pivots[i];
+    var y0 = stops[i];
+    var x1 = pivots[i + 1];
+    var y1 = stops[i + 1];
+    var segH = y1 - y0;
+
+    // Control points: slightly off-axis, uneven tension
+    var tension1 = rng(0.3, 0.6);
+    var tension2 = rng(0.4, 0.7);
+    var cpx1 = x0 + rng(-W * 0.05, W * 0.05); // Slight horizontal wobble on cp1
+    var cpy1 = y0 + segH * tension1;
+    var cpx2 = x1 + rng(-W * 0.05, W * 0.05); // Slight horizontal wobble on cp2
+    var cpy2 = y1 - segH * (1 - tension2);
+
+    d += 'C ' + cpx1.toFixed(1) + ',' + cpy1.toFixed(1)
+      + ' ' + cpx2.toFixed(1) + ',' + cpy2.toFixed(1)
+      + ' ' + x1.toFixed(1) + ',' + y1.toFixed(1) + ' ';
+  }
+
+  return d;
+}
+
 function updatePathDimensions() {
   if (!pageContent || !activePath) return;
-  const totalHeight = pageContent.offsetHeight;
-  const totalWidth = window.innerWidth;
-  const centerPoint = totalWidth / 2;
+  var totalHeight = pageContent.offsetHeight;
+  var totalWidth = window.innerWidth;
 
-  dynamicSvg.setAttribute("width", totalWidth);
-  dynamicSvg.setAttribute("height", totalHeight);
-  dynamicSvg.setAttribute("viewBox", `0 0 ${totalWidth} ${totalHeight}`);
+  dynamicSvg.setAttribute('width', totalWidth);
+  dynamicSvg.setAttribute('height', totalHeight);
+  dynamicSvg.setAttribute('viewBox', '0 0 ' + totalWidth + ' ' + totalHeight);
 
-  // Curve starts from the top M center,0
-  const pathData = `
-    M ${centerPoint},0 
-    C ${centerPoint},${totalHeight * 0.12} ${centerPoint + 300},${totalHeight * 0.14} ${centerPoint + 300},${totalHeight * 0.22} 
-    S ${centerPoint - 300},${totalHeight * 0.26} ${centerPoint - 300},${totalHeight * 0.33} 
-    S ${centerPoint + 300},${totalHeight * 0.37} ${centerPoint + 300},${totalHeight * 0.43} 
-    S ${centerPoint - 300},${totalHeight * 0.47} ${centerPoint - 300},${totalHeight * 0.53} 
-    S ${centerPoint + 300},${totalHeight * 0.58} ${centerPoint + 300},${totalHeight * 0.66} 
-    S ${centerPoint - 200},${totalHeight * 0.74} ${centerPoint},${totalHeight * 0.84} 
-    L ${centerPoint},${totalHeight - 120}
-  `;
+  // Generate main hand-drawn path
+  var mainPath = buildHandPath(totalWidth, totalHeight, _jitterSeed);
+  // Sketch underlay uses a slightly different seed for ghosting effect
+  var sketchPath = buildHandPath(totalWidth, totalHeight, _jitterSeed + 137);
 
-  bgPath.setAttribute("d", pathData);
-  activePath.setAttribute("d", pathData);
+  bgPath.setAttribute('d', mainPath);
+  activePath.setAttribute('d', mainPath);
 
-  const pathLength = activePath.getTotalLength();
+  var sketchEl = document.getElementById('sketch-path');
+  if (sketchEl) sketchEl.setAttribute('d', sketchPath);
+
+  var pathLength = activePath.getTotalLength();
   gsap.set(activePath, {
     strokeDasharray: pathLength,
     strokeDashoffset: pathLength
   });
+
+  // Animate feTurbulence seed slowly for living pen-on-paper wobble
+  var turbEl = document.getElementById('handTurbulence');
+  if (turbEl) {
+    if (_jitterRaf) cancelAnimationFrame(_jitterRaf);
+    var tStart = performance.now();
+    function animateTurbulence(t) {
+      // Slowly shift baseFrequency to create organic breathing wobble
+      var elapsed = (t - tStart) * 0.00006;
+      var bf1 = (0.016 + Math.sin(elapsed * 1.3) * 0.004).toFixed(4);
+      var bf2 = (0.030 + Math.cos(elapsed * 0.9) * 0.005).toFixed(4);
+      turbEl.setAttribute('baseFrequency', bf1 + ' ' + bf2);
+      _jitterRaf = requestAnimationFrame(animateTurbulence);
+    }
+    _jitterRaf = requestAnimationFrame(animateTurbulence);
+  }
 }
+
 
 function initSvgLine() {
   pageContent = document.getElementById("page-content");
