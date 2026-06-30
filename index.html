@@ -915,16 +915,55 @@
       <section class="section">
         <div class="container">
           <div class="two-col-contact">
-            <!-- CONTACT FORM -->
+            <!-- LEFT SIDE: TIMELINE, ADDRESS, SOCIALS -->
+            <div>
+              <div class="card card-teal mb fade-up">
+                <span class="section-label">Timeline</span>
+                <h4 class="mb" style="font-size:16px;font-weight:800;color:#fff;">What happens next</h4>
+                <div id="nextSteps"></div>
+              </div>
+              <div class="card mb fade-up">
+                <h4 class="mb" style="font-size:16px;font-weight:800;color:#fff;margin-bottom:15px;">Contact us directly</h4>
+                <ul class="contact-details-list">
+                  <li><i data-lucide="mail"></i> <a href="mailto:hello@oneconcord.ai">hello@oneconcord.ai</a></li>
+                  <li><i data-lucide="globe"></i> <a href="https://oneconcord.ai">oneconcord.ai</a></li>
+                  <li><i data-lucide="map-pin"></i> <span>Dubai Internet City, UAE</span></li>
+                </ul>
+                <div style="display: flex; gap: 16px; margin-top: 24px; border-top: 1px solid var(--border); padding-top: 16px;">
+                  <a href="https://linkedin.com" target="_blank" style="color: var(--text-3); transition: color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-3)'">
+                    <i data-lucide="linkedin" style="width: 20px; height: 20px;"></i>
+                  </a>
+                  <a href="https://twitter.com" target="_blank" style="color: var(--text-3); transition: color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-3)'">
+                    <i data-lucide="twitter" style="width: 20px; height: 20px;"></i>
+                  </a>
+                  <a href="https://github.com" target="_blank" style="color: var(--text-3); transition: color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-3)'">
+                    <i data-lucide="github" style="width: 20px; height: 20px;"></i>
+                  </a>
+                </div>
+              </div>
+              <div class="card card-gold fade-up" style="border: 1.5px solid rgba(255, 201, 51, 0.35); background: rgba(255, 201, 51, 0.04);">
+                <div style="display: flex; gap: 14px; align-items: flex-start; margin-bottom: 12px;">
+                  <div class="compliance-badge-icon" style="background: rgba(255, 201, 51, 0.1); border: 1px solid var(--gold); border-radius: 8px; width: 38px; height: 38px; display: flex; align-items: center; justify-content: center; color: var(--gold); flex-shrink: 0;">
+                    <i data-lucide="shield-check" style="width: 20px; height: 20px;"></i>
+                  </div>
+                  <div>
+                    <span class="section-label" style="color:var(--gold); margin-bottom: 4px; font-size: 11px;">Global reach · GCC compliant</span>
+                    <h4 style="color:#fff; font-size: 15px; font-weight:800;">Built for security-first enterprises</h4>
+                  </div>
+                </div>
+                <p style="font-size:13px; color: var(--text-2); line-height: 1.65;">Globally deployable across any cloud region. GCC
+                  Cloud compliant with full NESA, PDPL, ISO 27001, SOC 2, and PCI DSS alignment. On-premises and
+                  sovereign cloud deployments available for regulated industries and government.</p>
+              </div>
+            </div>
+
+            <!-- RIGHT SIDE: CONTACT FORM -->
             <div class="dashboard-wrap fade-up" style="box-shadow: 0 15px 40px rgba(0,0,0,0.4), 0 0 30px rgba(181,242,219,0.08);">
               <div class="dashboard-bar">
-                <div class="db-dot" style="background:#f43f5e; width: 8px; height: 8px; border-radius: 50%;"></div>
-                <div class="db-dot" style="background:#fbbf24; width: 8px; height: 8px; border-radius: 50%;"></div>
-                <div class="db-dot" style="background:#22c55e; width: 8px; height: 8px; border-radius: 50%;"></div>
-                <span style="margin-left:.5rem;font-size:.72rem;color:var(--text-3);font-weight:600;">Secure Demo Portal</span>
+                <span style="font-size:.72rem;color:var(--text-3);font-weight:600;letter-spacing:0.05em;text-transform:uppercase;">Secure Demo Portal</span>
               </div>
               <div class="dashboard-content" style="padding: 2.2rem 2rem;">
-                <h3 class="mb" style="font-family:'Space Grotesk',sans-serif;font-size:22px;font-weight:800;margin-bottom:20px;color:#fff;">Request a Live Demo</h3>
+                <h3 class="mb" style="font-family:'Space Grotesk',sans-serif;font-size:22px;font-weight:800;margin-bottom:20px;color:#fff;">Initiate Platform Briefing</h3>
                 <form id="contactForm" onsubmit="submitForm(event)">
                   <div class="g2-form">
                     <div class="form-group">
@@ -979,37 +1018,7 @@
                 </div>
               </div>
             </div>
-
-            <!-- SIDEBAR -->
-            <div>
-              <div class="card card-teal mb fade-up">
-                <span class="section-label">Timeline</span>
-                <h4 class="mb" style="font-size:16px;font-weight:800;color:#fff;">What happens next</h4>
-                <div id="nextSteps"></div>
-              </div>
-              <div class="card mb fade-up">
-                <h4 class="mb" style="font-size:16px;font-weight:800;color:#fff;margin-bottom:15px;">Contact us directly</h4>
-                <ul class="contact-details-list">
-                  <li><i data-lucide="mail"></i> <a href="mailto:hello@oneconcord.ai">hello@oneconcord.ai</a></li>
-                  <li><i data-lucide="globe"></i> <a href="https://oneconcord.ai">oneconcord.ai</a></li>
-                  <li><i data-lucide="map-pin"></i> <span>Dubai Internet City, UAE</span></li>
-                </ul>
-              </div>
-              <div class="card card-gold fade-up" style="border: 1.5px solid rgba(255, 201, 51, 0.35); background: rgba(255, 201, 51, 0.04);">
-                <div style="display: flex; gap: 14px; align-items: flex-start; margin-bottom: 12px;">
-                  <div class="compliance-badge-icon" style="background: rgba(255, 201, 51, 0.1); border: 1px solid var(--gold); border-radius: 8px; width: 38px; height: 38px; display: flex; align-items: center; justify-content: center; color: var(--gold); flex-shrink: 0;">
-                    <i data-lucide="shield-check" style="width: 20px; height: 20px;"></i>
-                  </div>
-                  <div>
-                    <span class="section-label" style="color:var(--gold); margin-bottom: 4px; font-size: 11px;">Global reach · GCC compliant</span>
-                    <h4 style="color:#fff; font-size: 15px; font-weight:800;">Built for security-first enterprises</h4>
-                  </div>
-                </div>
-                <p style="font-size:13px; color: var(--text-2); line-height: 1.65;">Globally deployable across any cloud region. GCC
-                  Cloud compliant with full NESA, PDPL, ISO 27001, SOC 2, and PCI DSS alignment. On-premises and
-                  sovereign cloud deployments available for regulated industries and government.</p>
-              </div>
-            </div>
+          </div>
           </div>
         </div>
       </section>
@@ -1067,7 +1076,7 @@
   </footer>
   <script src="js/index.js"></script>
   <script src="js/agents2.js"></script>
-  <script src="js/modal.js"></script>
+  <script src="js/modal.js?v=1.2"></script>
 </body>
 
 </html>

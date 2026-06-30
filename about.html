@@ -63,6 +63,7 @@ section { position:relative; z-index:2; }
 
 #page-content {
   position: relative;
+  z-index: 1;
 }
 
 /* ════════════════════║ ADVANCED AUTO-STRETCHED SCROLL CONTAINER GRID */
@@ -73,7 +74,7 @@ section { position:relative; z-index:2; }
   width: 100%;
   height: 100%;
   pointer-events: none;
-  z-index: 1;
+  z-index: -1;
 }
 .svg-container svg {
   width: 100%;
@@ -728,18 +729,19 @@ footer { background:rgba(22,35,43,.96); border-top:1px solid var(--border); padd
       const totalWidth = window.innerWidth;
       const centerPoint = totalWidth / 2;
 
+      const pad = 32;
+      const cw = Math.min(1160, totalWidth - pad * 2);
+      const offset = cw / 2 - 50;
+
       dynamicSvg.setAttribute("width", totalWidth);
       dynamicSvg.setAttribute("height", totalHeight);
       dynamicSvg.setAttribute("viewBox", `0 0 ${totalWidth} ${totalHeight}`);
 
       const pathData = `
         M ${centerPoint},0 
-        C ${centerPoint},${totalHeight * 0.12} ${centerPoint + 340},${totalHeight * 0.14} ${centerPoint + 340},${totalHeight * 0.22} 
-        S ${centerPoint - 340},${totalHeight * 0.26} ${centerPoint - 340},${totalHeight * 0.33} 
-        S ${centerPoint + 340},${totalHeight * 0.37} ${centerPoint + 340},${totalHeight * 0.43} 
-        S ${centerPoint - 340},${totalHeight * 0.47} ${centerPoint - 340},${totalHeight * 0.53} 
-        S ${centerPoint + 340},${totalHeight * 0.58} ${centerPoint + 340},${totalHeight * 0.66} 
-        S ${centerPoint - 220},${totalHeight * 0.74} ${centerPoint},${totalHeight * 0.84} 
+        C ${centerPoint},${totalHeight * 0.15} ${centerPoint - offset},${totalHeight * 0.2} ${centerPoint - offset},${totalHeight * 0.35} 
+        S ${centerPoint + offset},${totalHeight * 0.5} ${centerPoint + offset},${totalHeight * 0.65} 
+        S ${centerPoint - offset * 0.5},${totalHeight * 0.78} ${centerPoint},${totalHeight * 0.88} 
         L ${centerPoint},${totalHeight - 120}
       `;
 
@@ -795,6 +797,6 @@ footer { background:rgba(22,35,43,.96); border-top:1px solid var(--border); padd
     initSvgLine();
   });
 </script>
-<script src="js/modal.js"></script>
+<script src="js/modal.js?v=1.2"></script>
 </body>
 </html>

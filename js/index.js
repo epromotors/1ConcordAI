@@ -1908,7 +1908,7 @@ function initFloating() {
 
 function initHero() {
   gsap.from('.hero-left > *', { opacity: 0, y: 40, duration: 0.9, stagger: 0.15, ease: 'power3.out', delay: 0.3 });
-  gsap.from('.dashboard-wrap', { opacity: 0, y: 50, scale: 0.96, duration: 1, ease: 'power3.out', delay: 0.6 });
+  gsap.from('.hero .dashboard-wrap', { opacity: 0, y: 50, scale: 0.96, duration: 1, ease: 'power3.out', delay: 0.6 });
 }
 
 function initDrift() {
@@ -1976,39 +1976,47 @@ var _jitterSeed = Math.random() * 1000;
 
 function buildHandPath(W, H, seed) {
   var cx = W / 2;
-  // Each segment has its own irregular swing + control point offsets
-  // Nothing is symmetric — like a real hand drawing
   var s = seed;
   function rng(min, max) {
     s = (s * 9301 + 49297) % 233280;
     return min + (s / 233280) * (max - min);
   }
 
-  // Vertical stops — unevenly spaced (not every 10%)
-  var stops = [
-    0.00,                           // Start top
-    rng(0.08, 0.13),               // Segment 1 end
-    rng(0.17, 0.24),               // Segment 2 end
-    rng(0.28, 0.35),               // Segment 3 end
-    rng(0.38, 0.46),               // Segment 4 end
-    rng(0.50, 0.57),               // Segment 5 end
-    rng(0.61, 0.68),               // Segment 6 end
-    rng(0.72, 0.79),               // Segment 7 end
-    rng(0.84, 0.90),               // Segment 8 end
-    1.00                           // End bottom
-  ].map(function(v){ return v * H; });
+  // Calculate container borders dynamically
+  var pad = Math.max(20, Math.min(W * 0.05, 80));
+  var cw = Math.min(1200, W - pad * 2);
+  var leftBorder = (W - cw) / 2;
+  var rightBorder = W - leftBorder;
 
-  // X pivot for each stop — irregular, not symmetric
+  // Target vertical spacing between turns: ~900px to ~1000px
+  var spacing = 950;
+  var numSegments = Math.max(3, Math.round(H / spacing));
+  var numStops = numSegments + 1;
+
+  var stops = [];
+  for (var i = 0; i < numStops; i++) {
+    if (i === 0) stops.push(0);
+    else if (i === numStops - 1) stops.push(H);
+    else {
+      // Add slight organic randomness to stop height
+      var base = i / numSegments;
+      var variance = rng(-0.02, 0.02);
+      stops.push((base + variance) * H);
+    }
+  }
+
+  // X pivot for each stop — swinging from left to right container border
   var pivots = stops.map(function(_, i) {
     if (i === 0 || i === stops.length - 1) return cx; // Start/end at center
     var side = i % 2 === 0 ? 1 : -1;
-    var amp = rng(W * 0.10, W * 0.24); // Asymmetric amplitude
-    var drift = rng(-W * 0.04, W * 0.04); // Random extra drift
-    return cx + side * amp + drift;
+    var drift = rng(-cw * 0.015, cw * 0.015); // Slight organic drift
+    var offset = cw / 2 - rng(55, 95); // Swing near the border (55px to 95px inside border)
+    return cx + side * offset + drift;
   });
 
-  // Build path using cubic beziers between each stop
+  // Build path using smooth Catmull-Rom cubic spline
   var d = 'M ' + cx.toFixed(1) + ',0 ';
+  var tension = 0.22; // Good balance for smoothness without looping
 
   for (var i = 0; i < stops.length - 1; i++) {
     var x0 = pivots[i];
@@ -2017,13 +2025,29 @@ function buildHandPath(W, H, seed) {
     var y1 = stops[i + 1];
     var segH = y1 - y0;
 
-    // Control points: slightly off-axis, uneven tension
-    var tension1 = rng(0.3, 0.6);
-    var tension2 = rng(0.4, 0.7);
-    var cpx1 = x0 + rng(-W * 0.05, W * 0.05); // Slight horizontal wobble on cp1
-    var cpy1 = y0 + segH * tension1;
-    var cpx2 = x1 + rng(-W * 0.05, W * 0.05); // Slight horizontal wobble on cp2
-    var cpy2 = y1 - segH * (1 - tension2);
+    var cpx1, cpy1, cpx2, cpy2;
+
+    // Control point 1 (outgoing from point i)
+    if (i === 0) {
+      cpx1 = x0;
+      cpy1 = y0 + segH * 0.3;
+    } else {
+      var dx0 = pivots[i + 1] - pivots[i - 1];
+      var dy0 = stops[i + 1] - stops[i - 1];
+      cpx1 = x0 + tension * dx0;
+      cpy1 = y0 + tension * dy0;
+    }
+
+    // Control point 2 (incoming to point i+1)
+    if (i + 1 === stops.length - 1) {
+      cpx2 = x1;
+      cpy2 = y1 - segH * 0.3;
+    } else {
+      var dx1 = pivots[i + 2] - pivots[i];
+      var dy1 = stops[i + 2] - stops[i];
+      cpx2 = x1 - tension * dx1;
+      cpy2 = y1 - tension * dy1;
+    }
 
     d += 'C ' + cpx1.toFixed(1) + ',' + cpy1.toFixed(1)
       + ' ' + cpx2.toFixed(1) + ',' + cpy2.toFixed(1)

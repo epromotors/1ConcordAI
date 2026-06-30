@@ -90,6 +90,7 @@ section {
 
 #page-content {
   position: relative;
+  z-index: 1;
 }
 
 /* ════════════════════║ ADVANCED AUTO-STRETCHED SCROLL CONTAINER GRID */
@@ -100,7 +101,7 @@ section {
   width: 100%;
   height: 100%;
   pointer-events: none;
-  z-index: 1;
+  z-index: -1;
 }
 .svg-container svg {
   width: 100%;
@@ -1374,7 +1375,7 @@ nav { display: flex; align-items: center; gap: 1.8rem; }
 .sol-sc-card-b { font-size: 12px; color: #CBD5E1; line-height: 1.6; }
 
 /* ─── CONTACT FORM ─── */
-.two-col-contact { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 4rem; align-items: start; }
+.two-col-contact { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 4rem; align-items: start; }
 .form-group { margin-bottom: 20px; }
 .form-label { display: block; font-size: 11.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--accent); margin-bottom: 8px; }
 .form-input { width: 100%; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 12px 16px; color: var(--text-1); font-family: var(--font); font-size: 14px; outline: none; transition: all 0.25s ease; }

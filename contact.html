@@ -63,6 +63,7 @@ section { position:relative; z-index:2; }
 
 #page-content {
   position: relative;
+  z-index: 1;
 }
 
 /* ════════════════════║ ADVANCED AUTO-STRETCHED SCROLL CONTAINER GRID */
@@ -73,7 +74,7 @@ section { position:relative; z-index:2; }
   width: 100%;
   height: 100%;
   pointer-events: none;
-  z-index: 1;
+  z-index: -1;
 }
 .svg-container svg {
   width: 100%;
@@ -211,7 +212,7 @@ nav a:hover { color:var(--text-1); }
 .icon-teal  { background:linear-gradient(135deg,rgba(20,212,195,.2),rgba(20,212,195,.05)); color:var(--accent-teal);  border:1px solid rgba(20,212,195,.25); }
 
 /* ─── IDENTITY (Two column layout) ─── */
-.two-col { display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center; }
+.two-col { display:grid; grid-template-columns:0.9fr 1.1fr; gap:4rem; align-items:center; }
 
 /* ─── FORM INPUTS ─── */
 .form-input {
@@ -404,6 +405,17 @@ footer { background:rgba(22,35,43,.96); border-top:1px solid var(--border); padd
               </div>
             </div>
           </div>
+          <div style="display: flex; gap: 16px; margin-top: 2.5rem; border-top: 1px solid var(--border); padding-top: 1.5rem; max-width: 480px;">
+            <a href="https://linkedin.com" target="_blank" style="color: var(--text-3); transition: color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-3)'">
+              <i data-lucide="linkedin" style="width: 20px; height: 20px;"></i>
+            </a>
+            <a href="https://twitter.com" target="_blank" style="color: var(--text-3); transition: color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-3)'">
+              <i data-lucide="twitter" style="width: 20px; height: 20px;"></i>
+            </a>
+            <a href="https://github.com" target="_blank" style="color: var(--text-3); transition: color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-3)'">
+              <i data-lucide="github" style="width: 20px; height: 20px;"></i>
+            </a>
+          </div>
         </div>
 
         <!-- Right: Glassmorphic Contact Form & Success Card -->
@@ -411,10 +423,7 @@ footer { background:rgba(22,35,43,.96); border-top:1px solid var(--border); padd
           
           <form id="contact-form" class="dashboard-wrap" style="padding: 2.5rem; display: flex; flex-direction: column; gap: 1.5rem;">
             <div class="dashboard-bar" style="margin: -2.5rem -2.5rem 1rem; border-top-left-radius: 16px; border-top-right-radius: 16px;">
-              <div class="db-dot" style="background:#f43f5e;"></div>
-              <div class="db-dot" style="background:#fbbf24;"></div>
-              <div class="db-dot" style="background:#22c55e;"></div>
-              <span style="margin-left:.5rem;font-size:.72rem;color:var(--text-3);font-weight:600;">SOC Transmission Node</span>
+              <span style="font-size:.72rem;color:var(--text-3);font-weight:600;letter-spacing:0.05em;text-transform:uppercase;">SOC Transmission Node</span>
             </div>
             
             <div style="display: flex; gap: 1.2rem; flex-wrap: wrap;">
@@ -544,18 +553,19 @@ footer { background:rgba(22,35,43,.96); border-top:1px solid var(--border); padd
       const totalWidth = window.innerWidth;
       const centerPoint = totalWidth / 2;
 
+      const pad = 32;
+      const cw = Math.min(1160, totalWidth - pad * 2);
+      const offset = cw / 2 - 50;
+
       dynamicSvg.setAttribute("width", totalWidth);
       dynamicSvg.setAttribute("height", totalHeight);
       dynamicSvg.setAttribute("viewBox", `0 0 ${totalWidth} ${totalHeight}`);
 
       const pathData = `
         M ${centerPoint},0 
-        C ${centerPoint},${totalHeight * 0.12} ${centerPoint + 340},${totalHeight * 0.14} ${centerPoint + 340},${totalHeight * 0.22} 
-        S ${centerPoint - 340},${totalHeight * 0.26} ${centerPoint - 340},${totalHeight * 0.33} 
-        S ${centerPoint + 340},${totalHeight * 0.37} ${centerPoint + 340},${totalHeight * 0.43} 
-        S ${centerPoint - 340},${totalHeight * 0.47} ${centerPoint - 340},${totalHeight * 0.53} 
-        S ${centerPoint + 340},${totalHeight * 0.58} ${centerPoint + 340},${totalHeight * 0.66} 
-        S ${centerPoint - 220},${totalHeight * 0.74} ${centerPoint},${totalHeight * 0.84} 
+        C ${centerPoint},${totalHeight * 0.15} ${centerPoint - offset},${totalHeight * 0.2} ${centerPoint - offset},${totalHeight * 0.35} 
+        S ${centerPoint + offset},${totalHeight * 0.5} ${centerPoint + offset},${totalHeight * 0.65} 
+        S ${centerPoint - offset * 0.5},${totalHeight * 0.78} ${centerPoint},${totalHeight * 0.88} 
         L ${centerPoint},${totalHeight - 120}
       `;
 
@@ -650,6 +660,6 @@ footer { background:rgba(22,35,43,.96); border-top:1px solid var(--border); padd
     initSvgLine();
   });
 </script>
-<script src="js/modal.js"></script>
+<script src="js/modal.js?v=1.2"></script>
 </body>
 </html>
