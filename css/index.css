@@ -4219,28 +4219,23 @@ html, body {
     text-align: left;
   }
   
-  /* Scrollable tabs bar */
+  /* Grid-based tabs bar to prevent overflow */
   .cmp-mobile-tabs {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     gap: 8px;
-    overflow-x: auto;
-    padding: 4px 4px 12px;
     margin-bottom: 20px;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none; /* Hide scrollbar Firefox */
-  }
-  .cmp-mobile-tabs::-webkit-scrollbar {
-    display: none; /* Hide scrollbar Chrome/Safari */
   }
   
   .cmp-m-tab {
-    flex: 0 0 auto;
+    width: 100%;
+    text-align: center;
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid rgba(255, 255, 255, 0.08);
     color: var(--text-3);
-    padding: 10px 18px;
+    padding: 10px 14px;
     border-radius: 30px;
-    font-size: 13.5px;
+    font-size: 13px;
     font-weight: 600;
     transition: all 0.3s ease;
     cursor: pointer;
