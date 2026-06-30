@@ -3277,6 +3277,62 @@ footer { background: rgba(22, 35, 43, 0.96); border-top: 1px solid var(--border)
   text-transform: uppercase;
 }
 
+/* Mobile Testimonials Navigation */
+.testimonials-mobile-nav {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .testimonials-mobile-nav {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 24px;
+    position: relative;
+    z-index: 10;
+  }
+  .mobile-nav-btn {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #fff;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+  .mobile-nav-btn:hover {
+    background: var(--accent);
+    color: var(--bg-0);
+    border-color: var(--accent);
+  }
+  .mobile-nav-btn svg {
+    width: 20px;
+    height: 20px;
+  }
+  .testimonials-slider-container {
+    padding: 0 16px !important;
+    -webkit-mask-image: none !important;
+    mask-image: none !important;
+  }
+  .testimonials-track {
+    animation: none !important;
+    transform: none !important;
+    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    gap: 16px;
+    padding: 10px 4px;
+  }
+  .t-card {
+    flex: 0 0 calc(100vw - 64px) !important;
+    max-width: 420px;
+    user-select: none;
+  }
+}
+
+
 
 /* ─── PLATFORM BENTO GRID REDESIGN ─── */
 .bento-grid {
