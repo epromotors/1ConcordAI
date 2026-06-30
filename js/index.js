@@ -2002,7 +2002,7 @@ function buildHandPath(W, H, seed) {
   var pivots = stops.map(function(_, i) {
     if (i === 0 || i === stops.length - 1) return cx; // Start/end at center
     var side = i % 2 === 0 ? 1 : -1;
-    var amp = rng(W * 0.05, W * 0.12); // Asymmetric amplitude
+    var amp = rng(W * 0.10, W * 0.24); // Asymmetric amplitude
     var drift = rng(-W * 0.04, W * 0.04); // Random extra drift
     return cx + side * amp + drift;
   });
@@ -2035,7 +2035,7 @@ function buildHandPath(W, H, seed) {
 
 function updatePathDimensions() {
   if (!pageContent || !activePath) return;
-  var totalHeight = document.body.scrollHeight;
+  var totalHeight = pageContent.offsetHeight;
   var totalWidth = window.innerWidth;
 
   dynamicSvg.setAttribute('width', totalWidth);
@@ -2087,7 +2087,7 @@ function initSvgLine() {
   window.addEventListener("resize", updatePathDimensions);
 
   mainScrollTrigger = ScrollTrigger.create({
-    trigger: "body",
+    trigger: "#page-content",
     start: "top top",
     end: "bottom bottom",
     scrub: 1.2,
