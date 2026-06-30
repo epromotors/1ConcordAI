@@ -131,7 +131,7 @@ function go(id) {
   document.querySelectorAll('.nav-a[data-pg="' + id + '"]').forEach(function(a) { a.classList.add('act'); });
 
   window.location.hash = '#' + id;
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  window.scrollTo(0, 0);
 
   // Re-render subpage specific assets and refresh ScrollTrigger
   if (id === 'agents') {
