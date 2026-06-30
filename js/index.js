@@ -112,7 +112,20 @@ const SOLUTIONS = {
 function go(id) {
   document.querySelectorAll('.page').forEach(function(p) { p.classList.remove('active'); });
   var pg = document.getElementById('pg-' + id);
-  if (pg) pg.classList.add('active');
+  if (pg) {
+    pg.classList.add('active');
+    var pageFades = pg.querySelectorAll('.fade-up');
+    if (pageFades.length > 0) {
+      gsap.to(pageFades, {
+        opacity: 1,
+        y: 0,
+        duration: 0.6,
+        ease: 'power2.out',
+        overwrite: 'auto',
+        stagger: 0.08
+      });
+    }
+  }
 
   document.querySelectorAll('.nav-a').forEach(function(a) { a.classList.remove('act'); });
   document.querySelectorAll('.nav-a[data-pg="' + id + '"]').forEach(function(a) { a.classList.add('act'); });
@@ -398,7 +411,7 @@ function buildHome() {
         initials: 'AV',
         role: 'Head of IT Operations',
         org: 'NovaBank',
-        avatarBg: '#00d2ff'
+        avatarBg: '#B5F2DB'
       },
       {
         quote: 'Our SOC team was drowning in L1 alerts. The Security Operations Agent now handles 94% of them without human intervention. Our analysts finally have time to hunt threats.',
@@ -406,7 +419,7 @@ function buildHome() {
         initials: 'DB',
         role: 'CISO',
         org: 'CloudAxis',
-        avatarBg: '#a855f7'
+        avatarBg: '#E4EEF0'
       },
       {
         quote: 'We had no idea 14 servers were outside our SIEM scope until the Security Tool Coverage Agent flagged them in its first weekly report. That was a game changer.',
@@ -414,7 +427,7 @@ function buildHome() {
         initials: 'RM',
         role: 'Head of Security Operations',
         org: 'VertexOne',
-        avatarBg: '#14b8a6'
+        avatarBg: '#FFC933'
       },
       {
         quote: 'The Cloud Operations Agent identified over $600K in annual wasted cloud spend within its first week. The ROI conversation with our board lasted about four minutes.',
@@ -422,7 +435,7 @@ function buildHome() {
         initials: 'SJ',
         role: 'VP of Cloud Infrastructure',
         org: 'GlobalTech',
-        avatarBg: '#f59e0b'
+        avatarBg: '#FFFFFF'
       },
       {
         quote: 'We passed our ISO 27001 recertification with zero findings for the first time. The Compliance Agent had been collecting evidence and flagging gaps continuously.',
@@ -430,7 +443,7 @@ function buildHome() {
         initials: 'MV',
         role: 'Head of GRC',
         org: 'Sovereign Insure',
-        avatarBg: '#ec4899'
+        avatarBg: '#C2F5E3'
       },
       {
         quote: 'I receive a natural-language operational briefing every Monday at 08:00. It covers IT, security, cloud spend, and compliance posture — synthesised in eight seconds.',
@@ -438,7 +451,7 @@ function buildHome() {
         initials: 'ER',
         role: 'Chief Technology Officer',
         org: 'Fintech Enterprise',
-        avatarBg: '#3b82f6'
+        avatarBg: '#FFE082'
       }
     ];
     // Duplicate testimonials for infinite horizontal scrolling loop
@@ -1417,11 +1430,11 @@ function buildAgentGrid() {
 
     agents.forEach(function(a) {
       var card = document.createElement('div');
-      card.style.cssText = 'background:rgba(26,58,92,0.2);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:16px 18px;display:flex;gap:14px;align-items:flex-start;transition:all .18s; cursor:pointer;';
+      card.style.cssText = 'background:rgba(4,47,52,0.2);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:16px 18px;display:flex;gap:14px;align-items:flex-start;transition:all .18s; cursor:pointer;';
       card.onmouseenter = function() { this.style.borderColor = 'var(--accent)'; this.style.transform = 'translateY(-2px)'; };
       card.onmouseleave = function() { this.style.borderColor = 'rgba(255,255,255,.07)'; this.style.transform = 'none'; };
       card.innerHTML =
-        '<div style="width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,rgba(26,58,92,0.4),rgba(15,31,61,0.5));border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--accent);flex-shrink:0">' + (AGENT_ICONS[a.code] || a.code) + '</div>'
+        '<div style="width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,rgba(4,47,52,0.4),rgba(22,35,43,0.5));border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--accent);flex-shrink:0">' + (AGENT_ICONS[a.code] || a.code) + '</div>'
         + '<div style="flex:1;min-width:0">'
         + '<div style="display:flex;align-items:baseline;justify-content:space-between;gap:8px;margin-bottom:5px">'
         + '<div style="font-size:13.5px;font-weight:700;color:var(--text-1)">' + a.name + '</div>'
@@ -1845,6 +1858,7 @@ var activePath = null;
 var pageContent = null;
 var dynamicSvg = null;
 var bgPath = null;
+var mainScrollTrigger = null;
 
 function initFades() {
   gsap.set('.fade-up', { opacity: 0, y: 28 });
@@ -2035,9 +2049,10 @@ function updatePathDimensions() {
   activePath.setAttribute('d', mainPath);
 
   var pathLength = activePath.getTotalLength();
+  var progress = mainScrollTrigger ? mainScrollTrigger.progress : 0;
   gsap.set(activePath, {
     strokeDasharray: pathLength,
-    strokeDashoffset: pathLength
+    strokeDashoffset: pathLength * (1 - progress)
   });
 
   // Animate feTurbulence seed slowly for living pen-on-paper wobble
@@ -2071,7 +2086,7 @@ function initSvgLine() {
   layoutObserver.observe(pageContent);
   window.addEventListener("resize", updatePathDimensions);
 
-  ScrollTrigger.create({
+  mainScrollTrigger = ScrollTrigger.create({
     trigger: "#page-content",
     start: "top top",
     end: "bottom bottom",
@@ -2354,7 +2369,7 @@ function buildTestimonials() {
       role: 'VP of IT, EMEA',
       org: 'Global Logistics Co.',
       initials: 'JW',
-      color: '#0ea5e9'
+      color: '#B5F2DB'
     },
     {
       stars: 5,
@@ -2363,7 +2378,7 @@ function buildTestimonials() {
       role: 'CISO',
       org: 'FinServ Holdings',
       initials: 'PN',
-      color: '#8b5cf6'
+      color: '#B5F2DB'
     },
     {
       stars: 5,
@@ -2372,7 +2387,7 @@ function buildTestimonials() {
       role: 'Head of GRC',
       org: 'Gulf Energy Group',
       initials: 'TA',
-      color: '#f59e0b'
+      color: '#FFC933'
     },
     {
       stars: 5,
@@ -2381,7 +2396,7 @@ function buildTestimonials() {
       role: 'Cloud Infrastructure Lead',
       org: 'RetailTech Europe',
       initials: 'SB',
-      color: '#10b981'
+      color: '#E4EEF0'
     },
     {
       stars: 5,
@@ -2390,7 +2405,7 @@ function buildTestimonials() {
       role: 'Director of Operations',
       org: 'HealthTech SaaS',
       initials: 'ME',
-      color: '#ef4444'
+      color: '#FFFFFF'
     },
     {
       stars: 5,
@@ -2399,7 +2414,7 @@ function buildTestimonials() {
       role: 'Head of IT Security',
       org: 'Pan-African Bank',
       initials: 'AM',
-      color: '#ec4899'
+      color: '#C2F5E3'
     },
     {
       stars: 5,
@@ -2408,7 +2423,7 @@ function buildTestimonials() {
       role: 'CTO',
       org: 'Mittelstand Manufacturing',
       initials: 'LS',
-      color: '#6366f1'
+      color: '#FFE082'
     },
     {
       stars: 5,
@@ -2417,7 +2432,7 @@ function buildTestimonials() {
       role: 'Security Architect',
       org: 'InsureTech UK',
       initials: 'RO',
-      color: '#0ea5e9'
+      color: '#B5F2DB'
     },
     {
       stars: 5,
@@ -2426,7 +2441,7 @@ function buildTestimonials() {
       role: 'IT Operations Manager',
       org: 'Saudi Retail Group',
       initials: 'FZ',
-      color: '#f59e0b'
+      color: '#FFC933'
     },
     {
       stars: 5,
@@ -2435,7 +2450,7 @@ function buildTestimonials() {
       role: 'Compliance Director',
       org: 'UAE Government Entity',
       initials: 'KJ',
-      color: '#10b981'
+      color: '#E4EEF0'
     }
   ];
 

@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8"/>
@@ -57,8 +57,8 @@
     <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• AUTO-STRETCHED BACKGROUND CURVE LAYER -->
     <div class="svg-container">
       <svg id="dynamic-svg" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path id="bg-path" stroke="rgba(20,184,166,0.06)" stroke-width="4" stroke-linecap="round"/>
-        <path id="active-path" stroke="#14B8A6" stroke-width="4" stroke-linecap="round" style="filter: drop-shadow(0px 0px 14px rgba(20,184,166,0.75));"/>
+        <path id="bg-path" stroke="rgba(255, 201, 51, 0.08)" stroke-width="4" stroke-linecap="round"/>
+        <path id="active-path" stroke="#FFC933" stroke-width="4" stroke-linecap="round" style="filter: drop-shadow(0px 0px 14px rgba(255, 201, 51, 0.7));"/>
       </svg>
     </div>
 
@@ -809,58 +809,67 @@
         <div class="container">
           <div class="two-col-contact">
             <!-- CONTACT FORM -->
-            <div class="card card-mid fade-up">
-              <h3 class="mb">Request a Live Demo</h3>
-              <form id="contactForm" onsubmit="submitForm(event)">
-                <div class="g2-form">
-                  <div class="form-group">
-                    <label class="form-label">First name</label>
-                    <input class="form-input" type="text" placeholder="e.g. Aisha" required/>
+            <div class="dashboard-wrap fade-up" style="box-shadow: 0 15px 40px rgba(0,0,0,0.4), 0 0 30px rgba(181,242,219,0.08);">
+              <div class="dashboard-bar">
+                <div class="db-dot" style="background:#f43f5e; width: 8px; height: 8px; border-radius: 50%;"></div>
+                <div class="db-dot" style="background:#fbbf24; width: 8px; height: 8px; border-radius: 50%;"></div>
+                <div class="db-dot" style="background:#22c55e; width: 8px; height: 8px; border-radius: 50%;"></div>
+                <span style="margin-left:.5rem;font-size:.72rem;color:var(--text-3);font-weight:600;">Secure Demo Portal</span>
+              </div>
+              <div class="dashboard-content" style="padding: 2.2rem 2rem;">
+                <h3 class="mb" style="font-family:'Space Grotesk',sans-serif;font-size:22px;font-weight:800;margin-bottom:20px;color:#fff;">Request a Live Demo</h3>
+                <form id="contactForm" onsubmit="submitForm(event)">
+                  <div class="g2-form">
+                    <div class="form-group">
+                      <label class="form-label">First name</label>
+                      <input class="form-input" type="text" placeholder="e.g. Aisha" required />
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label">Last name</label>
+                      <input class="form-input" type="text" placeholder="e.g. Verma" required />
+                    </div>
                   </div>
                   <div class="form-group">
-                    <label class="form-label">Last name</label>
-                    <input class="form-input" type="text" placeholder="e.g. Verma" required/>
+                    <label class="form-label">Work email</label>
+                    <input class="form-input" type="email" placeholder="e.g. aisha.v@novabank.ae" required />
                   </div>
+                  <div class="form-group">
+                    <label class="form-label">Company size</label>
+                    <select class="form-input" required>
+                      <option value="">Select range...</option>
+                      <option>&lt; 100 employees</option>
+                      <option>100 – 500 employees</option>
+                      <option>500 – 2,000 employees</option>
+                      <option>2,000+ employees</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Which teams are you looking to deploy agents for?</label>
+                    <select class="form-input" required>
+                      <option value="">Select primary use case...</option>
+                      <option>IT Operations / Service Desk</option>
+                      <option>Security Operations</option>
+                      <option>Identity &amp; Access Management</option>
+                      <option>Cloud Operations</option>
+                      <option>Compliance &amp; Governance</option>
+                      <option>Reporting &amp; Compliance</option>
+                      <option>Full platform — all three domains</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Anything you'd like us to cover in the demo?</label>
+                    <textarea class="form-input"
+                      placeholder="e.g. NESA compliance controls, ServiceNow integration, multi-tenant architecture..."></textarea>
+                  </div>
+                  <button class="btn btn-primary btn-lg btn-full" type="submit" style="margin-top:10px;">
+                    <i data-lucide="send" style="width:16px;height:16px;"></i>Submit Demo Request
+                  </button>
+                </form>
+                <div id="formSuccess" style="display:none;text-align:center;padding:48px 20px">
+                  <div style="font-size:48px;margin-bottom:16px;color:var(--accent)">✓</div>
+                  <h3 style="color:var(--accent);margin-bottom:12px;font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:24px;">Request received.</h3>
+                  <p style="color:var(--text-2);font-size:14.5px;">Our team in Dubai will reach out within 4 business hours to confirm your demo slot.</p>
                 </div>
-                <div class="form-group">
-                  <label class="form-label">Work email</label>
-                  <input class="form-input" type="email" placeholder="e.g. aisha.v@novabank.ae" required/>
-                </div>
-                <div class="form-group">
-                  <label class="form-label">Company size</label>
-                  <select class="form-input" required>
-                    <option value="">Select range...</option>
-                    <option>&lt; 100 employees</option>
-                    <option>100 â€“ 500 employees</option>
-                    <option>500 â€“ 2,000 employees</option>
-                    <option>2,000+ employees</option>
-                  </select>
-                </div>
-                <div class="form-group">
-                  <label class="form-label">Which teams are you looking to deploy agents for?</label>
-                  <select class="form-input" required>
-                    <option value="">Select primary use case...</option>
-                    <option>IT Operations / Service Desk</option>
-                    <option>Security Operations</option>
-                    <option>Identity &amp; Access Management</option>
-                    <option>Cloud Operations</option>
-                    <option>Compliance &amp; Governance</option>
-                    <option>Reporting &amp; Compliance</option>
-                    <option>Full platform â€” all three domains</option>
-                  </select>
-                </div>
-                <div class="form-group">
-                  <label class="form-label">Anything you'd like us to cover in the demo?</label>
-                  <textarea class="form-input" placeholder="e.g. NESA compliance controls, ServiceNow integration, multi-tenant architecture..."></textarea>
-                </div>
-                <button class="btn btn-primary btn-lg btn-full" type="submit">
-                  <i data-lucide="send" style="width:16px;height:16px;"></i>Submit Demo Request
-                </button>
-              </form>
-              <div id="formSuccess" style="display:none;text-align:center;padding:48px 20px">
-                <div style="font-size:42px;margin-bottom:14px;color:var(--accent)">âœ“</div>
-                <h3 style="color:var(--accent);margin-bottom:10px">Request received.</h3>
-                <p>Our team in Dubai will reach out within 4 business hours to confirm your demo slot.</p>
               </div>
             </div>
 
@@ -868,21 +877,30 @@
             <div>
               <div class="card card-teal mb fade-up">
                 <span class="section-label">Timeline</span>
-                <h4 class="mb">What happens next</h4>
+                <h4 class="mb" style="font-size:16px;font-weight:800;color:#fff;">What happens next</h4>
                 <div id="nextSteps"></div>
               </div>
               <div class="card mb fade-up">
-                <h4 class="mb-sm">Contact us directly</h4>
-                <div style="display:flex;flex-direction:column;gap:10px;font-size:13.5px;color:var(--text-2)">
-                  <div>ðŸ“§ <a href="mailto:hello@oneconcord.ai" style="color:var(--accent)">hello@oneconcord.ai</a></div>
-                  <div>ðŸŒ <a href="https://oneconcord.ai" style="color:var(--accent)">oneconcord.ai</a></div>
-                  <div>ðŸ“ Dubai Internet City, UAE</div>
-                </div>
+                <h4 class="mb" style="font-size:16px;font-weight:800;color:#fff;margin-bottom:15px;">Contact us directly</h4>
+                <ul class="contact-details-list">
+                  <li><i data-lucide="mail"></i> <a href="mailto:hello@oneconcord.ai">hello@oneconcord.ai</a></li>
+                  <li><i data-lucide="globe"></i> <a href="https://oneconcord.ai">oneconcord.ai</a></li>
+                  <li><i data-lucide="map-pin"></i> <span>Dubai Internet City, UAE</span></li>
+                </ul>
               </div>
-              <div class="card card-gold fade-up">
-                <span class="section-label" style="color:var(--gold);">Global reach Â· GCC compliant</span>
-                <h4 class="mb-sm">Built for security-first enterprises</h4>
-                <p style="font-size:13.5px; color: var(--text-2);">Globally deployable across any cloud region. GCC Cloud compliant with full NESA, PDPL, ISO 27001, SOC 2, and PCI DSS alignment. On-premises and sovereign cloud deployments available for regulated industries and government.</p>
+              <div class="card card-gold fade-up" style="border: 1.5px solid rgba(255, 201, 51, 0.35); background: rgba(255, 201, 51, 0.04);">
+                <div style="display: flex; gap: 14px; align-items: flex-start; margin-bottom: 12px;">
+                  <div class="compliance-badge-icon" style="background: rgba(255, 201, 51, 0.1); border: 1px solid var(--gold); border-radius: 8px; width: 38px; height: 38px; display: flex; align-items: center; justify-content: center; color: var(--gold); flex-shrink: 0;">
+                    <i data-lucide="shield-check" style="width: 20px; height: 20px;"></i>
+                  </div>
+                  <div>
+                    <span class="section-label" style="color:var(--gold); margin-bottom: 4px; font-size: 11px;">Global reach · GCC compliant</span>
+                    <h4 style="color:#fff; font-size: 15px; font-weight:800;">Built for security-first enterprises</h4>
+                  </div>
+                </div>
+                <p style="font-size:13px; color: var(--text-2); line-height: 1.65;">Globally deployable across any cloud region. GCC
+                  Cloud compliant with full NESA, PDPL, ISO 27001, SOC 2, and PCI DSS alignment. On-premises and
+                  sovereign cloud deployments available for regulated industries and government.</p>
               </div>
             </div>
           </div>

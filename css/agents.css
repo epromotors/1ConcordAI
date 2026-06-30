@@ -15,7 +15,7 @@
 
 /* Tab button styling */
 #pg-agents .agent-tab {
-  background: rgba(15, 31, 61, 0.3);
+  background: rgba(4, 47, 52, 0.3);
   border: 1px solid rgba(255, 255, 255, 0.05);
   color: var(--text-3, rgba(255, 255, 255, 0.5));
   padding: 10px 22px;
@@ -30,16 +30,16 @@
 
 #pg-agents .agent-tab:hover {
   color: var(--text-1, #fff);
-  border-color: rgba(56, 189, 248, 0.35);
-  background: rgba(15, 31, 61, 0.6);
+  border-color: rgba(181, 242, 219, 0.35);
+  background: rgba(4, 47, 52, 0.6);
   transform: translateY(-1px);
 }
 
 #pg-agents .agent-tab.active {
-  background: rgba(20, 184, 166, 0.15);
-  border-color: var(--accent, #14b8a6);
-  color: var(--accent, #14b8a6);
-  box-shadow: 0 0 15px rgba(20, 184, 166, 0.12), inset 0 1px 0 rgba(255,255,255,0.05);
+  background: rgba(181, 242, 219, 0.15);
+  border-color: var(--accent, #B5F2DB);
+  color: var(--accent, #B5F2DB);
+  box-shadow: 0 0 15px rgba(181, 242, 219, 0.12), inset 0 1px 0 rgba(255,255,255,0.05);
 }
 
 /* Agents bento grid container */
@@ -53,7 +53,7 @@
 /* Individual Bento card */
 #pg-agents .agent-bento-card {
   position: relative;
-  background: rgba(15, 31, 61, 0.45);
+  background: rgba(4, 47, 52, 0.45);
   border: 1px solid rgba(255, 255, 255, 0.05);
   border-radius: 20px;
   padding: 24px;
@@ -112,11 +112,11 @@
 }
 
 #pg-agents .sd-terminal {
-  color: var(--accent, #14b8a6);
+  color: var(--accent, #B5F2DB);
 }
 
 #pg-agents .so-terminal {
-  color: #38bdf8;
+  color: var(--accent, #B5F2DB);
 }
 
 /* Terminal printing effect */
@@ -181,20 +181,20 @@
 
 /* Category-specific card highlights */
 #pg-agents .agent-bento-card.it-card:hover {
-  border-color: rgba(20, 184, 166, 0.3);
-  box-shadow: 0 10px 30px rgba(20, 184, 166, 0.14);
+  border-color: rgba(181, 242, 219, 0.3);
+  box-shadow: 0 10px 30px rgba(181, 242, 219, 0.14);
   transform: translateY(-3px);
 }
 
 #pg-agents .agent-bento-card.sec-card:hover {
-  border-color: rgba(56, 189, 248, 0.3);
-  box-shadow: 0 10px 30px rgba(56, 189, 248, 0.14);
+  border-color: rgba(228, 238, 240, 0.3);
+  box-shadow: 0 10px 30px rgba(228, 238, 240, 0.14);
   transform: translateY(-3px);
 }
 
 #pg-agents .agent-bento-card.compliance-card:hover {
-  border-color: rgba(245, 158, 11, 0.35);
-  box-shadow: 0 10px 30px rgba(245, 158, 11, 0.14);
+  border-color: rgba(255, 201, 51, 0.35);
+  box-shadow: 0 10px 30px rgba(255, 201, 51, 0.14);
   transform: translateY(-3px);
 }
 

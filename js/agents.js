@@ -1,4 +1,4 @@
-﻿/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    ONE CONCORD AI â€” AGENTS PAGE CODE ENGINE
    Scoped to agents page interactions & overrides
    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
@@ -17,9 +17,9 @@ window.buildAgentGrid = function() {
 
   // Config mapping domains to colors and cards theme
   var domainMap = {
-    'IT & Operations': { theme: 'it-card', domCode: 'it', badgeBg: 'rgba(20,184,166,0.1)', badgeColor: 'var(--accent)' },
-    'Security & Cloud': { theme: 'sec-card', domCode: 'sec', badgeBg: 'rgba(56,189,248,0.1)', badgeColor: '#38bdf8' },
-    'Reporting & Compliance': { theme: 'compliance-card', domCode: 'compliance', badgeBg: 'rgba(245,158,11,0.15)', badgeColor: 'var(--gold)' }
+    'IT & Operations': { theme: 'it-card', domCode: 'it', badgeBg: 'rgba(181,242,219,0.1)', badgeColor: 'var(--accent)' },
+    'Security & Cloud': { theme: 'sec-card', domCode: 'sec', badgeBg: 'rgba(228,238,240,0.1)', badgeColor: '#E4EEF0' },
+    'Reporting & Compliance': { theme: 'compliance-card', domCode: 'compliance', badgeBg: 'rgba(255,201,51,0.15)', badgeColor: 'var(--gold)' }
   };
 
   // 12 Agents in specific bento span configuration
@@ -68,7 +68,7 @@ window.buildAgentGrid = function() {
 
     card.innerHTML = '<div>'
       + '  <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:12px">'
-      + '    <div style="width:38px; height:38px; border-radius:9px; background:linear-gradient(135deg, rgba(26,58,92,0.4), rgba(15,31,61,0.5)); border:1px solid rgba(255,255,255,0.08); display:flex; align-items:center; justify-content:center; color:' + cfg.badgeColor + '">'
+      + '    <div style="width:38px; height:38px; border-radius:9px; background:linear-gradient(135deg, rgba(4,47,52,0.4), rgba(22,35,43,0.5)); border:1px solid rgba(255,255,255,0.08); display:flex; align-items:center; justify-content:center; color:' + cfg.badgeColor + '">'
       +        cardIcon
       + '    </div>'
       + '    <div style="text-align:right">'
@@ -160,16 +160,16 @@ window.buildAgentExtras = function() {
     integrations.forEach(function(name) {
       var pill = document.createElement('div');
       pill.className = 'cbadge';
-      pill.style.cssText = 'font-size:12px;padding:8px 14px;background:rgba(15,31,61,0.4);border:1px solid rgba(255,255,255,0.06);border-radius:20px;cursor:pointer;transition:all 0.3s ease;';
+      pill.style.cssText = 'font-size:12px;padding:8px 14px;background:rgba(4,47,52,0.4);border:1px solid rgba(255,255,255,0.06);border-radius:20px;cursor:pointer;transition:all 0.3s ease;';
       pill.textContent = name;
       pill.onmouseenter = function() {
         this.style.borderColor = 'var(--accent)';
-        this.style.background = 'rgba(20,184,166,0.1)';
+        this.style.background = 'rgba(181,242,219,0.1)';
         this.style.transform = 'translateY(-1px)';
       };
       pill.onmouseleave = function() {
         this.style.borderColor = 'rgba(255,255,255,0.06)';
-        this.style.background = 'rgba(15,31,61,0.4)';
+        this.style.background = 'rgba(4,47,52,0.4)';
         this.style.transform = 'none';
       };
       band.appendChild(pill);
@@ -307,7 +307,7 @@ function startTCGrid() {
   for (var i = 0; i < 12; i++) {
     var box = document.createElement('div');
     box.className = 'tc-box';
-    box.innerHTML = '<i data-lucide="server" style="width:11px;height:11px;color:#10b981"></i>';
+    box.innerHTML = '<i data-lucide="server" style="width:11px;height:11px;color:#B5F2DB"></i>';
     grid.appendChild(box);
   }
 
@@ -322,7 +322,7 @@ function startTCGrid() {
     boxes.forEach(function(b) {
       b.className = 'tc-box';
       var icon = b.querySelector('i');
-      if (icon) icon.style.color = '#10b981';
+      if (icon) icon.style.color = '#B5F2DB';
     });
     status.textContent = 'SYSTEM STATUS: 12/12 ASSETS COVERED';
     status.style.color = 'var(--text-3)';
@@ -344,7 +344,7 @@ function startTCGrid() {
         if (targetBox) {
           targetBox.classList.remove('unmonitored');
           var icon = targetBox.querySelector('i');
-          if (icon) icon.style.color = '#10b981';
+          if (icon) icon.style.color = '#B5F2DB';
           status.textContent = '[FIXED] EDR agent deployed. Host WS-DEV-00' + (targetIdx+1) + ' fully covered';
           status.style.color = 'var(--accent)';
         }

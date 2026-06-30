@@ -114,9 +114,9 @@
   ];
 
   var DOMAIN_MAP = {
-    it:   { cls: 'ag-domain-it',   label: 'IT & Ops',          color: '#38bdf8' },
-    sec:  { cls: 'ag-domain-sec',  label: 'Security & Cloud',  color: '#a78bfa' },
-    comp: { cls: 'ag-domain-comp', label: 'Reporting & Compliance', color: '#f59e0b' },
+    it:   { cls: 'ag-domain-it',   label: 'IT & Ops',          color: '#B5F2DB' },
+    sec:  { cls: 'ag-domain-sec',  label: 'Security & Cloud',  color: '#E4EEF0' },
+    comp: { cls: 'ag-domain-comp', label: 'Reporting & Compliance', color: '#FFC933' },
   };
 
   var STATS_DATA = [
@@ -321,7 +321,7 @@
     gridEl.dataset.built = '1';
 
     AGENTS_V2.forEach(function(agent) {
-      var dom = DOMAIN_MAP[agent.domain] || { cls: '', label: agent.domain, color: '#14b8a6' };
+      var dom = DOMAIN_MAP[agent.domain] || { cls: '', label: agent.domain, color: '#B5F2DB' };
       var card = document.createElement('div');
       card.className = 'ag-card ' + dom.cls + (agent.span ? ' ' + agent.span : '');
       card.setAttribute('data-ag-domain', agent.domain);
@@ -483,7 +483,7 @@
 
     var workflows = [
       {
-        icon: '🔑', name: 'Access Request Workflow', color: '#38bdf8',
+        icon: '🔑', name: 'Access Request Workflow', color: '#B5F2DB',
         steps: [
           { badge: 'it',   label: 'Service Desk',      action: 'Request received & classified' },
           { badge: 'sec',  label: 'Identity Agent',    action: 'Validates entitlement policy' },
@@ -495,7 +495,7 @@
         result: '⚡ 6 min auto-approved · 38 min with escalation',
       },
       {
-        icon: '🚨', name: 'Security Incident Response', color: '#a78bfa',
+        icon: '🚨', name: 'Security Incident Response', color: '#E4EEF0',
         steps: [
           { badge: 'sec',  label: 'Security Ops',       action: 'Threat detected & IOC matched' },
           { badge: 'sec',  label: 'Identity Agent',     action: 'Account suspended immediately' },
@@ -506,7 +506,7 @@
         result: '⚡ Total end-to-end: < 4 minutes',
       },
       {
-        icon: '👤', name: 'New Employee Onboarding', color: '#f59e0b',
+        icon: '👤', name: 'New Employee Onboarding', color: '#FFC933',
         steps: [
           { badge: 'lead', label: 'HR Lifecycle',       action: 'Hire confirmed in HRIS' },
           { badge: 'sec',  label: 'Identity Agent',     action: 'All accounts created & MFA enrolled' },
