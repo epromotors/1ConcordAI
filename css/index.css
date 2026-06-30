@@ -1364,7 +1364,27 @@ nav { display: flex; align-items: center; gap: 1.8rem; }
 
 
 /* ─── SOLUTIONS REDESIGN ─── */
-.sol-tabs { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 36px; }
+.sol-tabs {
+  position: sticky;
+  top: 80px;
+  z-index: 10;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 36px;
+  padding: 8px 16px;
+  background: rgba(22, 35, 43, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 100px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  transition: all 0.3s ease;
+}
 .sol-tab { font-size: 13px; font-weight: 600; color: var(--text-3); background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); padding: 8px 16px; border-radius: 100px; cursor: pointer; transition: all .15s; }
 .sol-tab:hover, .sol-tab.act { color: var(--text-1); background: rgba(20,184,166,.14); border-color: rgba(20,184,166,.38); }
 
@@ -3766,8 +3786,8 @@ footer { background: rgba(22, 35, 43, 0.96); border-top: 1px solid var(--border)
   .sol-caps-grid{ grid-template-columns: 1fr; }
   .sol-scgrid   { grid-template-columns: 1fr; }
   .sol-sc-4grid { grid-template-columns: 1fr 1fr; }
-  .sol-tabs     { flex-wrap: wrap; gap: 6px; }
-  .sol-tab      { padding: 7px 14px; font-size: 13px; }
+  .sol-tabs     { top: 65px; padding: 6px 12px; gap: 6px; }
+  .sol-tab      { padding: 6px 12px; font-size: 12px; }
 }
 @media (max-width: 480px) {
   .sol-sc-4grid { grid-template-columns: 1fr; }
