@@ -143,6 +143,61 @@
       from { transform: scale(0); }
       to { transform: scale(1); }
     }
+    .back-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: rgba(22, 35, 43, 0.85);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(181, 242, 219, 0.3);
+      color: #B5F2DB;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 9999;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(15px);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    }
+    .back-to-top.visible {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+    .back-to-top:hover {
+      background: rgba(22, 35, 43, 0.95);
+      border-color: #FFC933;
+      color: #FFC933;
+      transform: translateY(-4px);
+      box-shadow: 0 8px 25px rgba(255, 201, 51, 0.35);
+    }
+    .back-to-top svg {
+      width: 20px;
+      height: 20px;
+      transition: transform 0.2s ease;
+    }
+    .back-to-top:hover svg {
+      transform: translateY(-2px);
+    }
+    @media (max-width: 768px) {
+      .back-to-top {
+        bottom: 20px;
+        right: 20px;
+        width: 40px;
+        height: 40px;
+      }
+      .back-to-top svg {
+        width: 18px;
+        height: 18px;
+      }
+    }
   `;
   document.head.appendChild(style);
 
@@ -313,4 +368,46 @@
 
   // Re-bind periodically (useful for dynamically rendered elements or page transitions)
   setInterval(bindDemoButtons, 1000);
+
+  // ── Inject Back to Top Button ──
+  function initBackToTop() {
+    if (document.getElementById('back-to-top')) return;
+
+    const btn = document.createElement('button');
+    btn.id = 'back-to-top';
+    btn.className = 'back-to-top';
+    btn.setAttribute('aria-label', 'Back to top');
+    btn.innerHTML = `
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="m18 15-6-6-6 6"/>
+      </svg>
+    `;
+    
+    document.body.appendChild(btn);
+
+    // Scroll listener to reveal/hide button
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 400) {
+        btn.classList.add('visible');
+      } else {
+        btn.classList.remove('visible');
+      }
+    }, { passive: true });
+
+    // Smooth scroll to top on click
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+  }
+
+  // Initialize immediately or on DOM load
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initBackToTop);
+  } else {
+    initBackToTop();
+  }
 })();
