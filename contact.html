@@ -213,6 +213,10 @@ nav a:hover { color:var(--text-1); }
 
 /* ─── IDENTITY (Two column layout) ─── */
 .two-col { display:grid; grid-template-columns:0.9fr 1.1fr; gap:4rem; align-items:center; }
+.g2-form { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+@media (max-width: 480px) {
+  .g2-form { grid-template-columns: 1fr; }
+}
 
 /* ─── FORM INPUTS ─── */
 .form-input {
@@ -375,92 +379,107 @@ footer { background:rgba(22,35,43,.96); border-top:1px solid var(--border); padd
         
         <!-- Left: Contact info -->
         <div class="contact-info-panel">
-          <span class="section-label">Contact Us</span>
-          <h1 style="margin-bottom: 1.5rem;">Connect with our Security Team</h1>
-          <p style="margin-bottom: 2.5rem; max-width: 480px; font-size: 1.05rem;">Have questions about Orchid Fabric, need a custom threat assessment, or want to explore enterprise pricing? Let's connect.</p>
+          <div class="fade-up" style="margin-bottom: 2.5rem;">
+            <span class="section-label" style="color: var(--accent); margin-bottom: 0.5rem; display: inline-block;">Contact Us</span>
+            <h1 style="font-family:'Space Grotesk',sans-serif; font-size:42px; font-weight:800; color:#fff; margin-bottom:1.2rem; line-height: 1.1;">Let's Connect!</h1>
+            <p style="color:var(--text-2); font-size:1.05rem; line-height:1.7; max-width: 480px; margin-bottom: 0;">Ready to simplify your operations? Let's talk about how Orchid Security can help you work smarter and grow faster.</p>
+          </div>
           
-          <div style="display: flex; flex-direction: column; gap: 2rem;">
-            <div style="display: flex; align-items: flex-start; gap: 1rem;">
-              <div class="cap-icon icon-blue" style="margin-bottom: 0; width: 44px; height: 44px; flex-shrink: 0;"><i data-lucide="mail" style="width: 20px; height: 20px;"></i></div>
-              <div>
-                <h4 style="font-size: 0.82rem; color: var(--text-3); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 700;">Email Us</h4>
-                <p style="color: var(--text-1); font-weight: 600; margin-top: 0.2rem; font-size: 0.95rem;"><a href="mailto:sales@orchidsecurity.com" style="color: inherit; text-decoration: none;">sales@orchidsecurity.com</a></p>
-                <p style="color: var(--text-2); font-size: 0.88rem; margin-top: 0.1rem;"><a href="mailto:support@orchidsecurity.com" style="color: inherit; text-decoration: none;">support@orchidsecurity.com</a></p>
-              </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2.5rem;" class="fade-up">
+            <div>
+              <h4 style="font-size: 0.85rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 700; margin-bottom: 0.8rem;">General Inquiries</h4>
+              <p style="font-size: 0.95rem; margin-bottom: 0.5rem;"><a href="mailto:sales@orchidsecurity.com" style="color: #fff; text-decoration: none; font-weight: 600; transition: color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='#fff'">sales@orchidsecurity.com</a></p>
+              <p style="color: var(--text-2); font-size: 0.9rem; line-height: 1.5;">100 Pine Street,<br>San Francisco, CA 94111</p>
             </div>
-            <div style="display: flex; align-items: flex-start; gap: 1rem;">
-              <div class="cap-icon icon-violet" style="margin-bottom: 0; width: 44px; height: 44px; flex-shrink: 0;"><i data-lucide="map-pin" style="width: 20px; height: 20px;"></i></div>
-              <div>
-                <h4 style="font-size: 0.82rem; color: var(--text-3); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 700;">Global HQ</h4>
-                <p style="color: var(--text-1); font-weight: 600; margin-top: 0.2rem; font-size: 0.95rem;">Orchid Security Technologies, Inc.</p>
-                <p style="color: var(--text-2); font-size: 0.88rem; margin-top: 0.1rem;">100 Pine Street, San Francisco, CA 94111</p>
-              </div>
-            </div>
-            <div style="display: flex; align-items: flex-start; gap: 1rem;">
-              <div class="cap-icon icon-teal" style="margin-bottom: 0; width: 44px; height: 44px; flex-shrink: 0;"><i data-lucide="shield-check" style="width: 20px; height: 20px;"></i></div>
-              <div>
-                <h4 style="font-size: 0.82rem; color: var(--text-3); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 700;">SOC Status</h4>
-                <p style="color: #22c55e; font-weight: 600; margin-top: 0.2rem; display: flex; align-items: center; gap: 0.35rem; font-size: 0.95rem;"><span class="badge-dot" style="background:#22c55e; width: 6px; height: 6px;"></span> All Systems Operational</p>
-                <p style="color: var(--text-2); font-size: 0.88rem; margin-top: 0.1rem;">Mean Time to Detect (MTTD): 1.8 mins</p>
-              </div>
+            <div>
+              <h4 style="font-size: 0.85rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 700; margin-bottom: 0.8rem;">Technical Support</h4>
+              <p style="font-size: 0.95rem; margin-bottom: 0.5rem;"><a href="mailto:support@orchidsecurity.com" style="color: #fff; text-decoration: none; font-weight: 600; transition: color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='#fff'">support@orchidsecurity.com</a></p>
+              <p style="color: #22c55e; font-size: 0.88rem; font-weight: 600; display: flex; align-items: center; gap: 0.4rem; margin-top: 0.5rem;">
+                <span style="background:#22c55e; width: 6px; height: 6px; border-radius: 50%; display: inline-block;"></span>
+                All Systems Operational
+              </p>
             </div>
           </div>
-          <div style="display: flex; gap: 16px; margin-top: 2.5rem; border-top: 1px solid var(--border); padding-top: 1.5rem; max-width: 480px;">
-            <a href="https://linkedin.com" target="_blank" style="color: var(--text-3); transition: color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-3)'">
-              <i data-lucide="linkedin" style="width: 20px; height: 20px;"></i>
-            </a>
-            <a href="https://twitter.com" target="_blank" style="color: var(--text-3); transition: color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-3)'">
-              <i data-lucide="twitter" style="width: 20px; height: 20px;"></i>
-            </a>
-            <a href="https://github.com" target="_blank" style="color: var(--text-3); transition: color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-3)'">
-              <i data-lucide="github" style="width: 20px; height: 20px;"></i>
-            </a>
+
+          <div class="fade-up" style="border-top: 1px solid var(--border); padding-top: 1.5rem; max-width: 480px;">
+            <h4 style="font-size: 0.85rem; color: var(--text-3); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 700; margin-bottom: 0.8rem;">Follow Us</h4>
+            <div style="display: flex; gap: 16px;">
+              <a href="https://linkedin.com" target="_blank" style="color: var(--text-3); transition: color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-3)'">
+                <i data-lucide="linkedin" style="width: 20px; height: 20px;"></i>
+              </a>
+              <a href="https://twitter.com" target="_blank" style="color: var(--text-3); transition: color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-3)'">
+                <i data-lucide="twitter" style="width: 20px; height: 20px;"></i>
+              </a>
+              <a href="https://github.com" target="_blank" style="color: var(--text-3); transition: color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-3)'">
+                <i data-lucide="github" style="width: 20px; height: 20px;"></i>
+              </a>
+            </div>
           </div>
         </div>
 
         <!-- Right: Glassmorphic Contact Form & Success Card -->
         <div class="contact-form-container fade-up" style="position: relative;">
           
-          <form id="contact-form" class="dashboard-wrap" style="padding: 2.5rem; display: flex; flex-direction: column; gap: 1.5rem;">
+          <form id="contact-form" class="dashboard-wrap" style="padding: 2.5rem; display: flex; flex-direction: column; gap: 1.5rem; border: 1px solid rgba(181, 242, 219, 0.25);">
             <div class="dashboard-bar" style="margin: -2.5rem -2.5rem 1rem; border-top-left-radius: 16px; border-top-right-radius: 16px;">
               <span style="font-size:.72rem;color:var(--text-3);font-weight:600;letter-spacing:0.05em;text-transform:uppercase;">SOC Transmission Node</span>
             </div>
             
-            <div style="display: flex; gap: 1.2rem; flex-wrap: wrap;">
-              <div style="flex: 1; min-width: 200px; display: flex; flex-direction: column; gap: 0.5rem;">
-                <label for="name" style="font-size: 0.8rem; color: var(--text-2); font-weight: 600;">Full Name</label>
-                <input type="text" id="name" required class="form-input" placeholder="Alex Carter">
+            <!-- First / Last Name row -->
+            <div class="g2-form">
+              <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                <label style="font-size: 0.8rem; color: var(--text-2); font-weight: 600;">First Name*</label>
+                <input type="text" required class="form-input" placeholder="e.g. Aisha">
               </div>
-              <div style="flex: 1; min-width: 200px; display: flex; flex-direction: column; gap: 0.5rem;">
-                <label for="email" style="font-size: 0.8rem; color: var(--text-2); font-weight: 600;">Work Email</label>
-                <input type="email" id="email" required class="form-input" placeholder="alex@company.com">
+              <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                <label style="font-size: 0.8rem; color: var(--text-2); font-weight: 600;">Last Name*</label>
+                <input type="text" required class="form-input" placeholder="e.g. Verma">
               </div>
             </div>
-            <div style="display: flex; flex-direction: column; gap: 0.5rem;">
-              <label for="company" style="font-size: 0.8rem; color: var(--text-2); font-weight: 600;">Company Name</label>
-              <input type="text" id="company" required class="form-input" placeholder="Acme Corp">
+
+            <!-- Email / Phone row -->
+            <div class="g2-form">
+              <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                <label style="font-size: 0.8rem; color: var(--text-2); font-weight: 600;">Work Email*</label>
+                <input type="email" required class="form-input" placeholder="e.g. aisha@company.com">
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                <label style="font-size: 0.8rem; color: var(--text-2); font-weight: 600;">Phone Number</label>
+                <input type="tel" class="form-input" placeholder="e.g. +1 (469) 884-5960">
+              </div>
             </div>
+
+            <!-- Subject field -->
             <div style="display: flex; flex-direction: column; gap: 0.5rem;">
-              <label for="message" style="font-size: 0.8rem; color: var(--text-2); font-weight: 600;">Message</label>
-              <textarea id="message" rows="4" required class="form-input" placeholder="Tell us about your security needs..."></textarea>
+              <label style="font-size: 0.8rem; color: var(--text-2); font-weight: 600;">Subject*</label>
+              <input type="text" required class="form-input" placeholder="e.g. Enterprise Security Inquiry">
             </div>
-            <button type="submit" class="btn btn-orchid" style="justify-content: center; width: 100%;"><i data-lucide="send" style="width: 18px; height: 18px;"></i> Send Message</button>
+
+            <!-- Message textarea -->
+            <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+              <label style="font-size: 0.8rem; color: var(--text-2); font-weight: 600;">How can we help you today?*</label>
+              <textarea rows="5" required class="form-input" placeholder="Tell us about your security needs..."></textarea>
+            </div>
+
+            <!-- Submit button aligned left -->
+            <div style="display: flex; justify-content: flex-start; margin-top: 0.5rem;">
+              <button type="submit" class="btn btn-orchid" style="padding: 0.8rem 2.2rem; font-weight: 700; width: auto; justify-content: flex-start;">
+                <i data-lucide="send" style="width: 16px; height: 18px;"></i> Send Message
+              </button>
+            </div>
           </form>
 
           <!-- Success Card -->
           <div id="success-card" class="dashboard-wrap" style="padding: 3rem 2.5rem; text-align: center; display: none; opacity: 0; transform: scale(0.95);">
             <div class="dashboard-bar" style="margin: -3rem -2.5rem 2rem; border-top-left-radius: 16px; border-top-right-radius: 16px;">
-              <div class="db-dot" style="background:#f43f5e;"></div>
-              <div class="db-dot" style="background:#fbbf24;"></div>
-              <div class="db-dot" style="background:#22c55e;"></div>
-              <span style="margin-left:.5rem;font-size:.72rem;color:var(--text-3);font-weight:600;">Transmission Completed</span>
+              <span style="font-size:.72rem;color:var(--text-3);font-weight:600;">Transmission Completed</span>
             </div>
-            <div style="width: 60px; height: 60px; border-radius: 50%; background: rgba(34, 197, 94, 0.1); border: 2px solid #22c55e; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem;">
-              <i data-lucide="check" style="width: 32px; height: 32px; color: #22c55e;"></i>
+            <div style="width: 60px; height: 60px; border-radius: 50%; background: rgba(181, 242, 219, 0.15); border: 2px solid var(--accent); display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem;">
+              <i data-lucide="check" style="width: 32px; height: 32px; color: var(--accent);"></i>
             </div>
             <h3 style="font-size: 1.5rem; margin-bottom: 0.75rem; color: var(--text-1);">Message Sent Successfully</h3>
             <p style="color: var(--text-2); margin-bottom: 2rem; max-width: 340px; margin-left: auto; margin-right: auto; font-size: 0.95rem;">Thank you for contacting Orchid Security. One of our engineers will reach out to you shortly.</p>
-            <button onclick="resetForm()" class="btn btn-outline btn-sm">Send Another Message</button>
+            <button onclick="window.location.reload()" class="btn btn-outline btn-sm">Send Another Message</button>
           </div>
 
         </div>
