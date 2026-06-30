@@ -1494,12 +1494,15 @@ function buildAgentExtras() {
 
 /* ── BUILD: SOLUTIONS ─────────────────────────────────── */
 function buildSolutions(id, btn) {
+  if (!id) id = 'it';
   if (btn) {
     document.querySelectorAll('.sol-tab').forEach(function(b) { b.classList.remove('act'); });
     btn.classList.add('act');
   } else {
-    var first = document.querySelector('.sol-tab');
-    if (first) first.classList.add('act');
+    document.querySelectorAll('.sol-tab').forEach(function(b) {
+      if (b.dataset.sol === id) b.classList.add('act');
+      else b.classList.remove('act');
+    });
   }
   var s = SOLUTIONS[id];
   if (!s) return;
@@ -2679,6 +2682,7 @@ document.addEventListener('DOMContentLoaded', function() {
   buildContact();
   buildTestimonials();
   initMobileTestimonialsSlider();
+  buildSolutions('it');
 
   // 2. Setup menu/scrolling event triggers
   const header = document.getElementById('site-header');
