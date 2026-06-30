@@ -1824,7 +1824,84 @@ function buildPricing() {
   wrap.appendChild(scroll);
   tableWrap.appendChild(wrap);
   tableWrap.style.overflowX = 'visible';
+
+  // Store groups globally for mobile tabs navigation
+  window.PRICING_GROUPS = groups;
+
+  // Build mobile tabs comparison layout
+  var mobWrap = document.createElement('div');
+  mobWrap.className = 'cmp-mobile-wrapper';
+
+  var mobTabs = document.createElement('div');
+  mobTabs.className = 'cmp-mobile-tabs';
+  mobTabs.innerHTML = 
+      '<button class="cmp-m-tab" onclick="switchMobileComparePlan(0, this)">Essential</button>'
+    + '<button class="cmp-m-tab" onclick="switchMobileComparePlan(1, this)">Professional</button>'
+    + '<button class="cmp-m-tab active" onclick="switchMobileComparePlan(2, this)">Enterprise</button>'
+    + '<button class="cmp-m-tab" onclick="switchMobileComparePlan(3, this)">Enterprise Plus</button>';
+  mobWrap.appendChild(mobTabs);
+
+  var mobList = document.createElement('div');
+  mobList.className = 'cmp-mobile-list';
+  mobList.id = 'cmpMobileList';
+  mobWrap.appendChild(mobList);
+
+  tableWrap.appendChild(mobWrap);
+
+  // Initialize with Enterprise plan (index 2) active
+  switchMobileComparePlan(2);
 }
+
+// Global mobile compare switch function
+window.switchMobileComparePlan = function(planIdx, tabEl) {
+  // Update active tab class
+  const tabs = document.querySelectorAll('.cmp-m-tab');
+  if (tabs.length > 0) {
+    tabs.forEach(t => t.classList.remove('active'));
+    if (tabEl) {
+      tabEl.classList.add('active');
+    } else {
+      // If initialized without tabEl, highlight the Enterprise tab
+      tabs[planIdx].classList.add('active');
+    }
+  }
+  
+  const container = document.getElementById('cmpMobileList');
+  if (!container) return;
+
+  container.innerHTML = '';
+  
+  if (!window.PRICING_GROUPS) return;
+
+  window.PRICING_GROUPS.forEach(function(g) {
+    var groupSec = document.createElement('div');
+    groupSec.className = 'cmp-m-group-section';
+    
+    var groupHeader = document.createElement('div');
+    groupHeader.className = 'cmp-m-group-header';
+    groupHeader.innerHTML = g.label;
+    groupSec.appendChild(groupHeader);
+
+    g.rows.forEach(function(r) {
+      var rowEl = document.createElement('div');
+      rowEl.className = 'cmp-m-feature-row';
+      
+      var nameEl = document.createElement('span');
+      nameEl.className = 'cmp-m-feature-name';
+      nameEl.textContent = r[0];
+      
+      var valEl = document.createElement('div');
+      valEl.className = 'cmp-m-feature-val';
+      valEl.innerHTML = r[planIdx + 1];
+      
+      rowEl.appendChild(nameEl);
+      rowEl.appendChild(valEl);
+      groupSec.appendChild(rowEl);
+    });
+    
+    container.appendChild(groupSec);
+  });
+};
 
 /* ── BUILD: CONTACT ───────────────────────────────────── */
 function buildContact() {

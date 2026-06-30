@@ -4200,4 +4200,122 @@ html, body {
   }
 }
 
+/* Pricing Page Mobile Compare Plan Tabs */
+.cmp-mobile-wrapper {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  /* Hide desktop table wrap */
+  .cmp-wrap {
+    display: none !important;
+  }
+  
+  /* Show mobile wrap */
+  .cmp-mobile-wrapper {
+    display: block;
+    width: 100%;
+    margin-top: 30px;
+    text-align: left;
+  }
+  
+  /* Scrollable tabs bar */
+  .cmp-mobile-tabs {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding: 4px 4px 12px;
+    margin-bottom: 20px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; /* Hide scrollbar Firefox */
+  }
+  .cmp-mobile-tabs::-webkit-scrollbar {
+    display: none; /* Hide scrollbar Chrome/Safari */
+  }
+  
+  .cmp-m-tab {
+    flex: 0 0 auto;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: var(--text-3);
+    padding: 10px 18px;
+    border-radius: 30px;
+    font-size: 13.5px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+  
+  .cmp-m-tab.active {
+    background: var(--accent);
+    color: var(--bg-0);
+    border-color: var(--accent);
+    box-shadow: 0 0 15px rgba(181, 242, 219, 0.3);
+  }
+  
+  /* Mobile feature lists */
+  .cmp-m-group-section {
+    background: rgba(255, 255, 255, 0.015);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    padding: 16px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  }
+  
+  .cmp-m-group-header {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--accent);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding-bottom: 8px;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  
+  .cmp-m-feature-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.04);
+    gap: 12px;
+  }
+  
+  .cmp-m-feature-row:last-child {
+    border-bottom: none;
+    padding-bottom: 2px;
+  }
+  
+  .cmp-m-feature-name {
+    font-size: 13.5px;
+    color: var(--text-2);
+    font-weight: 500;
+  }
+  
+  .cmp-m-feature-val {
+    font-size: 13.5px;
+    color: var(--text-1);
+    font-weight: 600;
+    text-align: right;
+  }
+  
+  /* Ensure checks and dashes are centered and colored correctly */
+  .cmp-m-feature-val .cmp-check {
+    color: var(--accent);
+    font-weight: 800;
+  }
+  .cmp-m-feature-val .cmp-check-gold {
+    color: var(--gold);
+  }
+  .cmp-m-feature-val .cmp-dash {
+    display: inline-block;
+    width: 10px;
+    height: 1.5px;
+    background: rgba(255, 255, 255, 0.2);
+    vertical-align: middle;
+  }
+}
+
 
