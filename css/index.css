@@ -3971,16 +3971,20 @@ footer { background: rgba(22, 35, 43, 0.96); border-top: 1px solid var(--border)
 }
 
 /* ── SOLUTIONS SECTION ── */
-@media (max-width: 860px) {
-  .sol-mgrid    { grid-template-columns: 1fr; }
+@media (max-width: 1024px) {
+  .sol-top-band { grid-template-columns: 1fr; gap: 24px; text-align: center; }
+  .sol-mets     { justify-content: center; }
+  .sol-mgrid    { grid-template-columns: 1fr; gap: 24px; }
+  .sol-caps-grid{ grid-template-columns: 1fr 1fr; }
+  .sol-scgrid   { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 768px) {
   .sol-caps-grid{ grid-template-columns: 1fr; }
   .sol-scgrid   { grid-template-columns: 1fr; }
-  .sol-sc-4grid { grid-template-columns: 1fr 1fr; }
   .sol-tabs     { top: 65px; padding: 6px 12px; gap: 6px; }
   .sol-tab      { padding: 6px 12px; font-size: 12px; }
-}
-@media (max-width: 480px) {
-  .sol-sc-4grid { grid-template-columns: 1fr; }
+  .sol-cta      { flex-direction: column; text-align: center; gap: 16px; }
+  .sol-cta-btn  { width: 100%; justify-content: center; }
 }
 
 /* ── CTA BAND ── */
