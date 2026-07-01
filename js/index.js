@@ -1856,7 +1856,7 @@ function buildPricing() {
 }
 
 // Global mobile compare switch function
-window.switchMobileComparePlan = function(planIdx, tabEl) {
+function switchMobileComparePlan(planIdx, tabEl) {
   // Update active tab class
   const tabs = document.querySelectorAll('.cmp-m-tab');
   if (tabs.length > 0) {
@@ -1904,7 +1904,8 @@ window.switchMobileComparePlan = function(planIdx, tabEl) {
     
     container.appendChild(groupSec);
   });
-};
+}
+window.switchMobileComparePlan = switchMobileComparePlan;
 
 /* ── BUILD: CONTACT ───────────────────────────────────── */
 function buildContact() {

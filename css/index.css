@@ -39,7 +39,7 @@ body {
   font-family: var(--font);
   background: var(--bg-0);
   color: var(--text-1);
-  overflow-x: hidden;
+  overflow-x: clip;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
 }
@@ -1367,7 +1367,7 @@ nav { display: flex; align-items: center; gap: 1.8rem; }
 .sol-tabs {
   position: sticky;
   top: 80px;
-  z-index: 10;
+  z-index: 99;
   display: flex;
   gap: 8px;
   flex-wrap: wrap;
