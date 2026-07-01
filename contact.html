@@ -1,676 +1,1362 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Contact Us | Orchid Security — Unified Cloud &amp; Identity Protection</title>
-  <meta name="description" content="Get in touch with Orchid Security. Request a threat assessment, schedule a demo, or contact our global engineering team."/>
-  <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
-  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-
-<style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-:root {
-  --bg-0: #16232B;
-  --surface: rgba(4, 47, 52, 0.45);
-  --border: rgba(181, 242, 219, 0.15);
-  --border-glow: rgba(181, 242, 219, 0.45);
-  --accent: #B5F2DB;
-  --accent-cyan: #B5F2DB;
-  --accent-violet: #FFC933;
-  --accent-teal: #B5F2DB;
-  --accent-danger: #f43f5e;
-  --gold: #FFC933;
-  --gold-bright: #FFC933;
-  --gold-dim: rgba(255, 201, 51, 0.18);
-  --text-1: #FFFFFF;
-  --text-2: #E4EEF0;
-  --text-3: rgba(228, 238, 240, 0.7);
-  --orchid-neon: #B5F2DB;
-}
-
-html { scroll-behavior: smooth; }
-
-body {
-  font-family: 'Manrope', sans-serif;
-  background: var(--bg-0);
-  color: var(--text-1);
-  overflow-x: hidden;
-  line-height: 1.6;
-}
-
-body::before {
-  content: '';
-  position: fixed; inset: 0; pointer-events: none; z-index: 0;
-  background:
-    radial-gradient(ellipse 80% 50% at 20% 10%, rgba(181, 242, 219, 0.08) 0%, transparent 65%),
-    radial-gradient(ellipse 60% 70% at 80% 85%, rgba(4, 47, 52, 0.35) 0%, transparent 65%);
-}
-
-h1,h2,h3,h4 { font-family:'Space Grotesk',sans-serif; letter-spacing:-0.02em; }
-h1 { font-size: clamp(2.5rem, 5.2vw, 4.2rem); font-weight:700; line-height:1.2; }
-h2 { font-size: clamp(2rem,4vw,3rem); font-weight:700; line-height:1.12; }
-h3 { font-size:1.22rem; font-weight:600; }
-p  { color:var(--text-2); font-size:1rem; }
-
-section { position:relative; z-index:2; }
-.container { max-width:1160px; margin:0 auto; padding:0 2rem; }
-
-#page-content {
-  position: relative;
-  z-index: 1;
-}
-
-/* ════════════════════║ ADVANCED AUTO-STRETCHED SCROLL CONTAINER GRID */
-.svg-container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: -1;
-}
-.svg-container svg {
-  width: 100%;
-  height: 100%;
-  display: block;
-}
-
-/* ─── BADGES ─── */
-.badge {
-  display:inline-flex; align-items:center; gap:0.4rem;
-  padding:0.3rem 0.8rem; border-radius:9999px;
-  border:1px solid var(--border); background:rgba(56,165,255,0.07);
-  font-size:0.7rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase;
-  color:var(--accent-cyan);
-  transition: all 0.3s ease;
-}
-.badge-dot { width:6px; height:6px; border-radius:50%; background:var(--accent-cyan); animation:pdot 2s infinite; }
-@keyframes pdot { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.4;transform:scale(.7)} }
-
-.badge-orchid {
-  border: 1px solid rgba(218, 253, 79, 0.3);
-  background: rgba(218, 253, 79, 0.05);
-  color: var(--orchid-neon);
-}
-
-/* ─── BUTTONS ─── */
-.btn {
-  display:inline-flex; align-items:center; gap:0.5rem;
-  padding:0.75rem 1.6rem; border-radius:8px; font-weight:600;
-  font-size:0.95rem; cursor:pointer; transition:all .25s ease;
-  border:none; text-decoration:none; font-family:inherit;
-}
-.btn-primary {
-  background: var(--gold);
-  color: var(--bg-0);
-  font-weight: 700;
-  border: 1.5px solid var(--gold);
-}
-.btn-primary:hover {
-  background: var(--gold-bright);
-  color: var(--bg-0);
-  transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 8px 24px rgba(255, 201, 51, 0.35);
-}
-
-.btn-orchid {
-  background: var(--orchid-neon);
-  color: #000;
-  font-weight: 700;
-  box-shadow: 0 0 20px rgba(181, 242, 219, 0.3);
-}
-.btn-orchid:hover {
-  background: #fff;
-  transform: translateY(-2px);
-  box-shadow: 0 0 30px rgba(181, 242, 219, 0.5);
-}
-
-.btn-outline {
-  background:rgba(255,255,255,.04); color:var(--text-1);
-  border:1px solid var(--border); backdrop-filter:blur(8px);
-}
-.btn-outline:hover { background:rgba(181,242,219,.08); border-color:var(--border-glow); transform:translateY(-2px); }
-.btn-sm { padding:0.5rem 1.1rem; font-size:0.85rem; }
-
-/* ─── HEADER ─── */
-header {
-  position:fixed; top:0; left:0; right:0; z-index:100;
-  padding:1rem 0;
-  transition:background .3s,backdrop-filter .3s,border-color .3s;
-  border-bottom:1px solid transparent;
-}
-header.scrolled { background:rgba(22,35,43,.92); backdrop-filter:blur(20px); border-color:var(--border); }
-.header-inner {
-  display:flex; align-items:center; justify-content:space-between;
-  max-width:1280px; margin:0 auto; padding:0 2rem;
-}
-.logo {
-  display:flex; align-items:center; gap:0.6rem;
-  text-decoration:none; font-family:'Space Grotesk',sans-serif;
-  font-weight:700; font-size:1.15rem; color:var(--text-1);
-}
-.logo-mark {
-  width:36px; height:36px; border-radius:8px;
-  background:linear-gradient(135deg,#FFC933,#B5F2DB);
-  display:flex; align-items:center; justify-content:center;
-  box-shadow:0 0 16px rgba(181,242,219,.4);
-}
-nav { display:flex; align-items:center; gap:1.8rem; }
-nav a { font-size:.88rem; font-weight:500; color:var(--text-2); text-decoration:none; transition:color .2s; }
-nav a:hover { color:var(--text-1); }
-.header-ctas { display:flex; align-items:center; gap:.75rem; }
-.nav-mobile-btn { display:none; background:none; border:none; cursor:pointer; color:var(--text-1); }
-
-/* ─── HERO ─── */
-.hero {
-  min-height:90vh; display:flex; align-items:center;
-  padding:8rem 0 6rem; position:relative; overflow:hidden;
-}
-.hero-bg {
-  position:absolute; inset:0; z-index:0;
-  background: linear-gradient(135deg, #042F34 0%, #16232B 100%);
-}
-.hero-grid {
-  position:absolute; inset:0;
-  background-image:
-    linear-gradient(rgba(56,165,255,.04) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(56,165,255,.04) 1px,transparent 1px);
-  background-size:60px 60px;
-  mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 0%,transparent 80%);
-}
-.hero-inner {
-  position:relative; z-index:2;
-  display:grid; grid-template-columns:1fr; gap:4rem; align-items:center;
-}
-
-/* Dashboard and Cards */
-.dashboard-wrap {
-  position:relative; border-radius:16px; overflow:hidden;
-  border:1px solid var(--border); background:rgba(10,15,28,.82);
-  backdrop-filter:blur(20px);
-  box-shadow:0 0 80px rgba(56,165,255,.1),0 32px 80px rgba(0,0,0,.6);
-}
-.dashboard-bar { display:flex; align-items:center; gap:.5rem; padding:.75rem 1rem; background:rgba(13,21,38,.9); border-bottom:1px solid var(--border); }
-.db-dot { width:10px; height:10px; border-radius:50%; }
-.dashboard-content { padding:1.2rem; }
-
-.section-label { display:inline-flex; align-items:center; gap:.5rem; margin-bottom:1.25rem; font-size:0.95rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--accent-cyan); }
-.section-label::before { display:none; }
-
-/* ─── CAPABILITIES (Used for Contact Icons) ─── */
-.cap-icon { width:52px; height:52px; border-radius:12px; display:flex; align-items:center; justify-content:center; margin-bottom:1.25rem; position:relative; }
-.cap-icon::before { content:''; position:absolute; inset:-4px; border-radius:14px; background:inherit; opacity:.2; filter:blur(8px); }
-.icon-blue  { background:linear-gradient(135deg,rgba(56,165,255,.2),rgba(56,165,255,.05)); color:var(--accent);   border:1px solid rgba(56,165,255,.25); }
-.icon-violet{ background:linear-gradient(135deg,rgba(168,85,247,.2),rgba(168,85,247,.05)); color:var(--accent-violet); border:1px solid rgba(168,85,247,.25); }
-.icon-teal  { background:linear-gradient(135deg,rgba(20,212,195,.2),rgba(20,212,195,.05)); color:var(--accent-teal);  border:1px solid rgba(20,212,195,.25); }
-
-/* ─── IDENTITY (Two column layout) ─── */
-.two-col { display:grid; grid-template-columns:0.9fr 1.1fr; gap:4rem; align-items:center; }
-.g2-form { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-@media (max-width: 480px) {
-  .g2-form { grid-template-columns: 1fr; }
-}
-
-/* ─── FORM INPUTS ─── */
-.form-input {
-  width: 100%;
-  padding: 0.75rem 1rem;
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid var(--border);
-  color: var(--text-1);
-  font-family: inherit;
-  font-size: 0.9rem;
-  outline: none;
-  transition: border-color 0.25s, box-shadow 0.25s;
-}
-.form-input::placeholder {
-  color: var(--text-3);
-  opacity: 0.7;
-}
-.form-input:focus {
-  border-color: var(--accent);
-  box-shadow: 0 0 12px rgba(56, 165, 255, 0.2);
-}
-textarea.form-input {
-  resize: vertical;
-}
-
-/* ─── FOOTER ─── */
-footer { background:rgba(22,35,43,.96); border-top:1px solid var(--border); padding:4rem 0 2rem; position:relative; z-index:5; }
-.footer-grid { display:grid; grid-template-columns:2fr repeat(4,1fr); gap:2.5rem; margin-bottom:3rem; }
-.footer-brand p { font-size:.88rem; color:var(--text-3); margin:1rem 0 1.5rem; line-height:1.6; max-width:260px; }
-.newsletter-form { display:flex; gap:.5rem; }
-.newsletter-input { flex:1; padding:.6rem .9rem; border-radius:7px; background:rgba(255,255,255,.04); border:1px solid var(--border); color:var(--text-1); font-family:inherit; font-size:.82rem; outline:none; transition:border-color .2s; }
-.newsletter-input:focus { border-color:var(--accent); }
-.footer-col h4 { font-size:.82rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--text-2); margin-bottom:1rem; }
-.footer-links { list-style:none; display:flex; flex-direction:column; gap:.6rem; }
-.footer-links a { font-size:.85rem; color:var(--text-3); text-decoration:none; transition:color .2s; }
-.footer-links a:hover { color:var(--text-1); }
-.footer-bottom { display:flex; align-items:center; justify-content:space-between; padding-top:2rem; border-top:1px solid var(--border); }
-.footer-legal { display:flex; gap:1.5rem; }
-.footer-legal a { font-size:.78rem; color:var(--text-3); text-decoration:none; transition:color .2s; }
-.footer-legal a:hover { color:var(--text-1); }
-.footer-copy { font-size:.78rem; color:var(--text-3); }
-
-/* ─── ANIMATIONS ─── */
-.fade-up { opacity:0; transform:translateY(28px); }
-.fade-in  { opacity:0; }
-
-/* ─── SCROLLBAR ─── */
-::-webkit-scrollbar { width:5px; }
-::-webkit-scrollbar-track { background:var(--bg-0); }
-::-webkit-scrollbar-thumb { background:rgba(245,166,35,.35); border-radius:3px; }
-::-webkit-scrollbar-thumb:hover { background:rgba(245,166,35,.6); }
-
-/* ─── RESPONSIVE ─── */
-@media(max-width:1024px) {
-  .hero-inner { grid-template-columns:1fr; text-align:center; }
-  .two-col { grid-template-columns:1fr; gap: 3rem; }
-  .footer-grid { grid-template-columns:1fr 1fr; }
-  .svg-container { display: none; }
-}
-@media(max-width:768px) {
-  nav { display:none !important; }
-  .header-ctas { display:none !important; }
-  .nav-mobile-btn {
-    display:flex !important;
-    align-items:center;
-    justify-content:center;
-    width:40px; height:40px;
-  }
-  .footer-grid { grid-template-columns:1fr; }
-  .footer-bottom { flex-direction:column; gap:1rem; text-align:center; }
-  #contact-form, #success-card { padding: 1.5rem !important; }
-}
-/* Mobile menu overlay */
-.mob-menu {
-  position:fixed; inset:0; background:var(--bg-0); z-index:200;
-  display:none; flex-direction:column; padding:24px 28px;
-}
-.mob-menu.open { display:flex; }
-.mob-menu-head { display:flex; justify-content:space-between; align-items:center; margin-bottom:40px; }
-.mob-close { background:none; border:none; color:#f1f5f9; font-size:26px; cursor:pointer; line-height:1; }
-.mob-nav { display:flex; flex-direction:column; gap:4px; }
-.mob-a {
-  font-size:22px; font-weight:700; color:#CBD5E1; padding:14px 0;
-  border-bottom:1px solid rgba(255,255,255,.06);
-  background:none; border-right:none; border-left:none; border-top:none;
-  text-align:left; cursor:pointer; text-decoration:none; display:block;
-}
-.mob-a:hover { color:#FFC933; }
-</style>
-</head>
-<body>
-
-<!-- ════════════════════════════════════════ HEADER -->
-<header id="site-header">
-  <div class="header-inner">
-    <a href="index.html" class="logo" aria-label="One Concord AI">
-      <img src="Logo.png" alt="One Concord AI" />
-    </a>
-    <nav aria-label="Main navigation">
-      <a href="index.html#platform">Platform</a>
-      <a href="index.html#capabilities">Capabilities</a>
-      <a href="index.html#how-it-works">Solutions</a>
-      <a href="about.html">About Us</a>
-      <a href="contact.html">Contact Us</a>
-    </nav>
-    <div class="header-ctas">
-      <a href="contact.html" class="btn btn-outline btn-sm">Book Demo</a>
-      <a href="index.html#metrics" class="btn btn-primary btn-sm">Start Assessment</a>
-    </div>
-    <button class="nav-mobile-btn" onclick="toggleMob()" aria-label="Open menu">
-      <i data-lucide="menu" style="width:22px;height:22px;"></i>
-    </button>
-  </div>
-</header>
-
-<!-- ════ MOBILE MENU ════ -->
-<div class="mob-menu" id="mobMenu">
-  <div class="mob-menu-head">
-    <div class="logo">
-      <img src="Logo.png" alt="One Concord AI" />
-    </div>
-    <button class="mob-close" onclick="toggleMob()">✕</button>
-  </div>
-  <nav class="mob-nav">
-    <a href="index.html" class="mob-a">Home</a>
-    <a href="index.html" class="mob-a">Platform</a>
-    <a href="index.html" class="mob-a">Agents</a>
-    <a href="index.html" class="mob-a">Solutions</a>
-    <a href="index.html" class="mob-a">Pricing</a>
-    <a href="about.html" class="mob-a">About</a>
-    <a href="contact.html" class="mob-a">Contact</a>
-  </nav>
-</div>
-<script>function toggleMob(){document.getElementById('mobMenu').classList.toggle('open');}</script>
-<!-- ════════════════════════════════════════ PAGE CONTENT WRAPPER -->
-<div id="page-content">
-
-  <!-- ════════════════════════════ AUTO-STRETCHED BACKGROUND CURVE LAYER -->
-  <div class="svg-container">
-    <svg id="dynamic-svg" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path id="bg-path" stroke="rgba(255, 201, 51, 0.08)" stroke-width="4" stroke-linecap="round"/>
-      <path id="active-path" stroke="#FFC933" stroke-width="4" stroke-linecap="round" style="filter: drop-shadow(0px 0px 14px rgba(255, 201, 51, 0.7));"/>
-    </svg>
-  </div>
-
-  <!-- ════════════════════════════════════════ HERO / CONTACT GRID -->
-  <section class="hero" id="hero">
-    <div class="hero-bg"></div>
-    <div class="hero-grid"></div>
-    <div class="container" style="position: relative; z-index: 2;">
-      <div class="two-col">
-        
-        <!-- Left: Contact info -->
-        <div class="contact-info-panel">
-          <div class="fade-up" style="margin-bottom: 2.5rem;">
-            <span class="section-label" style="color: var(--accent); margin-bottom: 0.5rem; display: inline-block;">Contact Us</span>
-            <h1 style="font-family:'Space Grotesk',sans-serif; font-size:42px; font-weight:800; color:#fff; margin-bottom:1.2rem; line-height: 1.1;">Let's Connect!</h1>
-            <p style="color:var(--text-2); font-size:1.05rem; line-height:1.7; max-width: 480px; margin-bottom: 0;">Ready to simplify your operations? Let's talk about how Orchid Security can help you work smarter and grow faster.</p>
-          </div>
-          
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2.5rem;" class="fade-up">
-            <div>
-              <h4 style="font-size: 0.85rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 700; margin-bottom: 0.8rem;">General Inquiries</h4>
-              <p style="font-size: 0.95rem; margin-bottom: 0.5rem;"><a href="mailto:sales@orchidsecurity.com" style="color: #fff; text-decoration: none; font-weight: 600; transition: color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='#fff'">sales@orchidsecurity.com</a></p>
-              <p style="color: var(--text-2); font-size: 0.9rem; line-height: 1.5;">100 Pine Street,<br>San Francisco, CA 94111</p>
-            </div>
-            <div>
-              <h4 style="font-size: 0.85rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 700; margin-bottom: 0.8rem;">Technical Support</h4>
-              <p style="font-size: 0.95rem; margin-bottom: 0.5rem;"><a href="mailto:support@orchidsecurity.com" style="color: #fff; text-decoration: none; font-weight: 600; transition: color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='#fff'">support@orchidsecurity.com</a></p>
-              <p style="color: #22c55e; font-size: 0.88rem; font-weight: 600; display: flex; align-items: center; gap: 0.4rem; margin-top: 0.5rem;">
-                <span style="background:#22c55e; width: 6px; height: 6px; border-radius: 50%; display: inline-block;"></span>
-                All Systems Operational
-              </p>
-            </div>
-          </div>
-
-          <div class="fade-up" style="border-top: 1px solid var(--border); padding-top: 1.5rem; max-width: 480px;">
-            <h4 style="font-size: 0.85rem; color: var(--text-3); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 700; margin-bottom: 0.8rem;">Follow Us</h4>
-            <div style="display: flex; gap: 16px;">
-              <a href="https://linkedin.com" target="_blank" style="color: var(--text-3); transition: color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-3)'">
-                <i data-lucide="linkedin" style="width: 20px; height: 20px;"></i>
-              </a>
-              <a href="https://twitter.com" target="_blank" style="color: var(--text-3); transition: color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-3)'">
-                <i data-lucide="twitter" style="width: 20px; height: 20px;"></i>
-              </a>
-              <a href="https://github.com" target="_blank" style="color: var(--text-3); transition: color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-3)'">
-                <i data-lucide="github" style="width: 20px; height: 20px;"></i>
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Right: Glassmorphic Contact Form & Success Card -->
-        <div class="contact-form-container fade-up" style="position: relative;">
-          
-          <form id="contact-form" class="dashboard-wrap" style="padding: 2.5rem; display: flex; flex-direction: column; gap: 1.5rem; border: 1px solid rgba(181, 242, 219, 0.25);">
-            <div class="dashboard-bar" style="margin: -2.5rem -2.5rem 1rem; border-top-left-radius: 16px; border-top-right-radius: 16px;">
-              <span style="font-size:.72rem;color:var(--text-3);font-weight:600;letter-spacing:0.05em;text-transform:uppercase;">SOC Transmission Node</span>
-            </div>
-            
-            <!-- First / Last Name row -->
-            <div class="g2-form">
-              <div style="display: flex; flex-direction: column; gap: 0.5rem;">
-                <label style="font-size: 0.8rem; color: var(--text-2); font-weight: 600;">First Name*</label>
-                <input type="text" required class="form-input" placeholder="e.g. Aisha">
-              </div>
-              <div style="display: flex; flex-direction: column; gap: 0.5rem;">
-                <label style="font-size: 0.8rem; color: var(--text-2); font-weight: 600;">Last Name*</label>
-                <input type="text" required class="form-input" placeholder="e.g. Verma">
-              </div>
-            </div>
-
-            <!-- Email / Phone row -->
-            <div class="g2-form">
-              <div style="display: flex; flex-direction: column; gap: 0.5rem;">
-                <label style="font-size: 0.8rem; color: var(--text-2); font-weight: 600;">Work Email*</label>
-                <input type="email" required class="form-input" placeholder="e.g. aisha@company.com">
-              </div>
-              <div style="display: flex; flex-direction: column; gap: 0.5rem;">
-                <label style="font-size: 0.8rem; color: var(--text-2); font-weight: 600;">Phone Number</label>
-                <input type="tel" class="form-input" placeholder="e.g. +1 (469) 884-5960">
-              </div>
-            </div>
-
-            <!-- Subject field -->
-            <div style="display: flex; flex-direction: column; gap: 0.5rem;">
-              <label style="font-size: 0.8rem; color: var(--text-2); font-weight: 600;">Subject*</label>
-              <input type="text" required class="form-input" placeholder="e.g. Enterprise Security Inquiry">
-            </div>
-
-            <!-- Message textarea -->
-            <div style="display: flex; flex-direction: column; gap: 0.5rem;">
-              <label style="font-size: 0.8rem; color: var(--text-2); font-weight: 600;">How can we help you today?*</label>
-              <textarea rows="5" required class="form-input" placeholder="Tell us about your security needs..."></textarea>
-            </div>
-
-            <!-- Submit button aligned left -->
-            <div style="display: flex; justify-content: flex-start; margin-top: 0.5rem;">
-              <button type="submit" class="btn btn-orchid" style="padding: 0.8rem 2.2rem; font-weight: 700; width: auto; justify-content: flex-start;">
-                <i data-lucide="send" style="width: 16px; height: 18px;"></i> Send Message
-              </button>
-            </div>
-          </form>
-
-          <!-- Success Card -->
-          <div id="success-card" class="dashboard-wrap" style="padding: 3rem 2.5rem; text-align: center; display: none; opacity: 0; transform: scale(0.95);">
-            <div class="dashboard-bar" style="margin: -3rem -2.5rem 2rem; border-top-left-radius: 16px; border-top-right-radius: 16px;">
-              <span style="font-size:.72rem;color:var(--text-3);font-weight:600;">Transmission Completed</span>
-            </div>
-            <div style="width: 60px; height: 60px; border-radius: 50%; background: rgba(181, 242, 219, 0.15); border: 2px solid var(--accent); display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem;">
-              <i data-lucide="check" style="width: 32px; height: 32px; color: var(--accent);"></i>
-            </div>
-            <h3 style="font-size: 1.5rem; margin-bottom: 0.75rem; color: var(--text-1);">Message Sent Successfully</h3>
-            <p style="color: var(--text-2); margin-bottom: 2rem; max-width: 340px; margin-left: auto; margin-right: auto; font-size: 0.95rem;">Thank you for contacting Orchid Security. One of our engineers will reach out to you shortly.</p>
-            <button onclick="window.location.reload()" class="btn btn-outline btn-sm">Send Another Message</button>
-          </div>
-
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ════════════════════════════════════════ FOOTER -->
-  <footer>
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-brand">
-          <a href="index.html" class="logo" style="display:inline-flex;margin-bottom:.75rem;">
-            <img src="Logo.png" alt="One Concord AI" />
-          </a>
-          <p>Unified cloud security, identity protection, and threat intelligence for modern enterprises. Built for resilient digital infrastructure.</p>
-          <div class="newsletter-form">
-            <input class="newsletter-input" type="email" placeholder="Enter your email" aria-label="Subscribe"/>
-            <button class="btn btn-primary btn-sm">Subscribe</button>
-          </div>
-        </div>
-        <div class="footer-col"><h4>Platform</h4><ul class="footer-links"><li><a href="index.html#platform">CSPM</a></li><li><a href="index.html#capabilities">Identity Protection</a></li><li><a href="index.html#capabilities">Threat Detection</a></li><li><a href="index.html#platform">Risk Prioritization</a></li><li><a href="index.html#platform">Compliance</a></li><li><a href="index.html#how-it-works">Integrations</a></li></ul></div>
-          <div class="footer-col"><h4>Solutions</h4><ul class="footer-links"><li><a href="index.html#how-it-works">Enterprise</a></li><li><a href="index.html#how-it-works">Financial Services</a></li><li><a href="index.html#how-it-works">Healthcare</a></li><li><a href="index.html#how-it-works">Government</a></li><li><a href="index.html#how-it-works">SaaS Companies</a></li><li><a href="index.html#how-it-works">MSSPs</a></li></ul></div>
-        <div class="footer-col"><h4>Resources</h4><ul class="footer-links"><li><a href="index.html#metrics">Documentation</a></li><li><a href="index.html#metrics">Blog</a></li><li><a href="index.html#metrics">Threat Reports</a></li><li><a href="index.html#metrics">Webinars</a></li><li><a href="index.html#metrics">API Reference</a></li><li><a href="index.html#metrics">Status Page</a></li></ul></div>
-        <div class="footer-col"><h4>Company</h4><ul class="footer-links"><li><a href="about.html">About Us</a></li><li><a href="about.html">Careers</a></li><li><a href="about.html">Press</a></li><li><a href="about.html">Partners</a></li><li><a href="contact.html">Contact Sales</a></li><li><a href="index.html">Trust Center</a></li></ul></div>
-      </div>
-      <div class="footer-bottom">
-        <p class="footer-copy">© 2026 Orchid Security. Built for resilient digital infrastructure.</p>
-        <div class="footer-legal"><a href="#">Privacy Policy</a><a href="#">Terms of Service</a><a href="#">Security</a><a href="#">Cookie Preferences</a></div>
-      </div>
-    </div>
-  </footer>
-
-</div>
-
-<!-- ════════════════════════════════════════ SCRIPTS -->
-<script>
-  gsap.registerPlugin(ScrollTrigger);
-
-  // ── Header scroll ──
-  const header = document.getElementById('site-header');
-  window.addEventListener('scroll', () => {
-    header.classList.toggle('scrolled', window.scrollY > 60);
-  }, { passive: true });
-
-  // ── Fade-up ──
-  function initFades() {
-    gsap.set('.fade-up', { opacity: 0, y: 28 });
-    document.querySelectorAll('.fade-up').forEach(el => {
-      ScrollTrigger.create({
-        trigger: el, start: 'top 88%', once: true,
-        onEnter: () => gsap.to(el, { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out', delay: parseFloat(el.style.animationDelay || 0) })
-      });
-    });
-  }
-
-  // ── Hero entrance ──
-  function initHero() {
-    gsap.from('.contact-info-panel > *', { opacity: 0, y: 40, duration: 0.9, stagger: 0.12, ease: 'power3.out', delay: 0.3 });
-    gsap.from('.contact-form-container', { opacity: 0, y: 50, scale: 0.96, duration: 1, ease: 'power3.out', delay: 0.5 });
-  }
-
-  // ── Drift particles ──
-  function initDrift() {
-    for (let i = 0; i < 14; i++) {
-      const d = document.createElement('div');
-      const s = Math.random() * 2.5 + 1;
-      d.style.cssText = `position:fixed;border-radius:50%;pointer-events:none;z-index:1;width:${s}px;height:${s}px;left:${Math.random()*100}vw;top:${Math.random()*100}vh;background:rgba(56,165,255,${(Math.random()*.25+.04).toFixed(2)});animation:drft${i} ${12+Math.random()*18}s ease-in-out infinite;`;
-      document.body.appendChild(d);
-      const st = document.createElement('style');
-      const dx = (Math.random()-.5)*180, dy = (Math.random()-.5)*180;
-      st.textContent = `@keyframes drft${i}{0%,100%{transform:translate(0,0);opacity:.07}50%{transform:translate(${dx}px,${dy}px);opacity:.18}}`;
-      document.head.appendChild(st);
-    }
-  }
-
-  // ════════════════════║ ADVANCED AUTO-RECALCULATING CURVE GENERATOR
-  function initSvgLine() {
-    const pageContent = document.getElementById("page-content");
-    const dynamicSvg = document.getElementById("dynamic-svg");
-    const bgPath = document.getElementById("bg-path");
-    const activePath = document.getElementById("active-path");
-    let mainScrollTrigger = null;
-
-    function updatePathDimensions() {
-      if (!pageContent || !dynamicSvg || !bgPath || !activePath) return;
-      const totalHeight = pageContent.offsetHeight;
-      const totalWidth = window.innerWidth;
-      const centerPoint = totalWidth / 2;
-
-      const pad = 32;
-      const cw = Math.min(1160, totalWidth - pad * 2);
-      const offset = cw / 2 - 50;
-
-      dynamicSvg.setAttribute("width", totalWidth);
-      dynamicSvg.setAttribute("height", totalHeight);
-      dynamicSvg.setAttribute("viewBox", `0 0 ${totalWidth} ${totalHeight}`);
-
-      const pathData = `
-        M ${centerPoint},0 
-        C ${centerPoint},${totalHeight * 0.15} ${centerPoint - offset},${totalHeight * 0.2} ${centerPoint - offset},${totalHeight * 0.35} 
-        S ${centerPoint + offset},${totalHeight * 0.5} ${centerPoint + offset},${totalHeight * 0.65} 
-        S ${centerPoint - offset * 0.5},${totalHeight * 0.78} ${centerPoint},${totalHeight * 0.88} 
-        L ${centerPoint},${totalHeight - 120}
-      `;
-
-      bgPath.setAttribute("d", pathData);
-      activePath.setAttribute("d", pathData);
-
-      const pathLength = activePath.getTotalLength();
-      const progress = mainScrollTrigger ? mainScrollTrigger.progress : 0;
-      gsap.set(activePath, {
-        strokeDasharray: pathLength,
-        strokeDashoffset: pathLength * (1 - progress)
-      });
-    }
-
-    updatePathDimensions();
-    const layoutObserver = new ResizeObserver(() => updatePathDimensions());
-    layoutObserver.observe(pageContent);
-    window.addEventListener("resize", updatePathDimensions);
-
-    mainScrollTrigger = ScrollTrigger.create({
-      trigger: "#page-content",
-      start: "top top",
-      end: "bottom bottom",
-      scrub: 1.2,
-      onUpdate: (self) => {
-        const pathLength = activePath.getTotalLength();
-        gsap.set(activePath, {
-          strokeDashoffset: pathLength * (1 - self.progress)
-        });
-      }
-    });
-  }
-
-  // ── Contact Form Anim & Reset ──
-  const contactForm = document.getElementById('contact-form');
-  const successCard = document.getElementById('success-card');
-
-  if (contactForm && successCard) {
-    contactForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      
-      gsap.to(contactForm, {
-        opacity: 0,
-        y: -15,
-        scale: 0.95,
-        duration: 0.4,
-        ease: 'power2.in',
-        onComplete: () => {
-          contactForm.style.display = 'none';
-          successCard.style.display = 'block';
-          
-          gsap.to(successCard, {
-            opacity: 1,
-            y: 0,
-            scale: 1,
-            duration: 0.5,
-            ease: 'power2.out'
-          });
-        }
-      });
-    });
-  }
-
-  window.resetForm = function() {
-    contactForm.reset();
-    gsap.to(successCard, {
-      opacity: 0,
-      y: 15,
-      scale: 0.95,
-      duration: 0.4,
-      ease: 'power2.in',
-      onComplete: () => {
-        successCard.style.display = 'none';
-        contactForm.style.display = 'flex';
-        
-        gsap.to(contactForm, {
-          opacity: 1,
-          y: 0,
-          scale: 1,
-          duration: 0.5,
-          ease: 'power2.out'
-        });
-      }
-    });
-  }
-
-  window.addEventListener('DOMContentLoaded', () => {
-    lucide.createIcons();
-    initFades();
-    initHero();
-    initDrift();
-    initSvgLine();
-  });
-</script>
-<script src="js/modal.js?v=1.2"></script>
-</body>
-</html>
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8"/>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>Contact Us | Orchid Security — Unified Cloud &amp; Identity Protection</title>
+
+  <meta name="description" content="Get in touch with Orchid Security. Request a threat assessment, schedule a demo, or contact our global engineering team."/>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+
+
+<style>
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+
+
+:root {
+
+  --bg-0: #16232B;
+
+  --surface: rgba(4, 47, 52, 0.45);
+
+  --border: rgba(181, 242, 219, 0.15);
+
+  --border-glow: rgba(181, 242, 219, 0.45);
+
+  --accent: #B5F2DB;
+
+  --accent-cyan: #B5F2DB;
+
+  --accent-violet: #FFC933;
+
+  --accent-teal: #B5F2DB;
+
+  --accent-danger: #f43f5e;
+
+  --gold: #FFC933;
+
+  --gold-bright: #FFC933;
+
+  --gold-dim: rgba(255, 201, 51, 0.18);
+
+  --text-1: #FFFFFF;
+
+  --text-2: #E4EEF0;
+
+  --text-3: rgba(228, 238, 240, 0.7);
+
+  --orchid-neon: #B5F2DB;
+
+}
+
+
+
+html { scroll-behavior: smooth; }
+
+
+
+body {
+
+  font-family: 'Manrope', sans-serif;
+
+  background: var(--bg-0);
+
+  color: var(--text-1);
+
+  overflow-x: hidden;
+
+  line-height: 1.6;
+
+}
+
+
+
+body::before {
+
+  content: '';
+
+  position: fixed; inset: 0; pointer-events: none; z-index: 0;
+
+  background:
+
+    radial-gradient(ellipse 80% 50% at 20% 10%, rgba(181, 242, 219, 0.08) 0%, transparent 65%),
+
+    radial-gradient(ellipse 60% 70% at 80% 85%, rgba(4, 47, 52, 0.35) 0%, transparent 65%);
+
+}
+
+
+
+h1,h2,h3,h4 { font-family:'Space Grotesk',sans-serif; letter-spacing:-0.02em; }
+
+h1 { font-size: clamp(2.5rem, 5.2vw, 4.2rem); font-weight:700; line-height:1.2; }
+
+h2 { font-size: clamp(2rem,4vw,3rem); font-weight:700; line-height:1.12; }
+
+h3 { font-size:1.22rem; font-weight:600; }
+
+p  { color:var(--text-2); font-size:1rem; }
+
+
+
+section { position:relative; z-index:2; }
+
+.container { max-width:1160px; margin:0 auto; padding:0 2rem; }
+
+
+
+#page-content {
+
+  position: relative;
+
+  z-index: 1;
+
+}
+
+
+
+/* ════════════════════║ ADVANCED AUTO-STRETCHED SCROLL CONTAINER GRID */
+
+.svg-container {
+
+  position: absolute;
+
+  top: 0;
+
+  left: 0;
+
+  width: 100%;
+
+  height: 100%;
+
+  pointer-events: none;
+
+  z-index: -1;
+
+}
+
+.svg-container svg {
+
+  width: 100%;
+
+  height: 100%;
+
+  display: block;
+
+}
+
+
+
+/* ─── BADGES ─── */
+
+.badge {
+
+  display:inline-flex; align-items:center; gap:0.4rem;
+
+  padding:0.3rem 0.8rem; border-radius:9999px;
+
+  border:1px solid var(--border); background:rgba(56,165,255,0.07);
+
+  font-size:0.7rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase;
+
+  color:var(--accent-cyan);
+
+  transition: all 0.3s ease;
+
+}
+
+.badge-dot { width:6px; height:6px; border-radius:50%; background:var(--accent-cyan); animation:pdot 2s infinite; }
+
+@keyframes pdot { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.4;transform:scale(.7)} }
+
+
+
+.badge-orchid {
+
+  border: 1px solid rgba(218, 253, 79, 0.3);
+
+  background: rgba(218, 253, 79, 0.05);
+
+  color: var(--orchid-neon);
+
+}
+
+
+
+/* ─── BUTTONS ─── */
+
+.btn {
+
+  display:inline-flex; align-items:center; gap:0.5rem;
+
+  padding:0.75rem 1.6rem; border-radius:8px; font-weight:600;
+
+  font-size:0.95rem; cursor:pointer; transition:all .25s ease;
+
+  border:none; text-decoration:none; font-family:inherit;
+
+}
+
+.btn-primary {
+
+  background: var(--gold);
+
+  color: var(--bg-0);
+
+  font-weight: 700;
+
+  border: 1.5px solid var(--gold);
+
+}
+
+.btn-primary:hover {
+
+  background: var(--gold-bright);
+
+  color: var(--bg-0);
+
+  transform: translateY(-2px) scale(1.02);
+
+  box-shadow: 0 8px 24px rgba(255, 201, 51, 0.35);
+
+}
+
+
+
+.btn-orchid {
+
+  background: var(--orchid-neon);
+
+  color: #000;
+
+  font-weight: 700;
+
+  box-shadow: 0 0 20px rgba(181, 242, 219, 0.3);
+
+}
+
+.btn-orchid:hover {
+
+  background: #fff;
+
+  transform: translateY(-2px);
+
+  box-shadow: 0 0 30px rgba(181, 242, 219, 0.5);
+
+}
+
+
+
+.btn-outline {
+
+  background:rgba(255,255,255,.04); color:var(--text-1);
+
+  border:1px solid var(--border); backdrop-filter:blur(8px);
+
+}
+
+.btn-outline:hover { background:rgba(181,242,219,.08); border-color:var(--border-glow); transform:translateY(-2px); }
+
+.btn-sm { padding:0.5rem 1.1rem; font-size:0.85rem; }
+
+
+
+/* ─── HEADER ─── */
+
+header {
+
+  position:fixed; top:0; left:0; right:0; z-index:100;
+
+  padding:1rem 0;
+
+  transition:background .3s,backdrop-filter .3s,border-color .3s;
+
+  border-bottom:1px solid transparent;
+
+}
+
+header.scrolled { background:rgba(22,35,43,.92); backdrop-filter:blur(20px); border-color:var(--border); }
+
+.header-inner {
+
+  display:flex; align-items:center; justify-content:space-between;
+
+  max-width:1280px; margin:0 auto; padding:0 2rem;
+
+}
+
+.logo {
+
+  display:flex; align-items:center; gap:0.6rem;
+
+  text-decoration:none; font-family:'Space Grotesk',sans-serif;
+
+  font-weight:700; font-size:1.15rem; color:var(--text-1);
+
+}
+
+.logo-mark {
+
+  width:36px; height:36px; border-radius:8px;
+
+  background:linear-gradient(135deg,#FFC933,#B5F2DB);
+
+  display:flex; align-items:center; justify-content:center;
+
+  box-shadow:0 0 16px rgba(181,242,219,.4);
+
+}
+
+nav { display:flex; align-items:center; gap:1.8rem; }
+
+nav a { font-size:.88rem; font-weight:500; color:var(--text-2); text-decoration:none; transition:color .2s; }
+
+nav a:hover { color:var(--text-1); }
+
+.header-ctas { display:flex; align-items:center; gap:.75rem; }
+
+.nav-mobile-btn { display:none; background:none; border:none; cursor:pointer; color:var(--text-1); }
+
+
+
+/* ─── HERO ─── */
+
+.hero {
+
+  min-height:90vh; display:flex; align-items:center;
+
+  padding:8rem 0 6rem; position:relative; overflow:hidden;
+
+}
+
+.hero-bg {
+
+  position:absolute; inset:0; z-index:0;
+
+  background: linear-gradient(135deg, #042F34 0%, #16232B 100%);
+
+}
+
+.hero-grid {
+
+  position:absolute; inset:0;
+
+  background-image:
+
+    linear-gradient(rgba(56,165,255,.04) 1px,transparent 1px),
+
+    linear-gradient(90deg,rgba(56,165,255,.04) 1px,transparent 1px);
+
+  background-size:60px 60px;
+
+  mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 0%,transparent 80%);
+
+}
+
+.hero-inner {
+
+  position:relative; z-index:2;
+
+  display:grid; grid-template-columns:1fr; gap:4rem; align-items:center;
+
+}
+
+
+
+/* Dashboard and Cards */
+
+.dashboard-wrap {
+
+  position:relative; border-radius:16px; overflow:hidden;
+
+  border:1px solid var(--border); background:rgba(10,15,28,.82);
+
+  backdrop-filter:blur(20px);
+
+  box-shadow:0 0 80px rgba(56,165,255,.1),0 32px 80px rgba(0,0,0,.6);
+
+}
+
+.dashboard-bar { display:flex; align-items:center; gap:.5rem; padding:.75rem 1rem; background:rgba(13,21,38,.9); border-bottom:1px solid var(--border); }
+
+.db-dot { width:10px; height:10px; border-radius:50%; }
+
+.dashboard-content { padding:1.2rem; }
+
+
+
+.section-label { display:inline-flex; align-items:center; gap:.5rem; margin-bottom:1.25rem; font-size:0.95rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--accent-cyan); }
+
+.section-label::before { display:none; }
+
+
+
+/* ─── CAPABILITIES (Used for Contact Icons) ─── */
+
+.cap-icon { width:52px; height:52px; border-radius:12px; display:flex; align-items:center; justify-content:center; margin-bottom:1.25rem; position:relative; }
+
+.cap-icon::before { content:''; position:absolute; inset:-4px; border-radius:14px; background:inherit; opacity:.2; filter:blur(8px); }
+
+.icon-blue  { background:linear-gradient(135deg,rgba(56,165,255,.2),rgba(56,165,255,.05)); color:var(--accent);   border:1px solid rgba(56,165,255,.25); }
+
+.icon-violet{ background:linear-gradient(135deg,rgba(168,85,247,.2),rgba(168,85,247,.05)); color:var(--accent-violet); border:1px solid rgba(168,85,247,.25); }
+
+.icon-teal  { background:linear-gradient(135deg,rgba(20,212,195,.2),rgba(20,212,195,.05)); color:var(--accent-teal);  border:1px solid rgba(20,212,195,.25); }
+
+
+
+/* ─── IDENTITY (Two column layout) ─── */
+
+.two-col { display:grid; grid-template-columns:0.9fr 1.1fr; gap:4rem; align-items:center; }
+
+.g2-form { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+@media (max-width: 480px) {
+
+  .g2-form { grid-template-columns: 1fr; }
+
+}
+
+
+
+/* ─── FORM INPUTS ─── */
+
+.form-input {
+
+  width: 100%;
+
+  padding: 0.75rem 1rem;
+
+  border-radius: 8px;
+
+  background: rgba(255, 255, 255, 0.04);
+
+  border: 1px solid var(--border);
+
+  color: var(--text-1);
+
+  font-family: inherit;
+
+  font-size: 0.9rem;
+
+  outline: none;
+
+  transition: border-color 0.25s, box-shadow 0.25s;
+
+}
+
+.form-input::placeholder {
+
+  color: var(--text-3);
+
+  opacity: 0.7;
+
+}
+
+.form-input:focus {
+
+  border-color: var(--accent);
+
+  box-shadow: 0 0 12px rgba(56, 165, 255, 0.2);
+
+}
+
+textarea.form-input {
+
+  resize: vertical;
+
+}
+
+
+
+/* ─── FOOTER ─── */
+
+footer { background:rgba(22,35,43,.96); border-top:1px solid var(--border); padding:4rem 0 2rem; position:relative; z-index:5; }
+
+.footer-grid { display:grid; grid-template-columns:2fr repeat(4,1fr); gap:2.5rem; margin-bottom:3rem; }
+
+.footer-brand p { font-size:.88rem; color:var(--text-3); margin:1rem 0 1.5rem; line-height:1.6; max-width:260px; }
+
+.newsletter-form { display:flex; gap:.5rem; }
+
+.newsletter-input { flex:1; padding:.6rem .9rem; border-radius:7px; background:rgba(255,255,255,.04); border:1px solid var(--border); color:var(--text-1); font-family:inherit; font-size:.82rem; outline:none; transition:border-color .2s; }
+
+.newsletter-input:focus { border-color:var(--accent); }
+
+.footer-col h4 { font-size:.82rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--text-2); margin-bottom:1rem; }
+
+.footer-links { list-style:none; display:flex; flex-direction:column; gap:.6rem; }
+
+.footer-links a { font-size:.85rem; color:var(--text-3); text-decoration:none; transition:color .2s; }
+
+.footer-links a:hover { color:var(--text-1); }
+
+.footer-bottom { display:flex; align-items:center; justify-content:space-between; padding-top:2rem; border-top:1px solid var(--border); }
+
+.footer-legal { display:flex; gap:1.5rem; }
+
+.footer-legal a { font-size:.78rem; color:var(--text-3); text-decoration:none; transition:color .2s; }
+
+.footer-legal a:hover { color:var(--text-1); }
+
+.footer-copy { font-size:.78rem; color:var(--text-3); }
+
+
+
+/* ─── ANIMATIONS ─── */
+
+.fade-up { opacity:0; transform:translateY(28px); }
+
+.fade-in  { opacity:0; }
+
+
+
+/* ─── SCROLLBAR ─── */
+
+::-webkit-scrollbar { width:5px; }
+
+::-webkit-scrollbar-track { background:var(--bg-0); }
+
+::-webkit-scrollbar-thumb { background:rgba(245,166,35,.35); border-radius:3px; }
+
+::-webkit-scrollbar-thumb:hover { background:rgba(245,166,35,.6); }
+
+
+
+/* ─── RESPONSIVE ─── */
+
+@media(max-width:1024px) {
+
+  .hero-inner { grid-template-columns:1fr; text-align:center; }
+
+  .two-col { grid-template-columns:1fr; gap: 3rem; }
+
+  .footer-grid { grid-template-columns:1fr 1fr; }
+
+  .svg-container { display: none; }
+
+}
+
+@media(max-width:768px) {
+
+  nav { display:none !important; }
+
+  .header-ctas { display:none !important; }
+
+  .nav-mobile-btn {
+
+    display:flex !important;
+
+    align-items:center;
+
+    justify-content:center;
+
+    width:40px; height:40px;
+
+  }
+
+  .footer-grid { grid-template-columns:1fr; }
+
+  .footer-bottom { flex-direction:column; gap:1rem; text-align:center; }
+
+  #contact-form, #success-card { padding: 1.5rem !important; }
+
+}
+
+/* Mobile menu overlay */
+
+.mob-menu {
+
+  position:fixed; inset:0; background:var(--bg-0); z-index:200;
+
+  display:none; flex-direction:column; padding:24px 28px;
+
+}
+
+.mob-menu.open { display:flex; }
+
+.mob-menu-head { display:flex; justify-content:space-between; align-items:center; margin-bottom:40px; }
+
+.mob-close { background:none; border:none; color:#f1f5f9; font-size:26px; cursor:pointer; line-height:1; }
+
+.mob-nav { display:flex; flex-direction:column; gap:4px; }
+
+.mob-a {
+
+  font-size:22px; font-weight:700; color:#CBD5E1; padding:14px 0;
+
+  border-bottom:1px solid rgba(255,255,255,.06);
+
+  background:none; border-right:none; border-left:none; border-top:none;
+
+  text-align:left; cursor:pointer; text-decoration:none; display:block;
+
+}
+
+.mob-a:hover { color:#FFC933; }
+
+</style>
+
+</head>
+
+<body>
+
+
+
+<!-- ════════════════════════════════════════ HEADER -->
+
+<header id="site-header">
+
+  <div class="header-inner">
+
+    <a href="index.html" class="logo" aria-label="One Concord AI">
+
+      <img src="Logo.png" alt="One Concord AI" />
+
+    </a>
+
+    <nav aria-label="Main navigation">
+
+      <a href="index.html#platform">Platform</a>
+
+      <a href="index.html#capabilities">Capabilities</a>
+
+      <a href="index.html#how-it-works">Solutions</a>
+
+      <a href="about.html">About Us</a>
+
+      <a href="contact.html">Contact Us</a>
+
+    </nav>
+
+    <div class="header-ctas">
+
+      <a href="contact.html" class="btn btn-outline btn-sm">Book Demo</a>
+
+      <a href="index.html#metrics" class="btn btn-primary btn-sm">Start Assessment</a>
+
+    </div>
+
+    <button class="nav-mobile-btn" onclick="toggleMob()" aria-label="Open menu">
+
+      <i data-lucide="menu" style="width:22px;height:22px;"></i>
+
+    </button>
+
+  </div>
+
+</header>
+
+
+
+<!-- ════ MOBILE MENU ════ -->
+
+<div class="mob-menu" id="mobMenu">
+
+  <div class="mob-menu-head">
+
+    <div class="logo">
+
+      <img src="Logo.png" alt="One Concord AI" />
+
+    </div>
+
+    <button class="mob-close" onclick="toggleMob()">✕</button>
+
+  </div>
+
+  <nav class="mob-nav">
+
+    <a href="index.html" class="mob-a">Home</a>
+
+    <a href="index.html" class="mob-a">Platform</a>
+
+    <a href="index.html" class="mob-a">Agents</a>
+
+    <a href="index.html" class="mob-a">Solutions</a>
+
+    <a href="index.html" class="mob-a">Pricing</a>
+
+    <a href="about.html" class="mob-a">About</a>
+
+    <a href="contact.html" class="mob-a">Contact</a>
+
+  </nav>
+
+</div>
+
+<script>function toggleMob(){document.getElementById('mobMenu').classList.toggle('open');}</script>
+
+<!-- ════════════════════════════════════════ PAGE CONTENT WRAPPER -->
+
+<div id="page-content">
+
+
+
+  <!-- ════════════════════════════ AUTO-STRETCHED BACKGROUND CURVE LAYER -->
+
+  <div class="svg-container">
+
+    <svg id="dynamic-svg" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+      <path id="bg-path" stroke="rgba(255, 201, 51, 0.08)" stroke-width="4" stroke-linecap="round"/>
+
+      <path id="active-path" stroke="#FFC933" stroke-width="4" stroke-linecap="round" style="filter: drop-shadow(0px 0px 14px rgba(255, 201, 51, 0.7));"/>
+
+    </svg>
+
+  </div>
+
+
+
+  <!-- ════════════════════════════════════════ HERO / CONTACT GRID -->
+
+  <section class="hero" id="hero">
+
+    <div class="hero-bg"></div>
+
+    <div class="hero-grid"></div>
+
+    <div class="container" style="position: relative; z-index: 2;">
+
+      <div class="two-col">
+
+        
+
+        <!-- Left: Contact info -->
+
+        <div class="contact-info-panel">
+
+          <div class="fade-up" style="margin-bottom: 2.5rem;">
+
+            <span class="section-label" style="color: var(--accent); margin-bottom: 0.5rem; display: inline-block;">Contact Us</span>
+
+            <h1 style="font-family:'Space Grotesk',sans-serif; font-size:42px; font-weight:800; color:#fff; margin-bottom:1.2rem; line-height: 1.1;">Let's Connect!</h1>
+
+            <p style="color:var(--text-2); font-size:1.05rem; line-height:1.7; max-width: 480px; margin-bottom: 0;">Ready to simplify your operations? Let's talk about how Orchid Security can help you work smarter and grow faster.</p>
+
+          </div>
+
+          
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2.5rem;" class="fade-up">
+
+            <div>
+
+              <h4 style="font-size: 0.85rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 700; margin-bottom: 0.8rem;">General Inquiries</h4>
+
+              <p style="font-size: 0.95rem; margin-bottom: 0.5rem;"><a href="mailto:sales@orchidsecurity.com" style="color: #fff; text-decoration: none; font-weight: 600; transition: color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='#fff'">sales@orchidsecurity.com</a></p>
+
+              <p style="color: var(--text-2); font-size: 0.9rem; line-height: 1.5;">100 Pine Street,<br>San Francisco, CA 94111</p>
+
+            </div>
+
+            <div>
+
+              <h4 style="font-size: 0.85rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 700; margin-bottom: 0.8rem;">Technical Support</h4>
+
+              <p style="font-size: 0.95rem; margin-bottom: 0.5rem;"><a href="mailto:support@orchidsecurity.com" style="color: #fff; text-decoration: none; font-weight: 600; transition: color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='#fff'">support@orchidsecurity.com</a></p>
+
+              <p style="color: #22c55e; font-size: 0.88rem; font-weight: 600; display: flex; align-items: center; gap: 0.4rem; margin-top: 0.5rem;">
+
+                <span style="background:#22c55e; width: 6px; height: 6px; border-radius: 50%; display: inline-block;"></span>
+
+                All Systems Operational
+
+              </p>
+
+            </div>
+
+          </div>
+
+
+
+          <div class="fade-up" style="border-top: 1px solid var(--border); padding-top: 1.5rem; max-width: 480px;">
+
+            <h4 style="font-size: 0.85rem; color: var(--text-3); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 700; margin-bottom: 0.8rem;">Follow Us</h4>
+
+            <div style="display: flex; gap: 16px;">
+
+              <a href="https://linkedin.com" target="_blank" style="color: var(--text-3); transition: color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-3)'">
+
+                <i data-lucide="linkedin" style="width: 20px; height: 20px;"></i>
+
+              </a>
+
+              <a href="https://twitter.com" target="_blank" style="color: var(--text-3); transition: color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-3)'">
+
+                <i data-lucide="twitter" style="width: 20px; height: 20px;"></i>
+
+              </a>
+
+              <a href="https://github.com" target="_blank" style="color: var(--text-3); transition: color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-3)'">
+
+                <i data-lucide="github" style="width: 20px; height: 20px;"></i>
+
+              </a>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+
+        <!-- Right: Glassmorphic Contact Form & Success Card -->
+
+        <div class="contact-form-container fade-up" style="position: relative;">
+
+          
+
+          <form id="contact-form" class="dashboard-wrap" style="padding: 2.5rem; display: flex; flex-direction: column; gap: 1.5rem; border: 1px solid rgba(181, 242, 219, 0.25);">
+
+            <div class="dashboard-bar" style="margin: -2.5rem -2.5rem 1rem; border-top-left-radius: 16px; border-top-right-radius: 16px;">
+
+              <span style="font-size:.72rem;color:var(--text-3);font-weight:600;letter-spacing:0.05em;text-transform:uppercase;">SOC Transmission Node</span>
+
+            </div>
+
+            
+
+            <!-- First / Last Name row -->
+
+            <div class="g2-form">
+
+              <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+
+                <label style="font-size: 0.8rem; color: var(--text-2); font-weight: 600;">First Name*</label>
+
+                <input type="text" required class="form-input" placeholder="e.g. Aisha">
+
+              </div>
+
+              <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+
+                <label style="font-size: 0.8rem; color: var(--text-2); font-weight: 600;">Last Name*</label>
+
+                <input type="text" required class="form-input" placeholder="e.g. Verma">
+
+              </div>
+
+            </div>
+
+
+
+            <!-- Email / Phone row -->
+
+            <div class="g2-form">
+
+              <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+
+                <label style="font-size: 0.8rem; color: var(--text-2); font-weight: 600;">Work Email*</label>
+
+                <input type="email" required class="form-input" placeholder="e.g. aisha@company.com">
+
+              </div>
+
+              <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+
+                <label style="font-size: 0.8rem; color: var(--text-2); font-weight: 600;">Phone Number</label>
+
+                <input type="tel" class="form-input" placeholder="e.g. +1 (469) 884-5960">
+
+              </div>
+
+            </div>
+
+
+
+            <!-- Subject field -->
+
+            <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+
+              <label style="font-size: 0.8rem; color: var(--text-2); font-weight: 600;">Subject*</label>
+
+              <input type="text" required class="form-input" placeholder="e.g. Enterprise Security Inquiry">
+
+            </div>
+
+
+
+            <!-- Message textarea -->
+
+            <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+
+              <label style="font-size: 0.8rem; color: var(--text-2); font-weight: 600;">How can we help you today?*</label>
+
+              <textarea rows="5" required class="form-input" placeholder="Tell us about your security needs..."></textarea>
+
+            </div>
+
+
+
+            <!-- Submit button aligned left -->
+
+            <div style="display: flex; justify-content: flex-start; margin-top: 0.5rem;">
+
+              <button type="submit" class="btn btn-orchid" style="padding: 0.8rem 2.2rem; font-weight: 700; width: auto; justify-content: flex-start;">
+
+                <i data-lucide="send" style="width: 16px; height: 18px;"></i> Send Message
+
+              </button>
+
+            </div>
+
+          </form>
+
+
+
+          <!-- Success Card -->
+
+          <div id="success-card" class="dashboard-wrap" style="padding: 3rem 2.5rem; text-align: center; display: none; opacity: 0; transform: scale(0.95);">
+
+            <div class="dashboard-bar" style="margin: -3rem -2.5rem 2rem; border-top-left-radius: 16px; border-top-right-radius: 16px;">
+
+              <span style="font-size:.72rem;color:var(--text-3);font-weight:600;">Transmission Completed</span>
+
+            </div>
+
+            <div style="width: 60px; height: 60px; border-radius: 50%; background: rgba(181, 242, 219, 0.15); border: 2px solid var(--accent); display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem;">
+
+              <i data-lucide="check" style="width: 32px; height: 32px; color: var(--accent);"></i>
+
+            </div>
+
+            <h3 style="font-size: 1.5rem; margin-bottom: 0.75rem; color: var(--text-1);">Message Sent Successfully</h3>
+
+            <p style="color: var(--text-2); margin-bottom: 2rem; max-width: 340px; margin-left: auto; margin-right: auto; font-size: 0.95rem;">Thank you for contacting Orchid Security. One of our engineers will reach out to you shortly.</p>
+
+            <button onclick="window.location.reload()" class="btn btn-outline btn-sm">Send Another Message</button>
+
+          </div>
+
+
+
+        </div>
+
+
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- ════════════════════════════════════════ FOOTER -->
+
+    <footer>
+    <div class="container">
+      <div class="ft-grid">
+        <div class="ft-brand">
+          <a href="index.html" class="logo" style="cursor:pointer; margin-bottom: 1rem; display: inline-flex; text-decoration: none;">
+            <img src="Logo.png" alt="One Concord AI" />
+          </a>
+          <p>Transform enterprise operations with autonomous AI workers for IT, Security, Identity, Cloud, and Compliance — executing tasks independently, securely, and in compliance with local cloud standards.</p>
+          <div class="ft-address">
+            <strong>One Concord AI</strong>
+            <span>100 Pine Street,</span>
+            <span>San Francisco, CA 94111</span>
+            <span style="margin-top: 0.5rem;">
+              General: <a href="mailto:sales@oneconcord.ai">sales@oneconcord.ai</a>
+            </span>
+            <span>
+              Support: <a href="mailto:support@oneconcord.ai">support@oneconcord.ai</a>
+            </span>
+          </div>
+          <div class="ft-socials">
+            <a href="https://linkedin.com" target="_blank" class="ft-social-link" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" fill="currentColor" class="ft-social-icon"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+            </a>
+            <a href="https://twitter.com" target="_blank" class="ft-social-link" aria-label="Twitter">
+              <svg viewBox="0 0 24 24" fill="currentColor" class="ft-social-icon"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <a href="https://github.com" target="_blank" class="ft-social-link" aria-label="GitHub">
+              <svg viewBox="0 0 24 24" fill="currentColor" class="ft-social-icon"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="ft-form-container">
+          <h5>Send us a message</h5>
+          <form class="ft-form" onsubmit="event.preventDefault(); alert('Message sent successfully!'); this.reset();">
+            <input type="text" class="ft-form-input" placeholder="Your Name" required />
+            <input type="email" class="ft-form-input" placeholder="Your Email" required />
+            <textarea class="ft-form-textarea" placeholder="Your Message" required></textarea>
+            <button type="submit" class="ft-form-btn">
+              <span>Send Message</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="ft-send-icon"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <div class="ft-bot">
+        <div class="ft-copy">© 2026 One Concord AI. All rights reserved. oneconcord.ai</div>
+        <div class="ft-legal">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">Security</a>
+          <a href="#">Cookie Preferences</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+
+</div>
+
+
+
+<!-- ════════════════════════════════════════ SCRIPTS -->
+
+<script>
+
+  gsap.registerPlugin(ScrollTrigger);
+
+
+
+  // ── Header scroll ──
+
+  const header = document.getElementById('site-header');
+
+  window.addEventListener('scroll', () => {
+
+    header.classList.toggle('scrolled', window.scrollY > 60);
+
+  }, { passive: true });
+
+
+
+  // ── Fade-up ──
+
+  function initFades() {
+
+    gsap.set('.fade-up', { opacity: 0, y: 28 });
+
+    document.querySelectorAll('.fade-up').forEach(el => {
+
+      ScrollTrigger.create({
+
+        trigger: el, start: 'top 88%', once: true,
+
+        onEnter: () => gsap.to(el, { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out', delay: parseFloat(el.style.animationDelay || 0) })
+
+      });
+
+    });
+
+  }
+
+
+
+  // ── Hero entrance ──
+
+  function initHero() {
+
+    gsap.from('.contact-info-panel > *', { opacity: 0, y: 40, duration: 0.9, stagger: 0.12, ease: 'power3.out', delay: 0.3 });
+
+    gsap.from('.contact-form-container', { opacity: 0, y: 50, scale: 0.96, duration: 1, ease: 'power3.out', delay: 0.5 });
+
+  }
+
+
+
+  // ── Drift particles ──
+
+  function initDrift() {
+
+    for (let i = 0; i < 14; i++) {
+
+      const d = document.createElement('div');
+
+      const s = Math.random() * 2.5 + 1;
+
+      d.style.cssText = `position:fixed;border-radius:50%;pointer-events:none;z-index:1;width:${s}px;height:${s}px;left:${Math.random()*100}vw;top:${Math.random()*100}vh;background:rgba(56,165,255,${(Math.random()*.25+.04).toFixed(2)});animation:drft${i} ${12+Math.random()*18}s ease-in-out infinite;`;
+
+      document.body.appendChild(d);
+
+      const st = document.createElement('style');
+
+      const dx = (Math.random()-.5)*180, dy = (Math.random()-.5)*180;
+
+      st.textContent = `@keyframes drft${i}{0%,100%{transform:translate(0,0);opacity:.07}50%{transform:translate(${dx}px,${dy}px);opacity:.18}}`;
+
+      document.head.appendChild(st);
+
+    }
+
+  }
+
+
+
+  // ════════════════════║ ADVANCED AUTO-RECALCULATING CURVE GENERATOR
+
+  function initSvgLine() {
+
+    const pageContent = document.getElementById("page-content");
+
+    const dynamicSvg = document.getElementById("dynamic-svg");
+
+    const bgPath = document.getElementById("bg-path");
+
+    const activePath = document.getElementById("active-path");
+
+    let mainScrollTrigger = null;
+
+
+
+    function updatePathDimensions() {
+
+      if (!pageContent || !dynamicSvg || !bgPath || !activePath) return;
+
+      const totalHeight = pageContent.offsetHeight;
+
+      const totalWidth = window.innerWidth;
+
+      const centerPoint = totalWidth / 2;
+
+
+
+      const pad = 32;
+
+      const cw = Math.min(1160, totalWidth - pad * 2);
+
+      const offset = cw / 2 - 50;
+
+
+
+      dynamicSvg.setAttribute("width", totalWidth);
+
+      dynamicSvg.setAttribute("height", totalHeight);
+
+      dynamicSvg.setAttribute("viewBox", `0 0 ${totalWidth} ${totalHeight}`);
+
+
+
+      const pathData = `
+
+        M ${centerPoint},0 
+
+        C ${centerPoint},${totalHeight * 0.15} ${centerPoint - offset},${totalHeight * 0.2} ${centerPoint - offset},${totalHeight * 0.35} 
+
+        S ${centerPoint + offset},${totalHeight * 0.5} ${centerPoint + offset},${totalHeight * 0.65} 
+
+        S ${centerPoint - offset * 0.5},${totalHeight * 0.78} ${centerPoint},${totalHeight * 0.88} 
+
+        L ${centerPoint},${totalHeight - 120}
+
+      `;
+
+
+
+      bgPath.setAttribute("d", pathData);
+
+      activePath.setAttribute("d", pathData);
+
+
+
+      const pathLength = activePath.getTotalLength();
+
+      const progress = mainScrollTrigger ? mainScrollTrigger.progress : 0;
+
+      gsap.set(activePath, {
+
+        strokeDasharray: pathLength,
+
+        strokeDashoffset: pathLength * (1 - progress)
+
+      });
+
+    }
+
+
+
+    updatePathDimensions();
+
+    const layoutObserver = new ResizeObserver(() => updatePathDimensions());
+
+    layoutObserver.observe(pageContent);
+
+    window.addEventListener("resize", updatePathDimensions);
+
+
+
+    mainScrollTrigger = ScrollTrigger.create({
+
+      trigger: "#page-content",
+
+      start: "top top",
+
+      end: "bottom bottom",
+
+      scrub: 1.2,
+
+      onUpdate: (self) => {
+
+        const pathLength = activePath.getTotalLength();
+
+        gsap.set(activePath, {
+
+          strokeDashoffset: pathLength * (1 - self.progress)
+
+        });
+
+      }
+
+    });
+
+  }
+
+
+
+  // ── Contact Form Anim & Reset ──
+
+  const contactForm = document.getElementById('contact-form');
+
+  const successCard = document.getElementById('success-card');
+
+
+
+  if (contactForm && successCard) {
+
+    contactForm.addEventListener('submit', (e) => {
+
+      e.preventDefault();
+
+      
+
+      gsap.to(contactForm, {
+
+        opacity: 0,
+
+        y: -15,
+
+        scale: 0.95,
+
+        duration: 0.4,
+
+        ease: 'power2.in',
+
+        onComplete: () => {
+
+          contactForm.style.display = 'none';
+
+          successCard.style.display = 'block';
+
+          
+
+          gsap.to(successCard, {
+
+            opacity: 1,
+
+            y: 0,
+
+            scale: 1,
+
+            duration: 0.5,
+
+            ease: 'power2.out'
+
+          });
+
+        }
+
+      });
+
+    });
+
+  }
+
+
+
+  window.resetForm = function() {
+
+    contactForm.reset();
+
+    gsap.to(successCard, {
+
+      opacity: 0,
+
+      y: 15,
+
+      scale: 0.95,
+
+      duration: 0.4,
+
+      ease: 'power2.in',
+
+      onComplete: () => {
+
+        successCard.style.display = 'none';
+
+        contactForm.style.display = 'flex';
+
+        
+
+        gsap.to(contactForm, {
+
+          opacity: 1,
+
+          y: 0,
+
+          scale: 1,
+
+          duration: 0.5,
+
+          ease: 'power2.out'
+
+        });
+
+      }
+
+    });
+
+  }
+
+
+
+  window.addEventListener('DOMContentLoaded', () => {
+
+    lucide.createIcons();
+
+    initFades();
+
+    initHero();
+
+    initDrift();
+
+    initSvgLine();
+
+  });
+
+</script>
+
+<script src="js/modal.js?v=1.2"></script>
+
+</body>
+
+</html>
+

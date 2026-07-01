@@ -1,1077 +1,2119 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>One Concord AI — Enterprise Agent Operating System | oneconcord.ai</title>
-  <meta name="description"
-    content="One Concord AI gives enterprises 12 autonomous AI workers across IT Operations, Security & Cloud, and Reporting & Compliance — including a Security Tool Coverage Agent — GCC Cloud compliant and globally deployable." />
-
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Manrope:wght@300;400;500;600;700;800&display=swap"
-    rel="stylesheet" />
-
-  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-
-  <link rel="stylesheet" href="css/index.css?v=2.6" />
-  <link rel="stylesheet" href="css/agents2.css" />
-</head>
-
-<body>
-
-  <!-- ════════════════════════════════════════ HEADER -->
-  <header id="site-header">
-    <div class="header-inner">
-      <div class="logo" onclick="go('home')" style="cursor:pointer;">
-        <img src="Logo.png" alt="One Concord AI" />
-      </div>
-      <nav aria-label="Main navigation" id="navLinks">
-        <!-- Injected via index.js -->
-      </nav>
-      <div class="header-ctas" id="navEnd">
-        <!-- Injected via index.js -->
-      </div>
-      <button class="nav-mobile-btn" onclick="toggleMob()" aria-label="Open menu">
-        <i data-lucide="menu" style="width:22px;height:22px;"></i>
-      </button>
-    </div>
-  </header>
-
-  <!-- ════════════════════════════════════════ MOBILE MENU -->
-  <div class="mob-menu" id="mobMenu">
-    <div class="mob-menu-head">
-      <div class="logo">
-        <img src="Logo.png" alt="One Concord AI" />
-      </div>
-      <button class="mob-close" onclick="toggleMob()">✕</button>
-    </div>
-    <div class="mob-nav" id="mobLinks">
-      <!-- Injected via index.js -->
-    </div>
-  </div>
-
-  <!-- ════════════════════════════════════════ PAGE CONTENT WRAPPER -->
-  <div id="page-content">
-
-    <!-- ════════════════════════════ AUTO-STRETCHED BACKGROUND CURVE LAYER -->
-    <div class="svg-container">
-      <svg id="dynamic-svg" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <!-- Hand-drawn wobble: turbulence displaces the stroke like a real pen -->
-          <filter id="handDrawn" x="-5%" y="-5%" width="110%" height="110%">
-            <feTurbulence
-              id="handTurbulence"
-              type="fractalNoise"
-              baseFrequency="0.018 0.032"
-              numOctaves="4"
-              seed="7"
-              result="noise"/>
-            <feDisplacementMap
-              in="SourceGraphic"
-              in2="noise"
-              scale="5"
-              xChannelSelector="R"
-              yChannelSelector="G"/>
-          </filter>
-          <!-- Glow for active path -->
-          <filter id="glowDraw" x="-10%" y="-10%" width="120%" height="120%">
-            <feGaussianBlur stdDeviation="4" result="blur"/>
-            <feComposite in="SourceGraphic" in2="blur" operator="over"/>
-          </filter>
-        </defs>
-        <!-- Background trace (shows full route, very faint) -->
-        <path id="bg-path" stroke="rgba(255, 201, 51, 0.08)" stroke-width="4"
-          stroke-linecap="round" stroke-linejoin="round"
-          filter="url(#handDrawn)" />
-        <!-- Active glowing drawing path (scroll-revealed on top) -->
-        <path id="active-path" stroke="#FFC933" stroke-width="4"
-          stroke-linecap="round" stroke-linejoin="round"
-          filter="url(#handDrawn)"
-          style="filter: url(#handDrawn) drop-shadow(0px 0px 14px rgba(255, 201, 51, 0.7));" />
-      </svg>
-    </div>
-
-    <!-- ════════════════════════════════════════ PAGE: HOME -->
-    <div id="pg-home" class="page">
-      <!-- HERO -->
-      <section class="hero" id="hero" aria-label="Hero">
-        <div class="hero-bg"></div>
-        <div class="hero-grid"></div>
-        <div class="container">
-          <div class="hero-inner">
-            <div class="hero-left">
-              <div style="margin-bottom:1.25rem;">
-                <span id="hero-badge" class="badge"><span class="badge-dot"></span>Introducing One Concord AI</span>
-              </div>
-
-              <div class="hero-title-container">
-                <span
-                  style="color: var(--text-1); font-family: var(--font); font-size: clamp(2.5rem, 5.2vw, 4.2rem); font-weight: 800; line-height: 1.1; letter-spacing: -1.5px;">Unified
-                  Enterprise AI</span>
-                <div class="slider-mask">
-                  <div class="slider-wrapper" id="hero-title-slider">
-                    <span class="slide-text" style="color:var(--accent);">IT Operations</span>
-                    <span class="slide-text" style="color:var(--accent-cyan);">Security &amp; Cloud</span>
-                    <span class="slide-text" style="color:var(--accent-violet);">Reporting &amp; GRC</span>
-                    <span class="slide-text" style="color:var(--gold-bright);">Sovereign Cloud</span>
-                  </div>
-                </div>
-              </div>
-
-              <p class="hero-sub" style="margin-top: 1.5rem;">Transform enterprise operations with autonomous AI workers
-                for IT, Security, Identity, Cloud, and Compliance executing tasks independently, securely, and in
-                compliance with local cloud standards.</p>
-              <p class="hero-sub"
-                style="font-size:0.92rem; color:var(--text-3); margin-top:-0.5rem; margin-bottom: 2rem;">Intuitive web
-                interface with native Microsoft Teams and Slack integration, enabling users to interact with autonomous
-                AI workers from the tools they already use every day.</p>
-
-              <div class="hero-btns">
-                <button id="hero-cta-btn" class="btn btn-primary" onclick="go('contact')">
-                  <i data-lucide="zap" style="width:16px;height:16px;"></i>Request Access
-                </button>
-                <button class="btn btn-ghost" onclick="go('platform')">See How It Works →</button>
-              </div>
-
-              <div class="hero-stats">
-                <div>
-                  <div class="stat-num">12<em>×</em></div>
-                  <div class="stat-lbl">Digital Workers</div>
-                </div>
-                <div>
-                  <div class="stat-num">78<em>%</em></div>
-                  <div class="stat-lbl">Autonomy Rate</div>
-                </div>
-                <div>
-                  <div class="stat-num">&lt;60<em>s</em></div>
-                  <div class="stat-lbl">Avg Resolution</div>
-                </div>
-                <div>
-                  <div class="stat-num">70<em>+</em></div>
-                  <div class="stat-lbl">Connectors</div>
-                </div>
-              </div>
-            </div>
-
-            <div class="hero-visual">
-              <div style="position:absolute;inset:0;pointer-events:none;">
-                <div class="pulse-node" style="top:12%;left:4%;"></div>
-                <div class="pulse-node" style="top:74%;right:12%;animation-delay:1.2s;background:var(--accent-violet);">
-                </div>
-                <div class="pulse-node" style="top:32%;right:22%;animation-delay:.7s;background:var(--accent-cyan);">
-                </div>
-              </div>
-              <div class="dashboard-wrap">
-                <div class="dashboard-bar">
-                  <div class="db-dot" style="background:#f43f5e;"></div>
-                  <div class="db-dot" style="background:#fbbf24;"></div>
-                  <div class="db-dot" style="background:#22c55e;"></div>
-                  <span style="margin-left:.5rem;font-size:.72rem;color:var(--text-3);font-weight:600;">One Concord ·
-                    Agent Operations Center</span>
-                </div>
-                <div class="dashboard-content">
-                  <div class="db-header-row">
-                    <span class="db-title">Agent Execution Stream</span>
-                    <span class="db-status"><span class="db-status-dot"></span>Active</span>
-                  </div>
-                  <div class="db-metrics">
-                    <div class="db-metric">
-                      <div class="db-metric-val blue" data-count="12" data-suffix=" workers">0</div>
-                      <div class="db-metric-label">Active Agents</div>
-                    </div>
-                    <div class="db-metric">
-                      <div class="db-metric-val red" data-count="94" data-suffix="%">0</div>
-                      <div class="db-metric-label">Containment</div>
-                    </div>
-                    <div class="db-metric">
-                      <div class="db-metric-val green" data-count="38" data-suffix=" sec">0</div>
-                      <div class="db-metric-label">Mean MTTR</div>
-                    </div>
-                  </div>
-                  <div class="db-chart-row">
-                    <div class="db-chart">
-                      <div class="db-chart-title">Autonomy Level · 24h</div>
-                      <div class="mini-bars">
-                        <div class="mini-bar" style="height:45%;"></div>
-                        <div class="mini-bar" style="height:65%;"></div>
-                        <div class="mini-bar" style="height:52%;"></div>
-                        <div class="mini-bar" style="height:78%;"></div>
-                        <div class="mini-bar" style="height:72%;"></div>
-                        <div class="mini-bar" style="height:90%;"></div>
-                        <div class="mini-bar"
-                          style="height:100%;background:linear-gradient(180deg,rgba(181, 242, 219, .9),rgba(181, 242, 219, .3));">
-                        </div>
-                      </div>
-                    </div>
-                    <div class="db-chart" style="max-width:120px;">
-                      <div class="db-chart-title">Task Deflection</div>
-                      <svg viewBox="0 0 80 80" style="width:70px;height:70px;display:block;margin:0 auto;">
-                        <circle cx="40" cy="40" r="28" fill="none" stroke="rgba(255,255,255,.06)" stroke-width="10" />
-                        <circle cx="40" cy="40" r="28" fill="none" stroke="#B5F2DB" stroke-width="10"
-                          stroke-dasharray="78 100" stroke-dashoffset="0" stroke-linecap="round"
-                          transform="rotate(-90 40 40)" />
-                        <text x="40" y="44" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="800"
-                          font-family="var(--mono)">78%</text>
-                      </svg>
-                    </div>
-                  </div>
-                  <div class="db-alert">
-                    <span class="db-alert-dot"></span>
-                    Identity Agent suspended unauthorized VPN session for WS-FIN-0042
-                  </div>
-                </div>
-              </div>
-              <div class="float-card float-card-1">
-                <div class="fc-label">Agent SD</div>
-                <div class="fc-val">38s</div>
-                <div class="fc-sub">VPN cert renewal closed</div>
-              </div>
-              <div class="float-card float-card-2">
-                <div class="fc-label">Annual Savings</div>
-                <div class="fc-val">$650K+</div>
-                <div class="fc-sub">Deflecting L1 ticket backlogs</div>
-              </div>
-            </div>
-          </div>
-
-          <!-- TICKER -->
-          <div class="ticker-wrap">
-            <div class="ticker-lbl"><span class="ticker-dot"></span> Live agent activity — right now</div>
-            <div class="ticker">
-              <div class="ticker-track" id="tickerTrack"></div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- STAT STRIP -->
-      <section class="strip">
-        <div class="container">
-          <div class="strip-inner">
-            <div class="align-center">
-              <div class="s-num"><em>$650K</em></div>
-              <div class="s-lbl">Operational savings per customer / year</div>
-            </div>
-            <div class="align-center">
-              <div class="s-num"><em>62</em>%</div>
-              <div class="s-lbl">Reduction in MTTR vs manual baseline</div>
-            </div>
-            <div class="align-center">
-              <div class="s-num"><em>99.9</em>%</div>
-              <div class="s-lbl">Platform uptime SLA</div>
-            </div>
-            <div class="align-center">
-              <div class="s-num"><em>5</em> days</div>
-              <div class="s-lbl">Contract to first live agent action</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- HOW IT WORKS -->
-      <section class="section" id="how-it-works">
-        <div class="container">
-          <div class="align-center mb-lg" style="max-width:580px;margin-left:auto;margin-right:auto">
-            <span class="section-label">How it works</span>
-            <h2>Understand. Reason. Decide. Execute. Learn.</h2>
-            <p class="mt">Every agent runs the same five-step lifecycle. Every decision is policy-governed. Every action
-              is audit-logged. No black boxes.</p>
-          </div>
-          <div id="howSteps"></div>
-        </div>
-      </section>
-
-      <div class="divider"></div>
-
-
-
-      <!-- AGENT PREVIEW -->
-      <section class="section" id="agent-preview-section">
-        <div class="container" style="max-width: 1440px;">
-          <div class="row-between">
-            <div>
-              <span class="section-label">The platform</span>
-              <h2>Intelligent digital workers.<br />Three domains. Full coverage.</h2>
-            </div>
-            <a href="#agents" class="btn btn-ghost" onclick="go('agents'); return false;">View all agents →</a>
-          </div>
-          <div id="agentPreview"></div>
-        </div>
-      </section>
-
-      <!-- COMPLIANCE SECTION -->
-      <section class="section compliance-section" id="compliance-ready">
-        <!-- Glowing Isometric SVG Background -->
-        <div class="compliance-bg-wrap">
-          <svg class="compliance-iso-svg" id="complianceIsoSvg" fill="none" xmlns="http://www.w3.org/2000/svg"></svg>
-        </div>
-        <div class="container relative-z" style="max-width: 1200px;">
-          <!-- Centered Title & Description -->
-          <div class="align-center mb-lg" style="max-width: 750px; margin-left: auto; margin-right: auto;">
-            <span class="section-label">Compliance Ready</span>
-            <h2>Sovereign GRC &amp; Continuous Evidence Collection</h2>
-            <p class="mt" style="font-size: 1.05rem; color: var(--text-2); line-height: 1.6;">
-              One Concord AI transitions compliance from a periodic audit panic into a continuous, automated background
-              task. Our GRC and Security Tool Coverage agents continuously monitor controls and gather immutable SOC 2
-              evidence.
-            </p>
-          </div>
-
-          <div class="grc-platform-wrapper">
-            <!-- Background Decorative Glow Ring -->
-            <div class="center-bg-glow-wrap">
-              <div class="center-bg-glow"></div>
-            </div>
-
-            <!-- SVG Connectors Layer -->
-            <svg class="grc-svg-layer" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <!-- Left to Center GRC paths -->
-              <path class="grc-flow-line" id="grc-path-left-1" stroke="rgba(20, 184, 166, 0.08)" stroke-width="2" />
-              <path class="grc-flow-line" id="grc-path-left-2" stroke="rgba(20, 184, 166, 0.08)" stroke-width="2" />
-              <path class="grc-flow-line" id="grc-path-left-3" stroke="rgba(20, 184, 166, 0.08)" stroke-width="2" />
-
-              <!-- Center to Right GRC paths -->
-              <path class="grc-flow-line" id="grc-path-right-1" stroke="rgba(20, 184, 166, 0.08)" stroke-width="2" />
-              <path class="grc-flow-line" id="grc-path-right-2" stroke="rgba(20, 184, 166, 0.08)" stroke-width="2" />
-              <path class="grc-flow-line" id="grc-path-right-3" stroke="rgba(20, 184, 166, 0.08)" stroke-width="2" />
-
-              <!-- Active GRC Animated Flow Overlays -->
-              <path class="grc-flow-pulse" id="grc-pulse-left-1" stroke="var(--accent)" stroke-width="2"
-                stroke-linecap="round" />
-              <path class="grc-flow-pulse" id="grc-pulse-left-2" stroke="var(--accent)" stroke-width="2"
-                stroke-linecap="round" />
-              <path class="grc-flow-pulse" id="grc-pulse-left-3" stroke="var(--accent)" stroke-width="2"
-                stroke-linecap="round" />
-              <path class="grc-flow-pulse" id="grc-pulse-right-1" stroke="var(--accent)" stroke-width="2"
-                stroke-linecap="round" />
-              <path class="grc-flow-pulse" id="grc-pulse-right-2" stroke="var(--accent)" stroke-width="2"
-                stroke-linecap="round" />
-              <path class="grc-flow-pulse" id="grc-pulse-right-3" stroke="var(--accent)" stroke-width="2"
-                stroke-linecap="round" />
-            </svg>
-
-            <!-- Left Column: Frameworks Group 1 -->
-            <div class="grc-col grc-left-col">
-              <div class="grc-card active" data-flow="left-1" id="grc-card-left-1">
-                <div class="grc-card-icon"><i data-lucide="shield"></i></div>
-                <div class="grc-card-title">ISO/IEC 27001</div>
-                <div class="grc-card-dot-right"></div>
-              </div>
-              <div class="grc-card" data-flow="left-2" id="grc-card-left-2">
-                <div class="grc-card-icon"><i data-lucide="file-check-2"></i></div>
-                <div class="grc-card-title">SOC 2 Type II</div>
-                <div class="grc-card-dot-right"></div>
-              </div>
-              <div class="grc-card" data-flow="left-3" id="grc-card-left-3">
-                <div class="grc-card-icon"><i data-lucide="server"></i></div>
-                <div class="grc-card-title">NESA (UAE)</div>
-                <div class="grc-card-dot-right"></div>
-              </div>
-            </div>
-
-            <!-- Center Column: GRC Engine Core -->
-            <div class="grc-col grc-center-col">
-              <div class="grc-core-card" id="grc-core-center">
-                <!-- Concentric circle radar container -->
-                <div class="radar-container-wrap">
-                  <div class="radar-circle ring-3"></div>
-                  <div class="radar-circle ring-2"></div>
-                  <div class="radar-circle ring-1"></div>
-                  <div class="radar-core" style="background:var(--accent); box-shadow: 0 0 15px var(--accent);"></div>
-                </div>
-
-                <div class="grc-core-title">GRC Core</div>
-                <div class="grc-core-subtitle">Continuous Audit Console</div>
-
-                <!-- Left & Right Connectors on Center Card -->
-                <div class="grc-center-dot-left"></div>
-                <div class="grc-center-dot-right"></div>
-              </div>
-            </div>
-
-            <!-- Right Column: Frameworks Group 2 -->
-            <div class="grc-col grc-right-col">
-              <div class="grc-card" data-flow="right-1" id="grc-card-right-1">
-                <div class="grc-card-dot-left"></div>
-                <div class="grc-card-icon"><i data-lucide="lock"></i></div>
-                <div class="grc-card-title">PDPL (UAE)</div>
-              </div>
-              <div class="grc-card" data-flow="right-2" id="grc-card-right-2">
-                <div class="grc-card-dot-left"></div>
-                <div class="grc-card-icon"><i data-lucide="credit-card"></i></div>
-                <div class="grc-card-title">PCI DSS</div>
-              </div>
-              <div class="grc-card" data-flow="right-3" id="grc-card-right-3">
-                <div class="grc-card-dot-left"></div>
-                <div class="grc-card-icon"><i data-lucide="cloud"></i></div>
-                <div class="grc-card-title">AWS UAE Region</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-
-
-
-      <!-- TESTIMONIALS -->
-      <section class="section testimonials-section">
-        <div class="container">
-          <div class="align-center mb-lg" style="max-width:580px;margin-left:auto;margin-right:auto">
-            <span class="section-label">Customer stories</span>
-            <h2>Trusted by operations teams worldwide.</h2>
-          </div>
-        </div>
-
-        <!-- Full-width Horizontal Autoscroll Slider -->
-        <div class="testimonials-slider-container">
-          <div class="testimonials-track" id="testimonialsTrack">
-            <!-- Injected via index.js -->
-          </div>
-        </div>
-
-        <!-- Navigation arrows for mobile slider -->
-        <div class="testimonials-mobile-nav">
-          <button class="mobile-nav-btn prev-btn" aria-label="Previous story"><i data-lucide="arrow-left"></i></button>
-          <button class="mobile-nav-btn next-btn" aria-label="Next story"><i data-lucide="arrow-right"></i></button>
-        </div>
-      </section>
-
-      <!-- CTA BAND -->
-      <section class="section-sm cta-band">
-        <div class="container align-center">
-          <span class="section-label" style="justify-content:center;">Get started</span>
-          <h2 class="mb-sm">See what autonomous operations looks like for your team.</h2>
-          <p class="mb-lg" style="max-width:420px;margin-left:auto;margin-right:auto">One Concord AI connects to your
-            existing systems in under 5 business days. Your first agent is handling real workflows by end of week one.
-          </p>
-          <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
-            <button class="btn btn-primary btn-lg" onclick="go('contact')">Book a demo</button>
-            <a href="#pricing" class="btn btn-ghost btn-lg" onclick="go('pricing'); return false;">See pricing →</a>
-          </div>
-        </div>
-      </section>
-    </div><!-- /home -->
-
-    <!-- ════════════════════════════════════════ PAGE: PLATFORM -->
-    <div id="pg-platform" class="page">
-      <div class="page-hero">
-        <div class="container">
-          <div class="breadcrumb">oneconcord.ai / <em>Platform</em></div>
-          <span class="section-label">The platform</span>
-          <h1 style="max-width:680px">The architecture behind autonomous enterprise operations</h1>
-          <p class="lead mt">OneConcord AI is an Agent Operating System not a chatbot or an automation platform. It
-            understands your enterprise, enforces governance, and enables AI workers to operate autonomously.</p>
-        </div>
-      </div>
-      <div class="glow-line"></div>
-
-      <!-- SERVICES -->
-      <section class="section">
-        <div class="container">
-          <span class="section-label" style="justify-content:center;">Core architecture</span>
-          <h2 class="align-center mb-lg">Five services. One intelligent loop.</h2>
-          <div id="platformServices" class="bento-grid"></div>
-        </div>
-      </section>
-
-      <div class="divider"></div>
-
-      <!-- EXEC FLOW + RISK (BENTO REDESIGN) -->
-      <section class="section">
-        <div class="container">
-          <span class="section-label" style="justify-content:center;">Governance & control</span>
-          <h2 class="align-center mb-lg">Deterministic execution. Strict policy control.</h2>
-
-          <div class="bento-grid">
-            <!-- Card 1: Execution Flow (Col Span 2) -->
-            <div class="bento-card b-span-2">
-              <div
-                style="display:flex; justify-content:space-between; align-items:flex-start; gap:20px; flex-wrap:wrap; width:100%;">
-                <div style="flex:1.2; min-width:280px;">
-                  <span class="section-label" style="margin-bottom:8px">Execution flow</span>
-                  <h3 class="mb-sm">Every request follows the same trusted path</h3>
-                  <p style="font-size:13.5px; color:var(--text-3); line-height:1.5; margin-bottom:20px">One Concord AI
-                    doesn't improvise. Every agent execution follows a deterministic path — from channel ingestion
-                    through intent classification, risk scoring, connector execution, and audit logging.</p>
-                  <div id="execFlow" style="display:flex; flex-direction:column; gap:10px"></div>
-                </div>
-
-                <!-- SVG Pipeline visualizer inside Bento card (inspired by Vengeance UI Card1) -->
-                <div
-                  style="flex:1; min-width:250px; height:320px; display:flex; align-items:center; justify-content:center;">
-                  <div class="bento-visual" style="width:100%; height:100%; margin-top:0;">
-                    <div class="bento-dotted-grid"></div>
-                    <svg id="preview-svg" class="platform-pipeline-svg" viewBox="0 0 320 300"
-                      style="width:100%; height:100%; position:relative; z-index:2; overflow:visible;">
-                      <!-- Paths -->
-                      <path d="M 50 40 L 50 90" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" />
-                      <path d="M 50 130 L 50 170" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" />
-                      <path d="M 50 210 L 50 250" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" />
-                      <path d="M 90 90 L 230 90" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" />
-                      <path d="M 230 130 L 230 210" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" />
-
-                      <!-- Flow pulses -->
-                      <path id="pipe-pulse-1" d="M 50 40 L 50 90" fill="none" stroke="var(--accent)" stroke-width="2"
-                        stroke-linecap="round" style="stroke-dasharray:100; stroke-dashoffset:100; opacity:0;" />
-                      <path id="pipe-pulse-2" d="M 90 90 L 230 90" fill="none" stroke="var(--accent-cyan)"
-                        stroke-width="2" stroke-linecap="round"
-                        style="stroke-dasharray:200; stroke-dashoffset:200; opacity:0;" />
-                      <path id="pipe-pulse-3" d="M 230 130 L 230 210" fill="none" stroke="var(--accent-violet)"
-                        stroke-width="2" stroke-linecap="round"
-                        style="stroke-dasharray:100; stroke-dashoffset:100; opacity:0;" />
-
-                      <!-- Nodes (Request, Router, Agent, Memory, Tools, Response) -->
-                      <g id="node-ingest" transform="translate(50,40)">
-                        <circle r="12" fill="rgba(4, 47, 52, 0.9)" stroke="rgba(255,255,255,0.15)"
-                          stroke-width="1.5" />
-                        <circle r="4" fill="var(--accent)" />
-                      </g>
-                      <g id="node-intel" transform="translate(50,90)">
-                        <rect x="-16" y="-16" width="32" height="32" rx="6" fill="rgba(4, 47, 52, 0.9)"
-                          stroke="rgba(255,255,255,0.15)" stroke-width="1.5" />
-                        <circle r="5" fill="var(--accent-cyan)" />
-                      </g>
-                      <g id="node-risk" transform="translate(50,170)">
-                        <rect x="-16" y="-16" width="32" height="32" rx="6" fill="rgba(4, 47, 52, 0.9)"
-                          stroke="rgba(255,255,255,0.15)" stroke-width="1.5" />
-                        <circle r="5" fill="var(--gold)" />
-                      </g>
-                      <g id="node-execution" transform="translate(230,90)">
-                        <rect x="-20" y="-20" width="40" height="40" rx="8" fill="rgba(4, 47, 52, 0.9)"
-                          stroke="rgba(255,255,255,0.15)" stroke-width="1.5" />
-                        <circle r="6" fill="var(--accent-violet)" />
-                      </g>
-                      <g id="node-audit" transform="translate(230,210)">
-                        <circle r="12" fill="rgba(4, 47, 52, 0.9)" stroke="rgba(255,255,255,0.15)"
-                          stroke-width="1.5" />
-                        <circle r="4" fill="#10b981" />
-                      </g>
-
-                      <!-- Labels -->
-                      <text x="50" y="20" fill="var(--text-3)" font-size="8" font-family="var(--mono)" font-weight="700"
-                        text-anchor="middle">INGEST</text>
-                      <text x="90" y="80" fill="var(--text-3)" font-size="8" font-family="var(--mono)"
-                        font-weight="700">ROUTER</text>
-                      <text x="50" y="200" fill="var(--text-3)" font-size="8" font-family="var(--mono)"
-                        font-weight="700" text-anchor="middle">RISK CHECK</text>
-                      <text x="230" y="62" fill="var(--text-3)" font-size="8" font-family="var(--mono)"
-                        font-weight="700" text-anchor="middle">RUNTIME</text>
-                      <text x="230" y="234" fill="var(--text-3)" font-size="8" font-family="var(--mono)"
-                        font-weight="700" text-anchor="middle">AUDIT LOG</text>
-                    </svg>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Card 2: Policy Engine (Col Span 1) -->
-            <div class="bento-card b-span-1">
-              <div>
-                <span class="section-label" style="margin-bottom:8px">Policy engine</span>
-                <h3 class="mb-sm">Risk-based execution control</h3>
-                <p style="font-size:13px; color:var(--text-3); line-height:1.45; margin-bottom:14px">Every action is
-                  scored across 8 factors before execution. No autonomous execution without a policy verdict.</p>
-                <div id="riskRows" style="display:flex; flex-direction:column; gap:7px;"></div>
-              </div>
-            </div>
-
-            <!-- Card 3: Risk Routing (Col Span 3) -->
-            <div class="bento-card b-span-3">
-              <div style="display:flex; flex-direction:column; gap:12px; width:100%;">
-                <div>
-                  <span class="section-label" style="margin-bottom:6px">Risk routing thresholds</span>
-                  <h3 class="mb-xs" style="font-size:18px;">How policies route executing actions</h3>
-                </div>
-                <div id="riskPills"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <div class="divider"></div>
-
-      <!-- ISOLATION -->
-      <section class="section-sm" style="background:rgba(4, 47, 52, 0.2);">
-        <div class="container">
-          <div class="align-center mb-lg" style="max-width:580px;margin-left:auto;margin-right:auto">
-            <span class="section-label">Enterprise architecture</span>
-            <h2>Complete tenant isolation.<br />Zero data bleed.</h2>
-            <p class="mt">Multi-tenant isolation enforced at every layer — database, knowledge graph, message bus,
-              storage, and agent execution — independently verified.</p>
-          </div>
-          <div id="isoLayers" class="bento-grid"></div>
-        </div>
-      </section>
-
-        <section class="section-sm align-center cta-band">
-          <div class="container">
-            <span class="section-label" style="justify-content:center;">Get started</span>
-            <h3 class="mb">See the platform working on your workflows.</h3>
-            <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
-              <button class="btn btn-primary btn-lg" onclick="go('contact')">Book a demo</button>
-              <a href="#pricing" class="btn btn-ghost btn-lg" onclick="go('pricing'); return false;">See pricing →</a>
-            </div>
-          </div>
-        </section>
-    </div><!-- /pg-platform -->
-
-    <!-- ════════════════════════════════════════ PAGE: AGENTS -->
-    <div id="pg-agents" class="page">
-
-      <!-- ── HERO ─────────────────────────────────────────────────── -->
-      <div id="ag-hero"></div>
-
-      <!-- ── STICKY NAVIGATION TABS ────────────────────────────────── -->
-      <div id="ag-sticky-tabs"></div>
-
-      <!-- ── AGENT BENTO GRID ───────────────────────────────────────── -->
-      <div id="ag-grid-section">
-        <div class="ag-section-header">
-          <div>
-            <div class="ag-section-kicker">Agent Roster</div>
-            <h2 class="ag-section-title">12 agents. Every domain covered.</h2>
-          </div>
-          <div class="ag-agent-count">Showing all 12 agents across 3 domains</div>
-        </div>
-        <div id="ag-bento-grid" class="ag-bento-grid"></div>
-      </div>
-
-      <!-- ── CUBE: AGENT DEEP-DIVE (Qount-style) ──────────────────── -->
-      <div id="ag-cube-section"></div>
-
-      <!-- ── IMPACT STATS BAND ──────────────────────────────────────── -->
-      <div id="ag-stats-band">
-        <div class="ag-stats-inner">
-          <div class="ag-stats-header">
-            <div class="ag-section-kicker" style="justify-content:center;display:flex">Combined agent impact</div>
-            <h2 class="ag-section-title" style="text-align:center;margin-top:8px">Numbers that move the enterprise.</h2>
-          </div>
-          <div id="ag-stats-grid" class="ag-stats-grid"></div>
-        </div>
-      </div>
-
-      <!-- ── INTEGRATIONS ───────────────────────────────────────────── -->
-      <div id="ag-integrations-section">
-        <div id="ag-integrations" style="padding:80px 32px;max-width:1180px;margin:0 auto">
-          <div id="ag-integrations-header" class="ag-integrations-header"></div>
-          <div class="ag-marquee-wrap" id="ag-marquee-wrap"></div>
-          <div style="text-align:center;margin-top:28px">
-            <button class="ag-btn-ghost" onclick="go('contact')">Request a custom connector →</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- ── MULTI-AGENT WORKFLOW ───────────────────────────────────── -->
-      <div id="ag-workflow">
-        <div class="ag-workflow-inner">
-          <div class="ag-workflow-header">
-            <div class="ag-section-kicker" style="display:flex;justify-content:center">Multi-agent coordination</div>
-            <h2>Agents that work together.</h2>
-            <p>When a complex outcome spans multiple domains, agents coordinate automatically — no tickets, no wait, no human handoffs.</p>
-          </div>
-          <div id="ag-workflow-grid" class="ag-workflow-cards"></div>
-        </div>
-      </div>
-
-      <!-- ── CTA ───────────────────────────────────────────────────── -->
-      <div id="ag-cta">
-        <div class="ag-cta-inner">
-          <span class="ag-cta-kicker">Get started</span>
-          <h2>See the agents working<br>on <span class="ag-grad-text">your</span> workflows.</h2>
-          <p>Schedule a live demo and see all 12 agents in action across your actual operational scenarios — not a canned slideshow.</p>
-          <div class="ag-cta-actions">
-            <button class="ag-btn-primary" onclick="go('contact')">Book a live demo ↗</button>
-            <a href="#pricing" class="ag-btn-ghost" onclick="go('pricing'); return false;">Explore pricing →</a>
-          </div>
-        </div>
-      </div>
-
-    </div><!-- /pg-agents -->
-
-    <!-- ════════════════════════════════════════ PAGE: SOLUTIONS -->
-    <div id="pg-solutions" class="page">
-      <div class="page-hero">
-        <div class="container">
-          <div class="breadcrumb">oneconcord.ai / <em>Solutions</em></div>
-          <span class="section-label">By team</span>
-          <h1>Built for every team<br />in your enterprise.</h1>
-          <p class="lead mt">One Concord AI is not a generic automation tool. Twelve agents are organised across three
-            domains — IT Operations, Security &amp; Cloud, and Reporting &amp; Compliance.</p>
-        </div>
-      </div>
-      <div class="glow-line"></div>
-
-      <section class="section">
-        <div class="container">
-          <div class="sol-tabs">
-            <button class="sol-tab act" data-sol="it">IT Operations</button>
-            <button class="sol-tab" data-sol="security">Security &amp; Cloud</button>
-            <button class="sol-tab" data-sol="leadership">Reporting &amp; Compliance</button>
-          </div>
-          <div id="solContent">
-            <!-- Populated dynamically via index.js -->
-          </div>
-        </div>
-      </section>
-    </div><!-- /solutions -->
-
-    <!-- ════════════════════════════════════════ PAGE: PRICING -->
-    <div id="pg-pricing" class="page">
-
-      <!-- ══ PRICING STARS PARTICLE SECTION ══ -->
-      <div class="pricing-stars-wrap">
-        <!-- Floating star particles (CSS box-shadow technique) -->
-        <div class="price-stars price-stars-sm"></div>
-        <div class="price-stars price-stars-md"></div>
-        <div class="price-stars price-stars-lg"></div>
-
-        <!-- Dark globe / radial glow behind title -->
-        <div class="pricing-globe-wrap">
-          <div class="pricing-globe"></div>
-          <div class="pricing-globe-glow"></div>
-        </div>
-
-        <div class="container" style="position: relative; z-index: 3; text-align: center;">
-          <div class="breadcrumb">oneconcord.ai / <em>Pricing</em></div>
-          <span class="section-label" style="justify-content:center;">Pricing</span>
-          <h1 style="line-height: 1.15;">Simple, predictable pricing.<br>Scale as you grow.</h1>
-          <p class="lead mt" style="max-width:620px; margin-left:auto; margin-right:auto;">Choose the plan that fits your enterprise requirements. All plans include core connectors and standard security governance.</p>
-        </div>
-      </div>
-      <div class="glow-line"></div>
-
-      <section class="section">
-        <div class="container">
-          <div id="pricingGrid">
-            <!-- Populated dynamically via index.js -->
-          </div>
-
-          <div style="margin-top:80px;text-align:center;" class="fade-up">
-            <span class="section-label" style="justify-content:center;">Compare plans</span>
-            <h2 class="mb-lg">Detailed feature comparison</h2>
-            <div id="compareTable">
-              <!-- Populated dynamically via index.js -->
-            </div>
-          </div>
-        </div>
-      </section>
-    </div><!-- /pricing -->
-      <div id="pg-about" class="page">
-      <div class="page-hero">
-        <div class="container">
-          <div class="about-hero-grid">
-            <div class="about-hero-left">
-              <div class="breadcrumb">oneconcord.ai / <em>About Us</em></div>
-              <span class="section-label">About OneConcord AI</span>
-              <h1 style="line-height: 1.15;">Building Trusted AI for the Modern Enterprise</h1>
-              <p class="lead mt">OneConcord AI is an enterprise AI company unifying intelligence, automating execution, and enabling organizations to securely deploy AI across every business function.</p>
-            </div>
-            <div class="about-hero-visual fade-up">
-              <div class="about-console-mock">
-                <div class="about-console-bar">
-                  <div class="about-console-dot" style="background:#f43f5e"></div>
-                  <div class="about-console-dot" style="background:#fbbf24"></div>
-                  <div class="about-console-dot" style="background:#22c55e"></div>
-                  <span class="about-console-title">OneConcord Core Operations Console</span>
-                </div>
-                <div class="about-console-content">
-                  <div class="about-telemetry-row">
-                    <div class="about-telemetry-item">
-                      <span class="about-telemetry-label">Telemetry Status</span>
-                      <span class="about-telemetry-status">
-                        <span class="badge-dot" style="background:#22c55e;width:6px;height:6px;display:inline-block;border-radius:50%"></span> Active
-                      </span>
-                    </div>
-                    <div class="about-telemetry-item">
-                      <span class="about-telemetry-label">Throughput</span>
-                      <span class="about-telemetry-value">148,420 actions/hr</span>
-                    </div>
-                    <div class="about-telemetry-item">
-                      <span class="about-telemetry-label">Autonomy Score</span>
-                      <span class="about-telemetry-value" style="color:var(--accent-teal)">94.2%</span>
-                    </div>
-                    <div class="about-telemetry-item">
-                      <span class="about-telemetry-label">MTTR (Resolution)</span>
-                      <span class="about-telemetry-value" style="color:var(--orchid-neon)">&lt; 38 seconds</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="glow-line"></div>
-
-      <!-- VALUES GRID -->
-      <section class="section">
-        <div class="container">
-          <div class="values-grid">
-            <!-- MISSION -->
-            <div class="value-card fade-up">
-              <div class="value-card-icon">
-                <i data-lucide="target" style="width:22px;height:22px;"></i>
-              </div>
-              <span class="section-label">Mission</span>
-              <h3 style="font-size:18px;margin-bottom:12px;color:var(--text-1)">Enable. Decide. Achieve.</h3>
-              <p style="font-size:13.5px;color:var(--text-2);line-height:1.65">Enable organizations to work faster, make smarter decisions, and achieve more through enterprise AI.</p>
-            </div>
-
-            <!-- VISION -->
-            <div class="value-card fade-up">
-              <div class="value-card-icon" style="color:var(--gold);border-color:rgba(245,158,11,.2);background:rgba(245,158,11,.05)">
-                <i data-lucide="eye" style="width:22px;height:22px;"></i>
-              </div>
-              <span class="section-label" style="color:var(--gold);">Vision</span>
-              <h3 style="font-size:18px;margin-bottom:12px;color:var(--text-1)">The Autonomous Enterprise</h3>
-              <p style="font-size:13.5px;color:var(--text-2);line-height:1.65">Powering the Autonomous Enterprise with AI, allowing workflows to adapt, respond, and scale seamlessly.</p>
-            </div>
-
-            <!-- TRUST -->
-            <div class="value-card fade-up">
-              <div class="value-card-icon" style="color:var(--accent-cyan);border-color:rgba(6,182,212,.2);background:rgba(6,182,212,.05)">
-                <i data-lucide="shield-check" style="width:22px;height:22px;"></i>
-              </div>
-              <span class="section-label" style="color:var(--accent-cyan);">Governance</span>
-              <h3 style="font-size:18px;margin-bottom:12px;color:var(--text-1)">Zero-Trust Governance</h3>
-              <p style="font-size:13.5px;color:var(--text-2);line-height:1.65">Every agent action and policy check is fully audited, transparent, tamper-proof, and secure by default.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <div class="divider"></div>
-
-      <!-- ABOUT US BODY + TIMELINE -->
-      <section class="section">
-        <div class="container">
-          <div class="g2" style="gap:60px;align-items:center">
-            <div class="fade-up">
-              <span class="section-label">Who we are</span>
-              <h2 class="mb">One platform. Every function. Trusted AI.</h2>
-              <p style="font-size:15px;color:var(--text-2);line-height:1.8;margin-bottom:20px">OneConcord AI is an enterprise AI company building trusted AI for the modern enterprise. We unify intelligence, automate execution, and enable organizations to securely deploy AI across every business function.</p>
-              <p style="font-size:15px;color:var(--text-2);line-height:1.8;margin-bottom:32px">By combining enterprise knowledge, governance, and autonomous execution, OneConcord AI helps businesses increase productivity, accelerate innovation, and achieve measurable outcomes at scale.</p>
-              <div style="display:flex;gap:12px;flex-wrap:wrap">
-                <button class="btn btn-primary btn-lg" onclick="go('contact')">Get in touch</button>
-                <button class="btn btn-ghost btn-lg" onclick="go('platform')">See the platform →</button>
-              </div>
-            </div>
-            <div class="fade-up">
-              <div class="about-timeline">
-                <div class="about-timeline-item">
-                  <div class="about-timeline-dot"></div>
-                  <div class="about-timeline-year">2024</div>
-                  <div class="about-timeline-title">Founding &amp; Vision</div>
-                  <div class="about-timeline-desc">Established to eliminate organizational siloes. Built the unified enterprise correlation canvas.</div>
-                </div>
-                <div class="about-timeline-item">
-                  <div class="about-timeline-dot"></div>
-                  <div class="about-timeline-year">2025</div>
-                  <div class="about-timeline-title">Enterprise Scale</div>
-                  <div class="about-timeline-desc">Expanded architecture to protect 2.1M+ identities. Secured SOC 2 Type II compliance.</div>
-                </div>
-                <div class="about-timeline-item">
-                  <div class="about-timeline-dot"></div>
-                  <div class="about-timeline-year">2026</div>
-                  <div class="about-timeline-title">First-Contact Autonomy</div>
-                  <div class="about-timeline-desc">Launched the first cohort of autonomous workers, dropping resolution MTTR below 38 seconds.</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- CTA BAND -->
-      <section class="section-sm cta-band">
-        <div class="container align-center">
-          <span class="section-label" style="justify-content:center;">Join the future of enterprise AI</span>
-          <h2 class="mb-sm">See OneConcord AI in action.</h2>
-          <p class="mb-lg" style="max-width:420px;margin-left:auto;margin-right:auto">Book a demo and discover how autonomous AI workers can transform your enterprise operations in days, not months.</p>
-          <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
-            <button class="btn btn-primary btn-lg" onclick="go('contact')">Book a demo</button>
-            <a href="#pricing" class="btn btn-ghost btn-lg" onclick="go('pricing'); return false;">See pricing →</a>
-          </div>
-        </div>
-      </section>
-    </div><!-- /about -->
-
-    <!-- ════════════════════════════════════════ PAGE: CONTACT -->
-    <div id="pg-contact" class="page">
-      <div class="page-hero">
-        <div class="container">
-          <div class="breadcrumb">oneconcord.ai / <em>Contact Us</em></div>
-          <span class="section-label">Contact Us</span>
-          <h1>Get in Touch</h1>
-          <p class="lead mt">Request a personalized live demo of One Concord AI or get direct answers to technical
-            architecture questions from our team.</p>
-        </div>
-      </div>
-      <div class="glow-line"></div>
-
-      <section class="section">
-        <div class="container">
-          <div class="two-col-contact">
-            <!-- LEFT SIDE: TITLES, DETAILS, SOCIALS -->
-            <div>
-              <div class="fade-up" style="margin-bottom: 2.5rem;">
-                <span class="section-label" style="color: var(--accent); margin-bottom: 0.5rem; display: inline-block;">Contact Us</span>
-                <h2 style="font-family:'Space Grotesk',sans-serif; font-size:42px; font-weight:800; color:#fff; margin-bottom:1.2rem; line-height: 1.1;">Let's Connect!</h2>
-                <p style="color:var(--text-2); font-size:15px; line-height:1.7; max-width: 480px;">Ready to simplify your operations? Let's talk about how One Concord AI can help you work smarter and grow faster.</p>
-              </div>
-
-              <!-- Two-column info grid -->
-              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2.5rem;" class="fade-up">
-                <div>
-                  <h4 style="font-size: 0.85rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 700; margin-bottom: 0.8rem;">General Inquiries</h4>
-                  <p style="font-size: 0.95rem; margin-bottom: 0.5rem;"><a href="mailto:hello@oneconcord.ai" style="color: #fff; text-decoration: none; font-weight: 600; transition: color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='#fff'">hello@oneconcord.ai</a></p>
-                  <p style="color: var(--text-2); font-size: 0.9rem; line-height: 1.5;">Dubai Internet City,<br>Dubai, UAE</p>
-                </div>
-                <div>
-                  <h4 style="font-size: 0.85rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 700; margin-bottom: 0.8rem;">Technical Support</h4>
-                  <p style="font-size: 0.95rem; margin-bottom: 0.5rem;"><a href="mailto:support@oneconcord.ai" style="color: #fff; text-decoration: none; font-weight: 600; transition: color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='#fff'">support@oneconcord.ai</a></p>
-                  <p style="color: #22c55e; font-size: 0.88rem; font-weight: 600; display: flex; align-items: center; gap: 0.4rem; margin-top: 0.5rem;">
-                    <span style="background:#22c55e; width: 6px; height: 6px; border-radius: 50%; display: inline-block;"></span>
-                    All Systems Operational
-                  </p>
-                </div>
-              </div>
-
-              <!-- Follow Us socials -->
-              <div class="fade-up" style="border-top: 1px solid var(--border); padding-top: 1.5rem;">
-                <h4 style="font-size: 0.85rem; color: var(--text-3); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 700; margin-bottom: 0.8rem;">Follow Us</h4>
-                <div style="display: flex; gap: 16px;">
-                  <a href="https://linkedin.com" target="_blank" style="color: var(--text-3); transition: color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-3)'">
-                    <i data-lucide="linkedin" style="width: 20px; height: 20px;"></i>
-                  </a>
-                  <a href="https://twitter.com" target="_blank" style="color: var(--text-3); transition: color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-3)'">
-                    <i data-lucide="twitter" style="width: 20px; height: 20px;"></i>
-                  </a>
-                  <a href="https://github.com" target="_blank" style="color: var(--text-3); transition: color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-3)'">
-                    <i data-lucide="github" style="width: 20px; height: 20px;"></i>
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <!-- RIGHT SIDE: CONTACT FORM -->
-            <div class="dashboard-wrap fade-up" style="box-shadow: 0 15px 40px rgba(0,0,0,0.4), 0 0 30px rgba(181,242,219,0.08); border: 1px solid rgba(181, 242, 219, 0.25);">
-              <div class="dashboard-bar">
-                <span style="font-size:.72rem;color:var(--text-3);font-weight:600;letter-spacing:0.05em;text-transform:uppercase;">Secure Transmission Node</span>
-              </div>
-              <div class="dashboard-content" style="padding: 2.2rem 2rem;">
-                <form id="contactForm" onsubmit="submitForm(event)">
-                  <!-- First / Last Name row -->
-                  <div class="g2-form">
-                    <div class="form-group">
-                      <label class="form-label">First Name*</label>
-                      <input class="form-input" type="text" placeholder="e.g. Aisha" required />
-                    </div>
-                    <div class="form-group">
-                      <label class="form-label">Last Name*</label>
-                      <input class="form-input" type="text" placeholder="e.g. Verma" required />
-                    </div>
-                  </div>
-                  <!-- Email / Phone row -->
-                  <div class="g2-form">
-                    <div class="form-group">
-                      <label class="form-label">Work Email*</label>
-                      <input class="form-input" type="email" placeholder="e.g. aisha@novabank.ae" required />
-                    </div>
-                    <div class="form-group">
-                      <label class="form-label">Phone Number</label>
-                      <input class="form-input" type="tel" placeholder="e.g. +971 50 123 4567" />
-                    </div>
-                  </div>
-                  <!-- Subject field -->
-                  <div class="form-group">
-                    <label class="form-label">Subject*</label>
-                    <input class="form-input" type="text" placeholder="e.g. Enterprise AI Deployment" required />
-                  </div>
-                  <!-- Message textarea -->
-                  <div class="form-group">
-                    <label class="form-label">How can we help you today?*</label>
-                    <textarea class="form-input" rows="5" placeholder="Tell us about your IT operations or security needs..." required></textarea>
-                  </div>
-                  <!-- Submit button aligned left -->
-                  <div style="display: flex; justify-content: flex-start; margin-top: 10px;">
-                    <button class="btn btn-primary btn-lg" type="submit" style="padding: 0.8rem 2.2rem; font-weight: 700;">
-                      <i data-lucide="send" style="width:16px;height:16px;"></i>Send Message
-                    </button>
-                  </div>
-                </form>
-                <div id="formSuccess" style="display:none;text-align:center;padding:48px 20px">
-                  <div style="font-size:48px;margin-bottom:16px;color:var(--accent)">✓</div>
-                  <h3 style="color:var(--accent);margin-bottom:12px;font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:24px;">Request received.</h3>
-                  <p style="color:var(--text-2);font-size:14.5px;">Our team in Dubai will reach out within 4 business hours to confirm your demo slot.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          </div>
-        </div>
-      </section>
-    </div><!-- /contact -->
-
-  </div><!-- /page-content -->
-
-  <!-- ════════════════════════════════════════ FOOTER -->
-  <footer>
-    <div class="container">
-      <div class="ft-grid">
-        <div class="ft-brand">
-          <div class="logo" onclick="go('home')" style="cursor:pointer; margin-bottom: 1rem;">
-            <img src="Logo.png" alt="One Concord AI" />
-          </div>
-          <p>Transform enterprise operations with autonomous AI workers for IT, Security, Identity, Cloud, and
-            Compliance — executing tasks independently, securely, and in compliance with local cloud standards.</p>
-          <div style="margin-top:14px;font-size:12px;color:var(--text-3)">oneconcord.ai</div>
-        </div>
-        <div class="ft-col">
-          <h5>Platform</h5>
-          <span class="ft-lnk" onclick="go('platform')">How it works</span>
-          <span class="ft-lnk" onclick="go('agents')">Agent roster</span>
-          <span class="ft-lnk" onclick="go('platform')">Security</span>
-          <span class="ft-lnk" onclick="go('platform')">Compliance</span>
-          <span class="ft-lnk" onclick="go('platform')">Integrations</span>
-        </div>
-        <div class="ft-col">
-          <h5>Solutions</h5>
-          <span class="ft-lnk" onclick="go('solutions')">IT Operations</span>
-          <span class="ft-lnk" onclick="go('solutions')">Security &amp; Cloud</span>
-          <span class="ft-lnk" onclick="go('solutions')">Reporting &amp; Compliance</span>
-        </div>
-        <div class="ft-col">
-          <h5>Company</h5>
-          <span class="ft-lnk" onclick="go('about')">About us</span>
-          <span class="ft-lnk" onclick="go('contact')">Contact us</span>
-          <span class="ft-lnk" onclick="go('pricing')">Pricing</span>
-          <span class="ft-lnk" onclick="go('contact')">Book a demo</span>
-          <span class="ft-lnk">Careers</span>
-          <span class="ft-lnk">Privacy policy</span>
-        </div>
-      </div>
-      <div class="ft-bot">
-        <div class="ft-copy">© 2026 One Concord AI. All rights reserved. oneconcord.ai</div>
-        <div class="ft-legal">
-          <a href="#">Privacy</a>
-          <a href="#">Terms</a>
-          <a href="#">Security</a>
-          <a href="#">Status</a>
-        </div>
-      </div>
-    </div>
-  </footer>
-  <script src="js/index.js?v=2.5"></script>
-  <script src="js/agents2.js"></script>
-  <script src="js/modal.js?v=1.2"></script>
-</body>
-
+<!DOCTYPE html>
+
+<html lang="en">
+
+
+
+<head>
+
+  <meta charset="UTF-8" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>One Concord AI — Enterprise Agent Operating System | oneconcord.ai</title>
+
+  <meta name="description"
+
+    content="One Concord AI gives enterprises 12 autonomous AI workers across IT Operations, Security & Cloud, and Reporting & Compliance — including a Security Tool Coverage Agent — GCC Cloud compliant and globally deployable." />
+
+
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <link
+
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Manrope:wght@300;400;500;600;700;800&display=swap"
+
+    rel="stylesheet" />
+
+
+
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+
+
+  <link rel="stylesheet" href="css/index.css?v=2.6" />
+
+  <link rel="stylesheet" href="css/agents2.css" />
+
+</head>
+
+
+
+<body>
+
+
+
+  <!-- ════════════════════════════════════════ HEADER -->
+
+  <header id="site-header">
+
+    <div class="header-inner">
+
+      <div class="logo" onclick="go('home')" style="cursor:pointer;">
+
+        <img src="Logo.png" alt="One Concord AI" />
+
+      </div>
+
+      <nav aria-label="Main navigation" id="navLinks">
+
+        <!-- Injected via index.js -->
+
+      </nav>
+
+      <div class="header-ctas" id="navEnd">
+
+        <!-- Injected via index.js -->
+
+      </div>
+
+      <button class="nav-mobile-btn" onclick="toggleMob()" aria-label="Open menu">
+
+        <i data-lucide="menu" style="width:22px;height:22px;"></i>
+
+      </button>
+
+    </div>
+
+  </header>
+
+
+
+  <!-- ════════════════════════════════════════ MOBILE MENU -->
+
+  <div class="mob-menu" id="mobMenu">
+
+    <div class="mob-menu-head">
+
+      <div class="logo">
+
+        <img src="Logo.png" alt="One Concord AI" />
+
+      </div>
+
+      <button class="mob-close" onclick="toggleMob()">✕</button>
+
+    </div>
+
+    <div class="mob-nav" id="mobLinks">
+
+      <!-- Injected via index.js -->
+
+    </div>
+
+  </div>
+
+
+
+  <!-- ════════════════════════════════════════ PAGE CONTENT WRAPPER -->
+
+  <div id="page-content">
+
+
+
+    <!-- ════════════════════════════ AUTO-STRETCHED BACKGROUND CURVE LAYER -->
+
+    <div class="svg-container">
+
+      <svg id="dynamic-svg" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+        <defs>
+
+          <!-- Hand-drawn wobble: turbulence displaces the stroke like a real pen -->
+
+          <filter id="handDrawn" x="-5%" y="-5%" width="110%" height="110%">
+
+            <feTurbulence
+
+              id="handTurbulence"
+
+              type="fractalNoise"
+
+              baseFrequency="0.018 0.032"
+
+              numOctaves="4"
+
+              seed="7"
+
+              result="noise"/>
+
+            <feDisplacementMap
+
+              in="SourceGraphic"
+
+              in2="noise"
+
+              scale="5"
+
+              xChannelSelector="R"
+
+              yChannelSelector="G"/>
+
+          </filter>
+
+          <!-- Glow for active path -->
+
+          <filter id="glowDraw" x="-10%" y="-10%" width="120%" height="120%">
+
+            <feGaussianBlur stdDeviation="4" result="blur"/>
+
+            <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+
+          </filter>
+
+        </defs>
+
+        <!-- Background trace (shows full route, very faint) -->
+
+        <path id="bg-path" stroke="rgba(255, 201, 51, 0.08)" stroke-width="4"
+
+          stroke-linecap="round" stroke-linejoin="round"
+
+          filter="url(#handDrawn)" />
+
+        <!-- Active glowing drawing path (scroll-revealed on top) -->
+
+        <path id="active-path" stroke="#FFC933" stroke-width="4"
+
+          stroke-linecap="round" stroke-linejoin="round"
+
+          filter="url(#handDrawn)"
+
+          style="filter: url(#handDrawn) drop-shadow(0px 0px 14px rgba(255, 201, 51, 0.7));" />
+
+      </svg>
+
+    </div>
+
+
+
+    <!-- ════════════════════════════════════════ PAGE: HOME -->
+
+    <div id="pg-home" class="page">
+
+      <!-- HERO -->
+
+      <section class="hero" id="hero" aria-label="Hero">
+
+        <div class="hero-bg"></div>
+
+        <div class="hero-grid"></div>
+
+        <div class="container">
+
+          <div class="hero-inner">
+
+            <div class="hero-left">
+
+              <div style="margin-bottom:1.25rem;">
+
+                <span id="hero-badge" class="badge"><span class="badge-dot"></span>Introducing One Concord AI</span>
+
+              </div>
+
+
+
+              <div class="hero-title-container">
+
+                <span
+
+                  style="color: var(--text-1); font-family: var(--font); font-size: clamp(2.5rem, 5.2vw, 4.2rem); font-weight: 800; line-height: 1.1; letter-spacing: -1.5px;">Unified
+
+                  Enterprise AI</span>
+
+                <div class="slider-mask">
+
+                  <div class="slider-wrapper" id="hero-title-slider">
+
+                    <span class="slide-text" style="color:var(--accent);">IT Operations</span>
+
+                    <span class="slide-text" style="color:var(--accent-cyan);">Security &amp; Cloud</span>
+
+                    <span class="slide-text" style="color:var(--accent-violet);">Reporting &amp; GRC</span>
+
+                    <span class="slide-text" style="color:var(--gold-bright);">Sovereign Cloud</span>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+
+
+              <p class="hero-sub" style="margin-top: 1.5rem;">Transform enterprise operations with autonomous AI workers
+
+                for IT, Security, Identity, Cloud, and Compliance executing tasks independently, securely, and in
+
+                compliance with local cloud standards.</p>
+
+              <p class="hero-sub"
+
+                style="font-size:0.92rem; color:var(--text-3); margin-top:-0.5rem; margin-bottom: 2rem;">Intuitive web
+
+                interface with native Microsoft Teams and Slack integration, enabling users to interact with autonomous
+
+                AI workers from the tools they already use every day.</p>
+
+
+
+              <div class="hero-btns">
+
+                <button id="hero-cta-btn" class="btn btn-primary" onclick="go('contact')">
+
+                  <i data-lucide="zap" style="width:16px;height:16px;"></i>Request Access
+
+                </button>
+
+                <button class="btn btn-ghost" onclick="go('platform')">See How It Works →</button>
+
+              </div>
+
+
+
+              <div class="hero-stats">
+
+                <div>
+
+                  <div class="stat-num">12<em>×</em></div>
+
+                  <div class="stat-lbl">Digital Workers</div>
+
+                </div>
+
+                <div>
+
+                  <div class="stat-num">78<em>%</em></div>
+
+                  <div class="stat-lbl">Autonomy Rate</div>
+
+                </div>
+
+                <div>
+
+                  <div class="stat-num">&lt;60<em>s</em></div>
+
+                  <div class="stat-lbl">Avg Resolution</div>
+
+                </div>
+
+                <div>
+
+                  <div class="stat-num">70<em>+</em></div>
+
+                  <div class="stat-lbl">Connectors</div>
+
+                </div>
+
+              </div>
+
+            </div>
+
+
+
+            <div class="hero-visual">
+
+              <div style="position:absolute;inset:0;pointer-events:none;">
+
+                <div class="pulse-node" style="top:12%;left:4%;"></div>
+
+                <div class="pulse-node" style="top:74%;right:12%;animation-delay:1.2s;background:var(--accent-violet);">
+
+                </div>
+
+                <div class="pulse-node" style="top:32%;right:22%;animation-delay:.7s;background:var(--accent-cyan);">
+
+                </div>
+
+              </div>
+
+              <div class="dashboard-wrap">
+
+                <div class="dashboard-bar">
+
+                  <div class="db-dot" style="background:#f43f5e;"></div>
+
+                  <div class="db-dot" style="background:#fbbf24;"></div>
+
+                  <div class="db-dot" style="background:#22c55e;"></div>
+
+                  <span style="margin-left:.5rem;font-size:.72rem;color:var(--text-3);font-weight:600;">One Concord ·
+
+                    Agent Operations Center</span>
+
+                </div>
+
+                <div class="dashboard-content">
+
+                  <div class="db-header-row">
+
+                    <span class="db-title">Agent Execution Stream</span>
+
+                    <span class="db-status"><span class="db-status-dot"></span>Active</span>
+
+                  </div>
+
+                  <div class="db-metrics">
+
+                    <div class="db-metric">
+
+                      <div class="db-metric-val blue" data-count="12" data-suffix=" workers">0</div>
+
+                      <div class="db-metric-label">Active Agents</div>
+
+                    </div>
+
+                    <div class="db-metric">
+
+                      <div class="db-metric-val red" data-count="94" data-suffix="%">0</div>
+
+                      <div class="db-metric-label">Containment</div>
+
+                    </div>
+
+                    <div class="db-metric">
+
+                      <div class="db-metric-val green" data-count="38" data-suffix=" sec">0</div>
+
+                      <div class="db-metric-label">Mean MTTR</div>
+
+                    </div>
+
+                  </div>
+
+                  <div class="db-chart-row">
+
+                    <div class="db-chart">
+
+                      <div class="db-chart-title">Autonomy Level · 24h</div>
+
+                      <div class="mini-bars">
+
+                        <div class="mini-bar" style="height:45%;"></div>
+
+                        <div class="mini-bar" style="height:65%;"></div>
+
+                        <div class="mini-bar" style="height:52%;"></div>
+
+                        <div class="mini-bar" style="height:78%;"></div>
+
+                        <div class="mini-bar" style="height:72%;"></div>
+
+                        <div class="mini-bar" style="height:90%;"></div>
+
+                        <div class="mini-bar"
+
+                          style="height:100%;background:linear-gradient(180deg,rgba(181, 242, 219, .9),rgba(181, 242, 219, .3));">
+
+                        </div>
+
+                      </div>
+
+                    </div>
+
+                    <div class="db-chart" style="max-width:120px;">
+
+                      <div class="db-chart-title">Task Deflection</div>
+
+                      <svg viewBox="0 0 80 80" style="width:70px;height:70px;display:block;margin:0 auto;">
+
+                        <circle cx="40" cy="40" r="28" fill="none" stroke="rgba(255,255,255,.06)" stroke-width="10" />
+
+                        <circle cx="40" cy="40" r="28" fill="none" stroke="#B5F2DB" stroke-width="10"
+
+                          stroke-dasharray="78 100" stroke-dashoffset="0" stroke-linecap="round"
+
+                          transform="rotate(-90 40 40)" />
+
+                        <text x="40" y="44" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="800"
+
+                          font-family="var(--mono)">78%</text>
+
+                      </svg>
+
+                    </div>
+
+                  </div>
+
+                  <div class="db-alert">
+
+                    <span class="db-alert-dot"></span>
+
+                    Identity Agent suspended unauthorized VPN session for WS-FIN-0042
+
+                  </div>
+
+                </div>
+
+              </div>
+
+              <div class="float-card float-card-1">
+
+                <div class="fc-label">Agent SD</div>
+
+                <div class="fc-val">38s</div>
+
+                <div class="fc-sub">VPN cert renewal closed</div>
+
+              </div>
+
+              <div class="float-card float-card-2">
+
+                <div class="fc-label">Annual Savings</div>
+
+                <div class="fc-val">$650K+</div>
+
+                <div class="fc-sub">Deflecting L1 ticket backlogs</div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+
+          <!-- TICKER -->
+
+          <div class="ticker-wrap">
+
+            <div class="ticker-lbl"><span class="ticker-dot"></span> Live agent activity — right now</div>
+
+            <div class="ticker">
+
+              <div class="ticker-track" id="tickerTrack"></div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+
+      <!-- STAT STRIP -->
+
+      <section class="strip">
+
+        <div class="container">
+
+          <div class="strip-inner">
+
+            <div class="align-center">
+
+              <div class="s-num"><em>$650K</em></div>
+
+              <div class="s-lbl">Operational savings per customer / year</div>
+
+            </div>
+
+            <div class="align-center">
+
+              <div class="s-num"><em>62</em>%</div>
+
+              <div class="s-lbl">Reduction in MTTR vs manual baseline</div>
+
+            </div>
+
+            <div class="align-center">
+
+              <div class="s-num"><em>99.9</em>%</div>
+
+              <div class="s-lbl">Platform uptime SLA</div>
+
+            </div>
+
+            <div class="align-center">
+
+              <div class="s-num"><em>5</em> days</div>
+
+              <div class="s-lbl">Contract to first live agent action</div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+
+      <!-- HOW IT WORKS -->
+
+      <section class="section" id="how-it-works">
+
+        <div class="container">
+
+          <div class="align-center mb-lg" style="max-width:580px;margin-left:auto;margin-right:auto">
+
+            <span class="section-label">How it works</span>
+
+            <h2>Understand. Reason. Decide. Execute. Learn.</h2>
+
+            <p class="mt">Every agent runs the same five-step lifecycle. Every decision is policy-governed. Every action
+
+              is audit-logged. No black boxes.</p>
+
+          </div>
+
+          <div id="howSteps"></div>
+
+        </div>
+
+      </section>
+
+
+
+      <div class="divider"></div>
+
+
+
+
+
+
+
+      <!-- AGENT PREVIEW -->
+
+      <section class="section" id="agent-preview-section">
+
+        <div class="container" style="max-width: 1440px;">
+
+          <div class="row-between">
+
+            <div>
+
+              <span class="section-label">The platform</span>
+
+              <h2>Intelligent digital workers.<br />Three domains. Full coverage.</h2>
+
+            </div>
+
+            <a href="#agents" class="btn btn-ghost" onclick="go('agents'); return false;">View all agents →</a>
+
+          </div>
+
+          <div id="agentPreview"></div>
+
+        </div>
+
+      </section>
+
+
+
+      <!-- COMPLIANCE SECTION -->
+
+      <section class="section compliance-section" id="compliance-ready">
+
+        <!-- Glowing Isometric SVG Background -->
+
+        <div class="compliance-bg-wrap">
+
+          <svg class="compliance-iso-svg" id="complianceIsoSvg" fill="none" xmlns="http://www.w3.org/2000/svg"></svg>
+
+        </div>
+
+        <div class="container relative-z" style="max-width: 1200px;">
+
+          <!-- Centered Title & Description -->
+
+          <div class="align-center mb-lg" style="max-width: 750px; margin-left: auto; margin-right: auto;">
+
+            <span class="section-label">Compliance Ready</span>
+
+            <h2>Sovereign GRC &amp; Continuous Evidence Collection</h2>
+
+            <p class="mt" style="font-size: 1.05rem; color: var(--text-2); line-height: 1.6;">
+
+              One Concord AI transitions compliance from a periodic audit panic into a continuous, automated background
+
+              task. Our GRC and Security Tool Coverage agents continuously monitor controls and gather immutable SOC 2
+
+              evidence.
+
+            </p>
+
+          </div>
+
+
+
+          <div class="grc-platform-wrapper">
+
+            <!-- Background Decorative Glow Ring -->
+
+            <div class="center-bg-glow-wrap">
+
+              <div class="center-bg-glow"></div>
+
+            </div>
+
+
+
+            <!-- SVG Connectors Layer -->
+
+            <svg class="grc-svg-layer" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+              <!-- Left to Center GRC paths -->
+
+              <path class="grc-flow-line" id="grc-path-left-1" stroke="rgba(20, 184, 166, 0.08)" stroke-width="2" />
+
+              <path class="grc-flow-line" id="grc-path-left-2" stroke="rgba(20, 184, 166, 0.08)" stroke-width="2" />
+
+              <path class="grc-flow-line" id="grc-path-left-3" stroke="rgba(20, 184, 166, 0.08)" stroke-width="2" />
+
+
+
+              <!-- Center to Right GRC paths -->
+
+              <path class="grc-flow-line" id="grc-path-right-1" stroke="rgba(20, 184, 166, 0.08)" stroke-width="2" />
+
+              <path class="grc-flow-line" id="grc-path-right-2" stroke="rgba(20, 184, 166, 0.08)" stroke-width="2" />
+
+              <path class="grc-flow-line" id="grc-path-right-3" stroke="rgba(20, 184, 166, 0.08)" stroke-width="2" />
+
+
+
+              <!-- Active GRC Animated Flow Overlays -->
+
+              <path class="grc-flow-pulse" id="grc-pulse-left-1" stroke="var(--accent)" stroke-width="2"
+
+                stroke-linecap="round" />
+
+              <path class="grc-flow-pulse" id="grc-pulse-left-2" stroke="var(--accent)" stroke-width="2"
+
+                stroke-linecap="round" />
+
+              <path class="grc-flow-pulse" id="grc-pulse-left-3" stroke="var(--accent)" stroke-width="2"
+
+                stroke-linecap="round" />
+
+              <path class="grc-flow-pulse" id="grc-pulse-right-1" stroke="var(--accent)" stroke-width="2"
+
+                stroke-linecap="round" />
+
+              <path class="grc-flow-pulse" id="grc-pulse-right-2" stroke="var(--accent)" stroke-width="2"
+
+                stroke-linecap="round" />
+
+              <path class="grc-flow-pulse" id="grc-pulse-right-3" stroke="var(--accent)" stroke-width="2"
+
+                stroke-linecap="round" />
+
+            </svg>
+
+
+
+            <!-- Left Column: Frameworks Group 1 -->
+
+            <div class="grc-col grc-left-col">
+
+              <div class="grc-card active" data-flow="left-1" id="grc-card-left-1">
+
+                <div class="grc-card-icon"><i data-lucide="shield"></i></div>
+
+                <div class="grc-card-title">ISO/IEC 27001</div>
+
+                <div class="grc-card-dot-right"></div>
+
+              </div>
+
+              <div class="grc-card" data-flow="left-2" id="grc-card-left-2">
+
+                <div class="grc-card-icon"><i data-lucide="file-check-2"></i></div>
+
+                <div class="grc-card-title">SOC 2 Type II</div>
+
+                <div class="grc-card-dot-right"></div>
+
+              </div>
+
+              <div class="grc-card" data-flow="left-3" id="grc-card-left-3">
+
+                <div class="grc-card-icon"><i data-lucide="server"></i></div>
+
+                <div class="grc-card-title">NESA (UAE)</div>
+
+                <div class="grc-card-dot-right"></div>
+
+              </div>
+
+            </div>
+
+
+
+            <!-- Center Column: GRC Engine Core -->
+
+            <div class="grc-col grc-center-col">
+
+              <div class="grc-core-card" id="grc-core-center">
+
+                <!-- Concentric circle radar container -->
+
+                <div class="radar-container-wrap">
+
+                  <div class="radar-circle ring-3"></div>
+
+                  <div class="radar-circle ring-2"></div>
+
+                  <div class="radar-circle ring-1"></div>
+
+                  <div class="radar-core" style="background:var(--accent); box-shadow: 0 0 15px var(--accent);"></div>
+
+                </div>
+
+
+
+                <div class="grc-core-title">GRC Core</div>
+
+                <div class="grc-core-subtitle">Continuous Audit Console</div>
+
+
+
+                <!-- Left & Right Connectors on Center Card -->
+
+                <div class="grc-center-dot-left"></div>
+
+                <div class="grc-center-dot-right"></div>
+
+              </div>
+
+            </div>
+
+
+
+            <!-- Right Column: Frameworks Group 2 -->
+
+            <div class="grc-col grc-right-col">
+
+              <div class="grc-card" data-flow="right-1" id="grc-card-right-1">
+
+                <div class="grc-card-dot-left"></div>
+
+                <div class="grc-card-icon"><i data-lucide="lock"></i></div>
+
+                <div class="grc-card-title">PDPL (UAE)</div>
+
+              </div>
+
+              <div class="grc-card" data-flow="right-2" id="grc-card-right-2">
+
+                <div class="grc-card-dot-left"></div>
+
+                <div class="grc-card-icon"><i data-lucide="credit-card"></i></div>
+
+                <div class="grc-card-title">PCI DSS</div>
+
+              </div>
+
+              <div class="grc-card" data-flow="right-3" id="grc-card-right-3">
+
+                <div class="grc-card-dot-left"></div>
+
+                <div class="grc-card-icon"><i data-lucide="cloud"></i></div>
+
+                <div class="grc-card-title">AWS UAE Region</div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+
+
+
+
+
+
+
+      <!-- TESTIMONIALS -->
+
+      <section class="section testimonials-section">
+
+        <div class="container">
+
+          <div class="align-center mb-lg" style="max-width:580px;margin-left:auto;margin-right:auto">
+
+            <span class="section-label">Customer stories</span>
+
+            <h2>Trusted by operations teams worldwide.</h2>
+
+          </div>
+
+        </div>
+
+
+
+        <!-- Full-width Horizontal Autoscroll Slider -->
+
+        <div class="testimonials-slider-container">
+
+          <div class="testimonials-track" id="testimonialsTrack">
+
+            <!-- Injected via index.js -->
+
+          </div>
+
+        </div>
+
+
+
+        <!-- Navigation arrows for mobile slider -->
+
+        <div class="testimonials-mobile-nav">
+
+          <button class="mobile-nav-btn prev-btn" aria-label="Previous story"><i data-lucide="arrow-left"></i></button>
+
+          <button class="mobile-nav-btn next-btn" aria-label="Next story"><i data-lucide="arrow-right"></i></button>
+
+        </div>
+
+      </section>
+
+
+
+      <!-- CTA BAND -->
+
+      <section class="section-sm cta-band">
+
+        <div class="container align-center">
+
+          <span class="section-label" style="justify-content:center;">Get started</span>
+
+          <h2 class="mb-sm">See what autonomous operations looks like for your team.</h2>
+
+          <p class="mb-lg" style="max-width:420px;margin-left:auto;margin-right:auto">One Concord AI connects to your
+
+            existing systems in under 5 business days. Your first agent is handling real workflows by end of week one.
+
+          </p>
+
+          <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+
+            <button class="btn btn-primary btn-lg" onclick="go('contact')">Book a demo</button>
+
+            <a href="#pricing" class="btn btn-ghost btn-lg" onclick="go('pricing'); return false;">See pricing →</a>
+
+          </div>
+
+        </div>
+
+      </section>
+
+    </div><!-- /home -->
+
+
+
+    <!-- ════════════════════════════════════════ PAGE: PLATFORM -->
+
+    <div id="pg-platform" class="page">
+
+      <div class="page-hero">
+
+        <div class="container">
+
+          <div class="breadcrumb">oneconcord.ai / <em>Platform</em></div>
+
+          <span class="section-label">The platform</span>
+
+          <h1 style="max-width:680px">The architecture behind autonomous enterprise operations</h1>
+
+          <p class="lead mt">OneConcord AI is an Agent Operating System not a chatbot or an automation platform. It
+
+            understands your enterprise, enforces governance, and enables AI workers to operate autonomously.</p>
+
+        </div>
+
+      </div>
+
+      <div class="glow-line"></div>
+
+
+
+      <!-- SERVICES -->
+
+      <section class="section">
+
+        <div class="container">
+
+          <span class="section-label" style="justify-content:center;">Core architecture</span>
+
+          <h2 class="align-center mb-lg">Five services. One intelligent loop.</h2>
+
+          <div id="platformServices" class="bento-grid"></div>
+
+        </div>
+
+      </section>
+
+
+
+      <div class="divider"></div>
+
+
+
+      <!-- EXEC FLOW + RISK (BENTO REDESIGN) -->
+
+      <section class="section">
+
+        <div class="container">
+
+          <span class="section-label" style="justify-content:center;">Governance & control</span>
+
+          <h2 class="align-center mb-lg">Deterministic execution. Strict policy control.</h2>
+
+
+
+          <div class="bento-grid">
+
+            <!-- Card 1: Execution Flow (Col Span 2) -->
+
+            <div class="bento-card b-span-2">
+
+              <div
+
+                style="display:flex; justify-content:space-between; align-items:flex-start; gap:20px; flex-wrap:wrap; width:100%;">
+
+                <div style="flex:1.2; min-width:280px;">
+
+                  <span class="section-label" style="margin-bottom:8px">Execution flow</span>
+
+                  <h3 class="mb-sm">Every request follows the same trusted path</h3>
+
+                  <p style="font-size:13.5px; color:var(--text-3); line-height:1.5; margin-bottom:20px">One Concord AI
+
+                    doesn't improvise. Every agent execution follows a deterministic path — from channel ingestion
+
+                    through intent classification, risk scoring, connector execution, and audit logging.</p>
+
+                  <div id="execFlow" style="display:flex; flex-direction:column; gap:10px"></div>
+
+                </div>
+
+
+
+                <!-- SVG Pipeline visualizer inside Bento card (inspired by Vengeance UI Card1) -->
+
+                <div
+
+                  style="flex:1; min-width:250px; height:320px; display:flex; align-items:center; justify-content:center;">
+
+                  <div class="bento-visual" style="width:100%; height:100%; margin-top:0;">
+
+                    <div class="bento-dotted-grid"></div>
+
+                    <svg id="preview-svg" class="platform-pipeline-svg" viewBox="0 0 320 300"
+
+                      style="width:100%; height:100%; position:relative; z-index:2; overflow:visible;">
+
+                      <!-- Paths -->
+
+                      <path d="M 50 40 L 50 90" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" />
+
+                      <path d="M 50 130 L 50 170" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" />
+
+                      <path d="M 50 210 L 50 250" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" />
+
+                      <path d="M 90 90 L 230 90" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" />
+
+                      <path d="M 230 130 L 230 210" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" />
+
+
+
+                      <!-- Flow pulses -->
+
+                      <path id="pipe-pulse-1" d="M 50 40 L 50 90" fill="none" stroke="var(--accent)" stroke-width="2"
+
+                        stroke-linecap="round" style="stroke-dasharray:100; stroke-dashoffset:100; opacity:0;" />
+
+                      <path id="pipe-pulse-2" d="M 90 90 L 230 90" fill="none" stroke="var(--accent-cyan)"
+
+                        stroke-width="2" stroke-linecap="round"
+
+                        style="stroke-dasharray:200; stroke-dashoffset:200; opacity:0;" />
+
+                      <path id="pipe-pulse-3" d="M 230 130 L 230 210" fill="none" stroke="var(--accent-violet)"
+
+                        stroke-width="2" stroke-linecap="round"
+
+                        style="stroke-dasharray:100; stroke-dashoffset:100; opacity:0;" />
+
+
+
+                      <!-- Nodes (Request, Router, Agent, Memory, Tools, Response) -->
+
+                      <g id="node-ingest" transform="translate(50,40)">
+
+                        <circle r="12" fill="rgba(4, 47, 52, 0.9)" stroke="rgba(255,255,255,0.15)"
+
+                          stroke-width="1.5" />
+
+                        <circle r="4" fill="var(--accent)" />
+
+                      </g>
+
+                      <g id="node-intel" transform="translate(50,90)">
+
+                        <rect x="-16" y="-16" width="32" height="32" rx="6" fill="rgba(4, 47, 52, 0.9)"
+
+                          stroke="rgba(255,255,255,0.15)" stroke-width="1.5" />
+
+                        <circle r="5" fill="var(--accent-cyan)" />
+
+                      </g>
+
+                      <g id="node-risk" transform="translate(50,170)">
+
+                        <rect x="-16" y="-16" width="32" height="32" rx="6" fill="rgba(4, 47, 52, 0.9)"
+
+                          stroke="rgba(255,255,255,0.15)" stroke-width="1.5" />
+
+                        <circle r="5" fill="var(--gold)" />
+
+                      </g>
+
+                      <g id="node-execution" transform="translate(230,90)">
+
+                        <rect x="-20" y="-20" width="40" height="40" rx="8" fill="rgba(4, 47, 52, 0.9)"
+
+                          stroke="rgba(255,255,255,0.15)" stroke-width="1.5" />
+
+                        <circle r="6" fill="var(--accent-violet)" />
+
+                      </g>
+
+                      <g id="node-audit" transform="translate(230,210)">
+
+                        <circle r="12" fill="rgba(4, 47, 52, 0.9)" stroke="rgba(255,255,255,0.15)"
+
+                          stroke-width="1.5" />
+
+                        <circle r="4" fill="#10b981" />
+
+                      </g>
+
+
+
+                      <!-- Labels -->
+
+                      <text x="50" y="20" fill="var(--text-3)" font-size="8" font-family="var(--mono)" font-weight="700"
+
+                        text-anchor="middle">INGEST</text>
+
+                      <text x="90" y="80" fill="var(--text-3)" font-size="8" font-family="var(--mono)"
+
+                        font-weight="700">ROUTER</text>
+
+                      <text x="50" y="200" fill="var(--text-3)" font-size="8" font-family="var(--mono)"
+
+                        font-weight="700" text-anchor="middle">RISK CHECK</text>
+
+                      <text x="230" y="62" fill="var(--text-3)" font-size="8" font-family="var(--mono)"
+
+                        font-weight="700" text-anchor="middle">RUNTIME</text>
+
+                      <text x="230" y="234" fill="var(--text-3)" font-size="8" font-family="var(--mono)"
+
+                        font-weight="700" text-anchor="middle">AUDIT LOG</text>
+
+                    </svg>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+
+
+
+            <!-- Card 2: Policy Engine (Col Span 1) -->
+
+            <div class="bento-card b-span-1">
+
+              <div>
+
+                <span class="section-label" style="margin-bottom:8px">Policy engine</span>
+
+                <h3 class="mb-sm">Risk-based execution control</h3>
+
+                <p style="font-size:13px; color:var(--text-3); line-height:1.45; margin-bottom:14px">Every action is
+
+                  scored across 8 factors before execution. No autonomous execution without a policy verdict.</p>
+
+                <div id="riskRows" style="display:flex; flex-direction:column; gap:7px;"></div>
+
+              </div>
+
+            </div>
+
+
+
+            <!-- Card 3: Risk Routing (Col Span 3) -->
+
+            <div class="bento-card b-span-3">
+
+              <div style="display:flex; flex-direction:column; gap:12px; width:100%;">
+
+                <div>
+
+                  <span class="section-label" style="margin-bottom:6px">Risk routing thresholds</span>
+
+                  <h3 class="mb-xs" style="font-size:18px;">How policies route executing actions</h3>
+
+                </div>
+
+                <div id="riskPills"></div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+
+      <div class="divider"></div>
+
+
+
+      <!-- ISOLATION -->
+
+      <section class="section-sm" style="background:rgba(4, 47, 52, 0.2);">
+
+        <div class="container">
+
+          <div class="align-center mb-lg" style="max-width:580px;margin-left:auto;margin-right:auto">
+
+            <span class="section-label">Enterprise architecture</span>
+
+            <h2>Complete tenant isolation.<br />Zero data bleed.</h2>
+
+            <p class="mt">Multi-tenant isolation enforced at every layer — database, knowledge graph, message bus,
+
+              storage, and agent execution — independently verified.</p>
+
+          </div>
+
+          <div id="isoLayers" class="bento-grid"></div>
+
+        </div>
+
+      </section>
+
+
+
+        <section class="section-sm align-center cta-band">
+
+          <div class="container">
+
+            <span class="section-label" style="justify-content:center;">Get started</span>
+
+            <h3 class="mb">See the platform working on your workflows.</h3>
+
+            <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+
+              <button class="btn btn-primary btn-lg" onclick="go('contact')">Book a demo</button>
+
+              <a href="#pricing" class="btn btn-ghost btn-lg" onclick="go('pricing'); return false;">See pricing →</a>
+
+            </div>
+
+          </div>
+
+        </section>
+
+    </div><!-- /pg-platform -->
+
+
+
+    <!-- ════════════════════════════════════════ PAGE: AGENTS -->
+
+    <div id="pg-agents" class="page">
+
+
+
+      <!-- ── HERO ─────────────────────────────────────────────────── -->
+
+      <div id="ag-hero"></div>
+
+
+
+      <!-- ── STICKY NAVIGATION TABS ────────────────────────────────── -->
+
+      <div id="ag-sticky-tabs"></div>
+
+
+
+      <!-- ── AGENT BENTO GRID ───────────────────────────────────────── -->
+
+      <div id="ag-grid-section">
+
+        <div class="ag-section-header">
+
+          <div>
+
+            <div class="ag-section-kicker">Agent Roster</div>
+
+            <h2 class="ag-section-title">12 agents. Every domain covered.</h2>
+
+          </div>
+
+          <div class="ag-agent-count">Showing all 12 agents across 3 domains</div>
+
+        </div>
+
+        <div id="ag-bento-grid" class="ag-bento-grid"></div>
+
+      </div>
+
+
+
+      <!-- ── CUBE: AGENT DEEP-DIVE (Qount-style) ──────────────────── -->
+
+      <div id="ag-cube-section"></div>
+
+
+
+      <!-- ── IMPACT STATS BAND ──────────────────────────────────────── -->
+
+      <div id="ag-stats-band">
+
+        <div class="ag-stats-inner">
+
+          <div class="ag-stats-header">
+
+            <div class="ag-section-kicker" style="justify-content:center;display:flex">Combined agent impact</div>
+
+            <h2 class="ag-section-title" style="text-align:center;margin-top:8px">Numbers that move the enterprise.</h2>
+
+          </div>
+
+          <div id="ag-stats-grid" class="ag-stats-grid"></div>
+
+        </div>
+
+      </div>
+
+
+
+      <!-- ── INTEGRATIONS ───────────────────────────────────────────── -->
+
+      <div id="ag-integrations-section">
+
+        <div id="ag-integrations" style="padding:80px 32px;max-width:1180px;margin:0 auto">
+
+          <div id="ag-integrations-header" class="ag-integrations-header"></div>
+
+          <div class="ag-marquee-wrap" id="ag-marquee-wrap"></div>
+
+          <div style="text-align:center;margin-top:28px">
+
+            <button class="ag-btn-ghost" onclick="go('contact')">Request a custom connector →</button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+
+      <!-- ── MULTI-AGENT WORKFLOW ───────────────────────────────────── -->
+
+      <div id="ag-workflow">
+
+        <div class="ag-workflow-inner">
+
+          <div class="ag-workflow-header">
+
+            <div class="ag-section-kicker" style="display:flex;justify-content:center">Multi-agent coordination</div>
+
+            <h2>Agents that work together.</h2>
+
+            <p>When a complex outcome spans multiple domains, agents coordinate automatically — no tickets, no wait, no human handoffs.</p>
+
+          </div>
+
+          <div id="ag-workflow-grid" class="ag-workflow-cards"></div>
+
+        </div>
+
+      </div>
+
+
+
+      <!-- ── CTA ───────────────────────────────────────────────────── -->
+
+      <div id="ag-cta">
+
+        <div class="ag-cta-inner">
+
+          <span class="ag-cta-kicker">Get started</span>
+
+          <h2>See the agents working<br>on <span class="ag-grad-text">your</span> workflows.</h2>
+
+          <p>Schedule a live demo and see all 12 agents in action across your actual operational scenarios — not a canned slideshow.</p>
+
+          <div class="ag-cta-actions">
+
+            <button class="ag-btn-primary" onclick="go('contact')">Book a live demo ↗</button>
+
+            <a href="#pricing" class="ag-btn-ghost" onclick="go('pricing'); return false;">Explore pricing →</a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+
+    </div><!-- /pg-agents -->
+
+
+
+    <!-- ════════════════════════════════════════ PAGE: SOLUTIONS -->
+
+    <div id="pg-solutions" class="page">
+
+      <div class="page-hero">
+
+        <div class="container">
+
+          <div class="breadcrumb">oneconcord.ai / <em>Solutions</em></div>
+
+          <span class="section-label">By team</span>
+
+          <h1>Built for every team<br />in your enterprise.</h1>
+
+          <p class="lead mt">One Concord AI is not a generic automation tool. Twelve agents are organised across three
+
+            domains — IT Operations, Security &amp; Cloud, and Reporting &amp; Compliance.</p>
+
+        </div>
+
+      </div>
+
+      <div class="glow-line"></div>
+
+
+
+      <section class="section">
+
+        <div class="container">
+
+          <div class="sol-tabs">
+
+            <button class="sol-tab act" data-sol="it">IT Operations</button>
+
+            <button class="sol-tab" data-sol="security">Security &amp; Cloud</button>
+
+            <button class="sol-tab" data-sol="leadership">Reporting &amp; Compliance</button>
+
+          </div>
+
+          <div id="solContent">
+
+            <!-- Populated dynamically via index.js -->
+
+          </div>
+
+        </div>
+
+      </section>
+
+    </div><!-- /solutions -->
+
+
+
+    <!-- ════════════════════════════════════════ PAGE: PRICING -->
+
+    <div id="pg-pricing" class="page">
+
+
+
+      <!-- ══ PRICING STARS PARTICLE SECTION ══ -->
+
+      <div class="pricing-stars-wrap">
+
+        <!-- Floating star particles (CSS box-shadow technique) -->
+
+        <div class="price-stars price-stars-sm"></div>
+
+        <div class="price-stars price-stars-md"></div>
+
+        <div class="price-stars price-stars-lg"></div>
+
+
+
+        <!-- Dark globe / radial glow behind title -->
+
+        <div class="pricing-globe-wrap">
+
+          <div class="pricing-globe"></div>
+
+          <div class="pricing-globe-glow"></div>
+
+        </div>
+
+
+
+        <div class="container" style="position: relative; z-index: 3; text-align: center;">
+
+          <div class="breadcrumb">oneconcord.ai / <em>Pricing</em></div>
+
+          <span class="section-label" style="justify-content:center;">Pricing</span>
+
+          <h1 style="line-height: 1.15;">Simple, predictable pricing.<br>Scale as you grow.</h1>
+
+          <p class="lead mt" style="max-width:620px; margin-left:auto; margin-right:auto;">Choose the plan that fits your enterprise requirements. All plans include core connectors and standard security governance.</p>
+
+        </div>
+
+      </div>
+
+      <div class="glow-line"></div>
+
+
+
+      <section class="section">
+
+        <div class="container">
+
+          <div id="pricingGrid">
+
+            <!-- Populated dynamically via index.js -->
+
+          </div>
+
+
+
+          <div style="margin-top:80px;text-align:center;" class="fade-up">
+
+            <span class="section-label" style="justify-content:center;">Compare plans</span>
+
+            <h2 class="mb-lg">Detailed feature comparison</h2>
+
+            <div id="compareTable">
+
+              <!-- Populated dynamically via index.js -->
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+    </div><!-- /pricing -->
+
+      <div id="pg-about" class="page">
+
+      <div class="page-hero">
+
+        <div class="container">
+
+          <div class="about-hero-grid">
+
+            <div class="about-hero-left">
+
+              <div class="breadcrumb">oneconcord.ai / <em>About Us</em></div>
+
+              <span class="section-label">About OneConcord AI</span>
+
+              <h1 style="line-height: 1.15;">Building Trusted AI for the Modern Enterprise</h1>
+
+              <p class="lead mt">OneConcord AI is an enterprise AI company unifying intelligence, automating execution, and enabling organizations to securely deploy AI across every business function.</p>
+
+            </div>
+
+            <div class="about-hero-visual fade-up">
+
+              <div class="about-console-mock">
+
+                <div class="about-console-bar">
+
+                  <div class="about-console-dot" style="background:#f43f5e"></div>
+
+                  <div class="about-console-dot" style="background:#fbbf24"></div>
+
+                  <div class="about-console-dot" style="background:#22c55e"></div>
+
+                  <span class="about-console-title">OneConcord Core Operations Console</span>
+
+                </div>
+
+                <div class="about-console-content">
+
+                  <div class="about-telemetry-row">
+
+                    <div class="about-telemetry-item">
+
+                      <span class="about-telemetry-label">Telemetry Status</span>
+
+                      <span class="about-telemetry-status">
+
+                        <span class="badge-dot" style="background:#22c55e;width:6px;height:6px;display:inline-block;border-radius:50%"></span> Active
+
+                      </span>
+
+                    </div>
+
+                    <div class="about-telemetry-item">
+
+                      <span class="about-telemetry-label">Throughput</span>
+
+                      <span class="about-telemetry-value">148,420 actions/hr</span>
+
+                    </div>
+
+                    <div class="about-telemetry-item">
+
+                      <span class="about-telemetry-label">Autonomy Score</span>
+
+                      <span class="about-telemetry-value" style="color:var(--accent-teal)">94.2%</span>
+
+                    </div>
+
+                    <div class="about-telemetry-item">
+
+                      <span class="about-telemetry-label">MTTR (Resolution)</span>
+
+                      <span class="about-telemetry-value" style="color:var(--orchid-neon)">&lt; 38 seconds</span>
+
+                    </div>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="glow-line"></div>
+
+
+
+      <!-- VALUES GRID -->
+
+      <section class="section">
+
+        <div class="container">
+
+          <div class="values-grid">
+
+            <!-- MISSION -->
+
+            <div class="value-card fade-up">
+
+              <div class="value-card-icon">
+
+                <i data-lucide="target" style="width:22px;height:22px;"></i>
+
+              </div>
+
+              <span class="section-label">Mission</span>
+
+              <h3 style="font-size:18px;margin-bottom:12px;color:var(--text-1)">Enable. Decide. Achieve.</h3>
+
+              <p style="font-size:13.5px;color:var(--text-2);line-height:1.65">Enable organizations to work faster, make smarter decisions, and achieve more through enterprise AI.</p>
+
+            </div>
+
+
+
+            <!-- VISION -->
+
+            <div class="value-card fade-up">
+
+              <div class="value-card-icon" style="color:var(--gold);border-color:rgba(245,158,11,.2);background:rgba(245,158,11,.05)">
+
+                <i data-lucide="eye" style="width:22px;height:22px;"></i>
+
+              </div>
+
+              <span class="section-label" style="color:var(--gold);">Vision</span>
+
+              <h3 style="font-size:18px;margin-bottom:12px;color:var(--text-1)">The Autonomous Enterprise</h3>
+
+              <p style="font-size:13.5px;color:var(--text-2);line-height:1.65">Powering the Autonomous Enterprise with AI, allowing workflows to adapt, respond, and scale seamlessly.</p>
+
+            </div>
+
+
+
+            <!-- TRUST -->
+
+            <div class="value-card fade-up">
+
+              <div class="value-card-icon" style="color:var(--accent-cyan);border-color:rgba(6,182,212,.2);background:rgba(6,182,212,.05)">
+
+                <i data-lucide="shield-check" style="width:22px;height:22px;"></i>
+
+              </div>
+
+              <span class="section-label" style="color:var(--accent-cyan);">Governance</span>
+
+              <h3 style="font-size:18px;margin-bottom:12px;color:var(--text-1)">Zero-Trust Governance</h3>
+
+              <p style="font-size:13.5px;color:var(--text-2);line-height:1.65">Every agent action and policy check is fully audited, transparent, tamper-proof, and secure by default.</p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+
+      <div class="divider"></div>
+
+
+
+      <!-- ABOUT US BODY + TIMELINE -->
+
+      <section class="section">
+
+        <div class="container">
+
+          <div class="g2" style="gap:60px;align-items:center">
+
+            <div class="fade-up">
+
+              <span class="section-label">Who we are</span>
+
+              <h2 class="mb">One platform. Every function. Trusted AI.</h2>
+
+              <p style="font-size:15px;color:var(--text-2);line-height:1.8;margin-bottom:20px">OneConcord AI is an enterprise AI company building trusted AI for the modern enterprise. We unify intelligence, automate execution, and enable organizations to securely deploy AI across every business function.</p>
+
+              <p style="font-size:15px;color:var(--text-2);line-height:1.8;margin-bottom:32px">By combining enterprise knowledge, governance, and autonomous execution, OneConcord AI helps businesses increase productivity, accelerate innovation, and achieve measurable outcomes at scale.</p>
+
+              <div style="display:flex;gap:12px;flex-wrap:wrap">
+
+                <button class="btn btn-primary btn-lg" onclick="go('contact')">Get in touch</button>
+
+                <button class="btn btn-ghost btn-lg" onclick="go('platform')">See the platform →</button>
+
+              </div>
+
+            </div>
+
+            <div class="fade-up">
+
+              <div class="about-timeline">
+
+                <div class="about-timeline-item">
+
+                  <div class="about-timeline-dot"></div>
+
+                  <div class="about-timeline-year">2024</div>
+
+                  <div class="about-timeline-title">Founding &amp; Vision</div>
+
+                  <div class="about-timeline-desc">Established to eliminate organizational siloes. Built the unified enterprise correlation canvas.</div>
+
+                </div>
+
+                <div class="about-timeline-item">
+
+                  <div class="about-timeline-dot"></div>
+
+                  <div class="about-timeline-year">2025</div>
+
+                  <div class="about-timeline-title">Enterprise Scale</div>
+
+                  <div class="about-timeline-desc">Expanded architecture to protect 2.1M+ identities. Secured SOC 2 Type II compliance.</div>
+
+                </div>
+
+                <div class="about-timeline-item">
+
+                  <div class="about-timeline-dot"></div>
+
+                  <div class="about-timeline-year">2026</div>
+
+                  <div class="about-timeline-title">First-Contact Autonomy</div>
+
+                  <div class="about-timeline-desc">Launched the first cohort of autonomous workers, dropping resolution MTTR below 38 seconds.</div>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+
+      <!-- CTA BAND -->
+
+      <section class="section-sm cta-band">
+
+        <div class="container align-center">
+
+          <span class="section-label" style="justify-content:center;">Join the future of enterprise AI</span>
+
+          <h2 class="mb-sm">See OneConcord AI in action.</h2>
+
+          <p class="mb-lg" style="max-width:420px;margin-left:auto;margin-right:auto">Book a demo and discover how autonomous AI workers can transform your enterprise operations in days, not months.</p>
+
+          <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+
+            <button class="btn btn-primary btn-lg" onclick="go('contact')">Book a demo</button>
+
+            <a href="#pricing" class="btn btn-ghost btn-lg" onclick="go('pricing'); return false;">See pricing →</a>
+
+          </div>
+
+        </div>
+
+      </section>
+
+    </div><!-- /about -->
+
+
+
+    <!-- ════════════════════════════════════════ PAGE: CONTACT -->
+
+    <div id="pg-contact" class="page">
+
+      <div class="page-hero">
+
+        <div class="container">
+
+          <div class="breadcrumb">oneconcord.ai / <em>Contact Us</em></div>
+
+          <span class="section-label">Contact Us</span>
+
+          <h1>Get in Touch</h1>
+
+          <p class="lead mt">Request a personalized live demo of One Concord AI or get direct answers to technical
+
+            architecture questions from our team.</p>
+
+        </div>
+
+      </div>
+
+      <div class="glow-line"></div>
+
+
+
+      <section class="section">
+
+        <div class="container">
+
+          <div class="two-col-contact">
+
+            <!-- LEFT SIDE: TITLES, DETAILS, SOCIALS -->
+
+            <div>
+
+              <div class="fade-up" style="margin-bottom: 2.5rem;">
+
+                <span class="section-label" style="color: var(--accent); margin-bottom: 0.5rem; display: inline-block;">Contact Us</span>
+
+                <h2 style="font-family:'Space Grotesk',sans-serif; font-size:42px; font-weight:800; color:#fff; margin-bottom:1.2rem; line-height: 1.1;">Let's Connect!</h2>
+
+                <p style="color:var(--text-2); font-size:15px; line-height:1.7; max-width: 480px;">Ready to simplify your operations? Let's talk about how One Concord AI can help you work smarter and grow faster.</p>
+
+              </div>
+
+
+
+              <!-- Two-column info grid -->
+
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2.5rem;" class="fade-up">
+
+                <div>
+
+                  <h4 style="font-size: 0.85rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 700; margin-bottom: 0.8rem;">General Inquiries</h4>
+
+                  <p style="font-size: 0.95rem; margin-bottom: 0.5rem;"><a href="mailto:hello@oneconcord.ai" style="color: #fff; text-decoration: none; font-weight: 600; transition: color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='#fff'">hello@oneconcord.ai</a></p>
+
+                  <p style="color: var(--text-2); font-size: 0.9rem; line-height: 1.5;">Dubai Internet City,<br>Dubai, UAE</p>
+
+                </div>
+
+                <div>
+
+                  <h4 style="font-size: 0.85rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 700; margin-bottom: 0.8rem;">Technical Support</h4>
+
+                  <p style="font-size: 0.95rem; margin-bottom: 0.5rem;"><a href="mailto:support@oneconcord.ai" style="color: #fff; text-decoration: none; font-weight: 600; transition: color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='#fff'">support@oneconcord.ai</a></p>
+
+                  <p style="color: #22c55e; font-size: 0.88rem; font-weight: 600; display: flex; align-items: center; gap: 0.4rem; margin-top: 0.5rem;">
+
+                    <span style="background:#22c55e; width: 6px; height: 6px; border-radius: 50%; display: inline-block;"></span>
+
+                    All Systems Operational
+
+                  </p>
+
+                </div>
+
+              </div>
+
+
+
+              <!-- Follow Us socials -->
+
+              <div class="fade-up" style="border-top: 1px solid var(--border); padding-top: 1.5rem;">
+
+                <h4 style="font-size: 0.85rem; color: var(--text-3); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 700; margin-bottom: 0.8rem;">Follow Us</h4>
+
+                <div style="display: flex; gap: 16px;">
+
+                  <a href="https://linkedin.com" target="_blank" style="color: var(--text-3); transition: color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-3)'">
+
+                    <i data-lucide="linkedin" style="width: 20px; height: 20px;"></i>
+
+                  </a>
+
+                  <a href="https://twitter.com" target="_blank" style="color: var(--text-3); transition: color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-3)'">
+
+                    <i data-lucide="twitter" style="width: 20px; height: 20px;"></i>
+
+                  </a>
+
+                  <a href="https://github.com" target="_blank" style="color: var(--text-3); transition: color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-3)'">
+
+                    <i data-lucide="github" style="width: 20px; height: 20px;"></i>
+
+                  </a>
+
+                </div>
+
+              </div>
+
+            </div>
+
+
+
+            <!-- RIGHT SIDE: CONTACT FORM -->
+
+            <div class="dashboard-wrap fade-up" style="box-shadow: 0 15px 40px rgba(0,0,0,0.4), 0 0 30px rgba(181,242,219,0.08); border: 1px solid rgba(181, 242, 219, 0.25);">
+
+              <div class="dashboard-bar">
+
+                <span style="font-size:.72rem;color:var(--text-3);font-weight:600;letter-spacing:0.05em;text-transform:uppercase;">Secure Transmission Node</span>
+
+              </div>
+
+              <div class="dashboard-content" style="padding: 2.2rem 2rem;">
+
+                <form id="contactForm" onsubmit="submitForm(event)">
+
+                  <!-- First / Last Name row -->
+
+                  <div class="g2-form">
+
+                    <div class="form-group">
+
+                      <label class="form-label">First Name*</label>
+
+                      <input class="form-input" type="text" placeholder="e.g. Aisha" required />
+
+                    </div>
+
+                    <div class="form-group">
+
+                      <label class="form-label">Last Name*</label>
+
+                      <input class="form-input" type="text" placeholder="e.g. Verma" required />
+
+                    </div>
+
+                  </div>
+
+                  <!-- Email / Phone row -->
+
+                  <div class="g2-form">
+
+                    <div class="form-group">
+
+                      <label class="form-label">Work Email*</label>
+
+                      <input class="form-input" type="email" placeholder="e.g. aisha@novabank.ae" required />
+
+                    </div>
+
+                    <div class="form-group">
+
+                      <label class="form-label">Phone Number</label>
+
+                      <input class="form-input" type="tel" placeholder="e.g. +971 50 123 4567" />
+
+                    </div>
+
+                  </div>
+
+                  <!-- Subject field -->
+
+                  <div class="form-group">
+
+                    <label class="form-label">Subject*</label>
+
+                    <input class="form-input" type="text" placeholder="e.g. Enterprise AI Deployment" required />
+
+                  </div>
+
+                  <!-- Message textarea -->
+
+                  <div class="form-group">
+
+                    <label class="form-label">How can we help you today?*</label>
+
+                    <textarea class="form-input" rows="5" placeholder="Tell us about your IT operations or security needs..." required></textarea>
+
+                  </div>
+
+                  <!-- Submit button aligned left -->
+
+                  <div style="display: flex; justify-content: flex-start; margin-top: 10px;">
+
+                    <button class="btn btn-primary btn-lg" type="submit" style="padding: 0.8rem 2.2rem; font-weight: 700;">
+
+                      <i data-lucide="send" style="width:16px;height:16px;"></i>Send Message
+
+                    </button>
+
+                  </div>
+
+                </form>
+
+                <div id="formSuccess" style="display:none;text-align:center;padding:48px 20px">
+
+                  <div style="font-size:48px;margin-bottom:16px;color:var(--accent)">✓</div>
+
+                  <h3 style="color:var(--accent);margin-bottom:12px;font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:24px;">Request received.</h3>
+
+                  <p style="color:var(--text-2);font-size:14.5px;">Our team in Dubai will reach out within 4 business hours to confirm your demo slot.</p>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+    </div><!-- /contact -->
+
+
+
+  </div><!-- /page-content -->
+
+
+
+  <!-- ════════════════════════════════════════ FOOTER -->
+
+    <footer>
+    <div class="container">
+      <div class="ft-grid">
+        <div class="ft-brand">
+          <div class="logo" onclick="go('home')" style="cursor:pointer; margin-bottom: 1rem;">
+            <img src="Logo.png" alt="One Concord AI" />
+          </div>
+          <p>Transform enterprise operations with autonomous AI workers for IT, Security, Identity, Cloud, and Compliance — executing tasks independently, securely, and in compliance with local cloud standards.</p>
+          <div class="ft-address">
+            <strong>One Concord AI</strong>
+            <span>100 Pine Street,</span>
+            <span>San Francisco, CA 94111</span>
+            <span style="margin-top: 0.5rem;">
+              General: <a href="mailto:sales@oneconcord.ai">sales@oneconcord.ai</a>
+            </span>
+            <span>
+              Support: <a href="mailto:support@oneconcord.ai">support@oneconcord.ai</a>
+            </span>
+          </div>
+          <div class="ft-socials">
+            <a href="https://linkedin.com" target="_blank" class="ft-social-link" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" fill="currentColor" class="ft-social-icon"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+            </a>
+            <a href="https://twitter.com" target="_blank" class="ft-social-link" aria-label="Twitter">
+              <svg viewBox="0 0 24 24" fill="currentColor" class="ft-social-icon"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <a href="https://github.com" target="_blank" class="ft-social-link" aria-label="GitHub">
+              <svg viewBox="0 0 24 24" fill="currentColor" class="ft-social-icon"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="ft-form-container">
+          <h5>Send us a message</h5>
+          <form class="ft-form" onsubmit="event.preventDefault(); alert('Message sent successfully!'); this.reset();">
+            <input type="text" class="ft-form-input" placeholder="Your Name" required />
+            <input type="email" class="ft-form-input" placeholder="Your Email" required />
+            <textarea class="ft-form-textarea" placeholder="Your Message" required></textarea>
+            <button type="submit" class="ft-form-btn">
+              <span>Send Message</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="ft-send-icon"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <div class="ft-bot">
+        <div class="ft-copy">© 2026 One Concord AI. All rights reserved. oneconcord.ai</div>
+        <div class="ft-legal">
+          <a href="#">Privacy</a>
+          <a href="#">Terms</a>
+          <a href="#">Security</a>
+          <a href="#">Status</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/index.js?v=2.5"></script>
+
+  <script src="js/agents2.js"></script>
+
+  <script src="js/modal.js?v=1.2"></script>
+
+</body>
+
+
+
 </html>
