@@ -1577,6 +1577,11 @@ function buildSolutions(id, btn) {
   singlePanel.appendChild(capsGrid);
 
   // For IT Operations: embed scenarios inside the panel below caps
+  var statusText = '[RUNBOOK: STABLE]';
+  if (id === 'it') statusText = '[TELEMETRY: AUTO-RESOLVED]';
+  else if (id === 'security') statusText = '[THREAT: AUTO-CONTAINED]';
+  else if (id === 'leadership') statusText = '[COMPLIANCE: VERIFIED]';
+
   if (id === 'it' && s.usecases && s.usecases.length) {
     var scDiv = document.createElement('div');
     scDiv.style.cssText = 'margin-top:16px;padding-top:14px;border-top:1px solid rgba(255,255,255,.07)';
@@ -1589,7 +1594,11 @@ function buildSolutions(id, btn) {
     s.usecases.forEach(function(uc) {
       var sc = document.createElement('div');
       sc.className = 'sol-sc';
-      sc.innerHTML = '<div class="sol-sc-t">' + uc.title + '</div>'
+      sc.innerHTML = '<div class="sol-sc-header">'
+        + '<span class="sol-sc-status-dot"></span>'
+        + '<span class="sol-sc-status-text">' + statusText + '</span>'
+        + '</div>'
+        + '<div class="sol-sc-t">' + uc.title + '</div>'
         + '<div class="sol-sc-b">' + uc.body + '</div>';
       scGrid.appendChild(sc);
     });
@@ -1616,7 +1625,11 @@ function buildSolutions(id, btn) {
     s.usecases.forEach(function(uc) {
       var card = document.createElement('div');
       card.className = 'sol-sc-card fade-up';
-      card.innerHTML = '<div class="sol-sc-card-t">' + uc.title + '</div>'
+      card.innerHTML = '<div class="sol-sc-header">'
+        + '<span class="sol-sc-status-dot"></span>'
+        + '<span class="sol-sc-status-text">' + statusText + '</span>'
+        + '</div>'
+        + '<div class="sol-sc-card-t">' + uc.title + '</div>'
         + '<div class="sol-sc-card-b">' + uc.body + '</div>';
       sc4.appendChild(card);
     });
