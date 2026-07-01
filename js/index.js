@@ -1638,6 +1638,19 @@ function buildSolutions(id, btn) {
   cta.appendChild(ctaBtn);
   container.appendChild(cta);
 
+  // Trigger GSAP fade-in for the new content elements
+  var newFades = container.querySelectorAll('.fade-up');
+  if (newFades.length > 0) {
+    gsap.set(newFades, { opacity: 0, y: 20 });
+    gsap.to(newFades, {
+      opacity: 1,
+      y: 0,
+      duration: 0.5,
+      ease: 'power2.out',
+      stagger: 0.05
+    });
+  }
+
   lucide.createIcons();
 }
 
