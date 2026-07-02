@@ -5272,171 +5272,110 @@ function buildTestimonials() {
 
 
 function initMobileTestimonialsSlider() {
-
   const track = document.getElementById('testimonialsTrack');
-
   if (!track) return;
 
-
-
   const prevBtn = document.querySelector('.testimonials-mobile-nav .prev-btn');
-
   const nextBtn = document.querySelector('.testimonials-mobile-nav .next-btn');
-
   if (!prevBtn || !nextBtn) return;
 
-
-
   let currentIndex = 0;
-
   let autoScrollTimer = null;
 
-
-
   const cards = track.querySelectorAll('.t-card');
-
   const totalCards = cards.length / 2; // Slide through unique cards
 
-
-
   function getCardWidth() {
-
     if (cards.length === 0) return 0;
-
     const card = cards[0];
-
     const style = window.getComputedStyle(card);
-
     const cardWidth = card.offsetWidth;
-
     const gap = parseFloat(style.marginRight) || 16;
-
     return cardWidth + gap;
-
   }
-
-
 
   function slideTo(index) {
-
     if (window.innerWidth > 768) {
-
       track.style.transform = '';
-
       return;
-
     }
-
     
-
     if (index < 0) {
-
       index = totalCards - 1;
-
     } else if (index >= totalCards) {
-
       index = 0;
-
     }
-
     currentIndex = index;
 
-
-
     const offset = -currentIndex * getCardWidth();
-
     track.style.transform = `translateX(${offset}px)`;
-
   }
-
-
 
   function startAutoScroll() {
-
     stopAutoScroll();
-
     autoScrollTimer = setInterval(() => {
-
       slideTo(currentIndex + 1);
-
     }, 4000);
-
   }
-
-
 
   function stopAutoScroll() {
-
     if (autoScrollTimer) {
-
       clearInterval(autoScrollTimer);
-
       autoScrollTimer = null;
-
     }
-
   }
-
-
 
   prevBtn.addEventListener('click', () => {
-
     stopAutoScroll();
-
     slideTo(currentIndex - 1);
-
     startAutoScroll();
-
   });
-
-
 
   nextBtn.addEventListener('click', () => {
-
     stopAutoScroll();
-
     slideTo(currentIndex + 1);
-
     startAutoScroll();
-
   });
 
+  // Touch Swipe Support for Mobile
+  let touchStartX = 0;
+  let touchEndX = 0;
 
+  track.addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].clientX;
+  }, { passive: true });
+
+  track.addEventListener('touchend', (e) => {
+    touchEndX = e.changedTouches[0].clientX;
+    const diff = touchStartX - touchEndX;
+    if (Math.abs(diff) > 50) { // Swipe threshold of 50px
+      stopAutoScroll();
+      if (diff > 0) {
+        slideTo(currentIndex + 1); // Swiped left -> next
+      } else {
+        slideTo(currentIndex - 1); // Swiped right -> prev
+      }
+      startAutoScroll();
+    }
+  }, { passive: true });
 
   // Start auto scroll on load if on mobile
-
   if (window.innerWidth <= 768) {
-
     startAutoScroll();
-
   }
 
-
-
   // Handle window resizing
-
   window.addEventListener('resize', () => {
-
     if (window.innerWidth > 768) {
-
       stopAutoScroll();
-
       track.style.transform = '';
-
     } else {
-
       if (!autoScrollTimer) {
-
         slideTo(currentIndex);
-
         startAutoScroll();
-
       }
-
     }
-
   });
-
 }
 
 

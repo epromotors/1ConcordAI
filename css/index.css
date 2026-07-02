@@ -3568,7 +3568,6 @@ footer { background: rgba(22, 35, 43, 0.96); border-top: 1px solid var(--border)
   }
   .testimonials-track {
     animation: none !important;
-    transform: none !important;
     transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
     gap: 16px;
     padding: 10px 4px;
