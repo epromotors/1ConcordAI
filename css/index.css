@@ -1432,7 +1432,7 @@ nav { display: flex; align-items: center; gap: 1.8rem; }
 /* ─── SOLUTIONS REDESIGN ─── */
 .sol-tabs {
   position: sticky;
-  top: 80px;
+  top: 85px;
   z-index: 99;
   display: flex;
   gap: 8px;
@@ -4087,7 +4087,7 @@ footer { background: rgba(22, 35, 43, 0.96); border-top: 1px solid var(--border)
   .sol-body { font-size: 13px; line-height: 1.6; }
   .sol-caps-grid{ grid-template-columns: 1fr; }
   .sol-scgrid   { grid-template-columns: 1fr; }
-  .sol-tabs     { top: 65px; padding: 6px 12px; gap: 6px; }
+  .sol-tabs     { top: 85px; padding: 6px 12px; gap: 6px; max-width: 90%; }
   .sol-tab      { padding: 6px 12px; font-size: 12px; }
   .sol-cta      { flex-direction: column; text-align: center; gap: 16px; }
   .sol-cta-btn  { width: 100%; justify-content: center; }

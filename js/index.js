@@ -5496,7 +5496,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
   document.querySelectorAll('.sol-tab').forEach(function(b) {
 
-    b.addEventListener('click', function() { buildSolutions(this.dataset.sol, this); });
+    b.addEventListener('click', function() {
+      buildSolutions(this.dataset.sol, this);
+      var solSection = document.querySelector('#pg-solutions .section');
+      if (solSection) {
+        var headerOffset = 85;
+        var elementPosition = solSection.getBoundingClientRect().top;
+        var offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+      }
+    });
 
   });
 
