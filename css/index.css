@@ -114,6 +114,55 @@ section {
   opacity: 0.55; /* Soften the bright yellow line */
 }
 
+/* Firecracker / Fuse Sparkle CSS */
+@keyframes sparkleRing1 {
+  0% {
+    r: 3px;
+    opacity: 1;
+    stroke-width: 3px;
+  }
+  100% {
+    r: 24px;
+    opacity: 0;
+    stroke-width: 0.5px;
+  }
+}
+@keyframes sparkleRing2 {
+  0% {
+    r: 2px;
+    opacity: 1;
+    stroke-width: 2px;
+  }
+  100% {
+    r: 16px;
+    opacity: 0;
+    stroke-width: 0.5px;
+  }
+}
+@keyframes dotFlicker {
+  0%, 100% {
+    r: 6px !important;
+    fill: #FFC933 !important;
+    filter: drop-shadow(0 0 5px #FFC933) drop-shadow(0 0 10px #FF9F1C) !important;
+  }
+  50% {
+    r: 8px !important;
+    fill: #FF3B30 !important;
+    filter: drop-shadow(0 0 8px #FF3B30) drop-shadow(0 0 16px #FF3B30) !important;
+  }
+}
+
+.rope-sparkle-ring.ring-1 {
+  animation: sparkleRing1 0.4s infinite linear;
+}
+.rope-sparkle-ring.ring-2 {
+  animation: sparkleRing2 0.3s infinite linear;
+  animation-delay: 0.15s;
+}
+#rope-pulse {
+  animation: dotFlicker 0.12s infinite ease-in-out;
+}
+
 /* ─── BADGES ─── */
 .badge {
   display: inline-flex; align-items: center; gap: 0.4rem;

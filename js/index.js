@@ -4349,13 +4349,29 @@ function updatePathDimensions() {
 
       pulseEl.setAttribute('cy', pt.y);
 
+      var sp1 = document.getElementById('rope-sparkle-1');
+
+      if (sp1) { sp1.setAttribute('cx', pt.x); sp1.setAttribute('cy', pt.y); }
+
+      var sp2 = document.getElementById('rope-sparkle-2');
+
+      if (sp2) { sp2.setAttribute('cx', pt.x); sp2.setAttribute('cy', pt.y); }
+
       if (progress > 0.005 && progress < 0.995) {
 
         pulseEl.style.opacity = '1';
 
+        if (sp1) sp1.style.opacity = '1';
+
+        if (sp2) sp2.style.opacity = '1';
+
       } else {
 
         pulseEl.style.opacity = '0';
+
+        if (sp1) sp1.style.opacity = '0';
+
+        if (sp2) sp2.style.opacity = '0';
 
       }
 
@@ -4420,6 +4436,46 @@ function initSvgLine() {
   // Dynamically inject glowing pulse circle to the SVG
 
   if (dynamicSvg && !document.getElementById('rope-pulse')) {
+
+    var sparkle1 = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+
+    sparkle1.setAttribute('id', 'rope-sparkle-1');
+
+    sparkle1.setAttribute('class', 'rope-sparkle-ring ring-1');
+
+    sparkle1.setAttribute('r', '0');
+
+    sparkle1.setAttribute('fill', 'none');
+
+    sparkle1.setAttribute('stroke', '#FFC933');
+
+    sparkle1.setAttribute('stroke-width', '2');
+
+    sparkle1.style.opacity = '0';
+
+    dynamicSvg.appendChild(sparkle1);
+
+
+
+    var sparkle2 = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+
+    sparkle2.setAttribute('id', 'rope-sparkle-2');
+
+    sparkle2.setAttribute('class', 'rope-sparkle-ring ring-2');
+
+    sparkle2.setAttribute('r', '0');
+
+    sparkle2.setAttribute('fill', 'none');
+
+    sparkle2.setAttribute('stroke', '#FF9F1C');
+
+    sparkle2.setAttribute('stroke-width', '1.5');
+
+    sparkle2.style.opacity = '0';
+
+    dynamicSvg.appendChild(sparkle2);
+
+
 
     var pulse = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
 
@@ -4487,13 +4543,29 @@ function initSvgLine() {
 
           pulseEl.setAttribute('cy', pt.y);
 
+          var sp1 = document.getElementById('rope-sparkle-1');
+
+          if (sp1) { sp1.setAttribute('cx', pt.x); sp1.setAttribute('cy', pt.y); }
+
+          var sp2 = document.getElementById('rope-sparkle-2');
+
+          if (sp2) { sp2.setAttribute('cx', pt.x); sp2.setAttribute('cy', pt.y); }
+
           if (self.progress > 0.005 && self.progress < 0.995) {
 
             pulseEl.style.opacity = '1';
 
+            if (sp1) sp1.style.opacity = '1';
+
+            if (sp2) sp2.style.opacity = '1';
+
           } else {
 
             pulseEl.style.opacity = '0';
+
+            if (sp1) sp1.style.opacity = '0';
+
+            if (sp2) sp2.style.opacity = '0';
 
           }
 
