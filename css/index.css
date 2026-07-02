@@ -1453,6 +1453,8 @@ nav { display: flex; align-items: center; gap: 1.8rem; }
 }
 .sol-tab { font-size: 13px; font-weight: 600; color: var(--text-3); background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); padding: 8px 16px; border-radius: 100px; cursor: pointer; transition: all .15s; }
 .sol-tab:hover, .sol-tab.act { color: var(--text-1); background: rgba(20,184,166,.14); border-color: rgba(20,184,166,.38); }
+.tab-mobile { display: none; }
+.tab-desktop { display: inline; }
 
 .sol-top-band {
   display: grid;
@@ -4088,27 +4090,33 @@ footer { background: rgba(22, 35, 43, 0.96); border-top: 1px solid var(--border)
   .sol-caps-grid{ grid-template-columns: 1fr; }
   .sol-scgrid   { grid-template-columns: 1fr; }
   .sol-tabs {
-    top: 85px;
-    padding: 8px 16px;
-    gap: 8px;
-    width: 100%;
-    max-width: 100%;
-    border-radius: 0;
+    position: sticky;
+    top: 80px;
+    z-index: 99;
+    display: flex;
     flex-wrap: nowrap;
-    justify-content: flex-start;
-    overflow-x: auto;
-    overflow-y: hidden;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    background: rgba(22, 35, 43, 0.95);
+    justify-content: center;
+    width: 100vw;
+    max-width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    margin-right: calc(-50vw + 50%);
+    border-radius: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 10px 0;
+    gap: 8px;
+    background: #0b1319;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
   }
   .sol-tabs::-webkit-scrollbar { display: none; }
   .sol-tab {
     flex: 0 0 auto;
     white-space: nowrap;
-    padding: 6px 12px;
-    font-size: 12px;
+    padding: 6px 10px;
+    font-size: 11.5px;
   }
+  .tab-mobile { display: inline; }
+  .tab-desktop { display: none; }
   .sol-mets {
     justify-content: center;
     gap: 8px;
