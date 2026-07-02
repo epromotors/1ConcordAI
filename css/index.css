@@ -4077,6 +4077,14 @@ footer { background: rgba(22, 35, 43, 0.96); border-top: 1px solid var(--border)
   .sol-scgrid   { grid-template-columns: 1fr 1fr; }
 }
 @media (max-width: 768px) {
+  .sol-top-band { padding: 24px 16px; }
+  .sol-tagline {
+    font-size: clamp(19px, 5.5vw, 23px);
+    line-height: 1.35;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+  .sol-body { font-size: 13px; line-height: 1.6; }
   .sol-caps-grid{ grid-template-columns: 1fr; }
   .sol-scgrid   { grid-template-columns: 1fr; }
   .sol-tabs     { top: 65px; padding: 6px 12px; gap: 6px; }
