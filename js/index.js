@@ -5498,6 +5498,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     b.addEventListener('click', function() {
       buildSolutions(this.dataset.sol, this);
+      this.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
       var solSection = document.querySelector('#pg-solutions .section');
       if (solSection) {
         var headerOffset = 85;

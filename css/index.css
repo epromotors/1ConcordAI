@@ -4087,8 +4087,47 @@ footer { background: rgba(22, 35, 43, 0.96); border-top: 1px solid var(--border)
   .sol-body { font-size: 13px; line-height: 1.6; }
   .sol-caps-grid{ grid-template-columns: 1fr; }
   .sol-scgrid   { grid-template-columns: 1fr; }
-  .sol-tabs     { top: 85px; padding: 6px 12px; gap: 6px; max-width: 90%; }
-  .sol-tab      { padding: 6px 12px; font-size: 12px; }
+  .sol-tabs {
+    top: 85px;
+    padding: 8px 16px;
+    gap: 8px;
+    width: 100%;
+    max-width: 100%;
+    border-radius: 0;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    background: rgba(22, 35, 43, 0.95);
+  }
+  .sol-tabs::-webkit-scrollbar { display: none; }
+  .sol-tab {
+    flex: 0 0 auto;
+    white-space: nowrap;
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+  .sol-mets {
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    margin-top: 16px;
+  }
+  .sol-met {
+    padding: 10px 8px;
+    min-width: 80px;
+    flex: 1;
+    max-width: 110px;
+  }
+  .sol-met-v {
+    font-size: 18px;
+  }
+  .sol-met-l {
+    font-size: 9px;
+    margin-top: 4px;
+  }
   .sol-cta      { flex-direction: column; text-align: center; gap: 16px; }
   .sol-cta-btn  { width: 100%; justify-content: center; }
 }
@@ -4130,7 +4169,10 @@ footer { background: rgba(22, 35, 43, 0.96); border-top: 1px solid var(--border)
 }
 
 /* ── PREVENT HORIZONTAL SCROLL ── */
-html, body {
+html {
+  max-width: 100%;
+}
+body {
   max-width: 100%;
   overflow-x: hidden;
 }
