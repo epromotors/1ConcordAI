@@ -242,7 +242,7 @@ section {
 
 /* ─── HEADER ─── */
 header {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  position: fixed; top: 0; left: 0; right: 0; z-index: 9999 !important;
   padding: 1rem 0;
   transition: background .3s, backdrop-filter .3s, border-color .3s;
   border-bottom: 1px solid transparent;
@@ -4049,6 +4049,15 @@ footer { background: rgba(22, 35, 43, 0.96); border-top: 1px solid var(--border)
   }
 }
 
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  align-items: start;
+  width: 100%;
+  margin-bottom: 60px;
+}
+
 /* ── PRICING SECTION ── */
 @media (max-width: 768px) {
   .pricing-grid {
@@ -4359,10 +4368,11 @@ body {
 
 /* ── Responsive ── */
 @media (max-width: 768px) {
-  .pricing-stars-wrap { min-height: 320px; padding: 100px 16px 40px; }
+  .pricing-stars-wrap { min-height: 280px; padding: 90px 16px 15px; }
   .pricing-globe-wrap { width: 100%; }
   .pricing-globe      { width: 100%; }
   .pricing-globe-glow { width: 90%; }
+  .section { padding: 2.5rem 0; }
 }
 
 /* ─── ABOUT PAGE REDESIGN ─── */
@@ -4591,10 +4601,20 @@ body {
   
   /* Grid-based tabs bar to prevent overflow */
   .cmp-mobile-tabs {
+    position: sticky;
+    top: 80px;
+    z-index: 98;
+    background: #0b1319;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 8px;
+    padding: 10px 16px;
     margin-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    width: 100vw;
+    max-width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    margin-right: calc(-50vw + 50%);
   }
   
   .cmp-m-tab {
@@ -4603,9 +4623,9 @@ body {
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid rgba(255, 255, 255, 0.08);
     color: var(--text-3);
-    padding: 10px 14px;
+    padding: 8px 10px;
     border-radius: 30px;
-    font-size: 13px;
+    font-size: 11.5px;
     font-weight: 600;
     transition: all 0.3s ease;
     cursor: pointer;

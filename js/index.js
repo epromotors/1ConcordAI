@@ -3397,7 +3397,7 @@ function buildPricing() {
 
 
 
-  grid.style.cssText = 'display:grid;grid-template-columns:repeat(4,1fr);gap:18px;align-items:start;margin-bottom:60px';
+  grid.classList.add('pricing-grid');
 
 
 
@@ -3749,6 +3749,20 @@ function switchMobileComparePlan(planIdx, tabEl) {
 
     }
 
+  }
+
+  // Smoothly scroll comparison container to top below header on click
+  if (tabEl) {
+    var compareSec = document.querySelector('.compare-container');
+    if (compareSec) {
+      var headerOffset = 85;
+      var elementPosition = compareSec.getBoundingClientRect().top;
+      var offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
   }
 
   
