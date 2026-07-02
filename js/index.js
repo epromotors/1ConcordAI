@@ -148,7 +148,7 @@ const SOLUTIONS = {
 
       {title:'After-hours IT outage',body:'Incident Management Agent classifies the severity, pages on-call engineers, and posts status updates to Teams — all in under 90 seconds, without a human touching Slack.'},
 
-      {title:'New software licence request',body:'Employee requests Adobe Creative Cloud. Service Desk Agent checks licence pool, verifies approval policy, provisions the licence, and closes the ticket in 41 seconds.'},
+      {title:'New software licensing',body:'Employee requests Adobe Creative Cloud. Service Desk Agent checks licence pool, verifies approval policy, provisions the licence, and closes the ticket in 41 seconds.'},
 
       {title:'CMDB drift detected',body:'Asset Discovery Agent finds 3 unregistered servers during a routine sweep. Tickets are raised, owners are identified from AD, and records are reconciled before the next audit window.'},
 
