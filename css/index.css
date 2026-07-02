@@ -348,6 +348,12 @@ nav { display: flex; align-items: center; gap: 1.8rem; }
   overflow: hidden;
   position: relative;
   width: 100%;
+  /* Force GPU rendering and isolate layer stacking to ensure Webkit clips transformed children */
+  transform: translate3d(0, 0, 0);
+  -webkit-transform: translate3d(0, 0, 0);
+  isolation: isolate;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 .slider-wrapper {
   position: absolute;
@@ -365,6 +371,7 @@ nav { display: flex; align-items: center; gap: 1.8rem; }
   height: clamp(3rem, 6vw, 5rem);
   display: block;
   white-space: nowrap;
+  text-shadow: 0 0 10px var(--bg-0), 0 0 20px var(--bg-0);
 }
 
 /* Dashboard */
