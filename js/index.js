@@ -4116,391 +4116,189 @@ function initDrift() {
 
 
 function initHeroTitleSlider() {
-
   const wrapper = document.getElementById("hero-title-slider");
+  if (!wrapper) return;
 
-  const slideItems = document.querySelectorAll(".slide-text");
+  const originalSlides = wrapper.querySelectorAll(".slide-text");
+  const totalSlides = originalSlides.length;
+  if (totalSlides === 0) return;
 
-  const totalSlides = slideItems.length;
+  // Clone first slide for infinite downward seamless loop
+  if (!wrapper.querySelector(".slide-clone")) {
+    const firstClone = originalSlides[0].cloneNode(true);
+    firstClone.classList.add("slide-clone");
+    wrapper.appendChild(firstClone);
+  }
 
   let currentIndex = 0;
 
-
-
   function getSlideHeight() {
-
-    return slideItems.length > 0 ? slideItems[0].offsetHeight : 80;
-
+    return originalSlides[0].offsetHeight || 80;
   }
-
-
 
   function updateBrandingAccent(index) {
-
     const badge = document.getElementById("hero-badge");
-
     const ctaBtn = document.getElementById("hero-cta-btn");
-
     if (!badge || !ctaBtn) return;
 
-    
-
-    if (index === 3) { 
-
+    const activeIdx = index % totalSlides;
+    if (activeIdx === 3) {
       badge.className = "badge badge-orchid";
-
       badge.innerHTML = "<span class='badge-dot' style='background:var(--gold-bright)'></span>GCC Cloud Compliant · Sovereign Cloud";
-
       ctaBtn.className = "btn btn-gold";
-
-    } else { 
-
+    } else {
       badge.className = "badge";
-
       badge.innerHTML = "<span class='badge-dot'></span>Introducing One Concord AI";
-
       ctaBtn.className = "btn btn-primary";
-
     }
-
   }
-
-
 
   function goToNextSlide() {
-
     currentIndex++;
-
-    if (currentIndex >= totalSlides) {
-
-      currentIndex = 0;
-
-    }
-
     const currentHeight = getSlideHeight();
+    const targetY = -(currentIndex * currentHeight);
+
+    updateBrandingAccent(currentIndex);
 
     gsap.to(wrapper, {
-
-      y: -(currentIndex * currentHeight),
-
+      y: targetY,
       duration: 0.6,
-
       ease: "power3.inOut",
-
-      onStart: () => updateBrandingAccent(currentIndex)
-
+      onComplete: () => {
+        if (currentIndex >= totalSlides) {
+          currentIndex = 0;
+          gsap.set(wrapper, { y: 0 });
+        }
+      }
     });
-
   }
-
-
 
   setInterval(goToNextSlide, 3000);
 
   window.addEventListener("resize", () => {
-
     if (wrapper) gsap.set(wrapper, { y: -(currentIndex * getSlideHeight()) });
-
   });
-
 }
 
-
-
-// Organic hand-drawn path — each call regenerates with slight variation
-
-var _jitterRaf = null;
-
-var _jitterSeed = Math.random() * 1000;
-
-
-
-function buildHandPath(W, H, seed) {
-
+function buildHandPath(W, H) {
   var cx = W / 2;
 
-  var s = seed;
-
-  function rng(min, max) {
-
-    s = (s * 9301 + 49297) % 233280;
-
-    return min + (s / 233280) * (max - min);
-
-  }
-
-
-
   // Calculate container borders dynamically
-
   var pad = Math.max(20, Math.min(W * 0.05, 80));
-
   var cw = Math.min(1200, W - pad * 2);
 
-  var leftBorder = (W - cw) / 2;
-
-  var rightBorder = W - leftBorder;
-
-
-
-  // Target vertical spacing between turns: ~900px to ~1000px
-
   var spacing = 950;
-
   var numSegments = Math.max(3, Math.round(H / spacing));
-
   var numStops = numSegments + 1;
 
-
-
   var stops = [];
-
   for (var i = 0; i < numStops; i++) {
-
     if (i === 0) stops.push(0);
-
     else if (i === numStops - 1) stops.push(H);
-
     else {
-
-      // Add slight organic randomness to stop height
-
       var base = i / numSegments;
-
-      var variance = rng(-0.02, 0.02);
-
-      stops.push((base + variance) * H);
-
+      stops.push(base * H);
     }
-
   }
 
-
-
-  // X pivot for each stop — swinging from left to right container border
-
+  // Smooth X pivot for each stop — swinging gracefully from left to right container border
   var pivots = stops.map(function(_, i) {
-
-    if (i === 0 || i === stops.length - 1) return cx; // Start/end at center
-
+    if (i === 0 || i === stops.length - 1) return cx;
     var side = i % 2 === 0 ? 1 : -1;
-
-    var drift = rng(-cw * 0.015, cw * 0.015); // Slight organic drift
-
-    var offset = cw / 2 - rng(55, 95); // Swing near the border (55px to 95px inside border)
-
-    return cx + side * offset + drift;
-
+    var offset = cw / 2 - 70;
+    return cx + side * offset;
   });
 
-
-
   // Build path using smooth Catmull-Rom cubic spline
-
   var d = 'M ' + cx.toFixed(1) + ',0 ';
-
-  var tension = 0.22; // Good balance for smoothness without looping
-
-
+  var tension = 0.25;
 
   for (var i = 0; i < stops.length - 1; i++) {
-
     var x0 = pivots[i];
-
     var y0 = stops[i];
-
     var x1 = pivots[i + 1];
-
     var y1 = stops[i + 1];
-
     var segH = y1 - y0;
-
-
 
     var cpx1, cpy1, cpx2, cpy2;
 
-
-
-    // Control point 1 (outgoing from point i)
-
     if (i === 0) {
-
       cpx1 = x0;
-
-      cpy1 = y0 + segH * 0.3;
-
+      cpy1 = y0 + segH * 0.35;
     } else {
-
       var dx0 = pivots[i + 1] - pivots[i - 1];
-
       var dy0 = stops[i + 1] - stops[i - 1];
-
       cpx1 = x0 + tension * dx0;
-
       cpy1 = y0 + tension * dy0;
-
     }
-
-
-
-    // Control point 2 (incoming to point i+1)
 
     if (i + 1 === stops.length - 1) {
-
       cpx2 = x1;
-
-      cpy2 = y1 - segH * 0.3;
-
+      cpy2 = y1 - segH * 0.35;
     } else {
-
       var dx1 = pivots[i + 2] - pivots[i];
-
       var dy1 = stops[i + 2] - stops[i];
-
       cpx2 = x1 - tension * dx1;
-
       cpy2 = y1 - tension * dy1;
-
     }
 
-
-
     d += 'C ' + cpx1.toFixed(1) + ',' + cpy1.toFixed(1)
-
       + ' ' + cpx2.toFixed(1) + ',' + cpy2.toFixed(1)
-
       + ' ' + x1.toFixed(1) + ',' + y1.toFixed(1) + ' ';
-
   }
 
-
-
   return d;
-
 }
 
-
-
 function updatePathDimensions() {
-
   if (!pageContent || !activePath) return;
 
   var totalHeight = pageContent.offsetHeight;
-
   var totalWidth = window.innerWidth;
 
-
-
   dynamicSvg.setAttribute('width', totalWidth);
-
   dynamicSvg.setAttribute('height', totalHeight);
-
   dynamicSvg.setAttribute('viewBox', '0 0 ' + totalWidth + ' ' + totalHeight);
 
-
-
-  // Generate one shared hand-drawn path for both layers
-
-  var mainPath = buildHandPath(totalWidth, totalHeight, _jitterSeed);
-
-
+  // Generate one shared smooth path for both layers
+  var mainPath = buildHandPath(totalWidth, totalHeight);
 
   bgPath.setAttribute('d', mainPath);
-
   activePath.setAttribute('d', mainPath);
 
-
-
   var pathLength = activePath.getTotalLength();
-
   var progress = mainScrollTrigger ? mainScrollTrigger.progress : 0;
 
   gsap.set(activePath, {
-
     strokeDasharray: pathLength,
-
     strokeDashoffset: pathLength * (1 - progress)
-
   });
 
-
-
   // Keep pulse aligned on resize
-
   var pulseEl = document.getElementById('rope-pulse');
-
   if (pulseEl && pathLength > 0) {
-
     try {
-
       var pt = activePath.getPointAtLength(pathLength * progress);
-
       pulseEl.setAttribute('cx', pt.x);
-
       pulseEl.setAttribute('cy', pt.y);
 
       var sp1 = document.getElementById('rope-sparkle-1');
-
       if (sp1) { sp1.setAttribute('cx', pt.x); sp1.setAttribute('cy', pt.y); }
 
       var sp2 = document.getElementById('rope-sparkle-2');
-
       if (sp2) { sp2.setAttribute('cx', pt.x); sp2.setAttribute('cy', pt.y); }
 
       if (progress > 0.005 && progress < 0.995) {
-
         pulseEl.style.opacity = '1';
-
         if (sp1) sp1.style.opacity = '1';
-
         if (sp2) sp2.style.opacity = '1';
-
       } else {
-
         pulseEl.style.opacity = '0';
-
         if (sp1) sp1.style.opacity = '0';
-
         if (sp2) sp2.style.opacity = '0';
-
       }
-
     } catch(err) {}
-
   }
-
-
-
-  // Animate feTurbulence seed slowly for living pen-on-paper wobble
-
-  var turbEl = document.getElementById('handTurbulence');
-
-  if (turbEl) {
-
-    if (_jitterRaf) cancelAnimationFrame(_jitterRaf);
-
-    var tStart = performance.now();
-
-    function animateTurbulence(t) {
-
-      // Slowly shift baseFrequency to create organic breathing wobble
-
-      var elapsed = (t - tStart) * 0.00006;
-
-      var bf1 = (0.016 + Math.sin(elapsed * 1.3) * 0.004).toFixed(4);
-
-      var bf2 = (0.030 + Math.cos(elapsed * 0.9) * 0.005).toFixed(4);
-
-      turbEl.setAttribute('baseFrequency', bf1 + ' ' + bf2);
-
-      _jitterRaf = requestAnimationFrame(animateTurbulence);
-
-    }
-
-    _jitterRaf = requestAnimationFrame(animateTurbulence);
-
-  }
-
 }
 
 
