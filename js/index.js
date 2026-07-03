@@ -264,14 +264,12 @@ function go(id) {
 
   window.location.hash = '#' + id;
 
-  // Safe instant scroll to top to prevent ScrollTrigger refresh conflicts
-  document.documentElement.style.scrollBehavior = 'auto';
-  document.body.style.scrollBehavior = 'auto';
-  window.scrollTo(0, 0);
-  setTimeout(function() {
-    document.documentElement.style.scrollBehavior = '';
-    document.body.style.scrollBehavior = '';
-  }, 50);
+  // Kill all active ScrollTrigger pins before scrolling — prevents hero pin freeze
+  if (typeof ScrollTrigger !== 'undefined') {
+    ScrollTrigger.getAll().forEach(function(t) { t.kill(); });
+  }
+  // Instant scroll to top — no smooth behavior to avoid pin spacer conflicts
+  window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
 
 
 
@@ -310,18 +308,17 @@ function go(id) {
 
 
   // Allow layout calculations to complete before refreshing
-
   setTimeout(() => {
 
-    ScrollTrigger.refresh();
-
-    if (typeof updatePathDimensions === 'function') {
-
-      updatePathDimensions();
-
+    if (typeof ScrollTrigger !== 'undefined') {
+      ScrollTrigger.refresh();
     }
 
-  }, 100);
+    if (typeof updatePathDimensions === 'function') {
+      updatePathDimensions();
+    }
+
+  }, 200);
 
 }
 
