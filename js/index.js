@@ -3160,7 +3160,9 @@ function buildSolutions(id, btn) {
 
 
 
-  // Scenarios panel in the right column (for ALL tabs)
+  // Scenarios panel — inline (2-col) for IT tab, full-width 4-grid for Security & Leadership tabs
+
+
 
   var statusText = '[RUNBOOK: STABLE]';
 
@@ -3172,7 +3174,9 @@ function buildSolutions(id, btn) {
 
 
 
-  if (s.usecases && s.usecases.length) {
+  if (id === 'it' && s.usecases && s.usecases.length) {
+
+    // IT tab: keep scenarios inside the right column (2-col grid)
 
     var scPanel = document.createElement('div');
 
@@ -3227,6 +3231,58 @@ function buildSolutions(id, btn) {
   mgrid.appendChild(rightCol);
 
   container.appendChild(mgrid);
+
+
+
+
+
+  // Security & Leadership: full-width 4-card row BELOW the main grid (desktop only)
+
+  if ((id === 'security' || id === 'leadership') && s.usecases && s.usecases.length) {
+
+    var scRow = document.createElement('div');
+
+    scRow.className = 'sol-sc-row fade-up';
+
+    var scRowHd = document.createElement('div');
+
+    scRowHd.className = 'sol-sc-row-hd';
+
+    scRowHd.textContent = 'Real-world scenarios';
+
+    scRow.appendChild(scRowHd);
+
+    var sc4grid = document.createElement('div');
+
+    sc4grid.className = 'sol-sc-4grid';
+
+    s.usecases.forEach(function(uc) {
+
+      var card = document.createElement('div');
+
+      card.className = 'sol-sc-card';
+
+      card.innerHTML = '<div class="sol-sc-header">'
+
+        + '<span class="sol-sc-status-dot"></span>'
+
+        + '<span class="sol-sc-status-text">' + statusText + '</span>'
+
+        + '</div>'
+
+        + '<div class="sol-sc-card-t">' + uc.title + '</div>'
+
+        + '<div class="sol-sc-card-b">' + uc.body + '</div>';
+
+      sc4grid.appendChild(card);
+
+    });
+
+    scRow.appendChild(sc4grid);
+
+    container.appendChild(scRow);
+
+  }
 
 
 
