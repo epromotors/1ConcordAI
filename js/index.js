@@ -222,6 +222,11 @@ const SOLUTIONS = {
 
 function go(id) {
 
+  // Scroll to top FIRST — before page switch, prevents layout flash
+  window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+
+
+
   document.querySelectorAll('.page').forEach(function(p) { p.classList.remove('active'); });
 
   var pg = document.getElementById('pg-' + id);
@@ -230,6 +235,7 @@ function go(id) {
 
     pg.classList.add('active');
 
+    // Animate .fade-up elements in the new page
     var pageFades = pg.querySelectorAll('.fade-up');
 
     if (pageFades.length > 0) {
@@ -252,6 +258,30 @@ function go(id) {
 
     }
 
+    // Force card/table elements visible (set opacity:0 by initCards ScrollTriggers)
+    // This covers .cmp-table on Pricing and any card grids on other pages
+    var pageCards = pg.querySelectorAll('.cmp-table, .price-card, .card, .agent-card');
+
+    if (pageCards.length > 0) {
+
+      gsap.to(pageCards, {
+
+        opacity: 1,
+
+        y: 0,
+
+        duration: 0.65,
+
+        ease: 'power2.out',
+
+        overwrite: 'auto',
+
+        stagger: 0.04
+
+      });
+
+    }
+
   }
 
 
@@ -264,16 +294,9 @@ function go(id) {
 
   window.location.hash = '#' + id;
 
-  // Kill all active ScrollTrigger pins before scrolling — prevents hero pin freeze
-  if (typeof ScrollTrigger !== 'undefined') {
-    ScrollTrigger.getAll().forEach(function(t) { t.kill(); });
-  }
-  // Instant scroll to top — no smooth behavior to avoid pin spacer conflicts
-  window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
 
 
-
-  // Re-render subpage specific assets and refresh ScrollTrigger
+  // Re-render subpage specific assets
 
   if (id === 'agents') {
 
@@ -307,7 +330,7 @@ function go(id) {
 
 
 
-  // Allow layout calculations to complete before refreshing
+  // Refresh ScrollTrigger positions and rope path (no kill — preserves rope & card animations)
   setTimeout(() => {
 
     if (typeof ScrollTrigger !== 'undefined') {
