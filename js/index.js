@@ -838,141 +838,68 @@ function buildHome() {
     testimonialsTrack.innerHTML = '';
 
     var testimonials = [
-
       {
-
         quote: 'We went from 400 weekly IT tickets to 82. The Service Desk Agent handles the rest — no escalations, no delays. Our team now focuses on architecture and innovation.',
-
-        name: 'Aisha Verma',
-
-        initials: 'AV',
-
+        initials: 'NB',
         role: 'Head of IT Operations',
-
         org: 'NovaBank',
-
         avatarBg: '#B5F2DB'
-
       },
-
       {
-
         quote: 'Our SOC team was drowning in L1 alerts. The Security Operations Agent now handles 94% of them without human intervention. Our analysts finally have time to hunt threats.',
-
-        name: 'Daniel Brooks',
-
-        initials: 'DB',
-
+        initials: 'CA',
         role: 'CISO',
-
         org: 'CloudAxis',
-
         avatarBg: '#E4EEF0'
-
       },
-
       {
-
         quote: 'We had no idea 14 servers were outside our SIEM scope until the Security Tool Coverage Agent flagged them in its first weekly report. That was a game changer.',
-
-        name: 'Rohan Mehta',
-
-        initials: 'RM',
-
+        initials: 'VO',
         role: 'Head of Security Operations',
-
         org: 'VertexOne',
-
         avatarBg: '#FFC933'
-
       },
-
       {
-
         quote: 'The Cloud Operations Agent identified over $600K in annual wasted cloud spend within its first week. The ROI conversation with our board lasted about four minutes.',
-
-        name: 'Sarah Jenkins',
-
-        initials: 'SJ',
-
+        initials: 'GT',
         role: 'VP of Cloud Infrastructure',
-
         org: 'GlobalTech',
-
         avatarBg: '#FFFFFF'
-
       },
-
       {
-
         quote: 'We passed our ISO 27001 recertification with zero findings for the first time. The Compliance Agent had been collecting evidence and flagging gaps continuously.',
-
-        name: 'Marcus Vance',
-
-        initials: 'MV',
-
+        initials: 'SI',
         role: 'Head of GRC',
-
         org: 'Sovereign Insure',
-
         avatarBg: '#C2F5E3'
-
       },
-
       {
-
         quote: 'I receive a natural-language operational briefing every Monday at 08:00. It covers IT, security, cloud spend, and compliance posture — synthesised in eight seconds.',
-
-        name: 'Elena Rostova',
-
-        initials: 'ER',
-
+        initials: 'FE',
         role: 'Chief Technology Officer',
-
         org: 'Fintech Enterprise',
-
         avatarBg: '#FFE082'
-
       }
-
     ];
 
     // Duplicate testimonials for infinite horizontal scrolling loop
-
     var doubleTestimonials = testimonials.concat(testimonials);
-
     doubleTestimonials.forEach(function(t) {
-
       var card = document.createElement('div');
-
       card.className = 'testimonial-card-slide';
-
       card.innerHTML = 
-
           '<div class="testimonial-stars">★★★★★</div>'
-
         + '<div class="testimonial-quote-mark">“</div>'
-
         + '<p class="testimonial-text">' + t.quote + '</p>'
-
         + '<div class="testimonial-footer">'
-
         + '  <div class="testimonial-avatar" style="background-color: ' + t.avatarBg + '; color: #0b0f19;">' + t.initials + '</div>'
-
         + '  <div class="testimonial-meta">'
-
-        + '    <div class="testimonial-name">' + t.name + '</div>'
-
-        + '    <div class="testimonial-role">' + t.role + '</div>'
-
-        + '    <div class="testimonial-org-badge">' + t.org + '</div>'
-
+        + '    <div class="testimonial-org-badge" style="font-weight:700; color:var(--text-1,#fff); font-size:0.88rem;">' + t.org + '</div>'
+        + '    <div class="testimonial-role" style="font-size:0.78rem; color:var(--text-3);">' + t.role + '</div>'
         + '  </div>'
-
         + '</div>';
 
       testimonialsTrack.appendChild(card);
-
     });
 
   }
@@ -4994,237 +4921,110 @@ function buildTestimonials() {
 
 
   const REVIEWS = [
-
     {
-
       stars: 5,
-
       body: 'One Concord AI eliminated our entire service-desk backlog within two weeks. The Service Desk Agent handles password resets, VPN fixes, and licence requests end-to-end — our team now focuses on real engineering work.',
-
-      name: 'James Whitfield',
-
       role: 'VP of IT, EMEA',
-
       org: 'Global Logistics Co.',
-
-      initials: 'JW',
-
+      initials: 'GL',
       color: '#B5F2DB'
-
     },
-
     {
-
       stars: 5,
-
       body: 'The Security Operations Agent isolated a compromised endpoint and notified the CISO before our on-call engineer even saw the alert. That 90-second response window is simply not achievable with humans alone.',
-
-      name: 'Priya Nair',
-
       role: 'CISO',
-
       org: 'FinServ Holdings',
-
-      initials: 'PN',
-
+      initials: 'FH',
       color: '#B5F2DB'
-
     },
-
     {
-
       stars: 5,
-
       body: 'We passed our ISO 27001 audit with zero findings for the first time. The Compliance Agent collected every evidence artefact automatically and flagged two control gaps we would never have caught manually.',
-
-      name: 'Tariq Al-Rashid',
-
       role: 'Head of GRC',
-
       org: 'Gulf Energy Group',
-
-      initials: 'TA',
-
+      initials: 'GE',
       color: '#FFC933'
-
     },
-
     {
-
       stars: 5,
-
       body: 'Cloud Ops Agent saved us over $14,000 last month alone — idle instances, oversized RDS clusters, and a public S3 bucket it locked down in under five minutes. ROI was immediate.',
-
-      name: 'Sophie Brennan',
-
       role: 'Cloud Infrastructure Lead',
-
       org: 'RetailTech Europe',
-
-      initials: 'SB',
-
+      initials: 'RT',
       color: '#E4EEF0'
-
     },
-
     {
-
       stars: 5,
-
       body: 'Our MTTR dropped from 4 hours to 11 minutes after deploying the Incident Management and Root Cause Analysis agents together. The correlation engine is genuinely impressive — it caught a pattern we missed across 30 days of incidents.',
-
-      name: 'Marcus Eliot',
-
       role: 'Director of Operations',
-
       org: 'HealthTech SaaS',
-
-      initials: 'ME',
-
+      initials: 'HT',
       color: '#FFFFFF'
-
     },
-
     {
-
       stars: 5,
-
       body: 'Identity Agent handled the full offboarding of a terminated employee — 34 entitlements revoked, AD account disabled, mailbox archived — in 9 minutes with a complete audit trail. Legal was thrilled.',
-
-      name: 'Aisha Mensah',
-
       role: 'Head of IT Security',
-
       org: 'Pan-African Bank',
-
-      initials: 'AM',
-
+      initials: 'PB',
       color: '#C2F5E3'
-
     },
-
     {
-
       stars: 5,
-
       body: 'The Executive Intelligence Agent answered a board question about Q3 ticket volume trends in 8 seconds. What used to take my team an afternoon of spreadsheet work now happens in a natural-language query.',
-
-      name: 'Dr. Lena Schröder',
-
       role: 'CTO',
-
       org: 'Mittelstand Manufacturing',
-
-      initials: 'LS',
-
+      initials: 'MM',
       color: '#FFE082'
-
     },
-
     {
-
       stars: 5,
-
       body: 'Security Tool Coverage Agent found 5 cloud workloads with no EDR or SIEM coverage the week after we spun up a new environment. We would have been completely blind to those blind spots without it.',
-
-      name: "Ryan O'Sullivan",
-
       role: 'Security Architect',
-
       org: 'InsureTech UK',
-
-      initials: 'RO',
-
+      initials: 'IT',
       color: '#B5F2DB'
-
     },
-
     {
-
       stars: 5,
-
       body: 'We were live within 5 business days as promised. The integrations with ServiceNow, Intune, and AWS were seamless. Our first agent was resolving real tickets by end of week one.',
-
-      name: 'Fatima Al-Zahrani',
-
       role: 'IT Operations Manager',
-
       org: 'Saudi Retail Group',
-
-      initials: 'FZ',
-
+      initials: 'SR',
       color: '#FFC933'
-
     },
-
     {
-
       stars: 5,
-
       body: 'One Concord AI handles our NESA compliance monitoring continuously. The quarterly control submission used to take two weeks of manual effort — the Compliance Agent now has everything ready within hours.',
-
-      name: 'Khalid Jaber',
-
       role: 'Compliance Director',
-
       org: 'UAE Government Entity',
-
-      initials: 'KJ',
-
+      initials: 'UG',
       color: '#E4EEF0'
-
     }
-
   ];
 
-
-
   // Duplicate cards for seamless infinite loop
-
   const allCards = [...REVIEWS, ...REVIEWS];
-
-
 
   track.innerHTML = '';
 
-
-
   allCards.forEach(function(r) {
-
     const card = document.createElement('div');
-
     card.className = 't-card';
 
-
-
     card.innerHTML =
-
       '<div class="t-stars">' + '★'.repeat(r.stars) + '</div>' +
-
       '<div class="t-quote">&ldquo;</div>' +
-
       '<p class="t-body">' + r.body + '</p>' +
-
       '<div class="t-author">' +
-
-        '<div class="t-avatar" style="background:' + r.color + '">' + r.initials + '</div>' +
-
+        '<div class="t-avatar" style="background:' + r.color + '; color:#0b0f19;">' + r.initials + '</div>' +
         '<div class="t-info">' +
-
-          '<span class="t-name">' + r.name + '</span>' +
-
-          '<span class="t-role">' + r.role + '</span>' +
-
           '<span class="t-org">' + r.org + '</span>' +
-
+          '<span class="t-role">' + r.role + '</span>' +
         '</div>' +
-
       '</div>';
 
-
-
     track.appendChild(card);
-
   });
 
 }
