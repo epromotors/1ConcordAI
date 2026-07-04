@@ -353,23 +353,24 @@ nav { display: flex; align-items: center; gap: 1.8rem; }
   -webkit-clip-path: inset(0 0 0 0);
 }
 .slider-wrapper {
+  position: relative;
+  width: 100%;
+  height: clamp(3rem, 6vw, 5rem);
+}
+.slide-text {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  will-change: transform;
-}
-.slide-text {
+  height: 100%;
   font-family: var(--font);
   font-size: clamp(2.5rem, 5.2vw, 4.2rem);
   font-weight: 800;
   line-height: clamp(3rem, 6vw, 5rem);
-  height: clamp(3rem, 6vw, 5rem);
   display: block;
   white-space: nowrap;
   text-shadow: 0 0 10px var(--bg-0), 0 0 20px var(--bg-0);
+  will-change: transform, opacity;
 }
 
 /* Dashboard */

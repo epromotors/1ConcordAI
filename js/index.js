@@ -4046,30 +4046,34 @@ function initHeroTitleSlider() {
   const wrapper = document.getElementById("hero-title-slider");
   if (!wrapper) return;
 
-  const originalSlides = wrapper.querySelectorAll(".slide-text");
-  const totalSlides = originalSlides.length;
+  // Clean any clone nodes if present
+  const clones = wrapper.querySelectorAll(".slide-clone");
+  clones.forEach(c => c.remove());
+
+  const slides = wrapper.querySelectorAll(".slide-text");
+  const totalSlides = slides.length;
   if (totalSlides === 0) return;
 
-  // Clone first slide for infinite downward seamless loop
-  if (!wrapper.querySelector(".slide-clone")) {
-    const firstClone = originalSlides[0].cloneNode(true);
-    firstClone.classList.add("slide-clone");
-    wrapper.appendChild(firstClone);
-  }
-
   let currentIndex = 0;
+  let isAnimating = false;
 
-  function getSlideHeight() {
-    return originalSlides[0].offsetHeight || 80;
-  }
+  // Set initial states: first slide visible at y:0, others hidden at y:100%
+  slides.forEach((slide, i) => {
+    if (i === 0) {
+      gsap.set(slide, { y: "0%", opacity: 1, autoAlpha: 1 });
+      slide.classList.add("active");
+    } else {
+      gsap.set(slide, { y: "100%", opacity: 0, autoAlpha: 0 });
+      slide.classList.remove("active");
+    }
+  });
 
   function updateBrandingAccent(index) {
     const badge = document.getElementById("hero-badge");
     const ctaBtn = document.getElementById("hero-cta-btn");
     if (!badge || !ctaBtn) return;
 
-    const activeIdx = index % totalSlides;
-    if (activeIdx === 3) {
+    if (index === 3) {
       badge.className = "badge badge-orchid";
       badge.innerHTML = "<span class='badge-dot' style='background:var(--gold-bright)'></span>GCC Cloud Compliant · Sovereign Cloud";
       ctaBtn.className = "btn btn-gold";
@@ -4081,30 +4085,47 @@ function initHeroTitleSlider() {
   }
 
   function goToNextSlide() {
-    currentIndex++;
-    const currentHeight = getSlideHeight();
-    const targetY = -(currentIndex * currentHeight);
+    if (isAnimating) return;
+    isAnimating = true;
+
+    const prevIndex = currentIndex;
+    currentIndex = (currentIndex + 1) % totalSlides;
+
+    const currentSlide = slides[prevIndex];
+    const nextSlide = slides[currentIndex];
 
     updateBrandingAccent(currentIndex);
 
-    gsap.to(wrapper, {
-      y: targetY,
-      duration: 0.6,
-      ease: "power3.inOut",
+    // Prepare next slide at bottom position
+    gsap.set(nextSlide, { y: "100%", opacity: 0, autoAlpha: 1 });
+
+    const tl = gsap.timeline({
       onComplete: () => {
-        if (currentIndex >= totalSlides) {
-          currentIndex = 0;
-          gsap.set(wrapper, { y: 0 });
-        }
+        gsap.set(currentSlide, { autoAlpha: 0 });
+        currentSlide.classList.remove("active");
+        nextSlide.classList.add("active");
+        isAnimating = false;
       }
     });
+
+    // Animate current out (upwards)
+    tl.to(currentSlide, {
+      y: "-100%",
+      opacity: 0,
+      duration: 0.6,
+      ease: "power3.inOut"
+    }, 0);
+
+    // Animate next in (from bottom to center)
+    tl.to(nextSlide, {
+      y: "0%",
+      opacity: 1,
+      duration: 0.6,
+      ease: "power3.inOut"
+    }, 0);
   }
 
   setInterval(goToNextSlide, 3000);
-
-  window.addEventListener("resize", () => {
-    if (wrapper) gsap.set(wrapper, { y: -(currentIndex * getSlideHeight()) });
-  });
 }
 
 function buildHandPath(W, H) {
