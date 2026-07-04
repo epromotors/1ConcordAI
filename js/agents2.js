@@ -268,10 +268,10 @@
     AGENTS_V2.forEach(function(a) { if (counts[a.domain] !== undefined) counts[a.domain]++; });
 
     var tabs = [
-      { key: 'all',  label: 'All Agents',           count: counts.all },
-      { key: 'it',   label: 'IT & Operations',       count: counts.it },
-      { key: 'sec',  label: 'Security & Cloud',      count: counts.sec },
-      { key: 'comp', label: 'Reporting & Compliance',count: counts.comp },
+      { key: 'all',  fullLabel: 'All Agents',           shortLabel: 'All',        count: counts.all },
+      { key: 'it',   fullLabel: 'IT & Operations',       shortLabel: 'IT & Ops',   count: counts.it },
+      { key: 'sec',  fullLabel: 'Security & Cloud',      shortLabel: 'Security',   count: counts.sec },
+      { key: 'comp', fullLabel: 'Reporting & Compliance',shortLabel: 'Compliance', count: counts.comp },
     ];
 
     var inner = document.createElement('div');
@@ -286,7 +286,9 @@
       var btn = document.createElement('button');
       btn.className = 'ag-tab-btn' + (t.key === 'all' ? ' ag-tab-active' : '');
       btn.setAttribute('data-ag-filter', t.key);
-      btn.innerHTML = t.label + ' <span class="ag-tab-count">' + t.count + '</span>';
+      btn.innerHTML = '<span class="ag-tab-full">' + t.fullLabel + '</span>' +
+                      '<span class="ag-tab-short">' + t.shortLabel + '</span>' +
+                      ' <span class="ag-tab-count">' + t.count + '</span>';
       btn.addEventListener('click', function() {
         document.querySelectorAll('.ag-tab-btn').forEach(function(b) { b.classList.remove('ag-tab-active'); });
         btn.classList.add('ag-tab-active');
