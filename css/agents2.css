@@ -129,10 +129,7 @@
 }
 
 .ag-grad-text {
-  background: linear-gradient(135deg, #E4EEF0 0%, #B5F2DB 50%, #FFC933 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: #FFC933;
 }
 
 .ag-hero-sub {
@@ -740,10 +737,6 @@
   color: var(--ag-accent);
   line-height: 1;
   margin-bottom: 10px;
-  background: linear-gradient(135deg, var(--ag-accent), var(--ag-accent2));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
 }
 
 .ag-stat-label {
