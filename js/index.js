@@ -136,7 +136,7 @@ const SOLUTIONS = {
 
     tagline:'6 agents. Zero tickets. Every issue resolved before it becomes one.',
 
-    body:'One Concord AI eliminates the IT service desk backlog entirely. Six agents covering Service Desk, Incident Management, Root Cause Analysis, Change Management, Knowledge Intelligence, and Asset Discovery work in concert — detecting, diagnosing, and resolving issues before employees ever need to raise a ticket.',
+    body:'OneConcord AI removes the IT service desk bottleneck. Six agents across Service Desk, Incident Management, Root Cause Analysis, Change Management, Knowledge Intelligence, and Asset Discovery work together to resolve issues before tickets are raised.',
 
     agents:['SD','IM','RC','CM','KI','AD'],
 
@@ -162,9 +162,9 @@ const SOLUTIONS = {
 
     title:'Security & Cloud',
 
-    tagline:'3 agents. Identity, security, and cloud — unified.',
+    tagline:'3 unified agents. Identity, security, and cloud.',
 
-    body:'The Security & Cloud domain brings together Identity & Access, Security Operations, and Cloud Operations agents into a single coordinated layer. Together they protect your enterprise perimeter, enforce access policies, and govern cloud spend and posture — all autonomously.',
+    body:'The Security & Cloud domain unifies Identity & Access, Security Operations, and Cloud Operations into one coordinated layer. Together, they protect the enterprise perimeter, enforce access policies, and govern cloud posture and spend autonomously.',
 
     agents:['IA','SO','CO'],
 
@@ -192,7 +192,7 @@ const SOLUTIONS = {
 
     tagline:'3 agents. Intelligence, governance, and full security visibility.',
 
-    body:'The Reporting & Compliance domain brings together the Executive Intelligence Agent, Compliance & Governance Agent, and Security Tool Coverage Agent. Together they give leadership a complete picture — operational briefings, continuous compliance monitoring, and a live view of where security tooling coverage stands across every asset in the organisation.',
+    body:'The Reporting & Compliance domain unites three agents to deliver executive briefings, continuous compliance visibility, and a live view of security coverage across the enterprise',
 
     agents:['EI','CG','TC'],
 
