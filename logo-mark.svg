@@ -16,7 +16,7 @@
 
       .q-logo-satellites {
         transform-origin: 512px 512px;
-        animation: qSatellitesRevolve 25s linear infinite;
+        animation: qSatellitesRevolve 12s linear infinite;
       }
 
       @keyframes qSatellitesRevolve {
