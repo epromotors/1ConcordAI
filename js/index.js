@@ -491,7 +491,7 @@ function buildHome() {
 
       ['01','Understand',
 
-       'Intent engine identifies what is being requested, who is asking, and which systems, data, and business context are involved.',
+       'The system identifies the request, the requester, and the business context behind it.',
 
        '<i data-lucide="eye" style="width:22px;height:22px;"></i>',
 
@@ -499,7 +499,7 @@ function buildHome() {
 
       ['02','Reason',
 
-       'Knowledge engine retrieves enterprise context, relationships, history, and dependencies, enabling the agent to reason before acting.',
+       'It pulls in enterprise memory, relationships, history, and dependencies to understand what matters before acting.',
 
        '<i data-lucide="brain" style="width:22px;height:22px;"></i>',
 
@@ -507,7 +507,7 @@ function buildHome() {
 
       ['03','Decide',
 
-       'Policy engine evaluates risk, permissions, and governance rules to auto-execute, request approval, notify, or reject.',
+       'It applies policy, permissions, and risk rules to determine whether to execute, escalate, notify, or reject.',
 
        '<i data-lucide="shield-check" style="width:22px;height:22px;"></i>',
 
@@ -515,7 +515,7 @@ function buildHome() {
 
       ['04','Execute',
 
-       'Connector service performs authenticated API calls and orchestrates workflows — atomic, retryable, observable, and fully audited.',
+       'It performs authenticated actions across connected systems with full traceability and audit logging.',
 
        '<i data-lucide="zap" style="width:22px;height:22px;"></i>',
 
@@ -523,7 +523,7 @@ function buildHome() {
 
       ['05','Learn',
 
-       'Outcomes are written to the knowledge graph and vector store, continuously improving reasoning, decisions, and future execution.',
+       'Every outcome is written back into memory, so the system improves with every completed task.',
 
        '<i data-lucide="refresh-cw" style="width:22px;height:22px;"></i>',
 
@@ -3942,11 +3942,13 @@ function initCounters() {
 
     const suffix = el.dataset.suffix || '';
 
+    const prefix = el.dataset.prefix || '';
+
     ScrollTrigger.create({ trigger: el, start: 'top 85%', once: true,
 
       onEnter: () => gsap.to({ v: 0 }, { v: target, duration: 2, ease: 'power2.out',
 
-        onUpdate: function() { el.textContent = this.targets()[0].v.toFixed(target % 1 !== 0 ? 1 : 0) + suffix; }
+        onUpdate: function() { el.textContent = prefix + this.targets()[0].v.toFixed(target % 1 !== 0 ? 1 : 0) + suffix; }
 
       })
 
@@ -4071,15 +4073,21 @@ function initHeroTitleSlider() {
   function updateBrandingAccent(index) {
     const badge = document.getElementById("hero-badge");
     const ctaBtn = document.getElementById("hero-cta-btn");
-    if (!badge || !ctaBtn) return;
+    if (!ctaBtn) return;
+
+    if (badge) {
+      if (index === 3) {
+        badge.className = "badge badge-orchid";
+        badge.innerHTML = "<span class='badge-dot' style='background:var(--gold-bright)'></span>GCC Cloud Compliant · Sovereign Cloud";
+      } else {
+        badge.className = "badge";
+        badge.innerHTML = "<span class='badge-dot'></span>Introducing One Concord AI";
+      }
+    }
 
     if (index === 3) {
-      badge.className = "badge badge-orchid";
-      badge.innerHTML = "<span class='badge-dot' style='background:var(--gold-bright)'></span>GCC Cloud Compliant · Sovereign Cloud";
       ctaBtn.className = "btn btn-gold";
     } else {
-      badge.className = "badge";
-      badge.innerHTML = "<span class='badge-dot'></span>Introducing One Concord AI";
       ctaBtn.className = "btn btn-primary";
     }
   }
