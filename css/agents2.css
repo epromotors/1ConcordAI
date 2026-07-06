@@ -1654,3 +1654,207 @@
 
 /* Prevent horizontal overflow on agents page */
 #pg-agents { overflow-x: hidden; }
+
+/* ════════════════════════════════════════════════════════════════════════
+   AGENTS PAGE — MOBILE BUG-FIX PATCH v2
+   Applied: 2026-07-07
+   Covers: Hero grid, live panel, hub container, CTA padding,
+           workflow cards, stats band, integrations header, tabs
+   ════════════════════════════════════════════════════════════════════════ */
+
+/* ── 1. Agents hero inner: fix grid on narrow phones ── */
+@media (max-width: 600px) {
+  .ag-hero-inner {
+    padding: 0 16px;
+    gap: 28px;
+  }
+  .ag-hero-heading {
+    font-size: clamp(28px, 8vw, 40px);
+  }
+  .ag-hero-sub {
+    font-size: 14px;
+    max-width: 100%;
+  }
+  .ag-hero-actions {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .ag-btn-primary,
+  .ag-btn-ghost {
+    width: 100%;
+    max-width: 300px;
+    justify-content: center;
+  }
+}
+
+/* ── 2. Live panel: show a simplified summary on mobile instead of nothing ── */
+@media (max-width: 768px) {
+  .ag-live-panel {
+    display: block;
+    padding: 16px;
+    border-radius: 14px;
+  }
+  .ag-live-label {
+    margin-bottom: 12px;
+  }
+  .ag-metric-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .ag-metric-item {
+    padding: 10px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+  .ag-metric-value {
+    font-size: 15px;
+  }
+  .ag-metric-label {
+    font-size: 10px;
+  }
+  .ag-metric-change {
+    font-size: 10px;
+    align-self: flex-end;
+  }
+}
+@media (max-width: 480px) {
+  .ag-metric-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── 3. Hub visual container: constrain 600px fixed-width element to viewport ── */
+@media (max-width: 640px) {
+  .q-hub-visual-container {
+    width: min(600px, 100%) !important;
+    height: auto !important;
+    min-height: 400px !important;
+  }
+}
+
+/* ── 4. Hub section: fix padding on very small screens ── */
+@media (max-width: 480px) {
+  #pg-agents #ag-cube-section {
+    padding: 60px 0;
+  }
+  .q-hub-wrapper {
+    padding: 0 16px;
+    gap: 30px;
+  }
+  .q-hub-title {
+    font-size: clamp(22px, 6vw, 30px);
+  }
+  .q-hub-desc {
+    font-size: 13px;
+  }
+  .q-hub-details-panel {
+    padding: 16px;
+    min-height: 180px;
+  }
+}
+
+/* ── 5. Workflow cards: fix padding on small screens ── */
+@media (max-width: 600px) {
+  .ag-workflow-card {
+    padding: 20px 16px;
+  }
+  .ag-wf-step-action {
+    font-size: 11.5px;
+  }
+}
+
+/* ── 6. Stats band: reduce section padding on mobile ── */
+@media (max-width: 600px) {
+  #ag-stats-band {
+    padding: 40px 20px;
+  }
+  .ag-stats-header {
+    margin-bottom: 32px;
+  }
+  .ag-stat-num {
+    font-size: 30px;
+  }
+  .ag-stat-card {
+    padding: 20px 16px;
+  }
+}
+
+/* ── 7. Integrations header: fix gap on mobile ── */
+@media (max-width: 600px) {
+  .ag-integrations-header {
+    gap: 20px;
+  }
+  .ag-integrations-header-left h2 {
+    font-size: clamp(22px, 6vw, 32px);
+  }
+  .ag-integration-stat {
+    padding: 10px 12px;
+  }
+  .ag-integration-stat-num {
+    font-size: 18px;
+  }
+}
+
+/* ── 8. CTA section: reduce padding on mobile ── */
+@media (max-width: 768px) {
+  #ag-cta {
+    padding: 60px 24px;
+  }
+}
+@media (max-width: 480px) {
+  #ag-cta {
+    padding: 40px 16px;
+  }
+}
+
+/* ── 9. Sticky tabs: ensure grid layout doesn't overflow ── */
+@media (max-width: 420px) {
+  .ag-tabs-inner {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto auto;
+  }
+  .ag-tab-btn {
+    font-size: 10px;
+    padding: 8px 6px;
+  }
+}
+
+/* ── 10. Agents grid section: padding fix on mobile ── */
+@media (max-width: 480px) {
+  #ag-grid-section {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  .ag-card {
+    padding: 18px 14px;
+  }
+}
+
+/* ── 11. Workflow section: reduce padding on mobile ── */
+@media (max-width: 600px) {
+  #ag-workflow {
+    padding: 50px 20px;
+  }
+  .ag-workflow-header {
+    margin-bottom: 32px;
+  }
+  .ag-workflow-header h2 {
+    font-size: clamp(22px, 6vw, 32px);
+  }
+}
+
+/* ── 12. Global agents overflow protection ── */
+@media (max-width: 768px) {
+  #pg-agents,
+  #pg-agents * {
+    max-width: 100%;
+  }
+  /* Allow scrollable containers to still work */
+  .ag-marquee-track,
+  .ag-tabs-inner,
+  .ag-metric-row {
+    max-width: none;
+  }
+}

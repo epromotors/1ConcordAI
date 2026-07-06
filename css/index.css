@@ -4708,3 +4708,213 @@ body {
 }
 
 
+/* ════════════════════════════════════════════════════════════════════════
+   MOBILE BUG-FIX PATCH v2
+   Applied: 2026-07-07
+   Covers: Home hero, stats strip, autonomous loop, About hero,
+           Solutions tabs, footer, pulse-nodes overflow, value-cards,
+           and general overflow protection.
+   ════════════════════════════════════════════════════════════════════════ */
+
+/* ── 1. Hero section: fix container padding on narrow phones ── */
+@media (max-width: 480px) {
+  .hero .container {
+    padding: 0 16px;
+  }
+  .hero-inner {
+    gap: 2rem;
+  }
+  /* Clamp hero title font-size tighter on 360px screens */
+  .hero-title-container span[style] {
+    font-size: clamp(1.9rem, 7.5vw, 2.5rem) !important;
+  }
+  .slide-text {
+    font-size: clamp(1.9rem, 7.5vw, 2.5rem) !important;
+  }
+}
+
+/* ── 2. Hero visual: prevent float-cards from spilling outside viewport ── */
+@media (max-width: 768px) {
+  .hero-visual {
+    overflow: hidden;
+  }
+  .float-card-1 {
+    right: -0.5rem;
+    top: -0.5rem;
+  }
+  .float-card-2 {
+    left: -0.5rem;
+    bottom: 1rem;
+  }
+  /* Pulse nodes: clip to viewport */
+  .pulse-node {
+    display: none;
+  }
+}
+
+/* ── 3. Stat strip: stop numbers collapsing too early, add padding ── */
+@media (max-width: 600px) {
+  .strip {
+    padding: 28px 16px;
+  }
+  .strip-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px 12px;
+    justify-items: center;
+    text-align: center;
+  }
+  .s-num {
+    font-size: clamp(26px, 7vw, 36px);
+  }
+}
+@media (max-width: 360px) {
+  .strip-inner {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── 4. Stats-row second strip: 2-col on very small screens ── */
+@media (max-width: 360px) {
+  .stats-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── 5. Autonomous Loop (timeline) mobile: ensure left-aligned padding ── */
+@media (max-width: 768px) {
+  .timeline-container {
+    padding: 1rem 0 0;
+  }
+  .timeline-item {
+    padding-left: 3rem !important;
+    padding-right: 1rem !important;
+  }
+  .timeline-content {
+    padding: 1.2rem !important;
+  }
+}
+@media (max-width: 480px) {
+  .timeline-item {
+    padding-left: 2.5rem !important;
+    padding-right: 0.5rem !important;
+    margin-bottom: 2.5rem;
+  }
+  .timeline-badge {
+    width: 34px !important;
+    height: 34px !important;
+  }
+  .timeline-badge svg {
+    width: 16px !important;
+    height: 16px !important;
+  }
+}
+
+/* ── 6. About hero section: safe padding on very small phones ── */
+@media (max-width: 480px) {
+  .about-hero-left {
+    padding: 0 4px;
+  }
+  .values-grid {
+    grid-template-columns: 1fr !important;
+    gap: 12px;
+  }
+  .value-card {
+    padding: 20px 16px;
+  }
+}
+
+/* ── 7. Solutions sticky tabs: bump top offset on small screens ── */
+@media (max-width: 768px) {
+  .sol-tabs {
+    top: 72px; /* Matches actual header height on mobile */
+  }
+}
+@media (max-width: 480px) {
+  .sol-tabs {
+    top: 68px;
+  }
+  .sol-tab {
+    padding: 11px 14px;
+    font-size: 12px;
+  }
+}
+
+/* ── 8. Solutions metrics: prevent text truncation on very small screens ── */
+@media (max-width: 360px) {
+  .sol-met-v {
+    font-size: 16px;
+  }
+  .sol-met-l {
+    font-size: 8px;
+  }
+  .sol-mets {
+    gap: 4px;
+  }
+}
+
+/* ── 9. Platform page: section padding fix for mobile ── */
+@media (max-width: 600px) {
+  .platform-section-title {
+    font-size: clamp(1.5rem, 6vw, 2rem);
+  }
+}
+
+/* ── 10. Footer: ensure bottom links don't overflow on tiny screens ── */
+@media (max-width: 360px) {
+  .ft-legal {
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+  }
+  .ft-legal a,
+  .ft-legal span {
+    font-size: 11px;
+  }
+}
+
+/* ── 11. Global: Prevent any fixed-position or oversized element from causing h-scroll ── */
+@media (max-width: 768px) {
+  html, body {
+    overflow-x: hidden !important;
+    max-width: 100vw;
+  }
+  .container {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+}
+
+/* ── 12. CTA band: button stack on mobile ── */
+@media (max-width: 480px) {
+  .cta-band .btn {
+    width: 100%;
+    max-width: 300px;
+    justify-content: center;
+  }
+  .cta-band {
+    text-align: center;
+  }
+  .cta-band > .container > div[style] {
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+}
+
+/* ── 13. Bento cards (home page): fix interior overflow on 360px ── */
+@media (max-width: 360px) {
+  .bento-card {
+    padding: 14px 12px;
+  }
+}
+
+/* ── 14. Navigation: hide main nav links on mobile ── */
+@media (max-width: 860px) {
+  nav.main-nav {
+    display: none;
+  }
+  .nav-mobile-btn {
+    display: flex !important;
+  }
+}
+
