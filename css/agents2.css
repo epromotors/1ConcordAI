@@ -518,7 +518,7 @@
   font-family: var(--ag-mono);
   font-size: 18px;
   font-weight: 700;
-  color: var(--ag-domain-color, var(--ag-accent));
+  color: var(--ag-accent);
   line-height: 1;
 }
 
@@ -548,7 +548,7 @@
 .ag-card-name {
   font-size: 15.5px;
   font-weight: 700;
-  color: var(--ag-text1);
+  color: #FFC933;
   margin: 0 0 7px;
   line-height: 1.2;
 }
@@ -1300,6 +1300,11 @@
 @keyframes qCubeFloat {
   0%, 100% { margin-top: 0; }
   50% { margin-top: -12px; }
+}
+
+@keyframes qLogoFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
 }
 
 .q-cube-face {

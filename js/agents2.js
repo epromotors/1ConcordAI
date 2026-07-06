@@ -208,14 +208,15 @@
     heroEl.innerHTML = '\
       <div class="ag-hero-inner">\
         <div class="ag-hero-left">\
-          <div class="ag-hero-eyebrow">Digital workers · 12 AI Agents</div>\
           <h1 class="ag-hero-heading" id="ag-hero-h1">\
-            <span class="word"><span style="--wi:0">Autonomous</span></span> \
-            <span class="word"><span style="--wi:1">agents.</span></span><br>\
-            <span class="word"><span class="ag-grad-text" style="--wi:2">Every</span></span> \
-            <span class="word"><span class="ag-grad-text" style="--wi:3">domain.</span></span>\
+            <span class="word"><span style="--wi:0">Enterprise</span></span> \
+            <span class="word"><span style="--wi:1">operations,</span></span> \
+            <span class="word"><span style="--wi:2">powered</span></span> \
+            <span class="word"><span style="--wi:3">by</span></span> \
+            <span class="word"><span style="--wi:4">autonomous</span></span> \
+            <span class="word"><span style="--wi:5">agents.</span></span>\
           </h1>\
-          <p class="ag-hero-sub">Twelve agents across IT Operations, Security &amp; Cloud, and Reporting &amp; Compliance — each owning a specific operational area, operating within your policies, and coordinating with peer agents when outcomes span multiple teams.</p>\
+          <p class="ag-hero-sub">OneConcord brings twelve specialized agents into the core of the enterprise, where they execute within governance, collaborate across functions, and move work forward.</p>\
           <div class="ag-hero-actions">\
             <button class="ag-btn-primary" onclick="go(\'contact\')">Book a live demo ↗</button>\
             <button class="ag-btn-ghost" onclick="go(\'pricing\')">See pricing →</button>\
@@ -223,7 +224,7 @@
         </div>\
         <div class="ag-hero-right">\
           <div class="ag-live-panel">\
-            <div class="ag-live-label"><span class="ag-live-dot"></span>Live agent activity</div>\
+            <div class="ag-live-label"><span class="ag-live-dot"></span>Platform Capabilities</div>\
             <div class="ag-metric-row" id="ag-metrics-area"></div>\
           </div>\
         </div>\
@@ -233,20 +234,21 @@
     var metricsArea = document.getElementById('ag-metrics-area');
     if (metricsArea) {
       var metrics = [
-        { icon: '🛡', bg: 'rgba(167,139,250,0.12)', num: '1,284', label: 'Threats auto-contained', change: '+12', cls: 'up' },
-        { icon: '🎯', bg: 'rgba(56,189,248,0.12)',  num: '4.2m',  label: 'Avg. ticket resolution', change: 'Active', cls: 'active' },
-        { icon: '📋', bg: 'rgba(245,158,11,0.12)',  num: '94.1%', label: 'Compliance score live', change: '+0.3%', cls: 'up' },
+        { icon: '🤖', bg: 'rgba(167,139,250,0.12)', num: '1,284', label: 'Active AI Agents', change: '+12', cls: 'up' },
+        { icon: '⚡', bg: 'rgba(56,189,248,0.12)',  num: '428',  label: 'Workflows Automated', change: '', cls: '' },
+        { icon: '🛡', bg: 'rgba(245,158,11,0.12)',  num: '97.8%', label: 'Decision Confidence', change: '+0.4%', cls: 'up' },
       ];
       metrics.forEach(function(m) {
         var el = document.createElement('div');
         el.className = 'ag-metric-item';
+        var changeHtml = m.change ? '<div class="ag-metric-change ' + m.cls + '">' + m.change + '</div>' : '';
         el.innerHTML = '\
           <div class="ag-metric-icon" style="background:' + m.bg + '">' + m.icon + '</div>\
           <div class="ag-metric-body">\
             <div class="ag-metric-value" data-target-val="' + m.num + '">' + m.num + '</div>\
             <div class="ag-metric-label">' + m.label + '</div>\
           </div>\
-          <div class="ag-metric-change ' + m.cls + '">' + m.change + '</div>';
+          ' + changeHtml;
         metricsArea.appendChild(el);
       });
     }
@@ -344,14 +346,13 @@
 
       card.innerHTML = '\
         <div class="ag-card-top">\
-          <div class="ag-card-icon-wrap"><span style="font-size:18px">' + agent.icon + '</span></div>\
+          <div class="ag-card-domain-badge" style="margin-bottom:0">' + dom.label + '</div>\
           <div class="ag-card-stat-wrap">\
             <div class="ag-card-stat">' + agent.stat + '</div>\
             <div class="ag-card-stat-label">' + agent.statLbl + '</div>\
           </div>\
         </div>\
         <div>\
-          <div class="ag-card-domain-badge">' + dom.label + '</div>\
           <h3 class="ag-card-name">' + agent.name + '</h3>\
           <p class="ag-card-desc">' + agent.desc + '</p>\
         </div>\
@@ -435,7 +436,7 @@
         <div class="ag-integrations-header-left">\
           <div class="ag-section-kicker">Integrations</div>\
           <h2>70+ connectors.<br>Zero custom dev.</h2>\
-          <p>Every agent connects to the tools your team already uses — out of the box, authenticated, and audited from day one.</p>\
+          <p>Every agent plugs into the tools your team already uses, fully authenticated and audited from the start.</p>\
         </div>\
         <div class="ag-integrations-header-right">\
           <div class="ag-integration-stat">\
@@ -582,8 +583,8 @@
         // Left Column: Text Content & Dynamic Detail Card
         '<div class="q-hub-left">',
           '<div class="ag-section-kicker">Unified Orchestration</div>',
-          '<h2 class="q-hub-title">Beyond Traditional Operations & Security</h2>',
-          '<p class="q-hub-desc">Traditional enterprise automation relies on disconnected platforms and manual handoffs. One Concord AI binds IT operations, security, and compliance into a single, unified execution mesh.</p>',
+          '<h2 class="q-hub-title">Redefining operations and security</h2>',
+          '<p class="q-hub-desc">OneConcord AI replaces disconnected workflows with a single execution mesh for IT operations, security, and compliance.</p>',
           
           // Dynamic details panel (updates on hover/cycle)
           '<div class="q-hub-details-panel" id="q-hub-details">',
@@ -601,14 +602,10 @@
         '<div class="q-hub-right">',
           '<div class="q-hub-visual-container" id="q-hub-visual">',
             
-            // Central Isometric Cube
-            '<div class="q-hub-cube-scene" id="q-hub-cube">',
-              '<div class="q-hub-cube">',
-                '<div class="q-cube-face q-face-top"></div>',
-                '<div class="q-cube-face q-face-left"></div>',
-                '<div class="q-cube-face q-face-right"></div>',
-              '</div>',
-              '<div class="q-hub-cube-glow"></div>',
+            // Central Logo
+            '<div class="q-hub-cube-scene" id="q-hub-cube" style="display:flex;align-items:center;justify-content:center;">',
+              '<img src="Logo.svg" class="q-hub-logo" style="width:75px;height:75px;filter:drop-shadow(0 0 20px rgba(181,242,219,0.55));animation: qLogoFloat 5s ease-in-out infinite;" alt="OneConcord Logo" />',
+              '<div class="q-hub-cube-glow" style="width:120px;height:120px;pointer-events:none;"></div>',
             '</div>',
 
             // SVG lines overlay
