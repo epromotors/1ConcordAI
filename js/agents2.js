@@ -604,7 +604,7 @@
             
             // Central Logo
             '<div class="q-hub-cube-scene" id="q-hub-cube" style="display:flex;align-items:center;justify-content:center;">',
-              '<img src="Logo.svg" class="q-hub-logo" style="width:75px;height:75px;filter:drop-shadow(0 0 20px rgba(181,242,219,0.55));animation: qLogoFloat 5s ease-in-out infinite;" alt="OneConcord Logo" />',
+              '<img src="logo-mark.svg" class="q-hub-logo" style="width:75px;height:75px;filter:drop-shadow(0 0 20px rgba(181,242,219,0.55));animation: qLogoFloat 5s ease-in-out infinite;" alt="OneConcord Logo" />',
               '<div class="q-hub-cube-glow" style="width:120px;height:120px;pointer-events:none;"></div>',
             '</div>',
 
