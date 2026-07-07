@@ -1217,8 +1217,25 @@ nav { display: flex; align-items: center; gap: 1.8rem; }
 }
 
 /* ─── PRICING ─── */
-.price-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,.09); border-radius: 16px; padding: 32px; position: relative; width: 100%; box-sizing: border-box; display: flex; flex-direction: column; }
-.price-card.featured { background: linear-gradient(135deg, rgba(181, 242, 219, 0.12), rgba(4, 47, 52, .2)); border-color: var(--accent); }
+.price-card {
+  background: rgba(22, 35, 43, 0.72);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,.09);
+  border-radius: 16px;
+  padding: 32px;
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+.price-card.featured {
+  background: linear-gradient(135deg, rgba(181, 242, 219, 0.10), rgba(4, 47, 52, 0.15)), rgba(22, 35, 43, 0.72);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-color: var(--accent);
+}
 .price-badge { position: absolute; top: -13px; left: 26px; background: var(--accent); color: var(--bg-0); font-size: 11px; font-weight: 700; padding: 4px 14px; border-radius: 100px; text-transform: uppercase; letter-spacing: .5px; }
 .p-name { font-size: 14px; font-weight: 600; color: var(--text-2); margin-bottom: 8px; }
 .p-amt { font-family: var(--mono); font-size: 40px; font-weight: 600; color: var(--text-1); letter-spacing: -1.5px; line-height: 1; }
