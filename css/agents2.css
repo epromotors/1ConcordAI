@@ -1216,7 +1216,7 @@
 
 /* Dynamic Details Panel */
 .q-hub-details-panel {
-  background: rgba(22, 35, 43, 0.96); /* Opaque Charcoal Teal to mask the background SVG line */
+  background: rgba(22, 35, 43, 0.72); /* 72% opacity Charcoal Teal to blend with the background line */
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--ag-border);
