@@ -1217,13 +1217,13 @@ nav { display: flex; align-items: center; gap: 1.8rem; }
 }
 
 /* ─── PRICING ─── */
-.price-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,.09); border-radius: 16px; padding: 32px; position: relative; width: 100%; box-sizing: border-box; }
+.price-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,.09); border-radius: 16px; padding: 32px; position: relative; width: 100%; box-sizing: border-box; display: flex; flex-direction: column; }
 .price-card.featured { background: linear-gradient(135deg, rgba(181, 242, 219, 0.12), rgba(4, 47, 52, .2)); border-color: var(--accent); }
 .price-badge { position: absolute; top: -13px; left: 26px; background: var(--accent); color: var(--bg-0); font-size: 11px; font-weight: 700; padding: 4px 14px; border-radius: 100px; text-transform: uppercase; letter-spacing: .5px; }
 .p-name { font-size: 14px; font-weight: 600; color: var(--text-2); margin-bottom: 8px; }
 .p-amt { font-family: var(--mono); font-size: 40px; font-weight: 600; color: var(--text-1); letter-spacing: -1.5px; line-height: 1; }
 .p-period { font-size: 13px; color: var(--text-3); margin-top: 4px; margin-bottom: 20px; }
-.p-list { list-style: none; display: flex; flex-direction: column; gap: 10px; margin: 20px 0 26px; }
+.p-list { list-style: none; display: flex; flex-direction: column; gap: 10px; margin: 20px 0 26px; flex: 1; }
 .p-list li { font-size: 13.5px; color: var(--text-2); display: flex; align-items: flex-start; gap: 9px; }
 .p-list li::before {
   content: ''; width: 16px; height: 16px; border-radius: 50%; border: 1.5px solid var(--accent); flex-shrink: 0; margin-top: 2px;
@@ -4064,9 +4064,17 @@ footer { background: rgba(22, 35, 43, 0.96); border-top: 1px solid var(--border)
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 18px;
-  align-items: start;
+  align-items: stretch;
   width: 100%;
   margin-bottom: 60px;
+}
+
+/* Widen the pricing section beyond the standard 1200px container */
+#pricingGrid {
+  max-width: 1440px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
 }
 
 /* ── PRICING SECTION ── */
