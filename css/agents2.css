@@ -1597,37 +1597,38 @@
     padding: 8px 16px;
   }
   .ag-tabs-inner {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 2px;
-    padding: 4px;
-    width: auto;
-    max-width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px;
+    padding: 6px;
+    width: 100%;
+    max-width: 480px;
     background: rgba(4, 47, 52, 0.85);
     border: 1px solid rgba(181, 242, 219, 0.15);
-    border-radius: 100px;
-    overflow-x: auto;
-    scrollbar-width: none;
+    border-radius: 14px;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
   }
   .ag-tabs-sep { display: none; }
   .ag-tab-full { display: none; }
   .ag-tab-short { display: inline; }
   .ag-tab-btn {
-    flex: 0 1 auto;
+    display: inline-flex;
     justify-content: center;
-    padding: 6px 12px;
-    font-size: 11px;
+    align-items: center;
+    width: 100%;
+    padding: 8px 10px;
+    font-size: 13px; /* Keep desktop font size on mobile */
+    font-weight: 700;
     gap: 4px;
     text-align: center;
     box-sizing: border-box;
+    border-radius: 10px;
   }
   .ag-tab-count {
-    min-width: 16px;
-    height: 16px;
-    padding: 0 4px;
-    font-size: 9px;
+    min-width: 18px;
+    height: 18px;
+    padding: 0 5px;
+    font-size: 10px;
   }
   
   /* Qount-style interactive hub section mobile grid */
@@ -1687,8 +1688,6 @@
   .q-face-right{ transform: translateZ(35px); }
 }
 
-/* Prevent horizontal overflow on agents page */
-#pg-agents { overflow-x: hidden; }
 
 /* ════════════════════════════════════════════════════════════════════════
    AGENTS PAGE — MOBILE BUG-FIX PATCH v2
@@ -1844,16 +1843,10 @@
   }
 }
 
-/* ── 9. Sticky tabs: ensure flex layout fits nicely ── */
+/* ── 9. Sticky tabs: maintain 2x2 grid on narrow devices ── */
 @media (max-width: 420px) {
   .ag-tabs-inner {
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 4px;
-  }
-  .ag-tab-btn {
-    font-size: 10px;
-    padding: 6px 8px;
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
