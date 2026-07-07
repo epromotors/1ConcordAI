@@ -69,7 +69,15 @@
       desc: 'Maps controls to frameworks (SOC 2, ISO 27001, NIST CSF, GCC), collects evidence automatically, and flags gaps before audits.',
       stat: '94%', statLbl: 'Compliance score', icon: '📋',
       chips: ['SOC 2', 'ISO 27001', 'NIST CSF', 'GCC'],
-      span: 'ag-span-2',
+      span: 'ag-span-2', hasTerminal: true,
+      termLines: [
+        { cls: 'ag-term-prompt', txt: '▸ framework audit triggered: SOC 2 • ISO 27001' },
+        { cls: 'ag-term-info',   txt: '  control CC6.3 → checking identity provisioning' },
+        { cls: 'ag-term-ok',     txt: '  verified → all stale accounts revoked • PASS' },
+        { cls: 'ag-term-prompt', txt: '▸ collecting evidence: cloud configuration scan' },
+        { cls: 'ag-term-info',   txt: '  checking → S3 bucket public access status' },
+        { cls: 'ag-term-ok',     txt: '  verified → public access blocked • evidence filed' },
+      ]
     },
     {
       code: 'pe', domain: 'comp', domainLabel: 'Reporting & Compliance',
