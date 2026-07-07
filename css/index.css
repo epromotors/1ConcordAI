@@ -1283,7 +1283,7 @@ nav { display: flex; align-items: center; gap: 1.8rem; }
 
 /* ── HEADER ROW ── */
 .cmp-table thead tr {
-  background: rgba(5,15,35,0.8);
+  background: rgba(22, 35, 43, 0.9);
   border-bottom: 1px solid rgba(255,255,255,0.06);
 }
 
@@ -1369,14 +1369,15 @@ nav { display: flex; align-items: center; gap: 1.8rem; }
 /* ── CATEGORY GROUP ROWS ── */
 .cmp-group-row td {
   background: rgba(255,255,255,0.02);
-  padding: 10px 20px;
+  padding: 12px 20px;
   font-size: 10px;
   font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: 1.2px;
+  letter-spacing: 1.4px;
   color: var(--accent);
   border-bottom: none;
   border-top: 1px solid rgba(255,255,255,0.05);
+  text-align: center;
 }
 
 /* ── DATA ROWS ── */

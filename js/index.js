@@ -3478,7 +3478,7 @@ function buildPricing() {
 
     {
 
-      label: '👥  Capacity',
+      label: 'Capacity',
 
       rows: [
 
@@ -3494,7 +3494,7 @@ function buildPricing() {
 
     {
 
-      label: '🖥️  Platform',
+      label: 'Platform',
 
       rows: [
 
@@ -3512,7 +3512,7 @@ function buildPricing() {
 
     {
 
-      label: '🔐  Identity & Access',
+      label: 'Identity & Access',
 
       rows: [
 
@@ -3530,7 +3530,7 @@ function buildPricing() {
 
     {
 
-      label: '🛡️  Compliance',
+      label: 'Compliance',
 
       rows: [
 
@@ -3550,7 +3550,7 @@ function buildPricing() {
 
     {
 
-      label: '🤝  Support',
+      label: 'Support',
 
       rows: [
 
