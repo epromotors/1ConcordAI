@@ -301,6 +301,11 @@
 }
 
 /* ─── STICKY TABS ────────────────────────────────────────────────────── */
+.ag-grid-sticky-wrapper {
+  position: relative;
+  width: 100%;
+}
+
 #ag-sticky-tabs {
   position: sticky;
   top: 72px;

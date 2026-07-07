@@ -1012,29 +1012,30 @@
 
 
 
-      <!-- ── STICKY NAVIGATION TABS ────────────────────────────────── -->
+      <!-- ── STICKY TABS & GRID WRAPPER (limits stickiness to this section) ── -->
+      <div class="ag-grid-sticky-wrapper">
 
-      <div id="ag-sticky-tabs"></div>
+        <!-- ── STICKY NAVIGATION TABS ────────────────────────────────── -->
+        <div id="ag-sticky-tabs"></div>
 
+        <!-- ── AGENT BENTO GRID ───────────────────────────────────────── -->
+        <div id="ag-grid-section">
 
+          <div class="ag-section-header">
 
-      <!-- ── AGENT BENTO GRID ───────────────────────────────────────── -->
+            <div>
 
-      <div id="ag-grid-section">
+              <div class="ag-section-kicker">Agent Roster</div>
 
-        <div class="ag-section-header">
+              <h2 class="ag-section-title">12 agents. Every domain covered.</h2>
 
-          <div>
-
-            <div class="ag-section-kicker">Agent Roster</div>
-
-            <h2 class="ag-section-title">12 agents. Every domain covered.</h2>
+            </div>
 
           </div>
 
-        </div>
+          <div id="ag-bento-grid" class="ag-bento-grid"></div>
 
-        <div id="ag-bento-grid" class="ag-bento-grid"></div>
+        </div>
 
       </div>
 
