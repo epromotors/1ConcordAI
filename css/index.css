@@ -262,7 +262,7 @@ header.scrolled {
   text-decoration: none; font-weight: 800; font-size: 1.15rem; color: var(--text-1);
 }
 .logo img, .logo-img {
-  height: 52px;
+  height: 64px;
   width: auto;
   display: block;
 }
