@@ -315,8 +315,9 @@
   max-width: 1180px;
   margin: 0 auto;
   display: flex;
+  justify-content: center;
   align-items: center;
-  gap: 4px;
+  gap: 8px;
   overflow-x: auto;
   scrollbar-width: none;
   padding: 14px 0;
@@ -1563,26 +1564,28 @@
   .ag-stats-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
   .ag-stat-val   { font-size: clamp(1.5rem, 5vw, 2.2rem); }
   #ag-sticky-tabs {
-    top: 64px;
+    top: 72px;
     z-index: 990;
-    padding: 0 8px;
+    padding: 0 16px;
     background: rgba(8, 14, 26, 0.96);
   }
   .ag-tabs-inner {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
     padding: 10px 0;
     width: 100%;
-    overflow: visible;
+    overflow-x: auto;
+    scrollbar-width: none;
   }
   .ag-tabs-sep { display: none; }
   .ag-tab-full { display: none; }
   .ag-tab-short { display: inline; }
   .ag-tab-btn {
-    width: 100%;
+    flex: 0 1 auto;
     justify-content: center;
-    padding: 8px 3px;
+    padding: 8px 10px;
     font-size: 11px;
     gap: 4px;
     text-align: center;
@@ -1809,15 +1812,16 @@
   }
 }
 
-/* ── 9. Sticky tabs: ensure grid layout doesn't overflow ── */
+/* ── 9. Sticky tabs: ensure flex layout fits nicely ── */
 @media (max-width: 420px) {
   .ag-tabs-inner {
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: auto auto;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 4px;
   }
   .ag-tab-btn {
     font-size: 10px;
-    padding: 8px 6px;
+    padding: 6px 8px;
   }
 }
 

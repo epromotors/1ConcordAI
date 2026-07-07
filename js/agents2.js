@@ -802,6 +802,12 @@
     buildIntegrationsSection();
     buildWorkflowSection();
 
+    // Reset active tab to "All agents" by default
+    var allBtn = document.querySelector('.ag-tab-btn[data-ag-filter="all"]');
+    if (allBtn) {
+      allBtn.click();
+    }
+
     // Re-run lucide
     setTimeout(function() {
       if (typeof lucide !== 'undefined') { lucide.createIcons(); }
