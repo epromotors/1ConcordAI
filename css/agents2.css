@@ -1176,12 +1176,10 @@
    ══════════════════════════════════════════════════════════════════════ */
 
 #pg-agents #ag-cube-section {
-  background: linear-gradient(180deg, var(--ag-bg0) 0%, #162a4e 100%);
+  background: transparent;
   padding: 120px 0;
   position: relative;
   overflow: hidden;
-  border-top: 1px solid var(--ag-border);
-  border-bottom: 1px solid var(--ag-border);
 }
 
 .q-hub-wrapper {
