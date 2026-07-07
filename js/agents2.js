@@ -291,10 +291,27 @@
       btn.innerHTML = '<span class="ag-tab-full">' + t.fullLabel + '</span>' +
                       '<span class="ag-tab-short">' + t.shortLabel + '</span>' +
                       ' <span class="ag-tab-count">' + t.count + '</span>';
-      btn.addEventListener('click', function() {
+      btn.addEventListener('click', function(e) {
         document.querySelectorAll('.ag-tab-btn').forEach(function(b) { b.classList.remove('ag-tab-active'); });
         btn.classList.add('ag-tab-active');
         filterAgentCards(t.key);
+
+        // Smoothly scroll to the start of the cards section below the sticky header & tabs on human click
+        if (e && e.isTrusted) {
+          var gridSection = document.getElementById('ag-grid-section');
+          if (gridSection) {
+            var headerHeight = 72;
+            var tabsHeight = tabsEl ? tabsEl.offsetHeight : 64;
+            var offset = headerHeight + tabsHeight - 2;
+            var elementPosition = gridSection.getBoundingClientRect().top;
+            var offsetPosition = elementPosition + window.pageYOffset - offset;
+
+            window.scrollTo({
+              top: offsetPosition,
+              behavior: 'smooth'
+            });
+          }
+        }
       });
       inner.appendChild(btn);
     });
