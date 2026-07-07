@@ -300,6 +300,14 @@
     });
 
     tabsEl.appendChild(inner);
+
+    // Stuck class toggle on scroll to mask scrolling content and show background
+    var scrollHandler = function() {
+      var rect = tabsEl.getBoundingClientRect();
+      tabsEl.classList.toggle('stuck', rect.top <= 73);
+    };
+    window.addEventListener('scroll', scrollHandler);
+    scrollHandler();
   }
 
   /* ── FILTER AGENT CARDS ──────────────────────────────────────────────── */

@@ -24,7 +24,7 @@
   font-family: var(--ag-font);
   background: transparent;
   color: var(--ag-text1);
-  overflow-x: hidden;
+  position: relative;
 }
 
 /* ─── HERO ────────────────────────────────────────────────────────────── */
@@ -305,22 +305,37 @@
   position: sticky;
   top: 72px;
   z-index: 990;
-  background: rgba(8, 14, 26, 0.94);
+  background: transparent;
+  padding: 18px 0;
+  display: flex;
+  justify-content: center;
+  transition: background 0.3s, backdrop-filter 0.3s;
+}
+
+/* Add background and blur to container only when it is actually stuck/scrolled */
+#ag-sticky-tabs.stuck {
+  background: rgba(8, 14, 26, 0.85);
   backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
   border-bottom: 1px solid var(--ag-border);
-  padding: 0 32px;
+  padding: 12px 0;
 }
 
 .ag-tabs-inner {
-  max-width: 1180px;
-  margin: 0 auto;
+  background: rgba(4, 47, 52, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(181, 242, 219, 0.18);
+  border-radius: 100px;
+  padding: 6px;
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 8px;
+  gap: 4px;
   overflow-x: auto;
   scrollbar-width: none;
-  padding: 14px 0;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s;
 }
 
 .ag-tabs-inner::-webkit-scrollbar { display: none; }
@@ -331,29 +346,29 @@
 .ag-tab-btn {
   display: inline-flex;
   align-items: center;
-  gap: 7px;
-  padding: 8px 18px;
+  gap: 8px;
+  padding: 8px 20px;
   font-family: var(--ag-font);
-  font-size: 13.5px;
-  font-weight: 600;
+  font-size: 13px;
+  font-weight: 700;
   color: var(--ag-text2);
   background: transparent;
-  border: 1px solid transparent;
-  border-radius: 8px;
+  border: none;
+  border-radius: 100px;
   cursor: pointer;
   white-space: nowrap;
-  transition: all 0.25s ease;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .ag-tab-btn:hover {
-  color: var(--ag-text1);
-  background: rgba(255,255,255,0.04);
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.05);
 }
 
 .ag-tab-btn.ag-tab-active {
-  color: var(--ag-accent);
-  background: rgba(181,242,219,0.08);
-  border-color: rgba(181,242,219,0.25);
+  color: #042F34 !important;
+  background: var(--ag-accent);
+  box-shadow: 0 4px 12px rgba(181, 242, 219, 0.3);
 }
 
 .ag-tab-count {
@@ -363,23 +378,25 @@
   min-width: 20px;
   height: 20px;
   padding: 0 6px;
-  border-radius: 6px;
+  border-radius: 100px;
   font-size: 10px;
   font-weight: 700;
-  background: rgba(255,255,255,0.07);
+  background: rgba(255, 255, 255, 0.07);
   color: var(--ag-text3);
+  margin-left: 2px;
+  transition: all 0.25s;
 }
 
 .ag-tab-btn.ag-tab-active .ag-tab-count {
-  background: rgba(181,242,219,0.15);
-  color: var(--ag-accent);
+  background: rgba(4, 47, 52, 0.12);
+  color: #042F34;
 }
 
 .ag-tabs-sep {
   width: 1px;
-  height: 20px;
-  background: var(--ag-border);
-  margin: 0 8px;
+  height: 16px;
+  background: rgba(181, 242, 219, 0.15);
+  margin: 0 6px;
   flex-shrink: 0;
 }
 
@@ -1566,18 +1583,33 @@
   #ag-sticky-tabs {
     top: 72px;
     z-index: 990;
-    padding: 0 16px;
-    background: rgba(8, 14, 26, 0.96);
+    padding: 10px 16px;
+    background: transparent;
+    display: flex;
+    justify-content: center;
+    transition: background 0.3s, padding 0.3s;
+  }
+  #ag-sticky-tabs.stuck {
+    background: rgba(8, 14, 26, 0.85);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border-bottom: 1px solid var(--ag-border);
+    padding: 8px 16px;
   }
   .ag-tabs-inner {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 6px;
-    padding: 10px 0;
-    width: 100%;
+    gap: 2px;
+    padding: 4px;
+    width: auto;
+    max-width: 100%;
+    background: rgba(4, 47, 52, 0.85);
+    border: 1px solid rgba(181, 242, 219, 0.15);
+    border-radius: 100px;
     overflow-x: auto;
     scrollbar-width: none;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
   }
   .ag-tabs-sep { display: none; }
   .ag-tab-full { display: none; }
@@ -1585,7 +1617,7 @@
   .ag-tab-btn {
     flex: 0 1 auto;
     justify-content: center;
-    padding: 8px 10px;
+    padding: 6px 12px;
     font-size: 11px;
     gap: 4px;
     text-align: center;
