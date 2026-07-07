@@ -1258,9 +1258,10 @@ nav { display: flex; align-items: center; gap: 1.8rem; }
   border-radius: 20px;
   overflow: hidden;
   border: 1px solid rgba(255,255,255,0.07);
-  background: rgba(10,20,40,0.6);
+  background: rgba(22, 35, 43, 0.82);
   backdrop-filter: blur(12px);
-  box-shadow: 0 0 60px rgba(14,184,166,0.05), 0 20px 60px rgba(0,0,0,0.4);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.4);
 }
 
 /* Scroll container */
@@ -1336,9 +1337,9 @@ nav { display: flex; align-items: center; gap: 1.8rem; }
 
 /* ── FEATURED (Enterprise) column header ── */
 .th-ent {
-  background: linear-gradient(180deg, rgba(14,184,166,0.12) 0%, rgba(14,184,166,0.04) 100%);
-  border-left: 1px solid rgba(14,184,166,0.2);
-  border-right: 1px solid rgba(14,184,166,0.2);
+  background: transparent;
+  border-left: 1px solid rgba(255,255,255,0.06);
+  border-right: 1px solid rgba(255,255,255,0.06);
   border-top: 2px solid var(--accent);
   position: relative;
 }
@@ -1404,9 +1405,9 @@ nav { display: flex; align-items: center; gap: 1.8rem; }
 
 /* Featured (Enterprise) column cells */
 .td-ent {
-  background: linear-gradient(90deg, rgba(14,184,166,0.04) 0%, rgba(14,184,166,0.06) 100%);
-  border-left: 1px solid rgba(14,184,166,0.12);
-  border-right: 1px solid rgba(14,184,166,0.12);
+  background: transparent;
+  border-left: 1px solid rgba(255,255,255,0.06);
+  border-right: 1px solid rgba(255,255,255,0.06);
   color: var(--text-1) !important;
   font-weight: 600;
 }
