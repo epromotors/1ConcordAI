@@ -5266,8 +5266,13 @@ body {
   .slider-mask, .slider-wrapper {
     height: clamp(2.6rem, 5vw, 4.2rem) !important;
   }
+}/* Mobile and tablet optimization for About page description cards */
+@media (max-width: 480px) {
+  .about-desc-card {
+    padding: 20px 18px !important;
+  }
+  .about-desc-card p {
+    font-size: 13.5px !important;
+    line-height: 1.75 !important;
+  }
 }
-
-
-
-
