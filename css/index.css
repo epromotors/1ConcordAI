@@ -5163,3 +5163,14 @@ body {
   }
 }
 
+/* Isolation section: prevent wrapping of 'Complete tenant isolation.' on smaller desktops/laptops */
+.isolation-title {
+  font-size: clamp(1.9rem, 3.5vw, 2.8rem);
+}
+@media (max-width: 1200px) {
+  .isolation-title {
+    font-size: clamp(1.7rem, 3vw, 2.3rem);
+  }
+}
+
+
