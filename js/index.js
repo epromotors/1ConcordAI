@@ -1,6 +1,6 @@
 /* ══════════════════════════════════════════════
 
-   ONE CONCORD AI — WEB ENGINE & LOGIC
+   ONECONCORD AI — WEB ENGINE & LOGIC
 
    Preserving all client data structures & routing
 
@@ -4079,7 +4079,7 @@ function initHeroTitleSlider() {
         badge.innerHTML = "<span class='badge-dot' style='background:var(--gold-bright)'></span>GCC Cloud Compliant · Sovereign Cloud";
       } else {
         badge.className = "badge";
-        badge.innerHTML = "<span class='badge-dot'></span>Introducing One Concord AI";
+        badge.innerHTML = "<span class='badge-dot'></span>Introducing OneConcord AI";
       }
     }
 
@@ -4950,7 +4950,7 @@ function buildTestimonials() {
   const REVIEWS = [
     {
       stars: 5,
-      body: 'One Concord AI eliminated our entire service-desk backlog within two weeks. The Service Desk Agent handles password resets, VPN fixes, and licence requests end-to-end — our team now focuses on real engineering work.',
+      body: 'OneConcord AI eliminated our entire service-desk backlog within two weeks. The Service Desk Agent handles password resets, VPN fixes, and licence requests end-to-end — our team now focuses on real engineering work.',
       role: 'VP of IT, EMEA',
       org: 'Global Logistics Co.',
       initials: 'GL',
@@ -5022,7 +5022,7 @@ function buildTestimonials() {
     },
     {
       stars: 5,
-      body: 'One Concord AI handles our NESA compliance monitoring continuously. The quarterly control submission used to take two weeks of manual effort — the Compliance Agent now has everything ready within hours.',
+      body: 'OneConcord AI handles our NESA compliance monitoring continuously. The quarterly control submission used to take two weeks of manual effort — the Compliance Agent now has everything ready within hours.',
       role: 'Compliance Director',
       org: 'UAE Government Entity',
       initials: 'UG',

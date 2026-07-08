@@ -1,7 +1,7 @@
-/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-   ONE CONCORD AI â€” AGENTS PAGE CODE ENGINE
+/* ══════════════════════════════════════════════
+   ONECONCORD AI — AGENTS PAGE CODE ENGINE
    Scoped to agents page interactions & overrides
-   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+   ══════════════════════════════════════════════ */
 
 // Override the global buildAgentGrid function in index.js
 window.buildAgentGrid = function() {
