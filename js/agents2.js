@@ -242,9 +242,9 @@
     var metricsArea = document.getElementById('ag-metrics-area');
     if (metricsArea) {
       var metrics = [
-        { icon: '🤖', bg: 'rgba(167,139,250,0.12)', num: '1,284', label: 'Active AI Agents', change: '+12', cls: 'up' },
-        { icon: '⚡', bg: 'rgba(56,189,248,0.12)',  num: '428',  label: 'Workflows Automated', change: '', cls: '' },
-        { icon: '🛡', bg: 'rgba(245,158,11,0.12)',  num: '97.8%', label: 'Decision Confidence', change: '+0.4%', cls: 'up' },
+        { icon: '<svg viewBox="0 0 24 24" fill="none" stroke="rgb(167,139,250)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="3"/><rect x="9" y="9" width="6" height="6" rx="1"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 15h3M1 9h3M1 15h3"/></svg>', bg: 'rgba(167,139,250,0.12)', num: '1,284', label: 'Active AI Agents', change: '+12', cls: 'up' },
+        { icon: '<svg viewBox="0 0 24 24" fill="none" stroke="rgb(56,189,248)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>', bg: 'rgba(56,189,248,0.12)',  num: '428',  label: 'Workflows Automated', change: '', cls: '' },
+        { icon: '<svg viewBox="0 0 24 24" fill="none" stroke="rgb(245,158,11)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 11 11 13 15 9"/></svg>', bg: 'rgba(245,158,11,0.12)',  num: '97.8%', label: 'Decision Confidence', change: '+0.4%', cls: 'up' },
       ];
       metrics.forEach(function(m) {
         var el = document.createElement('div');

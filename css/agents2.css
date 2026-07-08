@@ -261,7 +261,12 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  font-size: 15px;
+}
+
+.ag-metric-icon svg {
+  width: 18px;
+  height: 18px;
+  display: block;
 }
 
 .ag-metric-body {
