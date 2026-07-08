@@ -330,10 +330,54 @@ nav { display: flex; align-items: center; gap: 1.8rem; }
 }
 .hero-sub { font-size: 1.02rem; margin-bottom: 2rem; max-width: 560px; line-height: 1.75; }
 .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 3rem; }
-.hero-stats { display: flex; gap: 2rem; flex-wrap: wrap; }
-.stat-num { font-family: var(--mono); font-size: clamp(26px, 4vw, 42px); font-weight: 600; color: var(--text-1); line-height: 1; letter-spacing: -1px; }
+.hero-stats {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+.hero-stats > div {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 16px 20px;
+  min-width: 140px;
+  transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), border-color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.hero-stats > div:hover {
+  background: rgba(181, 242, 219, 0.04);
+  border-color: rgba(181, 242, 219, 0.25);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25), 0 0 10px rgba(181, 242, 219, 0.05);
+}
+.hero-stats > div:hover .stat-num {
+  color: var(--accent) !important;
+  transform: scale(1.03);
+}
+.stat-num {
+  font-family: var(--mono);
+  font-size: clamp(26px, 4vw, 36px);
+  font-weight: 700;
+  color: var(--text-1);
+  line-height: 1;
+  letter-spacing: -1px;
+  transition: transform 0.3s ease, color 0.3s ease;
+  display: inline-block;
+}
 .stat-num em { color: var(--accent); font-style: normal; }
-.stat-lbl { font-size: 11px; font-weight: 600; color: var(--text-3); text-transform: uppercase; letter-spacing: .8px; margin-top: 5px; }
+.stat-lbl {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-3);
+  text-transform: uppercase;
+  letter-spacing: .8px;
+  margin-top: 6px;
+  transition: color 0.3s ease;
+}
+.hero-stats > div:hover .stat-lbl {
+  color: var(--text-2);
+}
 
 /* ─── DYNAMIC HERO SLIDER LAYOUT FRAMEWORK */
 .hero-title-container {
@@ -5209,6 +5253,21 @@ body {
     gap: 16px !important;
   }
 }
+
+/* Home Page Hero: prevent title from wrapping to 3 lines on small desktops/laptops */
+@media (max-width: 1366px) {
+  .hero-title-container span[style] {
+    font-size: clamp(2.1rem, 4.2vw, 3.5rem) !important;
+  }
+  .slide-text {
+    font-size: clamp(2.1rem, 4.2vw, 3.5rem) !important;
+    line-height: clamp(2.6rem, 5vw, 4.2rem) !important;
+  }
+  .slider-mask, .slider-wrapper {
+    height: clamp(2.6rem, 5vw, 4.2rem) !important;
+  }
+}
+
 
 
 
