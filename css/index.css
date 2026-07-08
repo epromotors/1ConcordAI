@@ -5012,10 +5012,17 @@ body {
   gap: 18px;
 }
 
+/* Section isolation — keeps cards above the rope SVG layer */
+#ag-roster2 {
+  position: relative;
+  z-index: 1;
+  isolation: isolate;
+}
+
 /* Card base */
 .ar2-card {
-  background: rgba(255, 255, 255, 0.035);
-  border: 1px solid rgba(255, 255, 255, 0.07);
+  background: rgba(14, 26, 30, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.09);
   border-radius: 14px;
   padding: 22px 20px 20px;
   display: flex;
@@ -5024,6 +5031,8 @@ body {
   transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
   position: relative;
   overflow: hidden;
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
 }
 
 .ar2-card::before {
@@ -5041,19 +5050,17 @@ body {
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
 }
 
-/* Code badges */
-.ar2-code {
+/* Icon badge wrappers */
+.ar2-icon-wrap {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 38px;
-  height: 38px;
-  border-radius: 9px;
+  width: 44px;
+  height: 44px;
+  border-radius: 11px;
   border: 1px solid;
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 0.5px;
   flex-shrink: 0;
+  transition: background 0.2s ease;
 }
 
 /* IT & Ops — mint green */
@@ -5068,11 +5075,11 @@ body {
 .ar2-comp { background: rgba(255, 201, 51, 0.08); color: #FFC933; border-color: rgba(255, 201, 51, 0.25); }
 .ar2-card:hover .ar2-comp { background: rgba(255, 201, 51, 0.13); }
 
-/* Agent name */
+/* Agent name — brand yellow */
 .ar2-name {
   font-size: 13px;
   font-weight: 700;
-  color: var(--text-1, #e8f0ef);
+  color: #FFC933;
   line-height: 1.35;
   flex: 1;
 }
