@@ -1876,11 +1876,11 @@ footer { background: rgba(22, 35, 43, 0.96); border-top: 1px solid var(--border)
 }
 .ft-form-btn:hover { background: #ffdb66; box-shadow: 0 4px 14px rgba(255, 201, 51, 0.35); }
 
-.ft-bot { display: flex; align-items: center; justify-content: space-between; padding-top: 2rem; border-top: 1px solid var(--border); }
+.ft-bot { display: flex; align-items: center; justify-content: center; padding-top: 2rem; border-top: 1px solid var(--border); text-align: center; }
 .ft-legal { display: flex; gap: 1.5rem; }
 .ft-legal a { font-size: .78rem; color: var(--text-3); text-decoration: none; transition: color .2s; }
 .ft-legal a:hover { color: var(--accent); }
-.ft-copy { font-size: .78rem; color: var(--text-3); }
+.ft-copy { font-size: .78rem; color: var(--text-3); text-align: center; }
 
 /* ─── ANIMATIONS ─── */
 .fade-up { opacity: 0; transform: translateY(28px); }
