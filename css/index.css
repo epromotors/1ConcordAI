@@ -5251,3 +5251,42 @@ body {
   }
 }
 
+/* About page unified single-card description & hover effects */
+.about-single-card {
+  position: relative;
+  background: rgba(22, 35, 43, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 16px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 32px;
+  margin-top: 32px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+  text-align: left;
+}
+
+.about-single-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, transparent 60%);
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.about-single-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(181, 242, 219, 0.3); /* Brand secondary (Mint Green) */
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45), 0 0 15px rgba(181, 242, 219, 0.12); /* Soft mint glow */
+}
+
+@media (max-width: 480px) {
+  .about-single-card {
+    padding: 24px 20px !important;
+    margin-top: 24px !important;
+  }
+}
+
