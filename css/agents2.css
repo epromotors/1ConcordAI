@@ -1490,7 +1490,7 @@
 
 .pos-ml {
   top: 48%;
-  left: -65px;
+  left: -15px;
   transform: translateY(-50%);
 }
 .pos-ml:hover, .pos-ml.active {
@@ -1540,7 +1540,7 @@
     font-size: 8.5px;
   }
   .pos-ml {
-    left: -40px;
+    left: 10px;
   }
   .pos-mr {
     right: -10px;
