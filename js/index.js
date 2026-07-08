@@ -1840,11 +1840,9 @@ function buildHome() {
 
 
 
-    // Recalculate on resize and scroll
+    // Recalculate on resize
 
     window.addEventListener('resize', drawConnections);
-
-    window.addEventListener('scroll', drawConnections);
 
   }
 
