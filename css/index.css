@@ -5217,36 +5217,6 @@ body {
   }
 }
 
-/* About page description cards & hover effects */
-.about-desc-card {
-  position: relative;
-  background: rgba(22, 35, 43, 0.72);
-  border: 1px solid rgba(255, 255, 255, 0.09);
-  border-radius: 16px;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  padding: 28px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
-  transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), border-color 0.3s ease, box-shadow 0.3s ease;
-  overflow: hidden;
-}
-
-.about-desc-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: 16px;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, transparent 60%);
-  pointer-events: none;
-  transition: opacity 0.3s ease;
-}
-
-.about-desc-card:hover {
-  transform: translateY(-5px);
-  border-color: rgba(181, 242, 219, 0.35); /* Brand secondary (Mint Green) */
-  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45), 0 0 15px rgba(181, 242, 219, 0.15); /* Soft mint glow */
-}
-
 @media (max-width: 768px) {
   .about-desc-grid {
     grid-template-columns: 1fr !important;
@@ -5265,15 +5235,6 @@ body {
   }
   .slider-mask, .slider-wrapper {
     height: clamp(2.6rem, 5vw, 4.2rem) !important;
-  }
-}/* Mobile and tablet optimization for About page description cards */
-@media (max-width: 480px) {
-  .about-desc-card {
-    padding: 20px 18px !important;
-  }
-  .about-desc-card p {
-    font-size: 13.5px !important;
-    line-height: 1.75 !important;
   }
 }
 
