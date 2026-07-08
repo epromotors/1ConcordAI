@@ -388,22 +388,16 @@
         // Remove or override standard clicks/hrefs
         if (hrefAttr && hrefAttr.includes("contact.html")) {
           el.setAttribute('href', '#');
-          el.addEventListener('click', (e) => {
-            e.preventDefault();
-            openModal();
-          });
-        } else if (clickAttr.includes("go('contact')")) {
-          el.removeAttribute('onclick');
-          el.addEventListener('click', (e) => {
-            e.preventDefault();
-            openModal();
-          });
-        } else {
-          el.addEventListener('click', (e) => {
-            e.preventDefault();
-            openModal();
-          });
         }
+        
+        // Clear both inline onclick attribute and dynamically registered onclick properties
+        el.removeAttribute('onclick');
+        el.onclick = null;
+
+        el.addEventListener('click', (e) => {
+          e.preventDefault();
+          openModal();
+        });
         el.setAttribute('data-demo-bound', 'true');
       }
     });
