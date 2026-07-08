@@ -438,21 +438,17 @@
       bandEl.appendChild(card);
     });
 
-    // Animate on scroll
-    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
-      ScrollTrigger.create({
-        trigger: bandEl,
-        start: 'top 80%',
-        once: true,
-        onEnter: function() {
-          gsap.fromTo(bandEl.querySelectorAll('.ag-stat-card'),
-            { opacity: 0, y: 24 },
-            { opacity: 1, y: 0, duration: 0.55, stagger: 0.07, ease: 'power2.out' }
-          );
-        }
+    // Animate immediately on render (avoids ScrollTrigger layout race conditions in SPA routing)
+    if (typeof gsap !== 'undefined') {
+      gsap.fromTo(bandEl.querySelectorAll('.ag-stat-card'),
+        { opacity: 0, y: 16 },
+        { opacity: 1, y: 0, duration: 0.5, stagger: 0.06, ease: 'power2.out', delay: 0.1 }
+      );
+    } else {
+      // Direct opacity fallback if GSAP is not present
+      bandEl.querySelectorAll('.ag-stat-card').forEach(function(el) {
+        el.style.opacity = '1';
       });
-      // Initial hidden state
-      gsap.set(bandEl.querySelectorAll('.ag-stat-card'), { opacity: 0, y: 24 });
     }
   }
 
@@ -578,18 +574,16 @@
       workflowGrid.appendChild(card);
     });
 
-    // Animate on scroll
-    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
-      gsap.set(workflowGrid.querySelectorAll('.ag-workflow-card'), { opacity: 0, y: 24 });
-      ScrollTrigger.create({
-        trigger: workflowGrid,
-        start: 'top 80%',
-        once: true,
-        onEnter: function() {
-          gsap.to(workflowGrid.querySelectorAll('.ag-workflow-card'),
-            { opacity: 1, y: 0, duration: 0.55, stagger: 0.1, ease: 'power2.out' }
-          );
-        }
+    // Animate immediately on render (avoids ScrollTrigger layout race conditions in SPA routing)
+    if (typeof gsap !== 'undefined') {
+      gsap.fromTo(workflowGrid.querySelectorAll('.ag-workflow-card'),
+        { opacity: 0, y: 16 },
+        { opacity: 1, y: 0, duration: 0.5, stagger: 0.08, ease: 'power2.out', delay: 0.15 }
+      );
+    } else {
+      // Direct opacity fallback if GSAP is not present
+      workflowGrid.querySelectorAll('.ag-workflow-card').forEach(function(el) {
+        el.style.opacity = '1';
       });
     }
   }
