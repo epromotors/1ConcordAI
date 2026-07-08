@@ -703,7 +703,7 @@
 
 /* ─── STATS BAND ─────────────────────────────────────────────────────── */
 #ag-stats-band {
-  background: linear-gradient(180deg, var(--ag-bg1) 0%, var(--ag-bg0) 100%);
+  background: transparent;
   border-top: 1px solid var(--ag-border);
   border-bottom: 1px solid var(--ag-border);
   padding: 70px 32px;
@@ -726,8 +726,10 @@
 }
 
 .ag-stat-card {
-  background: var(--ag-glass2);
-  border: 1px solid var(--ag-border);
+  background: rgba(22, 35, 43, 0.72);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.09);
   border-radius: 16px;
   padding: 28px 24px;
   text-align: center;
