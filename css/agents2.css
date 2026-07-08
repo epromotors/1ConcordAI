@@ -927,7 +927,7 @@
 /* ─── MULTI-AGENT WORKFLOW SECTION ───────────────────────────────────── */
 #ag-workflow {
   padding: 80px 32px;
-  background: linear-gradient(180deg, var(--ag-bg0) 0%, var(--ag-bg1) 50%, var(--ag-bg0) 100%);
+  background: transparent;
   border-top: 1px solid var(--ag-border);
   border-bottom: 1px solid var(--ag-border);
 }
@@ -964,11 +964,13 @@
 }
 
 .ag-workflow-card {
-  background: var(--ag-glass);
-  border: 1px solid var(--ag-border);
+  background: rgba(22, 35, 43, 0.72);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.09);
   border-radius: 18px;
   padding: 28px;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   position: relative;
   overflow: hidden;
   display: flex;
@@ -983,12 +985,18 @@
   background: var(--wf-color, var(--ag-accent));
   opacity: 0.5;
   border-radius: 0 0 2px 2px;
+  transition: height 0.3s ease, opacity 0.3s ease;
 }
 
 .ag-workflow-card:hover {
-  transform: translateY(-3px);
-  border-color: rgba(56,189,248,0.18);
-  box-shadow: 0 16px 40px rgba(0,0,0,0.25);
+  transform: translateY(-6px);
+  border-color: var(--wf-color);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.5), 0 0 15px var(--wf-color);
+}
+
+.ag-workflow-card:hover::before {
+  height: 4px;
+  opacity: 1;
 }
 
 .ag-wf-title-row {
@@ -1007,7 +1015,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 16px;
+  color: var(--wf-color, #ffffff);
+  transition: all 0.3s ease;
+}
+
+.ag-wf-icon svg {
+  width: 18px;
+  height: 18px;
+  display: block;
 }
 
 .ag-wf-name {
@@ -1015,7 +1030,7 @@
   font-weight: 700;
   letter-spacing: 0.8px;
   text-transform: uppercase;
-  color: #ffffff; /* White title */
+  color: #FFC933; /* Brand Yellow title */
 }
 
 .ag-wf-steps {

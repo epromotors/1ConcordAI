@@ -519,7 +519,7 @@
 
     var workflows = [
       {
-        icon: '🔑', name: 'Access Request Workflow', color: '#B5F2DB',
+        icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg>', name: 'Access Request Workflow', color: '#B5F2DB',
         steps: [
           { badge: 'it',   label: 'Service Desk',      action: 'Request received & classified' },
           { badge: 'sec',  label: 'Identity Agent',    action: 'Validates entitlement policy' },
@@ -531,7 +531,7 @@
         result: '⚡ 6 min auto-approved · 38 min with escalation',
       },
       {
-        icon: '🚨', name: 'Security Incident Response', color: '#E4EEF0',
+        icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>', name: 'Security Incident Response', color: '#E4EEF0',
         steps: [
           { badge: 'sec',  label: 'Security Ops',       action: 'Threat detected & IOC matched' },
           { badge: 'sec',  label: 'Identity Agent',     action: 'Account suspended immediately' },
@@ -542,7 +542,7 @@
         result: '⚡ Total end-to-end: < 4 minutes',
       },
       {
-        icon: '👤', name: 'New Employee Onboarding', color: '#FFC933',
+        icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg>', name: 'New Employee Onboarding', color: '#FFC933',
         steps: [
           { badge: 'lead', label: 'HR Lifecycle',       action: 'Hire confirmed in HRIS' },
           { badge: 'sec',  label: 'Identity Agent',     action: 'All accounts created & MFA enrolled' },
