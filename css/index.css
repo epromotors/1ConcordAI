@@ -5000,3 +5000,158 @@ body {
   }
 }
 
+
+/* ═══════════════════════════════════════════════════════════════════════
+   AGENT ROSTER-2
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* 4-column grid */
+.ar2-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+
+/* Card base */
+.ar2-card {
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 14px;
+  padding: 22px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.ar2-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 14px;
+  background: linear-gradient(135deg, rgba(255,255,255,0.03) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.ar2-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 255, 255, 0.14);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+}
+
+/* Code badges */
+.ar2-code {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 9px;
+  border: 1px solid;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  flex-shrink: 0;
+}
+
+/* IT & Ops — mint green */
+.ar2-it  { background: rgba(181, 242, 219, 0.08); color: #B5F2DB; border-color: rgba(181, 242, 219, 0.22); }
+.ar2-card:hover .ar2-it { background: rgba(181, 242, 219, 0.14); }
+
+/* Security & Cloud — cool white */
+.ar2-sec { background: rgba(228, 238, 240, 0.08); color: #E4EEF0; border-color: rgba(228, 238, 240, 0.22); }
+.ar2-card:hover .ar2-sec { background: rgba(228, 238, 240, 0.14); }
+
+/* Reporting & Compliance — gold */
+.ar2-comp { background: rgba(255, 201, 51, 0.08); color: #FFC933; border-color: rgba(255, 201, 51, 0.25); }
+.ar2-card:hover .ar2-comp { background: rgba(255, 201, 51, 0.13); }
+
+/* Agent name */
+.ar2-name {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-1, #e8f0ef);
+  line-height: 1.35;
+  flex: 1;
+}
+
+/* Description */
+.ar2-desc {
+  font-size: 12.5px;
+  color: var(--text-3, rgba(200,220,218,0.6));
+  line-height: 1.65;
+  flex: 1;
+}
+
+/* Stat row */
+.ar2-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-top: auto;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.055);
+}
+
+.ar2-val {
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  color: #B5F2DB;
+  line-height: 1;
+}
+
+.ar2-it-val   { color: #B5F2DB; }
+.ar2-sec-val  { color: #E4EEF0; }
+.ar2-comp-val { color: #FFC933; }
+
+.ar2-lbl {
+  font-size: 10.5px;
+  color: var(--text-3, rgba(200,220,218,0.5));
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+/* ── Mobile: 2-column at tablet ─────────────────────────────────────── */
+@media (max-width: 900px) {
+  .ar2-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+}
+
+/* ── Mobile: 1-column at phone ──────────────────────────────────────── */
+@media (max-width: 520px) {
+  .ar2-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  #ag-roster2 {
+    padding: 52px 0;
+  }
+
+  #ag-roster2 > div {
+    padding: 0 16px;
+  }
+
+  .ar2-card {
+    padding: 18px 16px 16px;
+  }
+
+  .ar2-name {
+    font-size: 13px;
+  }
+
+  .ar2-desc {
+    font-size: 12px;
+  }
+
+  .ar2-val {
+    font-size: 16px;
+  }
+}
+
