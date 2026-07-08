@@ -331,16 +331,16 @@ nav { display: flex; align-items: center; gap: 1.8rem; }
 .hero-sub { font-size: 1.02rem; margin-bottom: 2rem; max-width: 560px; line-height: 1.75; }
 .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 3rem; }
 .hero-stats {
-  display: flex;
-  gap: 1.5rem;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  width: 100%;
 }
 .hero-stats > div {
   background: rgba(255, 255, 255, 0.02);
   border: 1px solid rgba(255, 255, 255, 0.05);
   border-radius: 12px;
-  padding: 16px 20px;
-  min-width: 140px;
+  padding: 14px 16px;
   transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), border-color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
@@ -357,7 +357,7 @@ nav { display: flex; align-items: center; gap: 1.8rem; }
 }
 .stat-num {
   font-family: var(--mono);
-  font-size: clamp(26px, 4vw, 36px);
+  font-size: clamp(20px, 3vw, 32px);
   font-weight: 700;
   color: var(--text-1);
   line-height: 1;
@@ -367,7 +367,7 @@ nav { display: flex; align-items: center; gap: 1.8rem; }
 }
 .stat-num em { color: var(--accent); font-style: normal; }
 .stat-lbl {
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 600;
   color: var(--text-3);
   text-transform: uppercase;
@@ -5276,3 +5276,17 @@ body {
     line-height: 1.75 !important;
   }
 }
+
+/* Responsive grid overrides for hero stats on mobile and tablets */
+@media (max-width: 600px) {
+  .hero-stats {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.75rem !important;
+  }
+}
+@media (max-width: 360px) {
+  .hero-stats {
+    grid-template-columns: 1fr !important;
+  }
+}
+
