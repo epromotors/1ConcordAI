@@ -603,12 +603,12 @@
 
     // Feature 6 primary agents from different domains in a hexagonal hub-and-spoke layout
     var featuredAgents = [
-      { agent: AGENTS_V2[0], side: 'left',  posClass: 'pos-tl',  icon: '🎯' }, // Service Desk
-      { agent: AGENTS_V2[3], side: 'right', posClass: 'pos-tr',  icon: '🛡' }, // Security Operations
-      { agent: AGENTS_V2[6], side: 'left',  posClass: 'pos-ml',  icon: '📋' }, // Compliance & Governance (left)
-      { agent: AGENTS_V2[4], side: 'right', posClass: 'pos-mr',  icon: '🔑' }, // Identity & Access (right)
-      { agent: AGENTS_V2[2], side: 'left',  posClass: 'pos-bl',  icon: '🚨' }, // Incident Management
-      { agent: AGENTS_V2[7], side: 'right', posClass: 'pos-br',  icon: '⚖️' }  // Policy Engine
+      { agent: AGENTS_V2[0], side: 'left',  posClass: 'pos-tl',  icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>' }, // Service Desk
+      { agent: AGENTS_V2[3], side: 'right', posClass: 'pos-tr',  icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>' }, // Security Operations
+      { agent: AGENTS_V2[7], side: 'left',  posClass: 'pos-ml',  icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="9" y1="22" x2="9" y2="7"/><line x1="15" y1="22" x2="15" y2="7"/><line x1="12" y1="5" x2="12" y2="22"/><path d="M2 7h20"/><path d="M18 13c0 3-3 3-3 3s-3 0-3-3"/><path d="M12 13c0 3-3 3-3 3s-3 0-3-3"/></svg>' }, // Policy Engine Agent (now middle-left)
+      { agent: AGENTS_V2[4], side: 'right', posClass: 'pos-mr',  icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg>' }, // Identity & Access
+      { agent: AGENTS_V2[2], side: 'left',  posClass: 'pos-bl',  icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>' }, // Incident Management
+      { agent: AGENTS_V2[6], side: 'right', posClass: 'pos-br',  icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><polyline points="9 12 11 14 15 10"/></svg>' }  // Compliance & Governance Agent (now bottom-right)
     ];
 
     wrap.innerHTML = [

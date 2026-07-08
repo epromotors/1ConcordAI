@@ -1439,14 +1439,21 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 16px;
+  color: var(--ag-text2);
   transition: all 0.3s;
+}
+
+.q-fc-icon-wrap svg {
+  width: 16px;
+  height: 16px;
+  display: block;
 }
 
 .q-floating-card:hover .q-fc-icon-wrap,
 .q-floating-card.active .q-fc-icon-wrap {
   background: rgba(181, 242, 219, 0.18); /* Brand Mint Green wrap */
   border-color: rgba(181, 242, 219, 0.35); /* Brand Mint Green wrap border */
+  color: #B5F2DB; /* SVG stroke turns Mint Green */
 }
 
 .q-fc-content {
@@ -1510,6 +1517,35 @@
   right: 0;
 }
 .pos-br:hover, .pos-br.active { transform: scale(1.03); }
+
+/* Responsive Hub Section */
+@media (max-width: 1280px) {
+  .q-hub-visual-container {
+    width: 520px;
+    height: 520px;
+  }
+  .q-floating-card {
+    width: 165px;
+    padding: 10px 14px;
+    gap: 8px;
+  }
+  .q-wide-card {
+    width: 210px;
+  }
+  .q-fc-name {
+    font-size: 11px;
+    line-height: 1.3;
+  }
+  .q-fc-domain {
+    font-size: 8.5px;
+  }
+  .pos-ml {
+    left: -40px;
+  }
+  .pos-mr {
+    right: -10px;
+  }
+}
 
 /* Responsive Hub Section */
 @media (max-width: 1024px) {
